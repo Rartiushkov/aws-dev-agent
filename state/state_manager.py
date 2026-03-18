@@ -1,0 +1,16 @@
+import json
+import time
+
+
+class StateManager:
+
+    def save(self, goal, result):
+
+        data = {
+            "time": time.time(),
+            "goal": goal,
+            "result": result
+        }
+
+        with open("agent_state.json", "w") as f:
+            json.dump(data, f, indent=2)

@@ -1,0 +1,27 @@
+{
+  "time": 1773766724.2294724,
+  "goal": "fix iam delete role conflict",
+  "result": {
+    "lambdas": [
+      "remediator",
+      "task-dispatcher",
+      "ai-orchestrator",
+      "connector-worker",
+      "agent-planner",
+      "setup-agent",
+      "plan-executor",
+      "log-collector"
+    ],
+    "dynamodb_tables": [
+      "agent_errors",
+      "agent_fix_plans",
+      "agent_tasks",
+      "clinics",
+      "consent_events",
+      "consents",
+      "idempotency_locks"
+    ],
+    "queues": [],
+    "stacks": []
+  }
+}
