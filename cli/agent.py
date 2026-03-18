@@ -89,6 +89,10 @@ def main():
                         print("ℹ️ Nothing to delete — already removed")
                         continue
 
+                    if "entityalreadyexists" in err:
+                        print("ℹ️ Already exists — skipping")
+                        continue
+
                     error = detect_error(result.stderr)
 
                     if error:
@@ -103,7 +107,6 @@ def main():
         print("\n✅ Plan execution finished")
 
     finally:
-        # 🔥 ВСЕГДА сохраняем состояние
         save_snapshot(goal)
 
 

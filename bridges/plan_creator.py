@@ -6,56 +6,61 @@ def create_plan(goal):
 
     goal = goal.lower().strip()
 
-    # ===== RULES =====
+    # ===== IAM ROLE =====
 
-    if goal.startswith("delete role"):
-        parts = goal.split()
-        role_name = parts[-1]
-
-        return [
-            {"type": "action", "action": "DELETE_ALL_POLICIES", "role_name": role_name},
-            {"type": "command", "cmd": f"aws iam delete-role --role-name {role_name}"}
-        ]
-
-    if goal.startswith("create role"):
-        parts = goal.split()
-        role_name = parts[-1]
-
-        return [
-            {"type": "action", "action": "CREATE_ROLE", "role_name": role_name}
-        ]
-
-    if "check roles" in goal or "list roles" in goal:
-        return [
-            {"type": "command", "cmd": "aws iam list-roles"}
-        ]
-
-    if "check lambda" in goal or "list lambda" in goal:
-        return [
-            {"type": "command", "cmd": "aws lambda list-functions"}
-        ]
     if "create iam role" in goal and "lambda" in goal:
 
         role_name = "lambda-basic-role"
 
         return [
-        {
-            "type": "command",
-            "cmd": "echo {\"Version\":\"2012-10-17\",\"Statement\":[{\"Effect\":\"Allow\",\"Principal\":{\"Service\":\"lambda.amazonaws.com\"},\"Action\":\"sts:AssumeRole\"}]} > trust-policy.json"
-        },
-        {
-            "type": "command",
-            "cmd": f"aws iam create-role --role-name {role_name} --assume-role-policy-document file://trust-policy.json"
-        },
-        {
-            "type": "command",
-            "cmd": f"aws iam attach-role-policy --role-name {role_name} --policy-arn arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
-        },
-        {
-            "type": "command",
-            "cmd": "rm trust-policy.json || del trust-policy.json"
-        }
-    ]
+            {
+                "type": "command",
+                "cmd": "echo {\"Version\":\"2012-10-17\",\"Statement\":[{\"Effect\":\"Allow\",\"Principal\":{\"Service\":\"lambda.amazonaws.com\"},\"Action\":\"sts:AssumeRole\"}]} > trust-policy.json"
+            },
+            {
+                "type": "command",
+                "cmd": f"aws iam get-role --role-name {role_name} || aws iam create-role --role-name {role_name} --assume-role-policy-document file://trust-policy.json"
+            },
+            {
+                "type": "command",
+                "cmd": f"aws iam attach-role-policy --role-name {role_name} --policy-arn arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+            },
+            {
+                "type": "command",
+                "cmd": "del trust-policy.json 2>nul || rm trust-policy.json"
+            }
+        ]
+
+    # ===== LAMBDA CREATE =====
+
+    if "create lambda" in goal:
+
+        function_name = "hello-world-fn"
+        role_arn = "arn:aws:iam::027087672282:role/lambda-basic-role"
+
+        return [
+            {
+                "type": "command",
+                "cmd": "echo def handler(event, context):\\n    return {'statusCode': 200, 'body': 'Hello World'} > lambda_function.py"
+            },
+            {
+                "type": "command",
+                "cmd": "powershell Compress-Archive -Path lambda_function.py -DestinationPath function.zip -Force"
+            },
+            {
+                "type": "command",
+                "cmd": f"aws lambda get-function --function-name {function_name} || aws lambda create-function --function-name {function_name} --runtime python3.11 --role {role_arn} --handler lambda_function.handler --zip-file fileb://function.zip"
+            }
+        ]
+
+    # ===== SIMPLE COMMANDS =====
+
+    if "list roles" in goal:
+        return [{"type": "command", "cmd": "aws iam list-roles"}]
+
+    if "list lambda" in goal:
+        return [{"type": "command", "cmd": "aws lambda list-functions"}]
+
     # ===== AI =====
 
     try:
@@ -76,8 +81,6 @@ def create_plan(goal):
 
     except Exception as e:
         print("⚠️ AI FAILED:", str(e))
-
-    # ===== SAFE MODE =====
 
     print("🛡️ USING SAFE MODE")
 
