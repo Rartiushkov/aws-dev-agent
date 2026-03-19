@@ -15,6 +15,20 @@ FEATURE_TEST_PATTERNS = {
 CODEBUILD_PROJECT_NAME = "aws-dev-agent-tests"
 
 
+def extract_clone_request(raw_goal):
+    source_cluster_match = re.search(r"cluster(?:\s+named)?\s+([a-zA-Z0-9-_]+)", raw_goal, re.IGNORECASE)
+    source_service_match = re.search(r"service(?:\s+named)?\s+([a-zA-Z0-9-_]+)", raw_goal, re.IGNORECASE)
+    target_env_match = re.search(r"(?:new env|environment|env)(?:\s+named)?\s+([a-zA-Z0-9-_]+)", raw_goal, re.IGNORECASE)
+    team_match = re.search(r"team(?:\s+named)?\s+([a-zA-Z0-9-_]+)", raw_goal, re.IGNORECASE)
+
+    return {
+        "source_cluster": source_cluster_match.group(1) if source_cluster_match else "",
+        "source_service": source_service_match.group(1) if source_service_match else "",
+        "target_env": target_env_match.group(1) if target_env_match else "",
+        "team": team_match.group(1) if team_match else "",
+    }
+
+
 def autotest_step(goal_text=None):
     goal_text = (goal_text or "").lower()
 
@@ -154,6 +168,19 @@ def create_plan(goal):
                 "cmd": f"aws codebuild start-build --project-name {CODEBUILD_PROJECT_NAME}"
             }
         ]
+
+    if "clone env" in goal or "recreate env" in goal or "new env" in goal and "service" in goal and "cluster" in goal:
+        clone_request = extract_clone_request(raw_goal)
+        if clone_request["source_cluster"] and clone_request["source_service"] and clone_request["target_env"]:
+            command = (
+                f"python executor/scripts/clone_ecs_env.py "
+                f"--source-cluster {clone_request['source_cluster']} "
+                f"--source-service {clone_request['source_service']} "
+                f"--target-env {clone_request['target_env']}"
+            )
+            if clone_request["team"]:
+                command += f" --team {clone_request['team']}"
+            return append_autotest([{"type": "command", "cmd": command}], goal)
 
     if "list codebuild projects" in goal or "list codebuild" in goal:
         return [
