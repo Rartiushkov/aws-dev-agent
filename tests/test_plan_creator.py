@@ -57,6 +57,19 @@ class PlanCreatorTests(unittest.TestCase):
         self.assertIn("--source-service api-service", plan[0]["cmd"])
         self.assertIn("--target-env virgin", plan[0]["cmd"])
 
+    def test_discover_environment_goal_returns_discovery_command(self):
+        plan = create_plan("discover environment named legacy team platform")
+        self.assertIn("python executor/scripts/discover_aws_environment.py", plan[0]["cmd"])
+        self.assertIn("--source-env legacy", plan[0]["cmd"])
+        self.assertIn("--team platform", plan[0]["cmd"])
+
+    def test_deploy_discovered_env_goal_returns_deploy_and_validate(self):
+        plan = create_plan("deploy discovered env from legacy to new env virgin team payments")
+        self.assertIn("python executor/scripts/deploy_discovered_env.py", plan[0]["cmd"])
+        self.assertIn("--source-env legacy", plan[0]["cmd"])
+        self.assertIn("--target-env virgin", plan[0]["cmd"])
+        self.assertIn("python executor/scripts/validate_deployed_env.py --target-env virgin", plan[1]["cmd"])
+
 
 if __name__ == "__main__":
     unittest.main()

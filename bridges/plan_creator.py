@@ -169,6 +169,34 @@ def create_plan(goal):
             }
         ]
 
+    if "discover environment" in goal or "scan environment" in goal or "scan aws environment" in goal:
+        source_env_match = re.search(r"(?:named|for)\s+([a-zA-Z0-9-_]+)", raw_goal, re.IGNORECASE)
+        source_env = source_env_match.group(1) if source_env_match else ""
+        command = "python executor/scripts/discover_aws_environment.py"
+        if source_env:
+            command += f" --source-env {source_env}"
+        team_match = re.search(r"team(?:\s+named)?\s+([a-zA-Z0-9-_]+)", raw_goal, re.IGNORECASE)
+        if team_match:
+            command += f" --team {team_match.group(1)}"
+        return append_autotest([{"type": "command", "cmd": command}], goal)
+
+    if "deploy discovered env" in goal or "deploy cloned env" in goal:
+        source_env_match = re.search(r"(?:from|source)\s+([a-zA-Z0-9-_]+)", raw_goal, re.IGNORECASE)
+        target_env_match = re.search(r"to\s+(?:new\s+)?(?:environment|env)(?:\s+named)?\s+([a-zA-Z0-9-_]+)", raw_goal, re.IGNORECASE)
+        team_match = re.search(r"team(?:\s+named)?\s+([a-zA-Z0-9-_]+)", raw_goal, re.IGNORECASE)
+        if source_env_match and target_env_match:
+            plan = [
+                {
+                    "type": "command",
+                    "cmd": f"python executor/scripts/deploy_discovered_env.py --source-env {source_env_match.group(1)} --target-env {target_env_match.group(1)}" + (f" --team {team_match.group(1)}" if team_match else "")
+                },
+                {
+                    "type": "command",
+                    "cmd": f"python executor/scripts/validate_deployed_env.py --target-env {target_env_match.group(1)}"
+                }
+            ]
+            return append_autotest(plan, goal)
+
     if "clone env" in goal or "recreate env" in goal or "new env" in goal and "service" in goal and "cluster" in goal:
         clone_request = extract_clone_request(raw_goal)
         if clone_request["source_cluster"] and clone_request["source_service"] and clone_request["target_env"]:
