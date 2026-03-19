@@ -1,4 +1,5 @@
 import unittest
+from unittest.mock import patch
 
 from runner.runner import Runner
 
@@ -23,7 +24,8 @@ class RunnerCloudWatchTests(unittest.TestCase):
             }
         )
 
-        findings = runner.inspect_cloudwatch_errors({"lambdas": ["good-fn", "bad-fn"]})
+        with patch("runner.runner.create_fix_plan", return_value={"status": "PENDING"}):
+            findings = runner.inspect_cloudwatch_errors({"lambdas": ["good-fn", "bad-fn"]})
 
         self.assertEqual(len(findings), 1)
         self.assertEqual(findings[0]["lambda"], "bad-fn")
