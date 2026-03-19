@@ -115,6 +115,14 @@ def create_plan(goal):
     if "list lambda" in goal:
         return [{"type": "command", "cmd": "aws lambda list-functions"}]
 
+    if "autotest" in goal or "run tests" in goal or "run autotest" in goal:
+        return [
+            {
+                "type": "command",
+                "cmd": "python -m unittest discover -s tests -p \"test_*.py\""
+            }
+        ]
+
     try:
         from bedrock.bedrock_client import BedrockClient
 
