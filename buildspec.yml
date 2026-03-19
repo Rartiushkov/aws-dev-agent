@@ -9,7 +9,7 @@ phases:
   build:
     commands:
       - mkdir -p reports
-      - bash -c 'set -o pipefail; python -m unittest discover -s tests -p "test_*.py" 2>&1 | tee reports/unittest.txt'
+      - bash -c 'set -o pipefail; python -m unittest discover -s tests -t . -p "test_*.py" 2>&1 | tee reports/unittest.txt'
 
 artifacts:
   files:
