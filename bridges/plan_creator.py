@@ -52,6 +52,10 @@ def create_plan(goal):
             {
                 "type": "command",
                 "cmd": f"aws lambda update-function-code --function-name {function_name} --zip-file fileb://function.zip"
+            },
+            {
+                "type": "command",
+                "cmd": f"aws lambda wait function-updated --function-name {function_name}"
             }
         ]
 
