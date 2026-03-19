@@ -12,7 +12,7 @@ def handle_aws_cli_error(result):
     stderr = (result.stderr or "").strip()
 
     if not stderr:
-        return {"action": "stop", "handled": False}
+        return {"action": "stop", "handled": False, "message": "Unknown command failure"}
 
     print("ERROR:", stderr)
 
@@ -20,11 +20,11 @@ def handle_aws_cli_error(result):
 
     if "nosuchentity" in err:
         print("Nothing to delete; resource is already absent")
-        return {"action": "continue", "handled": True}
+        return {"action": "continue", "handled": True, "message": "Resource already absent"}
 
     if "entityalreadyexists" in err:
         print("Resource already exists; skipping duplicate create")
-        return {"action": "continue", "handled": True}
+        return {"action": "continue", "handled": True, "message": "Resource already exists"}
 
     if "accessdenied" in err or "access denied" in err:
         print("AWS access was denied; trying auto-fix plan")
@@ -32,37 +32,37 @@ def handle_aws_cli_error(result):
         if error and error.get("type") == "fix":
             print("AUTO FIX TRIGGERED")
             execute_fix_plan(error.get("plan", []))
-            return {"action": "continue", "handled": True}
-        return {"action": "stop", "handled": True}
+            return {"action": "continue", "handled": True, "message": "Auto-fix executed for access issue"}
+        return {"action": "stop", "handled": True, "message": stderr}
 
     if "throttling" in err or "rate exceeded" in err:
         print("AWS API throttled the request; stopping current plan")
-        return {"action": "stop", "handled": True}
+        return {"action": "stop", "handled": True, "message": stderr}
 
     if "validationexception" in err or "paramvalidation" in err or "error parsing parameter" in err:
         print("AWS CLI rejected the command arguments")
-        return {"action": "stop", "handled": True}
+        return {"action": "stop", "handled": True, "message": stderr}
 
     error = detect_error(stderr)
 
     if error:
         if error.get("type") == "ignore":
-            return {"action": "continue", "handled": True}
+            return {"action": "continue", "handled": True, "message": "Ignored recoverable AWS error"}
 
         if error.get("type") == "retry":
             print("Retry-worthy AWS error detected; stopping current plan")
-            return {"action": "stop", "handled": True}
+            return {"action": "stop", "handled": True, "message": stderr}
 
         if error.get("type") == "fix":
             print("AUTO FIX TRIGGERED")
             execute_fix_plan(error.get("plan", []))
-            return {"action": "continue", "handled": True}
+            return {"action": "continue", "handled": True, "message": "Auto-fix executed"}
 
     if "an error occurred" in err:
         print("Unhandled AWS CLI error; stopping plan execution")
-        return {"action": "stop", "handled": True}
+        return {"action": "stop", "handled": True, "message": stderr}
 
-    return {"action": "stop", "handled": False}
+    return {"action": "stop", "handled": False, "message": stderr}
 
 
 def execute_fix_plan(plan):
@@ -81,11 +81,22 @@ def execute_fix_plan(plan):
             execute_action(step)
 
 
+def emit_agent_result(status, goal, details):
+    print("===AGENT_RESULT_START===")
+    print(f"status={status}")
+    print(f"goal={goal}")
+    print(f"details={details}")
+    print("===AGENT_RESULT_END===")
+
+
 def main():
     goal = None
+    status = "failure"
+    details = "Agent did not complete"
 
     if len(sys.argv) < 2:
         print("Usage: python -m cli.agent \"goal\"")
+        emit_agent_result("failure", "", "Missing goal")
         return
 
     goal = sys.argv[1]
@@ -102,6 +113,7 @@ def main():
 
     if not isinstance(plan, list):
         print("Invalid plan")
+        emit_agent_result("failure", goal, "Invalid plan")
         return
 
     for step in plan:
@@ -151,11 +163,17 @@ def main():
                 error_result = handle_aws_cli_error(result)
 
                 if error_result["action"] == "continue":
+                    details = error_result["message"]
                     continue
 
+                details = error_result["message"]
                 break
+        else:
+            status = "success"
+            details = "Plan execution finished"
 
         print("\nPlan execution finished")
+        emit_agent_result(status, goal, details)
 
     finally:
         if goal:

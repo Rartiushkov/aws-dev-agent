@@ -1,1 +1,2 @@
-def handler(event, context):\n    return {'statusCode': 200, 'body': 'Hello World'} 
+def handler(event, context):
+    return {"statusCode": 200, "body": "Hello World"}

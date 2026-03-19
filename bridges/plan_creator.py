@@ -1,12 +1,12 @@
+from bridges.dynamo_writer import send_plan
 from executor.safe_mode import safe_fallback
 import json
+import time
 
 
 def create_plan(goal):
 
     goal = goal.lower().strip()
-
-    # ===== IAM ROLE =====
 
     if "create iam role" in goal and "lambda" in goal:
 
@@ -15,7 +15,7 @@ def create_plan(goal):
         return [
             {
                 "type": "command",
-                "cmd": "echo {\"Version\":\"2012-10-17\",\"Statement\":[{\"Effect\":\"Allow\",\"Principal\":{\"Service\":\"lambda.amazonaws.com\"},\"Action\":\"sts:AssumeRole\"}]} > trust-policy.json"
+                "cmd": "powershell -Command \"Set-Content -Path trust-policy.json -Value '{\\\"Version\\\":\\\"2012-10-17\\\",\\\"Statement\\\":[{\\\"Effect\\\":\\\"Allow\\\",\\\"Principal\\\":{\\\"Service\\\":\\\"lambda.amazonaws.com\\\"},\\\"Action\\\":\\\"sts:AssumeRole\\\"}]}'\""
             },
             {
                 "type": "command",
@@ -31,8 +31,6 @@ def create_plan(goal):
             }
         ]
 
-    # ===== LAMBDA CREATE =====
-
     if "create lambda" in goal:
 
         function_name = "hello-world-fn"
@@ -41,7 +39,7 @@ def create_plan(goal):
         return [
             {
                 "type": "command",
-                "cmd": "echo def handler(event, context):\\n    return {'statusCode': 200, 'body': 'Hello World'} > lambda_function.py"
+                "cmd": "powershell -Command \"Set-Content -Path lambda_function.py -Value @('def handler(event, context):','    return {\\\"statusCode\\\": 200, \\\"body\\\": \\\"Hello World\\\"}')\""
             },
             {
                 "type": "command",
@@ -53,35 +51,68 @@ def create_plan(goal):
             }
         ]
 
-    # ===== SIMPLE COMMANDS =====
-
     if "list roles" in goal:
         return [{"type": "command", "cmd": "aws iam list-roles"}]
 
     if "list lambda" in goal:
         return [{"type": "command", "cmd": "aws lambda list-functions"}]
 
-    # ===== AI =====
-
     try:
         from bedrock.bedrock_client import BedrockClient
 
-        print("🧠 TRYING AI...")
+        print("TRYING AI...")
         client = BedrockClient()
 
         response = client.ask(goal)
 
-        print("🧠 RAW AI RESPONSE:", response)
+        print("RAW AI RESPONSE:", response)
 
         plan = json.loads(response)
 
-        print("✅ AI PLAN PARSED")
+        print("AI PLAN PARSED")
 
         return plan
 
     except Exception as e:
-        print("⚠️ AI FAILED:", str(e))
+        print("AI FAILED:", str(e))
 
-    print("🛡️ USING SAFE MODE")
+    print("USING DEFAULT TEST PLAN")
 
-    return safe_fallback(goal)
+    return [
+        {
+            "type": "command",
+            "cmd": "echo running test"
+        },
+        {
+            "type": "command",
+            "cmd": "aws lambda list-functions"
+        }
+    ]
+
+
+def create_fix_plan(description):
+
+    timestamp = int(time.time())
+    plan = {
+        "pk": f"fix#{timestamp}",
+        "sk": "latest",
+        "status": "PENDING",
+        "type": "AUTO_FIX",
+        "createdAt": timestamp,
+        "plan": {
+            "target": {
+                "role": "unknown"
+            },
+            "policy": {
+                "Action": description[:200],
+                "Resource": "*"
+            }
+        }
+    }
+
+    try:
+        send_plan(plan)
+    except Exception as e:
+        print("Failed to send fix plan:", str(e))
+
+    return plan

@@ -31,22 +31,32 @@ def is_safe_to_delete(role_name: str) -> bool:
 
 
 def run_cmd(cmd):
-    try:
-        result = subprocess.check_output(cmd, shell=True)
-        return result.decode("utf-8")
-    except subprocess.CalledProcessError as e:
-        return e.output.decode("utf-8")
+    result = subprocess.run(
+        cmd,
+        shell=True,
+        capture_output=True,
+        text=True
+    )
+    return {
+        "stdout": result.stdout,
+        "stderr": result.stderr,
+        "exit_code": result.returncode,
+    }
 
 
 def cleanup_roles():
-    print("🧹 CLEANUP STARTED")
+    print("CLEANUP STARTED")
 
-    output = run_cmd('aws iam list-roles --query "Roles[].RoleName"')
+    result = run_cmd('aws iam list-roles --query "Roles[].RoleName"')
+
+    if result["exit_code"] != 0:
+        print("Failed to list roles:", result["stderr"])
+        return []
 
     try:
-        roles = json.loads(output)
-    except:
-        print("❌ Failed to parse roles")
+        roles = json.loads(result["stdout"])
+    except Exception:
+        print("Failed to parse roles")
         return []
 
     actions = []
@@ -54,14 +64,14 @@ def cleanup_roles():
     for role in roles:
 
         if is_protected(role):
-            print(f"🔒 Protected (skip): {role}")
+            print(f"Protected (skip): {role}")
             continue
 
         if not is_safe_to_delete(role):
-            print(f"⚠️ Not safe (skip): {role}")
+            print(f"Not safe (skip): {role}")
             continue
 
-        print(f"🔥 SAFE DELETE: {role}")
+        print(f"Safe delete: {role}")
 
         actions.append({
             "type": "action",

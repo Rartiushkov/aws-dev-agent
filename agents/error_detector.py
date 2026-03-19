@@ -1,8 +1,11 @@
 def detect_error(stderr):
 
-    err = stderr.lower()
+    if isinstance(stderr, dict):
+        stderr = stderr.get("stderr") or ""
 
-    if "accessdenied" in err:
+    err = str(stderr).lower()
+
+    if "accessdenied" in err or "access denied" in err:
         return {
             "type": "fix",
             "plan": [
@@ -18,7 +21,7 @@ def detect_error(stderr):
             "type": "ignore"
         }
 
-    if "throttling" in err:
+    if "throttling" in err or "rate exceeded" in err:
         return {
             "type": "retry"
         }
