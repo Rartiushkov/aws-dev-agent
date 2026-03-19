@@ -17,13 +17,13 @@ class PlanCreatorTests(unittest.TestCase):
 
         self.assertTrue(any("test-lambda-integration" in cmd for cmd in commands))
         self.assertTrue(any("aws lambda invoke" in cmd for cmd in commands))
-        self.assertEqual(commands[-1], 'python -m unittest discover -s tests -t . -p "test_plan_creator.py"')
+        self.assertEqual(commands[-1], 'python -m unittest discover -s . -p "test_plan_creator.py"')
 
     def test_create_iam_role_goal_appends_autotest(self):
         plan = create_plan("Create IAM role for lambda")
         commands = [step["cmd"] for step in plan if step.get("type") == "command"]
 
-        self.assertEqual(commands[-1], 'python -m unittest discover -s tests -t . -p "test_plan_creator.py"')
+        self.assertEqual(commands[-1], 'python -m unittest discover -s . -p "test_plan_creator.py"')
 
     def test_autotest_goal_returns_unittest_command(self):
         plan = create_plan("run autotest")
@@ -33,11 +33,11 @@ class PlanCreatorTests(unittest.TestCase):
 
     def test_feature_autotest_uses_specific_pattern(self):
         step = autotest_step("run tests for cloudwatch")
-        self.assertEqual(step["cmd"], 'python -m unittest discover -s tests -t . -p "test_runner_cloudwatch.py"')
+        self.assertEqual(step["cmd"], 'python -m unittest discover -s . -p "test_runner_cloudwatch.py"')
 
     def test_feature_test_goal_returns_specific_test_file(self):
         plan = create_plan("run tests for lambda")
-        self.assertEqual(plan[0]["cmd"], 'python -m unittest discover -s tests -t . -p "test_plan_creator.py"')
+        self.assertEqual(plan[0]["cmd"], 'python -m unittest discover -s . -p "test_plan_creator.py"')
 
     def test_run_autotest_in_aws_uses_codebuild(self):
         plan = create_plan("run autotest in aws")

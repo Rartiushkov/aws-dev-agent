@@ -22,12 +22,12 @@ def autotest_step(goal_text=None):
         if feature in goal_text:
             return {
                 "type": "command",
-                "cmd": f"python -m unittest discover -s tests -t . -p \"{pattern}\""
+                "cmd": f"python -m unittest discover -s . -p \"{pattern}\""
             }
 
     return {
         "type": "command",
-        "cmd": "python -m unittest discover -s tests -t . -p \"test_*.py\""
+        "cmd": "python -m unittest discover -s . -p \"test_*.py\""
     }
 
 
