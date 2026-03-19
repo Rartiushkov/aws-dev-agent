@@ -1,5 +1,4 @@
 import argparse
-import copy
 import json
 import re
 import tempfile
@@ -74,76 +73,158 @@ def ensure_zip_is_readable(zip_path):
         archive.testzip()
 
 
+def role_name_from_arn(role_arn):
+    return role_arn.split("/")[-1]
+
+
+def role_allows_lambda_assume(role_document):
+    for statement in role_document.get("Statement", []):
+        principal = statement.get("Principal", {})
+        service = principal.get("Service")
+        services = service if isinstance(service, list) else [service]
+        if statement.get("Effect") != "Allow":
+            continue
+        if "sts:AssumeRole" not in str(statement.get("Action", "")):
+            continue
+        if any(item == "lambda.amazonaws.com" for item in services if item):
+            return True
+    return False
+
+
+def resolve_execution_role(iam_client, source_role_arn):
+    candidate_arns = []
+    if source_role_arn:
+        candidate_arns.append(source_role_arn)
+    fallback_role_name = "lambda-basic-role"
+    fallback_role_arn = f"arn:aws:iam::{iam_client.get_user()['User']['Arn'].split(':')[4]}:role/{fallback_role_name}"
+    if fallback_role_arn not in candidate_arns:
+        candidate_arns.append(fallback_role_arn)
+
+    inspected = []
+    for candidate_arn in candidate_arns:
+        role_name = role_name_from_arn(candidate_arn)
+        try:
+            role = iam_client.get_role(RoleName=role_name)["Role"]
+        except ClientError as exc:
+            inspected.append({"role_arn": candidate_arn, "status": "missing", "details": str(exc)})
+            continue
+
+        assume_document = role.get("AssumeRolePolicyDocument", {})
+        if role_allows_lambda_assume(assume_document):
+            return {
+                "selected_role_arn": role["Arn"],
+                "fallback_used": role["Arn"] != source_role_arn,
+                "inspected_roles": inspected,
+            }
+
+        inspected.append({
+            "role_arn": role["Arn"],
+            "status": "rejected",
+            "details": "Role trust policy does not allow lambda.amazonaws.com",
+        })
+
+    raise RuntimeError(json.dumps({
+        "message": "No Lambda-assumable execution role available",
+        "inspected_roles": inspected,
+    }))
+
+
+def trim_create_payload(create_payload):
+    payload = dict(create_payload)
+    for key in ["PackageType", "Architectures", "EphemeralStorage"]:
+        if not payload.get(key):
+            payload.pop(key, None)
+    if not payload.get("Environment", {}).get("Variables"):
+        payload.pop("Environment", None)
+    return payload
+
+
 def deploy_lambda_functions(snapshot, source_env, target_env, team, region):
-    lambda_client = boto3.client("lambda", region_name=region)
+    session = boto3.session.Session(region_name=region)
+    lambda_client = session.client("lambda")
+    iam_client = session.client("iam")
     deployed = []
+    failed = []
 
     for source_fn in snapshot.get("lambda_functions", []):
         source_name = source_fn["FunctionName"]
         target_fn = target_name(source_name, source_env, target_env, team)
 
-        function_details = lambda_client.get_function(FunctionName=source_name)
-        configuration = function_details["Configuration"]
-        zip_path = download_lambda_zip(function_details["Code"]["Location"])
-        ensure_zip_is_readable(zip_path)
-
-        environment = configuration.get("Environment", {}).get("Variables", {})
-        environment = update_env_values(environment, sanitize_name(source_env), sanitize_name(target_env), sanitize_name(team))
-
-        create_payload = {
-            "FunctionName": target_fn,
-            "Runtime": configuration.get("Runtime"),
-            "Role": configuration["Role"],
-            "Handler": configuration["Handler"],
-            "Code": {"ZipFile": zip_path.read_bytes()},
-            "Description": f"Cloned from {source_name}",
-            "Timeout": configuration.get("Timeout", 3),
-            "MemorySize": configuration.get("MemorySize", 128),
-            "Publish": False,
-            "Environment": {"Variables": environment},
-            "PackageType": configuration.get("PackageType", "Zip"),
-            "Architectures": configuration.get("Architectures", ["x86_64"]),
-            "EphemeralStorage": configuration.get("EphemeralStorage", {"Size": 512}),
-        }
-
-        vpc_config = configuration.get("VpcConfig") or {}
-        if vpc_config.get("SubnetIds") and vpc_config.get("SecurityGroupIds"):
-            create_payload["VpcConfig"] = {
-                "SubnetIds": vpc_config["SubnetIds"],
-                "SecurityGroupIds": vpc_config["SecurityGroupIds"],
-            }
-
         try:
-            lambda_client.create_function(**create_payload)
-            operation = "created"
-        except ClientError as exc:
-            if exc.response["Error"]["Code"] != "ResourceConflictException":
-                raise
-            lambda_client.update_function_code(FunctionName=target_fn, ZipFile=zip_path.read_bytes(), Publish=False)
-            update_kwargs = {
+            function_details = lambda_client.get_function(FunctionName=source_name)
+            configuration = function_details["Configuration"]
+            zip_path = download_lambda_zip(function_details["Code"]["Location"])
+            ensure_zip_is_readable(zip_path)
+            zip_bytes = zip_path.read_bytes()
+
+            environment = configuration.get("Environment", {}).get("Variables", {})
+            environment = update_env_values(environment, sanitize_name(source_env), sanitize_name(target_env), sanitize_name(team))
+            role_resolution = resolve_execution_role(iam_client, configuration.get("Role"))
+
+            create_payload = {
                 "FunctionName": target_fn,
-                "Role": configuration["Role"],
-                "Handler": configuration["Handler"],
+                "Runtime": configuration.get("Runtime"),
+                "Role": role_resolution["selected_role_arn"],
+                "Handler": configuration.get("Handler"),
+                "Code": {"ZipFile": zip_bytes},
                 "Description": f"Cloned from {source_name}",
                 "Timeout": configuration.get("Timeout", 3),
                 "MemorySize": configuration.get("MemorySize", 128),
+                "Publish": False,
                 "Environment": {"Variables": environment},
+                "PackageType": configuration.get("PackageType", "Zip"),
+                "Architectures": configuration.get("Architectures", ["x86_64"]),
+                "EphemeralStorage": configuration.get("EphemeralStorage", {"Size": 512}),
             }
-            if "VpcConfig" in create_payload:
-                update_kwargs["VpcConfig"] = create_payload["VpcConfig"]
-            lambda_client.update_function_configuration(**update_kwargs)
-            operation = "updated"
 
-        lambda_client.get_waiter("function_active_v2").wait(FunctionName=target_fn)
-        lambda_client.get_waiter("function_updated").wait(FunctionName=target_fn)
+            vpc_config = configuration.get("VpcConfig") or {}
+            if vpc_config.get("SubnetIds") and vpc_config.get("SecurityGroupIds"):
+                create_payload["VpcConfig"] = {
+                    "SubnetIds": vpc_config["SubnetIds"],
+                    "SecurityGroupIds": vpc_config["SecurityGroupIds"],
+                }
 
-        deployed.append({
-            "source_function": source_name,
-            "target_function": target_fn,
-            "operation": operation,
-        })
+            create_payload = trim_create_payload(create_payload)
 
-    return deployed
+            try:
+                lambda_client.create_function(**create_payload)
+                operation = "created"
+            except ClientError as exc:
+                if exc.response["Error"]["Code"] != "ResourceConflictException":
+                    raise
+                lambda_client.update_function_code(FunctionName=target_fn, ZipFile=zip_bytes, Publish=False)
+                update_kwargs = {
+                    "FunctionName": target_fn,
+                    "Role": role_resolution["selected_role_arn"],
+                    "Handler": configuration.get("Handler"),
+                    "Description": f"Cloned from {source_name}",
+                    "Timeout": configuration.get("Timeout", 3),
+                    "MemorySize": configuration.get("MemorySize", 128),
+                    "Environment": {"Variables": environment},
+                }
+                if "VpcConfig" in create_payload:
+                    update_kwargs["VpcConfig"] = create_payload["VpcConfig"]
+                lambda_client.update_function_configuration(**update_kwargs)
+                operation = "updated"
+
+            lambda_client.get_waiter("function_active_v2").wait(FunctionName=target_fn)
+            lambda_client.get_waiter("function_updated").wait(FunctionName=target_fn)
+
+            deployed.append({
+                "source_function": source_name,
+                "target_function": target_fn,
+                "operation": operation,
+                "execution_role": role_resolution["selected_role_arn"],
+                "fallback_role_used": role_resolution["fallback_used"],
+            })
+        except Exception as exc:
+            failed.append({
+                "source_function": source_name,
+                "target_function": target_fn,
+                "error": str(exc),
+            })
+
+    return deployed, failed
 
 
 def main():
@@ -153,7 +234,7 @@ def main():
     deployment_dir = Path("state") / "deployments" / sanitize_name(args.target_env)
     deployment_dir.mkdir(parents=True, exist_ok=True)
 
-    deployed_lambdas = deploy_lambda_functions(snapshot, args.source_env, args.target_env, args.team, args.region)
+    deployed_lambdas, failed_lambdas = deploy_lambda_functions(snapshot, args.source_env, args.target_env, args.team, args.region)
     manifest = {
         "source_snapshot": str(snapshot_path),
         "source_env": sanitize_name(args.source_env),
@@ -161,7 +242,9 @@ def main():
         "team": sanitize_name(args.team) if args.team else "",
         "region": args.region,
         "lambda_functions": deployed_lambdas,
+        "failed_lambda_functions": failed_lambdas,
         "follow_up": {
+            "manual_review_required": bool(failed_lambdas),
             "cloudformation_stacks_review_required": len(snapshot.get("cloudformation_stacks", [])) > 0,
             "load_balancer_review_required": len(snapshot.get("load_balancers", [])) > 0,
             "ecs_review_required": len(snapshot.get("ecs", {}).get("services", [])) > 0,
@@ -172,9 +255,10 @@ def main():
     manifest_path.write_text(json.dumps(manifest, indent=2), encoding="utf-8")
 
     print(json.dumps({
-        "status": "ok",
+        "status": "ok" if not failed_lambdas else "partial",
         "manifest_path": str(manifest_path),
         "deployed_lambda_count": len(deployed_lambdas),
+        "failed_lambda_count": len(failed_lambdas),
     }, indent=2))
 
 
