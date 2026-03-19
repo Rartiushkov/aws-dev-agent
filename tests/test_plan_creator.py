@@ -17,6 +17,13 @@ class PlanCreatorTests(unittest.TestCase):
 
         self.assertTrue(any("test-lambda-integration" in cmd for cmd in commands))
         self.assertTrue(any("aws lambda invoke" in cmd for cmd in commands))
+        self.assertEqual(commands[-1], 'python -m unittest discover -s tests -p "test_*.py"')
+
+    def test_create_iam_role_goal_appends_autotest(self):
+        plan = create_plan("Create IAM role for lambda")
+        commands = [step["cmd"] for step in plan if step.get("type") == "command"]
+
+        self.assertEqual(commands[-1], 'python -m unittest discover -s tests -p "test_*.py"')
 
     def test_autotest_goal_returns_unittest_command(self):
         plan = create_plan("run autotest")

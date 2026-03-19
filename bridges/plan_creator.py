@@ -5,6 +5,19 @@ import re
 import time
 
 
+def autotest_step():
+    return {
+        "type": "command",
+        "cmd": "python -m unittest discover -s tests -p \"test_*.py\""
+    }
+
+
+def append_autotest(plan):
+    extended_plan = list(plan)
+    extended_plan.append(autotest_step())
+    return extended_plan
+
+
 def extract_lambda_name(raw_goal):
 
     match = re.search(r"named\s+(.+?)(?:\s+test lambda|\s+for integration|\s+integration|$)", raw_goal, re.IGNORECASE)
@@ -33,7 +46,7 @@ def create_plan(goal):
 
         role_name = "lambda-basic-role"
 
-        return [
+        return append_autotest([
             {
                 "type": "command",
                 "cmd": "powershell -Command \"Set-Content -Path trust-policy.json -Value '{\\\"Version\\\":\\\"2012-10-17\\\",\\\"Statement\\\":[{\\\"Effect\\\":\\\"Allow\\\",\\\"Principal\\\":{\\\"Service\\\":\\\"lambda.amazonaws.com\\\"},\\\"Action\\\":\\\"sts:AssumeRole\\\"}]}'\""
@@ -50,7 +63,7 @@ def create_plan(goal):
                 "type": "command",
                 "cmd": "del trust-policy.json 2>nul"
             }
-        ]
+        ])
 
     if "create lambda" in goal:
 
@@ -95,7 +108,7 @@ def create_plan(goal):
                 }
             ])
 
-        return plan
+        return append_autotest(plan)
 
     if "test lambda" in goal or "integration" in goal:
         return [
