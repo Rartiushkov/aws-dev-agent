@@ -1,10 +1,129 @@
 {
-  "captured_at": "2026-03-19T09:30:10.802261+00:00",
+  "captured_at": "2026-03-19T09:49:58.397444+00:00",
   "account_id": "027087672282",
   "region": "us-east-1",
   "source_env": "",
   "team": "",
   "lambda_functions": [
+    {
+      "FunctionName": "virgin-log-collector-platform",
+      "FunctionArn": "arn:aws:lambda:us-east-1:027087672282:function:virgin-log-collector-platform",
+      "Runtime": "nodejs20.x",
+      "Role": "arn:aws:iam::027087672282:role/lambda-basic-role",
+      "Handler": "index.handler",
+      "CodeSize": 1367,
+      "Description": "Cloned from log-collector",
+      "Timeout": 30,
+      "MemorySize": 256,
+      "LastModified": "2026-03-19T09:36:37.114+0000",
+      "CodeSha256": "bTr3fEcjasdq4tjNxvNMkBleZpZysL36BviXG0jwC98=",
+      "Version": "$LATEST",
+      "Environment": {
+        "Variables": {
+          "ERRORS_TABLE": "agent_errors"
+        }
+      },
+      "TracingConfig": {
+        "Mode": "PassThrough"
+      },
+      "RevisionId": "90b4487f-9c07-4c57-96a3-f34541f849da",
+      "PackageType": "Zip",
+      "Architectures": [
+        "x86_64"
+      ],
+      "EphemeralStorage": {
+        "Size": 512
+      },
+      "SnapStart": {
+        "ApplyOn": "None",
+        "OptimizationStatus": "Off"
+      },
+      "LoggingConfig": {
+        "LogFormat": "Text",
+        "LogGroup": "/aws/lambda/virgin-log-collector-platform"
+      }
+    },
+    {
+      "FunctionName": "virgin-plan-executor-platform",
+      "FunctionArn": "arn:aws:lambda:us-east-1:027087672282:function:virgin-plan-executor-platform",
+      "Runtime": "nodejs20.x",
+      "Role": "arn:aws:iam::027087672282:role/plan-executor-role",
+      "Handler": "index.handler",
+      "CodeSize": 5817593,
+      "Description": "Cloned from plan-executor",
+      "Timeout": 30,
+      "MemorySize": 256,
+      "LastModified": "2026-03-19T09:36:26.552+0000",
+      "CodeSha256": "nX11d9Utju29efU7RD5bWdEGHID0TU4KUZzuqYpn6Tk=",
+      "Version": "$LATEST",
+      "Environment": {
+        "Variables": {
+          "GITHUB_SECRET_ID": "hippa-signer/github/pat",
+          "GITHUB_REPO": "hippa-signer",
+          "GITHUB_OWNER": "Rartiushkov",
+          "PLANS_TABLE": "agent_fix_plans",
+          "BATCH_LIMIT": "10",
+          "GITHUB_BASE_BRANCH": "main"
+        }
+      },
+      "TracingConfig": {
+        "Mode": "PassThrough"
+      },
+      "RevisionId": "4033e780-e99b-4878-980e-d9e7ea5326f3",
+      "PackageType": "Zip",
+      "Architectures": [
+        "x86_64"
+      ],
+      "EphemeralStorage": {
+        "Size": 512
+      },
+      "SnapStart": {
+        "ApplyOn": "None",
+        "OptimizationStatus": "Off"
+      },
+      "LoggingConfig": {
+        "LogFormat": "Text",
+        "LogGroup": "/aws/lambda/virgin-plan-executor-platform"
+      }
+    },
+    {
+      "FunctionName": "virgin-ai-orchestrator-platform",
+      "FunctionArn": "arn:aws:lambda:us-east-1:027087672282:function:virgin-ai-orchestrator-platform",
+      "Runtime": "nodejs20.x",
+      "Role": "arn:aws:iam::027087672282:role/plan-executor-role",
+      "Handler": "index.handler",
+      "CodeSize": 3863503,
+      "Description": "Cloned from ai-orchestrator",
+      "Timeout": 3,
+      "MemorySize": 128,
+      "LastModified": "2026-03-19T09:35:56.000+0000",
+      "CodeSha256": "tFQlFUNRSbH0p+mRh+Whk6OEubtt6OBXyEhcI8QlXQY=",
+      "Version": "$LATEST",
+      "Environment": {
+        "Variables": {
+          "PLANS_TABLE": "agent_fix_plans"
+        }
+      },
+      "TracingConfig": {
+        "Mode": "PassThrough"
+      },
+      "RevisionId": "07ec1859-d640-45be-a93b-898208980467",
+      "PackageType": "Zip",
+      "Architectures": [
+        "x86_64"
+      ],
+      "EphemeralStorage": {
+        "Size": 512
+      },
+      "SnapStart": {
+        "ApplyOn": "None",
+        "OptimizationStatus": "Off"
+      },
+      "LoggingConfig": {
+        "LogFormat": "Text",
+        "LogGroup": "/aws/lambda/virgin-ai-orchestrator-platform"
+      }
+    },
     {
       "FunctionName": "remediator",
       "FunctionArn": "arn:aws:lambda:us-east-1:027087672282:function:remediator",
@@ -43,6 +162,46 @@
       "LoggingConfig": {
         "LogFormat": "Text",
         "LogGroup": "/aws/lambda/remediator"
+      }
+    },
+    {
+      "FunctionName": "virgin-agent-planner-platform",
+      "FunctionArn": "arn:aws:lambda:us-east-1:027087672282:function:virgin-agent-planner-platform",
+      "Runtime": "nodejs20.x",
+      "Role": "arn:aws:iam::027087672282:role/agent-planner-role",
+      "Handler": "agent-planner/index.handler",
+      "CodeSize": 4145721,
+      "Description": "Cloned from agent-planner",
+      "Timeout": 30,
+      "MemorySize": 256,
+      "LastModified": "2026-03-19T09:36:06.519+0000",
+      "CodeSha256": "vfHiazTLKdMfdyx6xl2IAdSV5wrd30OP0hBSGWefVtk=",
+      "Version": "$LATEST",
+      "Environment": {
+        "Variables": {
+          "EXECUTOR_QUEUE_URL": "https://sqs.us-east-1.amazonaws.com/027087672282/plan-executor-queue",
+          "PLANS_TABLE": "agent_fix_plans",
+          "BEDROCK_MODEL": "mistral.ministral-3-8b-instruct"
+        }
+      },
+      "TracingConfig": {
+        "Mode": "PassThrough"
+      },
+      "RevisionId": "2061a165-796d-4203-87f9-dae2987aa9b6",
+      "PackageType": "Zip",
+      "Architectures": [
+        "x86_64"
+      ],
+      "EphemeralStorage": {
+        "Size": 512
+      },
+      "SnapStart": {
+        "ApplyOn": "None",
+        "OptimizationStatus": "Off"
+      },
+      "LoggingConfig": {
+        "LogFormat": "Text",
+        "LogGroup": "/aws/lambda/virgin-agent-planner-platform"
       }
     },
     {
@@ -122,6 +281,39 @@
       }
     },
     {
+      "FunctionName": "virgin-hello-world-fn-platform",
+      "FunctionArn": "arn:aws:lambda:us-east-1:027087672282:function:virgin-hello-world-fn-platform",
+      "Runtime": "python3.11",
+      "Role": "arn:aws:iam::027087672282:role/lambda-basic-role",
+      "Handler": "lambda_function.handler",
+      "CodeSize": 218,
+      "Description": "Cloned from hello-world-fn",
+      "Timeout": 3,
+      "MemorySize": 128,
+      "LastModified": "2026-03-19T09:36:31.338+0000",
+      "CodeSha256": "zuz4886lbcUeyn3b21aL/z/n8v2+u+zC/cTLHJK5GnI=",
+      "Version": "$LATEST",
+      "TracingConfig": {
+        "Mode": "PassThrough"
+      },
+      "RevisionId": "3929023e-fe87-492e-92eb-297c420a65f2",
+      "PackageType": "Zip",
+      "Architectures": [
+        "x86_64"
+      ],
+      "EphemeralStorage": {
+        "Size": 512
+      },
+      "SnapStart": {
+        "ApplyOn": "None",
+        "OptimizationStatus": "Off"
+      },
+      "LoggingConfig": {
+        "LogFormat": "Text",
+        "LogGroup": "/aws/lambda/virgin-hello-world-fn-platform"
+      }
+    },
+    {
       "FunctionName": "connector-worker",
       "FunctionArn": "arn:aws:lambda:us-east-1:027087672282:function:connector-worker",
       "Runtime": "nodejs20.x",
@@ -159,6 +351,79 @@
       "LoggingConfig": {
         "LogFormat": "Text",
         "LogGroup": "/aws/lambda/connector-worker"
+      }
+    },
+    {
+      "FunctionName": "virgin-remediator-platform",
+      "FunctionArn": "arn:aws:lambda:us-east-1:027087672282:function:virgin-remediator-platform",
+      "Runtime": "nodejs20.x",
+      "Role": "arn:aws:iam::027087672282:role/remediator-role",
+      "Handler": "index.handler",
+      "CodeSize": 3852688,
+      "Description": "Cloned from remediator",
+      "Timeout": 60,
+      "MemorySize": 512,
+      "LastModified": "2026-03-19T09:35:47.000+0000",
+      "CodeSha256": "InI3hYdguH3xFK+AC+2nyRxETzPDgwdCJwsXupNGPJM=",
+      "Version": "$LATEST",
+      "Environment": {
+        "Variables": {
+          "PLANS_TABLE": "agent_fix_plans",
+          "BEDROCK_MODEL_ID": "global.anthropic.claude-sonnet-4-20250514-v1:0",
+          "REGION": "us-east-1"
+        }
+      },
+      "TracingConfig": {
+        "Mode": "PassThrough"
+      },
+      "RevisionId": "0a92f02d-a05b-4786-bd1a-cafb10a04a1e",
+      "PackageType": "Zip",
+      "Architectures": [
+        "x86_64"
+      ],
+      "EphemeralStorage": {
+        "Size": 512
+      },
+      "SnapStart": {
+        "ApplyOn": "None",
+        "OptimizationStatus": "Off"
+      },
+      "LoggingConfig": {
+        "LogFormat": "Text",
+        "LogGroup": "/aws/lambda/virgin-remediator-platform"
+      }
+    },
+    {
+      "FunctionName": "virgin-setup-agent-platform",
+      "FunctionArn": "arn:aws:lambda:us-east-1:027087672282:function:virgin-setup-agent-platform",
+      "Runtime": "python3.12",
+      "Role": "arn:aws:iam::027087672282:role/lambda-basic-role",
+      "Handler": "lambda_function.handler",
+      "CodeSize": 2490,
+      "Description": "Cloned from setup-agent",
+      "Timeout": 30,
+      "MemorySize": 256,
+      "LastModified": "2026-03-19T09:36:12.692+0000",
+      "CodeSha256": "yB846DRwG30oBvG0be9gRaF1P8Hx02N1tyES83me3TM=",
+      "Version": "$LATEST",
+      "TracingConfig": {
+        "Mode": "PassThrough"
+      },
+      "RevisionId": "1885a1ef-8744-4f4a-8b03-5a1021134613",
+      "PackageType": "Zip",
+      "Architectures": [
+        "x86_64"
+      ],
+      "EphemeralStorage": {
+        "Size": 512
+      },
+      "SnapStart": {
+        "ApplyOn": "None",
+        "OptimizationStatus": "Off"
+      },
+      "LoggingConfig": {
+        "LogFormat": "Text",
+        "LogGroup": "/aws/lambda/virgin-setup-agent-platform"
       }
     },
     {
@@ -232,6 +497,39 @@
       "LoggingConfig": {
         "LogFormat": "Text",
         "LogGroup": "/aws/lambda/setup-agent"
+      }
+    },
+    {
+      "FunctionName": "virgin-test-lambda-integration-platform",
+      "FunctionArn": "arn:aws:lambda:us-east-1:027087672282:function:virgin-test-lambda-integration-platform",
+      "Runtime": "python3.11",
+      "Role": "arn:aws:iam::027087672282:role/lambda-basic-role",
+      "Handler": "lambda_function.handler",
+      "CodeSize": 1603,
+      "Description": "Cloned from test-lambda-integration",
+      "Timeout": 3,
+      "MemorySize": 128,
+      "LastModified": "2026-03-19T09:36:18.516+0000",
+      "CodeSha256": "fFHt1kuwzz7A2ASkmoHNwsXL7Nh3qBqirv9qz9SppAw=",
+      "Version": "$LATEST",
+      "TracingConfig": {
+        "Mode": "PassThrough"
+      },
+      "RevisionId": "edbbf6b5-1b10-431a-a724-ee5db773dab9",
+      "PackageType": "Zip",
+      "Architectures": [
+        "x86_64"
+      ],
+      "EphemeralStorage": {
+        "Size": 512
+      },
+      "SnapStart": {
+        "ApplyOn": "None",
+        "OptimizationStatus": "Off"
+      },
+      "LoggingConfig": {
+        "LogFormat": "Text",
+        "LogGroup": "/aws/lambda/virgin-test-lambda-integration-platform"
       }
     },
     {
@@ -311,6 +609,46 @@
       }
     },
     {
+      "FunctionName": "virgin-connector-worker-platform",
+      "FunctionArn": "arn:aws:lambda:us-east-1:027087672282:function:virgin-connector-worker-platform",
+      "Runtime": "nodejs20.x",
+      "Role": "arn:aws:iam::027087672282:role/lambda-basic-role",
+      "Handler": "index.handler",
+      "CodeSize": 1056,
+      "Description": "Cloned from connector-worker",
+      "Timeout": 30,
+      "MemorySize": 256,
+      "LastModified": "2026-03-19T09:35:58.729+0000",
+      "CodeSha256": "JesixLSu1fC6/zovUMNEot3oRnFhxLt2VEReSeFUffo=",
+      "Version": "$LATEST",
+      "Environment": {
+        "Variables": {
+          "OUT_QUEUE_URL": "https://sqs.us-east-1.amazonaws.com/027087672282/agent-fix-tasks.fifo",
+          "QUEUE_NAME": "connector-tasks.fifo",
+          "REGION": "us-east-1"
+        }
+      },
+      "TracingConfig": {
+        "Mode": "PassThrough"
+      },
+      "RevisionId": "433a152c-cf72-4067-a3ec-ac388e460430",
+      "PackageType": "Zip",
+      "Architectures": [
+        "x86_64"
+      ],
+      "EphemeralStorage": {
+        "Size": 512
+      },
+      "SnapStart": {
+        "ApplyOn": "None",
+        "OptimizationStatus": "Off"
+      },
+      "LoggingConfig": {
+        "LogFormat": "Text",
+        "LogGroup": "/aws/lambda/virgin-connector-worker-platform"
+      }
+    },
+    {
       "FunctionName": "hello-world-fn",
       "FunctionArn": "arn:aws:lambda:us-east-1:027087672282:function:hello-world-fn",
       "Runtime": "python3.11",
@@ -380,8 +718,716 @@
         "LogFormat": "Text",
         "LogGroup": "/aws/lambda/log-collector"
       }
+    },
+    {
+      "FunctionName": "virgin-task-dispatcher-platform",
+      "FunctionArn": "arn:aws:lambda:us-east-1:027087672282:function:virgin-task-dispatcher-platform",
+      "Runtime": "nodejs20.x",
+      "Role": "arn:aws:iam::027087672282:role/task-dispatcher-role",
+      "Handler": "index.handler",
+      "CodeSize": 2971378,
+      "Description": "Cloned from task-dispatcher",
+      "Timeout": 15,
+      "MemorySize": 256,
+      "LastModified": "2026-03-19T09:35:52.000+0000",
+      "CodeSha256": "tmPr0QaIaIP15xv+0imdMRY0baHZ83524WDu4l2tJQg=",
+      "Version": "$LATEST",
+      "Environment": {
+        "Variables": {
+          "FIX_QUEUE_URL": "https://sqs.us-east-1.amazonaws.com/027087672282/agent-fix-tasks.fifo"
+        }
+      },
+      "TracingConfig": {
+        "Mode": "PassThrough"
+      },
+      "RevisionId": "31053497-2c12-4102-b4fc-b99a2522cc36",
+      "PackageType": "Zip",
+      "Architectures": [
+        "x86_64"
+      ],
+      "EphemeralStorage": {
+        "Size": 512
+      },
+      "SnapStart": {
+        "ApplyOn": "None",
+        "OptimizationStatus": "Off"
+      },
+      "LoggingConfig": {
+        "LogFormat": "Text",
+        "LogGroup": "/aws/lambda/virgin-task-dispatcher-platform"
+      }
     }
   ],
+  "lambda_event_source_mappings": [
+    {
+      "UUID": "55dbb09e-8b4d-4594-8c41-8fa4181ad929",
+      "BatchSize": 1,
+      "MaximumBatchingWindowInSeconds": 0,
+      "EventSourceArn": "arn:aws:sqs:us-east-1:027087672282:agent-fix-tasks.fifo",
+      "FunctionArn": "arn:aws:lambda:us-east-1:027087672282:function:remediator",
+      "LastModified": "2026-02-23 11:12:54.222000+03:00",
+      "State": "Enabled",
+      "StateTransitionReason": "USER_INITIATED",
+      "FunctionResponseTypes": [],
+      "EventSourceMappingArn": "arn:aws:lambda:us-east-1:027087672282:event-source-mapping:55dbb09e-8b4d-4594-8c41-8fa4181ad929"
+    },
+    {
+      "UUID": "3f3bd44c-b2cb-432d-b97c-d34246296a1d",
+      "StartingPosition": "LATEST",
+      "BatchSize": 10,
+      "MaximumBatchingWindowInSeconds": 0,
+      "ParallelizationFactor": 1,
+      "EventSourceArn": "arn:aws:dynamodb:us-east-1:027087672282:table/agent_errors/stream/2026-02-23T07:46:15.921",
+      "FunctionArn": "arn:aws:lambda:us-east-1:027087672282:function:task-dispatcher",
+      "LastModified": "2026-02-28 08:53:00+03:00",
+      "LastProcessingResult": "OK",
+      "State": "Enabled",
+      "StateTransitionReason": "User action",
+      "DestinationConfig": {
+        "OnFailure": {}
+      },
+      "MaximumRecordAgeInSeconds": -1,
+      "BisectBatchOnFunctionError": false,
+      "MaximumRetryAttempts": -1,
+      "TumblingWindowInSeconds": 0,
+      "FunctionResponseTypes": [],
+      "EventSourceMappingArn": "arn:aws:lambda:us-east-1:027087672282:event-source-mapping:3f3bd44c-b2cb-432d-b97c-d34246296a1d"
+    },
+    {
+      "UUID": "e1eb804b-5d2c-4c56-b1db-4aa5a8107250",
+      "BatchSize": 10,
+      "MaximumBatchingWindowInSeconds": 0,
+      "EventSourceArn": "arn:aws:sqs:us-east-1:027087672282:connector-tasks.fifo",
+      "FunctionArn": "arn:aws:lambda:us-east-1:027087672282:function:connector-worker",
+      "LastModified": "2026-03-17 22:11:05.465000+03:00",
+      "State": "Disabled",
+      "StateTransitionReason": "USER_INITIATED",
+      "FunctionResponseTypes": [],
+      "EventSourceMappingArn": "arn:aws:lambda:us-east-1:027087672282:event-source-mapping:e1eb804b-5d2c-4c56-b1db-4aa5a8107250"
+    },
+    {
+      "UUID": "715dc62f-47bf-4f1f-b8fb-9d25947dc437",
+      "BatchSize": 1,
+      "MaximumBatchingWindowInSeconds": 0,
+      "EventSourceArn": "arn:aws:sqs:us-east-1:027087672282:agent-error-queue",
+      "FunctionArn": "arn:aws:lambda:us-east-1:027087672282:function:agent-planner",
+      "LastModified": "2026-03-04 21:48:03.894000+03:00",
+      "State": "Enabled",
+      "StateTransitionReason": "USER_INITIATED",
+      "FunctionResponseTypes": [],
+      "EventSourceMappingArn": "arn:aws:lambda:us-east-1:027087672282:event-source-mapping:715dc62f-47bf-4f1f-b8fb-9d25947dc437"
+    },
+    {
+      "UUID": "4b361b04-2403-4343-aa61-32e97d094f82",
+      "BatchSize": 1,
+      "MaximumBatchingWindowInSeconds": 0,
+      "EventSourceArn": "arn:aws:sqs:us-east-1:027087672282:plan-executor-queue",
+      "FunctionArn": "arn:aws:lambda:us-east-1:027087672282:function:plan-executor",
+      "LastModified": "2026-03-04 21:21:52.469000+03:00",
+      "State": "Enabled",
+      "StateTransitionReason": "USER_INITIATED",
+      "FunctionResponseTypes": [],
+      "EventSourceMappingArn": "arn:aws:lambda:us-east-1:027087672282:event-source-mapping:4b361b04-2403-4343-aa61-32e97d094f82"
+    }
+  ],
+  "lambda_permissions": [
+    {
+      "FunctionName": "plan-executor",
+      "Policy": {
+        "Version": "2012-10-17",
+        "Id": "default",
+        "Statement": [
+          {
+            "Sid": "plan-executor-every-minute-invoke",
+            "Effect": "Allow",
+            "Principal": {
+              "Service": "events.amazonaws.com"
+            },
+            "Action": "lambda:InvokeFunction",
+            "Resource": "arn:aws:lambda:us-east-1:027087672282:function:plan-executor",
+            "Condition": {
+              "ArnLike": {
+                "AWS:SourceArn": "arn:aws:events:us-east-1:027087672282:rule/plan-executor-every-minute"
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "FunctionName": "log-collector",
+      "Policy": {
+        "Version": "2012-10-17",
+        "Id": "default",
+        "Statement": [
+          {
+            "Sid": "cwlogs-invoke-connector-worker",
+            "Effect": "Allow",
+            "Principal": {
+              "Service": "logs.amazonaws.com"
+            },
+            "Action": "lambda:InvokeFunction",
+            "Resource": "arn:aws:lambda:us-east-1:027087672282:function:log-collector",
+            "Condition": {
+              "ArnLike": {
+                "AWS:SourceArn": "arn:aws:logs:us-east-1:027087672282:log-group:/aws/lambda/connector-worker:*"
+              }
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "iam_roles": [
+    {
+      "RoleName": "lambda-basic-role",
+      "Arn": "arn:aws:iam::027087672282:role/lambda-basic-role",
+      "AssumeRolePolicyDocument": {
+        "Version": "2012-10-17",
+        "Statement": [
+          {
+            "Effect": "Allow",
+            "Principal": {
+              "Service": "lambda.amazonaws.com"
+            },
+            "Action": "sts:AssumeRole"
+          }
+        ]
+      },
+      "Description": "",
+      "Path": "/",
+      "ManagedPolicies": [
+        {
+          "PolicyName": "AWSLambdaBasicExecutionRole",
+          "PolicyArn": "arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+        }
+      ],
+      "InlinePolicies": []
+    },
+    {
+      "RoleName": "plan-executor-role",
+      "Arn": "arn:aws:iam::027087672282:role/plan-executor-role",
+      "AssumeRolePolicyDocument": {
+        "Version": "2012-10-17",
+        "Statement": [
+          {
+            "Effect": "Allow",
+            "Principal": {
+              "Service": "lambda.amazonaws.com"
+            },
+            "Action": "sts:AssumeRole"
+          }
+        ]
+      },
+      "Description": "",
+      "Path": "/",
+      "ManagedPolicies": [
+        {
+          "PolicyName": "AWSLambdaBasicExecutionRole",
+          "PolicyArn": "arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+        }
+      ],
+      "InlinePolicies": [
+        {
+          "PolicyName": "agent-fix-plans-ddb-access",
+          "PolicyDocument": {
+            "Version": "2012-10-17",
+            "Statement": [
+              {
+                "Sid": "QueryStatusIndex",
+                "Effect": "Allow",
+                "Action": [
+                  "dynamodb:Query"
+                ],
+                "Resource": "arn:aws:dynamodb:us-east-1:027087672282:table/agent_fix_plans/index/StatusIndex"
+              },
+              {
+                "Sid": "ReadWritePlansTable",
+                "Effect": "Allow",
+                "Action": [
+                  "dynamodb:GetItem",
+                  "dynamodb:UpdateItem",
+                  "dynamodb:PutItem"
+                ],
+                "Resource": "arn:aws:dynamodb:us-east-1:027087672282:table/agent_fix_plans"
+              }
+            ]
+          }
+        },
+        {
+          "PolicyName": "allow-putrolepolicy-setup-agent",
+          "PolicyDocument": {
+            "Version": "2012-10-17",
+            "Statement": [
+              {
+                "Effect": "Allow",
+                "Action": [
+                  "iam:PutRolePolicy",
+                  "iam:GetRole",
+                  "iam:GetRolePolicy"
+                ],
+                "Resource": "arn:aws:iam::027087672282:role/setup-agent-role"
+              }
+            ]
+          }
+        },
+        {
+          "PolicyName": "allow-sqs-receive",
+          "PolicyDocument": {
+            "Version": "2012-10-17",
+            "Statement": [
+              {
+                "Effect": "Allow",
+                "Action": [
+                  "sqs:ReceiveMessage",
+                  "sqs:DeleteMessage",
+                  "sqs:GetQueueAttributes"
+                ],
+                "Resource": "arn:aws:sqs:us-east-1:027087672282:plan-executor-queue"
+              }
+            ]
+          }
+        },
+        {
+          "PolicyName": "AllowBedrockInvoke",
+          "PolicyDocument": {
+            "Version": "2012-10-17",
+            "Statement": [
+              {
+                "Effect": "Allow",
+                "Action": [
+                  "bedrock:InvokeModel",
+                  "bedrock:InvokeModelWithResponseStream"
+                ],
+                "Resource": "arn:aws:bedrock:us-east-1::foundation-model/anthropic.claude-3-haiku-20240307-v1:0"
+              }
+            ]
+          }
+        },
+        {
+          "PolicyName": "AllowSQSCreate",
+          "PolicyDocument": {
+            "Version": "2012-10-17",
+            "Statement": [
+              {
+                "Effect": "Allow",
+                "Action": [
+                  "sqs:SendMessage",
+                  "sqs:GetQueueAttributes",
+                  "sqs:GetQueueUrl"
+                ],
+                "Resource": "*"
+              }
+            ]
+          }
+        },
+        {
+          "PolicyName": "plan-executor-ddb-plans",
+          "PolicyDocument": {
+            "Version": "2012-10-17",
+            "Statement": [
+              {
+                "Sid": "PlansTableAndIndexAccess",
+                "Effect": "Allow",
+                "Action": [
+                  "dynamodb:Query",
+                  "dynamodb:GetItem",
+                  "dynamodb:UpdateItem"
+                ],
+                "Resource": [
+                  "arn:aws:dynamodb:us-east-1:027087672282:table/agent_fix_plans",
+                  "arn:aws:dynamodb:us-east-1:027087672282:table/agent_fix_plans/index/StatusIndex"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "PolicyName": "plan-executor-role-inline",
+          "PolicyDocument": {
+            "Version": "2012-10-17",
+            "Statement": [
+              {
+                "Sid": "ReadWritePlans",
+                "Effect": "Allow",
+                "Action": [
+                  "dynamodb:Scan",
+                  "dynamodb:Query",
+                  "dynamodb:GetItem",
+                  "dynamodb:UpdateItem"
+                ],
+                "Resource": "arn:aws:dynamodb:us-east-1:027087672282:table/agent_fix_plans"
+              }
+            ]
+          }
+        },
+        {
+          "PolicyName": "plan-executor-sqs-create-test",
+          "PolicyDocument": {
+            "Version": "2012-10-17",
+            "Statement": [
+              {
+                "Effect": "Allow",
+                "Action": [
+                  "sqs:CreateQueue",
+                  "sqs:GetQueueUrl",
+                  "sqs:GetQueueAttributes"
+                ],
+                "Resource": "*"
+              }
+            ]
+          }
+        },
+        {
+          "PolicyName": "PlanExecutorReadSecrets",
+          "PolicyDocument": {
+            "Version": "2012-10-17",
+            "Statement": [
+              {
+                "Sid": "ReadGithubPatSecret",
+                "Effect": "Allow",
+                "Action": [
+                  "secretsmanager:GetSecretValue"
+                ],
+                "Resource": [
+                  "arn:aws:secretsmanager:us-east-1:027087672282:secret:hippa-signer/github/pat-XPcYpy"
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "RoleName": "remediator-role",
+      "Arn": "arn:aws:iam::027087672282:role/remediator-role",
+      "AssumeRolePolicyDocument": {
+        "Version": "2012-10-17",
+        "Statement": [
+          {
+            "Effect": "Allow",
+            "Principal": {
+              "Service": "lambda.amazonaws.com"
+            },
+            "Action": "sts:AssumeRole"
+          }
+        ]
+      },
+      "Description": "",
+      "Path": "/",
+      "ManagedPolicies": [
+        {
+          "PolicyName": "AWSLambdaBasicExecutionRole",
+          "PolicyArn": "arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+        }
+      ],
+      "InlinePolicies": [
+        {
+          "PolicyName": "allow-bedrock-invoke",
+          "PolicyDocument": {
+            "Version": "2012-10-17",
+            "Statement": [
+              {
+                "Sid": "AllowInvokeBedrock",
+                "Effect": "Allow",
+                "Action": [
+                  "bedrock:InvokeModel"
+                ],
+                "Resource": "*"
+              }
+            ]
+          }
+        },
+        {
+          "PolicyName": "remediator-inline",
+          "PolicyDocument": {
+            "Version": "2012-10-17",
+            "Statement": [
+              {
+                "Sid": "PollFixQueue",
+                "Effect": "Allow",
+                "Action": [
+                  "sqs:ReceiveMessage",
+                  "sqs:DeleteMessage",
+                  "sqs:GetQueueAttributes",
+                  "sqs:ChangeMessageVisibility"
+                ],
+                "Resource": "arn:aws:sqs:us-east-1:027087672282:agent-fix-tasks.fifo"
+              },
+              {
+                "Sid": "WritePlans",
+                "Effect": "Allow",
+                "Action": [
+                  "dynamodb:PutItem",
+                  "dynamodb:UpdateItem",
+                  "dynamodb:GetItem"
+                ],
+                "Resource": "arn:aws:dynamodb:us-east-1:027087672282:table/agent_fix_plans"
+              }
+            ]
+          }
+        },
+        {
+          "PolicyName": "remediator-sqs-inline",
+          "PolicyDocument": {
+            "Version": "2012-10-17",
+            "Statement": [
+              {
+                "Sid": "PollFixQueue",
+                "Effect": "Allow",
+                "Action": [
+                  "sqs:ReceiveMessage",
+                  "sqs:DeleteMessage",
+                  "sqs:GetQueueAttributes",
+                  "sqs:ChangeMessageVisibility"
+                ],
+                "Resource": "arn:aws:sqs:us-east-1:027087672282:agent-fix-tasks.fifo"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "RoleName": "agent-planner-role",
+      "Arn": "arn:aws:iam::027087672282:role/agent-planner-role",
+      "AssumeRolePolicyDocument": {
+        "Version": "2012-10-17",
+        "Statement": [
+          {
+            "Effect": "Allow",
+            "Principal": {
+              "Service": "lambda.amazonaws.com"
+            },
+            "Action": "sts:AssumeRole"
+          }
+        ]
+      },
+      "Description": "",
+      "Path": "/",
+      "ManagedPolicies": [
+        {
+          "PolicyName": "AWSLambdaBasicExecutionRole",
+          "PolicyArn": "arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+        },
+        {
+          "PolicyName": "AmazonDynamoDBFullAccess",
+          "PolicyArn": "arn:aws:iam::aws:policy/AmazonDynamoDBFullAccess"
+        },
+        {
+          "PolicyName": "AmazonBedrockFullAccess",
+          "PolicyArn": "arn:aws:iam::aws:policy/AmazonBedrockFullAccess"
+        }
+      ],
+      "InlinePolicies": [
+        {
+          "PolicyName": "allow-read-error-queue",
+          "PolicyDocument": {
+            "Version": "2012-10-17",
+            "Statement": [
+              {
+                "Effect": "Allow",
+                "Action": [
+                  "sqs:ReceiveMessage",
+                  "sqs:DeleteMessage",
+                  "sqs:GetQueueAttributes",
+                  "sqs:GetQueueUrl"
+                ],
+                "Resource": "arn:aws:sqs:us-east-1:027087672282:agent-error-queue"
+              }
+            ]
+          }
+        },
+        {
+          "PolicyName": "allow-send-executor-queue",
+          "PolicyDocument": {
+            "Version": "2012-10-17",
+            "Statement": [
+              {
+                "Effect": "Allow",
+                "Action": "sqs:SendMessage",
+                "Resource": "arn:aws:sqs:us-east-1:027087672282:plan-executor-queue"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "RoleName": "task-dispatcher-role",
+      "Arn": "arn:aws:iam::027087672282:role/task-dispatcher-role",
+      "AssumeRolePolicyDocument": {
+        "Version": "2012-10-17",
+        "Statement": [
+          {
+            "Effect": "Allow",
+            "Principal": {
+              "Service": "lambda.amazonaws.com"
+            },
+            "Action": "sts:AssumeRole"
+          }
+        ]
+      },
+      "Description": "",
+      "Path": "/",
+      "ManagedPolicies": [
+        {
+          "PolicyName": "AWSLambdaDynamoDBExecutionRole",
+          "PolicyArn": "arn:aws:iam::aws:policy/service-role/AWSLambdaDynamoDBExecutionRole"
+        },
+        {
+          "PolicyName": "AWSLambdaBasicExecutionRole",
+          "PolicyArn": "arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+        }
+      ],
+      "InlinePolicies": [
+        {
+          "PolicyName": "task-dispatcher-inline",
+          "PolicyDocument": {
+            "Version": "2012-10-17",
+            "Statement": [
+              {
+                "Sid": "DynamoDbStreamsReadCompatibility",
+                "Effect": "Allow",
+                "Action": [
+                  "dynamodb:DescribeStream",
+                  "dynamodb:GetRecords",
+                  "dynamodb:GetShardIterator",
+                  "dynamodb:ListStreams",
+                  "dynamodbstreams:DescribeStream",
+                  "dynamodbstreams:GetRecords",
+                  "dynamodbstreams:GetShardIterator",
+                  "dynamodbstreams:ListStreams"
+                ],
+                "Resource": "*"
+              },
+              {
+                "Sid": "SendFixTasks",
+                "Effect": "Allow",
+                "Action": [
+                  "sqs:SendMessage",
+                  "sqs:GetQueueAttributes"
+                ],
+                "Resource": "arn:aws:sqs:us-east-1:027087672282:agent-fix-tasks.fifo"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "sqs_queues": [
+    {
+      "QueueName": "agent-error-queue",
+      "QueueUrl": "https://sqs.us-east-1.amazonaws.com/027087672282/agent-error-queue",
+      "Attributes": {
+        "QueueArn": "arn:aws:sqs:us-east-1:027087672282:agent-error-queue",
+        "ApproximateNumberOfMessages": "0",
+        "ApproximateNumberOfMessagesNotVisible": "0",
+        "ApproximateNumberOfMessagesDelayed": "0",
+        "CreatedTimestamp": "1772649935",
+        "LastModifiedTimestamp": "1772649935",
+        "VisibilityTimeout": "30",
+        "MaximumMessageSize": "1048576",
+        "MessageRetentionPeriod": "345600",
+        "DelaySeconds": "0",
+        "ReceiveMessageWaitTimeSeconds": "0",
+        "SqsManagedSseEnabled": "true"
+      },
+      "Tags": {}
+    },
+    {
+      "QueueName": "agent-fix-tasks-dlq.fifo",
+      "QueueUrl": "https://sqs.us-east-1.amazonaws.com/027087672282/agent-fix-tasks-dlq.fifo",
+      "Attributes": {
+        "QueueArn": "arn:aws:sqs:us-east-1:027087672282:agent-fix-tasks-dlq.fifo",
+        "ApproximateNumberOfMessages": "0",
+        "ApproximateNumberOfMessagesNotVisible": "0",
+        "ApproximateNumberOfMessagesDelayed": "0",
+        "CreatedTimestamp": "1771832617",
+        "LastModifiedTimestamp": "1771832617",
+        "VisibilityTimeout": "30",
+        "MaximumMessageSize": "1048576",
+        "MessageRetentionPeriod": "345600",
+        "DelaySeconds": "0",
+        "ReceiveMessageWaitTimeSeconds": "0",
+        "SqsManagedSseEnabled": "true",
+        "FifoQueue": "true",
+        "DeduplicationScope": "queue",
+        "FifoThroughputLimit": "perQueue",
+        "ContentBasedDeduplication": "true"
+      },
+      "Tags": {}
+    },
+    {
+      "QueueName": "agent-fix-tasks.fifo",
+      "QueueUrl": "https://sqs.us-east-1.amazonaws.com/027087672282/agent-fix-tasks.fifo",
+      "Attributes": {
+        "QueueArn": "arn:aws:sqs:us-east-1:027087672282:agent-fix-tasks.fifo",
+        "ApproximateNumberOfMessages": "0",
+        "ApproximateNumberOfMessagesNotVisible": "0",
+        "ApproximateNumberOfMessagesDelayed": "0",
+        "CreatedTimestamp": "1771832736",
+        "LastModifiedTimestamp": "1771832736",
+        "VisibilityTimeout": "30",
+        "MaximumMessageSize": "1048576",
+        "MessageRetentionPeriod": "345600",
+        "DelaySeconds": "0",
+        "RedrivePolicy": "{\"deadLetterTargetArn\":\"arn:aws:sqs:us-east-1:027087672282:agent-fix-tasks-dlq.fifo\",\"maxReceiveCount\":5}",
+        "ReceiveMessageWaitTimeSeconds": "0",
+        "SqsManagedSseEnabled": "true",
+        "FifoQueue": "true",
+        "DeduplicationScope": "queue",
+        "FifoThroughputLimit": "perQueue",
+        "ContentBasedDeduplication": "true"
+      },
+      "Tags": {}
+    },
+    {
+      "QueueName": "connector-tasks.fifo",
+      "QueueUrl": "https://sqs.us-east-1.amazonaws.com/027087672282/connector-tasks.fifo",
+      "Attributes": {
+        "QueueArn": "arn:aws:sqs:us-east-1:027087672282:connector-tasks.fifo",
+        "ApproximateNumberOfMessages": "0",
+        "ApproximateNumberOfMessagesNotVisible": "0",
+        "ApproximateNumberOfMessagesDelayed": "0",
+        "CreatedTimestamp": "1771773507",
+        "LastModifiedTimestamp": "1771773507",
+        "VisibilityTimeout": "60",
+        "MaximumMessageSize": "1048576",
+        "MessageRetentionPeriod": "345600",
+        "DelaySeconds": "0",
+        "ReceiveMessageWaitTimeSeconds": "0",
+        "SqsManagedSseEnabled": "true",
+        "FifoQueue": "true",
+        "DeduplicationScope": "queue",
+        "FifoThroughputLimit": "perQueue",
+        "ContentBasedDeduplication": "false"
+      },
+      "Tags": {}
+    },
+    {
+      "QueueName": "plan-executor-queue",
+      "QueueUrl": "https://sqs.us-east-1.amazonaws.com/027087672282/plan-executor-queue",
+      "Attributes": {
+        "QueueArn": "arn:aws:sqs:us-east-1:027087672282:plan-executor-queue",
+        "ApproximateNumberOfMessages": "0",
+        "ApproximateNumberOfMessagesNotVisible": "0",
+        "ApproximateNumberOfMessagesDelayed": "0",
+        "CreatedTimestamp": "1772648479",
+        "LastModifiedTimestamp": "1772648479",
+        "VisibilityTimeout": "30",
+        "MaximumMessageSize": "1048576",
+        "MessageRetentionPeriod": "345600",
+        "DelaySeconds": "0",
+        "ReceiveMessageWaitTimeSeconds": "0",
+        "SqsManagedSseEnabled": "true"
+      },
+      "Tags": {}
+    }
+  ],
+  "sns_topics": [],
+  "api_gateways": [],
   "cloudformation_stacks": [],
   "load_balancers": [],
   "security_groups": [
@@ -425,5 +1471,298 @@
     "clusters": [],
     "services": [],
     "task_definitions": []
+  },
+  "dependency_graph": {
+    "nodes": [
+      {
+        "id": "arn:aws:sqs:us-east-1:027087672282:agent-error-queue",
+        "type": "sqs",
+        "name": "agent-error-queue"
+      },
+      {
+        "id": "arn:aws:sqs:us-east-1:027087672282:agent-fix-tasks-dlq.fifo",
+        "type": "sqs",
+        "name": "agent-fix-tasks-dlq.fifo"
+      },
+      {
+        "id": "arn:aws:sqs:us-east-1:027087672282:agent-fix-tasks.fifo",
+        "type": "sqs",
+        "name": "agent-fix-tasks.fifo"
+      },
+      {
+        "id": "arn:aws:sqs:us-east-1:027087672282:connector-tasks.fifo",
+        "type": "sqs",
+        "name": "connector-tasks.fifo"
+      },
+      {
+        "id": "arn:aws:sqs:us-east-1:027087672282:plan-executor-queue",
+        "type": "sqs",
+        "name": "plan-executor-queue"
+      },
+      {
+        "id": "arn:aws:iam::027087672282:role/lambda-basic-role",
+        "type": "iam-role",
+        "name": "lambda-basic-role"
+      },
+      {
+        "id": "arn:aws:iam::027087672282:role/plan-executor-role",
+        "type": "iam-role",
+        "name": "plan-executor-role"
+      },
+      {
+        "id": "arn:aws:iam::027087672282:role/remediator-role",
+        "type": "iam-role",
+        "name": "remediator-role"
+      },
+      {
+        "id": "arn:aws:iam::027087672282:role/agent-planner-role",
+        "type": "iam-role",
+        "name": "agent-planner-role"
+      },
+      {
+        "id": "arn:aws:iam::027087672282:role/task-dispatcher-role",
+        "type": "iam-role",
+        "name": "task-dispatcher-role"
+      },
+      {
+        "id": "arn:aws:lambda:us-east-1:027087672282:function:virgin-log-collector-platform",
+        "type": "lambda",
+        "name": "virgin-log-collector-platform"
+      },
+      {
+        "id": "arn:aws:lambda:us-east-1:027087672282:function:virgin-plan-executor-platform",
+        "type": "lambda",
+        "name": "virgin-plan-executor-platform"
+      },
+      {
+        "id": "arn:aws:lambda:us-east-1:027087672282:function:virgin-ai-orchestrator-platform",
+        "type": "lambda",
+        "name": "virgin-ai-orchestrator-platform"
+      },
+      {
+        "id": "arn:aws:lambda:us-east-1:027087672282:function:remediator",
+        "type": "lambda",
+        "name": "remediator"
+      },
+      {
+        "id": "arn:aws:lambda:us-east-1:027087672282:function:virgin-agent-planner-platform",
+        "type": "lambda",
+        "name": "virgin-agent-planner-platform"
+      },
+      {
+        "id": "arn:aws:lambda:us-east-1:027087672282:function:task-dispatcher",
+        "type": "lambda",
+        "name": "task-dispatcher"
+      },
+      {
+        "id": "arn:aws:lambda:us-east-1:027087672282:function:ai-orchestrator",
+        "type": "lambda",
+        "name": "ai-orchestrator"
+      },
+      {
+        "id": "arn:aws:lambda:us-east-1:027087672282:function:virgin-hello-world-fn-platform",
+        "type": "lambda",
+        "name": "virgin-hello-world-fn-platform"
+      },
+      {
+        "id": "arn:aws:lambda:us-east-1:027087672282:function:connector-worker",
+        "type": "lambda",
+        "name": "connector-worker"
+      },
+      {
+        "id": "arn:aws:lambda:us-east-1:027087672282:function:virgin-remediator-platform",
+        "type": "lambda",
+        "name": "virgin-remediator-platform"
+      },
+      {
+        "id": "arn:aws:lambda:us-east-1:027087672282:function:virgin-setup-agent-platform",
+        "type": "lambda",
+        "name": "virgin-setup-agent-platform"
+      },
+      {
+        "id": "arn:aws:lambda:us-east-1:027087672282:function:agent-planner",
+        "type": "lambda",
+        "name": "agent-planner"
+      },
+      {
+        "id": "arn:aws:lambda:us-east-1:027087672282:function:setup-agent",
+        "type": "lambda",
+        "name": "setup-agent"
+      },
+      {
+        "id": "arn:aws:lambda:us-east-1:027087672282:function:virgin-test-lambda-integration-platform",
+        "type": "lambda",
+        "name": "virgin-test-lambda-integration-platform"
+      },
+      {
+        "id": "arn:aws:lambda:us-east-1:027087672282:function:test-lambda-integration",
+        "type": "lambda",
+        "name": "test-lambda-integration"
+      },
+      {
+        "id": "arn:aws:lambda:us-east-1:027087672282:function:plan-executor",
+        "type": "lambda",
+        "name": "plan-executor"
+      },
+      {
+        "id": "arn:aws:lambda:us-east-1:027087672282:function:virgin-connector-worker-platform",
+        "type": "lambda",
+        "name": "virgin-connector-worker-platform"
+      },
+      {
+        "id": "arn:aws:lambda:us-east-1:027087672282:function:hello-world-fn",
+        "type": "lambda",
+        "name": "hello-world-fn"
+      },
+      {
+        "id": "arn:aws:lambda:us-east-1:027087672282:function:log-collector",
+        "type": "lambda",
+        "name": "log-collector"
+      },
+      {
+        "id": "arn:aws:lambda:us-east-1:027087672282:function:virgin-task-dispatcher-platform",
+        "type": "lambda",
+        "name": "virgin-task-dispatcher-platform"
+      }
+    ],
+    "edges": [
+      {
+        "from": "arn:aws:lambda:us-east-1:027087672282:function:virgin-log-collector-platform",
+        "to": "arn:aws:iam::027087672282:role/lambda-basic-role",
+        "relationship": "assumes-role"
+      },
+      {
+        "from": "arn:aws:lambda:us-east-1:027087672282:function:virgin-plan-executor-platform",
+        "to": "arn:aws:iam::027087672282:role/plan-executor-role",
+        "relationship": "assumes-role"
+      },
+      {
+        "from": "arn:aws:lambda:us-east-1:027087672282:function:virgin-ai-orchestrator-platform",
+        "to": "arn:aws:iam::027087672282:role/plan-executor-role",
+        "relationship": "assumes-role"
+      },
+      {
+        "from": "arn:aws:lambda:us-east-1:027087672282:function:remediator",
+        "to": "arn:aws:iam::027087672282:role/remediator-role",
+        "relationship": "assumes-role"
+      },
+      {
+        "from": "arn:aws:lambda:us-east-1:027087672282:function:virgin-agent-planner-platform",
+        "to": "arn:aws:iam::027087672282:role/agent-planner-role",
+        "relationship": "assumes-role"
+      },
+      {
+        "from": "arn:aws:lambda:us-east-1:027087672282:function:task-dispatcher",
+        "to": "arn:aws:iam::027087672282:role/task-dispatcher-role",
+        "relationship": "assumes-role"
+      },
+      {
+        "from": "arn:aws:lambda:us-east-1:027087672282:function:ai-orchestrator",
+        "to": "arn:aws:iam::027087672282:role/plan-executor-role",
+        "relationship": "assumes-role"
+      },
+      {
+        "from": "arn:aws:lambda:us-east-1:027087672282:function:virgin-hello-world-fn-platform",
+        "to": "arn:aws:iam::027087672282:role/lambda-basic-role",
+        "relationship": "assumes-role"
+      },
+      {
+        "from": "arn:aws:lambda:us-east-1:027087672282:function:connector-worker",
+        "to": "arn:aws:iam::027087672282:role/setup-agent-role",
+        "relationship": "assumes-role"
+      },
+      {
+        "from": "arn:aws:lambda:us-east-1:027087672282:function:virgin-remediator-platform",
+        "to": "arn:aws:iam::027087672282:role/remediator-role",
+        "relationship": "assumes-role"
+      },
+      {
+        "from": "arn:aws:lambda:us-east-1:027087672282:function:virgin-setup-agent-platform",
+        "to": "arn:aws:iam::027087672282:role/lambda-basic-role",
+        "relationship": "assumes-role"
+      },
+      {
+        "from": "arn:aws:lambda:us-east-1:027087672282:function:agent-planner",
+        "to": "arn:aws:iam::027087672282:role/agent-planner-role",
+        "relationship": "assumes-role"
+      },
+      {
+        "from": "arn:aws:lambda:us-east-1:027087672282:function:setup-agent",
+        "to": "arn:aws:iam::027087672282:role/setup-agent-role",
+        "relationship": "assumes-role"
+      },
+      {
+        "from": "arn:aws:lambda:us-east-1:027087672282:function:virgin-test-lambda-integration-platform",
+        "to": "arn:aws:iam::027087672282:role/lambda-basic-role",
+        "relationship": "assumes-role"
+      },
+      {
+        "from": "arn:aws:lambda:us-east-1:027087672282:function:test-lambda-integration",
+        "to": "arn:aws:iam::027087672282:role/lambda-basic-role",
+        "relationship": "assumes-role"
+      },
+      {
+        "from": "arn:aws:lambda:us-east-1:027087672282:function:plan-executor",
+        "to": "arn:aws:iam::027087672282:role/plan-executor-role",
+        "relationship": "assumes-role"
+      },
+      {
+        "from": "arn:aws:lambda:us-east-1:027087672282:function:virgin-connector-worker-platform",
+        "to": "arn:aws:iam::027087672282:role/lambda-basic-role",
+        "relationship": "assumes-role"
+      },
+      {
+        "from": "arn:aws:lambda:us-east-1:027087672282:function:hello-world-fn",
+        "to": "arn:aws:iam::027087672282:role/lambda-basic-role",
+        "relationship": "assumes-role"
+      },
+      {
+        "from": "arn:aws:lambda:us-east-1:027087672282:function:log-collector",
+        "to": "arn:aws:iam::027087672282:role/setup-agent-role",
+        "relationship": "assumes-role"
+      },
+      {
+        "from": "arn:aws:lambda:us-east-1:027087672282:function:virgin-task-dispatcher-platform",
+        "to": "arn:aws:iam::027087672282:role/task-dispatcher-role",
+        "relationship": "assumes-role"
+      },
+      {
+        "from": "arn:aws:lambda:us-east-1:027087672282:function:remediator",
+        "to": "arn:aws:sqs:us-east-1:027087672282:agent-fix-tasks.fifo",
+        "relationship": "event-source-mapping"
+      },
+      {
+        "from": "arn:aws:lambda:us-east-1:027087672282:function:task-dispatcher",
+        "to": "arn:aws:dynamodb:us-east-1:027087672282:table/agent_errors/stream/2026-02-23T07:46:15.921",
+        "relationship": "event-source-mapping"
+      },
+      {
+        "from": "arn:aws:lambda:us-east-1:027087672282:function:connector-worker",
+        "to": "arn:aws:sqs:us-east-1:027087672282:connector-tasks.fifo",
+        "relationship": "event-source-mapping"
+      },
+      {
+        "from": "arn:aws:lambda:us-east-1:027087672282:function:agent-planner",
+        "to": "arn:aws:sqs:us-east-1:027087672282:agent-error-queue",
+        "relationship": "event-source-mapping"
+      },
+      {
+        "from": "arn:aws:lambda:us-east-1:027087672282:function:plan-executor",
+        "to": "arn:aws:sqs:us-east-1:027087672282:plan-executor-queue",
+        "relationship": "event-source-mapping"
+      },
+      {
+        "from": "events.amazonaws.com",
+        "to": "arn:aws:lambda:us-east-1:027087672282:function:plan-executor",
+        "relationship": "invoke-permission",
+        "source_arn": "arn:aws:events:us-east-1:027087672282:rule/plan-executor-every-minute"
+      },
+      {
+        "from": "logs.amazonaws.com",
+        "to": "arn:aws:lambda:us-east-1:027087672282:function:log-collector",
+        "relationship": "invoke-permission",
+        "source_arn": "arn:aws:logs:us-east-1:027087672282:log-group:/aws/lambda/connector-worker:*"
+      }
+    ]
   }
 }

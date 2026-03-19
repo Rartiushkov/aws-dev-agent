@@ -407,9 +407,9 @@ def main():
         },
     }
 
-    snapshot_path.write_text(json.dumps(snapshot, indent=2), encoding="utf-8")
-    summary_path.write_text(json.dumps(summary, indent=2), encoding="utf-8")
-    graph_path.write_text(json.dumps(snapshot["dependency_graph"], indent=2), encoding="utf-8")
+    snapshot_path.write_text(json.dumps(snapshot, indent=2, default=str), encoding="utf-8")
+    summary_path.write_text(json.dumps(summary, indent=2, default=str), encoding="utf-8")
+    graph_path.write_text(json.dumps(snapshot["dependency_graph"], indent=2, default=str), encoding="utf-8")
 
     print(json.dumps({
         "status": "ok",
@@ -417,7 +417,7 @@ def main():
         "summary_path": str(summary_path),
         "graph_path": str(graph_path),
         "summary": summary,
-    }, indent=2))
+    }, indent=2, default=str))
 
 
 if __name__ == "__main__":
