@@ -59,6 +59,17 @@ def function_name_from_arn(function_arn):
     return function_arn.split(":")[-1]
 
 
+def should_skip_recloning(resource_name, target_env, team):
+    target_prefix = sanitize_name(target_env)
+    team_suffix = f"-{sanitize_name(team)}" if team else ""
+    lowered = resource_name.lower()
+    if lowered.startswith(f"{target_prefix}-"):
+        return True
+    if team_suffix and lowered.endswith(team_suffix):
+        return True
+    return False
+
+
 def rewrite_string_value(value, mappings, source_env, target_env, team):
     if not isinstance(value, str):
         return value
@@ -129,6 +140,8 @@ def create_or_update_roles(snapshot, source_env, target_env, team, iam_client):
     failed = []
     for role in snapshot.get("iam_roles", []):
         source_role_name = role["RoleName"]
+        if should_skip_recloning(source_role_name, target_env, team):
+            continue
         target_role_name = target_name(source_role_name, source_env, target_env, team)
         try:
             try:
@@ -186,6 +199,8 @@ def create_or_update_sqs_queues(snapshot, source_env, target_env, team, sqs_clie
     }
     for queue in snapshot.get("sqs_queues", []):
         source_name = queue["QueueName"]
+        if should_skip_recloning(source_name, target_env, team):
+            continue
         target_queue_name = queue_target_name(source_name, source_env, target_env, team)
         attributes = {k: v for k, v in queue.get("Attributes", {}).items() if k in allowed_attributes}
         try:
@@ -220,6 +235,8 @@ def create_or_update_sns_topics(snapshot, source_env, target_env, team, sns_clie
     failed = []
     for topic in snapshot.get("sns_topics", []):
         source_name = topic["TopicName"]
+        if should_skip_recloning(source_name, target_env, team):
+            continue
         target_topic_name = target_name(source_name, source_env, target_env, team)
         attributes = {}
         if topic.get("Attributes", {}).get("FifoTopic") == "true":
@@ -258,6 +275,8 @@ def deploy_lambda_functions(snapshot, source_env, target_env, team, session, res
     failed = []
     for source_fn in snapshot.get("lambda_functions", []):
         source_name = source_fn["FunctionName"]
+        if should_skip_recloning(source_name, target_env, team):
+            continue
         target_fn = target_name(source_name, source_env, target_env, team)
         try:
             function_details = lambda_client.get_function(FunctionName=source_name)
@@ -298,6 +317,7 @@ def deploy_lambda_functions(snapshot, source_env, target_env, team, session, res
                 if exc.response["Error"]["Code"] != "ResourceConflictException":
                     raise
                 lambda_client.update_function_code(FunctionName=target_fn, ZipFile=zip_bytes, Publish=False)
+                lambda_client.get_waiter("function_updated").wait(FunctionName=target_fn)
                 update_kwargs = {
                     "FunctionName": target_fn,
                     "Role": role_arn,
@@ -334,6 +354,8 @@ def create_event_source_mappings(snapshot, lambda_client, resource_mappings):
     failed = []
     for mapping in snapshot.get("lambda_event_source_mappings", []):
         source_function_name = function_name_from_arn(mapping["FunctionArn"])
+        if should_skip_recloning(source_function_name, resource_mappings.get("target_env", ""), resource_mappings.get("team", "")):
+            continue
         target_function_name = resource_mappings["function_names"].get(source_function_name)
         target_source_arn = resource_mappings["queue_arns"].get(mapping.get("EventSourceArn"), mapping.get("EventSourceArn"))
         if not target_function_name or not target_source_arn:
@@ -362,6 +384,8 @@ def apply_lambda_permissions(snapshot, lambda_client, resource_mappings, source_
     deployed = []
     failed = []
     for permission in snapshot.get("lambda_permissions", []):
+        if should_skip_recloning(permission["FunctionName"], target_env, team):
+            continue
         target_function_name = resource_mappings["function_names"].get(permission["FunctionName"])
         if not target_function_name:
             continue
@@ -391,6 +415,8 @@ def create_sns_subscriptions(snapshot, sns_client, resource_mappings):
     deployed = []
     failed = []
     for topic in snapshot.get("sns_topics", []):
+        if should_skip_recloning(topic["TopicName"], resource_mappings.get("target_env", ""), resource_mappings.get("team", "")):
+            continue
         target_topic_arn = resource_mappings["topic_arns"].get(topic["TopicArn"])
         if not target_topic_arn:
             continue
@@ -415,6 +441,8 @@ def create_api_gateways(snapshot, apigw_client, resource_mappings, source_env, t
     api_ids = {}
     for api in snapshot.get("api_gateways", []):
         source_api_name = api["name"]
+        if should_skip_recloning(source_api_name, target_env, team):
+            continue
         target_api_name = target_name(source_api_name, source_env, target_env, team)
         try:
             created = apigw_client.create_rest_api(name=target_api_name, description=f"Cloned from {source_api_name}")
@@ -441,6 +469,7 @@ def main():
     resource_mappings = {
         "role_arns": {}, "role_names": {}, "queue_urls": {}, "queue_arns": {}, "queue_names": {},
         "topic_arns": {}, "topic_names": {}, "function_arns": {}, "function_names": {}, "api_ids": {},
+        "target_env": sanitize_name(args.target_env), "team": sanitize_name(args.team) if args.team else "",
     }
     role_mappings, deployed_roles, failed_roles = create_or_update_roles(snapshot, args.source_env, args.target_env, args.team, iam_client)
     resource_mappings.update(role_mappings)

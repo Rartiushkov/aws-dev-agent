@@ -4,6 +4,7 @@ from executor.scripts.deploy_discovered_env import (
     queue_target_name,
     rewrite_string_value,
     role_allows_lambda_assume,
+    should_skip_recloning,
     target_name,
     update_env_values,
 )
@@ -48,6 +49,10 @@ class DeployDiscoveredEnvTests(unittest.TestCase):
             queue_target_name("legacy-events.fifo", "legacy", "virgin", "payments"),
             "virgin-events-payments.fifo",
         )
+
+    def test_should_skip_recloning_for_existing_target_resources(self):
+        self.assertTrue(should_skip_recloning("virgin-worker-platform", "virgin", "platform"))
+        self.assertFalse(should_skip_recloning("legacy-worker", "virgin", "platform"))
 
     def test_rewrite_string_value_updates_dependency_links(self):
         mappings = {
