@@ -1,6 +1,8 @@
 import unittest
 
 from executor.scripts.deploy_discovered_env import (
+    queue_target_name,
+    rewrite_string_value,
     role_allows_lambda_assume,
     target_name,
     update_env_values,
@@ -41,15 +43,49 @@ class DeployDiscoveredEnvTests(unittest.TestCase):
             "virgin-worker-payments",
         )
 
+    def test_queue_target_name_preserves_fifo_suffix(self):
+        self.assertEqual(
+            queue_target_name("legacy-events.fifo", "legacy", "virgin", "payments"),
+            "virgin-events-payments.fifo",
+        )
+
+    def test_rewrite_string_value_updates_dependency_links(self):
+        mappings = {
+            "queue_urls": {
+                "https://sqs.us-east-1.amazonaws.com/123/legacy-events": "https://sqs.us-east-1.amazonaws.com/123/virgin-events"
+            },
+            "queue_arns": {},
+            "topic_arns": {},
+            "function_arns": {},
+            "role_arns": {},
+        }
+        self.assertEqual(
+            rewrite_string_value(
+                "https://sqs.us-east-1.amazonaws.com/123/legacy-events",
+                mappings,
+                "legacy",
+                "virgin",
+                "payments",
+            ),
+            "https://sqs.us-east-1.amazonaws.com/123/virgin-events",
+        )
+
     def test_update_env_values_replaces_env_and_team_placeholder(self):
         variables = {
             "BASE_URL": "https://legacy.example.com",
             "TEAM_NAME": "{team}",
             "UNCHANGED": "value",
         }
+        mappings = {
+            "queue_urls": {},
+            "queue_arns": {},
+            "topic_arns": {},
+            "function_arns": {},
+            "role_arns": {},
+        }
 
         self.assertEqual(
-            update_env_values(variables, "legacy", "virgin", "payments"),
+            update_env_values(variables, mappings, "legacy", "virgin", "payments"),
             {
                 "BASE_URL": "https://virgin.example.com",
                 "TEAM_NAME": "payments",
