@@ -263,7 +263,10 @@ def build_dependency_graph(snapshot):
     graph = {"nodes": [], "edges": []}
 
     for queue in snapshot["sqs_queues"]:
-        graph["nodes"].append({"id": queue["QueueArn"], "type": "sqs", "name": queue["QueueName"]})
+        queue_arn = queue.get("QueueArn") or queue.get("Attributes", {}).get("QueueArn")
+        if not queue_arn:
+            continue
+        graph["nodes"].append({"id": queue_arn, "type": "sqs", "name": queue["QueueName"]})
 
     for role in snapshot["iam_roles"]:
         graph["nodes"].append({"id": role["Arn"], "type": "iam-role", "name": role["RoleName"]})
