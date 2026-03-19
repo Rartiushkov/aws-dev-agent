@@ -183,7 +183,10 @@ def main():
             if result.stdout:
                 print(result.stdout)
 
-            if result.returncode != 0 or result.stderr:
+            if result.stderr and result.returncode == 0:
+                print(result.stderr)
+
+            if result.returncode != 0:
                 error_result = handle_aws_cli_error(result)
 
                 if error_result["action"] == "continue":
