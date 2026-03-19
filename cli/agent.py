@@ -37,6 +37,10 @@ def handle_aws_cli_error(result):
         print("Resource already exists; skipping duplicate create")
         return {"action": "continue", "handled": True, "message": "Resource already exists", "status": "success"}
 
+    if "resourceconflictexception" in err and "function already exist" in err:
+        print("Lambda function already exists; continuing")
+        return {"action": "continue", "handled": True, "message": "Lambda function already exists", "status": "success"}
+
     if "noregion" in err:
         print("AWS region is not configured")
         return {"action": "stop", "handled": True, "message": "AWS region is not configured", "status": "success"}

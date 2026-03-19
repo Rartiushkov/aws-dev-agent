@@ -2,7 +2,7 @@
 setlocal EnableExtensions EnableDelayedExpansion
 
 set "GOAL=%*"
-if "%GOAL%"=="" set "GOAL=list lambda"
+if not defined GOAL set "GOAL=list lambda"
 
 set "OUTPUT_FILE=%TEMP%\aws_dev_agent_output.txt"
 

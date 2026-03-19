@@ -7,6 +7,7 @@ import time
 def create_plan(goal):
 
     goal = goal.lower().strip()
+    function_name = "hello-world-fn"
 
     if "create iam role" in goal and "lambda" in goal:
 
@@ -33,10 +34,9 @@ def create_plan(goal):
 
     if "create lambda" in goal:
 
-        function_name = "hello-world-fn"
         role_arn = "arn:aws:iam::027087672282:role/lambda-basic-role"
 
-        return [
+        plan = [
             {
                 "type": "command",
                 "cmd": "powershell -Command \"Set-Content -Path lambda_function.py -Value @('def handler(event, context):','    return {\\\"statusCode\\\": 200, \\\"body\\\": \\\"Hello World\\\"}')\""
@@ -48,6 +48,32 @@ def create_plan(goal):
             {
                 "type": "command",
                 "cmd": f"aws lambda create-function --function-name {function_name} --runtime python3.11 --role {role_arn} --handler lambda_function.handler --zip-file fileb://function.zip"
+            }
+        ]
+
+        if "test lambda" in goal:
+            plan.extend([
+                {
+                    "type": "command",
+                    "cmd": f"aws lambda invoke --function-name {function_name} response.json"
+                },
+                {
+                    "type": "command",
+                    "cmd": "type response.json"
+                }
+            ])
+
+        return plan
+
+    if "test lambda" in goal:
+        return [
+            {
+                "type": "command",
+                "cmd": f"aws lambda invoke --function-name {function_name} response.json"
+            },
+            {
+                "type": "command",
+                "cmd": "type response.json"
             }
         ]
 
