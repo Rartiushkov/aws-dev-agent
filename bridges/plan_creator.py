@@ -48,6 +48,10 @@ def create_plan(goal):
             {
                 "type": "command",
                 "cmd": f"aws lambda create-function --function-name {function_name} --runtime python3.11 --role {role_arn} --handler lambda_function.handler --zip-file fileb://function.zip"
+            },
+            {
+                "type": "command",
+                "cmd": f"aws lambda update-function-code --function-name {function_name} --zip-file fileb://function.zip"
             }
         ]
 
