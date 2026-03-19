@@ -5,16 +5,33 @@ import re
 import time
 
 
-def autotest_step():
+FEATURE_TEST_PATTERNS = {
+    "lambda": "test_plan_creator.py",
+    "cloudwatch": "test_runner_cloudwatch.py",
+    "runner": "test_runner_cloudwatch.py",
+    "plan": "test_plan_creator.py",
+}
+
+
+def autotest_step(goal_text=None):
+    goal_text = (goal_text or "").lower()
+
+    for feature, pattern in FEATURE_TEST_PATTERNS.items():
+        if feature in goal_text:
+            return {
+                "type": "command",
+                "cmd": f"python -m unittest discover -s tests -p \"{pattern}\""
+            }
+
     return {
         "type": "command",
         "cmd": "python -m unittest discover -s tests -p \"test_*.py\""
     }
 
 
-def append_autotest(plan):
+def append_autotest(plan, goal_text=None):
     extended_plan = list(plan)
-    extended_plan.append(autotest_step())
+    extended_plan.append(autotest_step(goal_text))
     return extended_plan
 
 
@@ -63,7 +80,7 @@ def create_plan(goal):
                 "type": "command",
                 "cmd": "del trust-policy.json 2>nul"
             }
-        ])
+        ], goal)
 
     if "create lambda" in goal:
 
@@ -108,7 +125,7 @@ def create_plan(goal):
                 }
             ])
 
-        return append_autotest(plan)
+        return append_autotest(plan, goal)
 
     if "test lambda" in goal or "integration" in goal:
         return [
@@ -130,10 +147,7 @@ def create_plan(goal):
 
     if "autotest" in goal or "run tests" in goal or "run autotest" in goal:
         return [
-            {
-                "type": "command",
-                "cmd": "python -m unittest discover -s tests -p \"test_*.py\""
-            }
+            autotest_step(goal)
         ]
 
     try:

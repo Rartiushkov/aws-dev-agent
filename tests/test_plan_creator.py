@@ -1,6 +1,6 @@
 import unittest
 
-from bridges.plan_creator import create_plan, extract_lambda_name
+from bridges.plan_creator import create_plan, extract_lambda_name, autotest_step
 
 
 class PlanCreatorTests(unittest.TestCase):
@@ -30,6 +30,14 @@ class PlanCreatorTests(unittest.TestCase):
         self.assertEqual(len(plan), 1)
         self.assertEqual(plan[0]["type"], "command")
         self.assertIn("python -m unittest discover", plan[0]["cmd"])
+
+    def test_feature_autotest_uses_specific_pattern(self):
+        step = autotest_step("run tests for cloudwatch")
+        self.assertEqual(step["cmd"], 'python -m unittest discover -s tests -p "test_runner_cloudwatch.py"')
+
+    def test_feature_test_goal_returns_specific_test_file(self):
+        plan = create_plan("run tests for lambda")
+        self.assertEqual(plan[0]["cmd"], 'python -m unittest discover -s tests -p "test_plan_creator.py"')
 
 
 if __name__ == "__main__":
