@@ -23,7 +23,7 @@ def handle_aws_cli_error(result):
     stderr = (result.stderr or "").strip()
 
     if not stderr:
-        return {"action": "stop", "handled": False, "message": "Unknown command failure"}
+        return {"action": "stop", "handled": False, "message": "Unknown command failure", "status": "failure"}
 
     print("ERROR:", stderr)
 
@@ -31,11 +31,19 @@ def handle_aws_cli_error(result):
 
     if "nosuchentity" in err:
         print("Nothing to delete; resource is already absent")
-        return {"action": "continue", "handled": True, "message": "Resource already absent"}
+        return {"action": "continue", "handled": True, "message": "Resource already absent", "status": "success"}
 
     if "entityalreadyexists" in err:
         print("Resource already exists; skipping duplicate create")
-        return {"action": "continue", "handled": True, "message": "Resource already exists"}
+        return {"action": "continue", "handled": True, "message": "Resource already exists", "status": "success"}
+
+    if "noregion" in err:
+        print("AWS region is not configured")
+        return {"action": "stop", "handled": True, "message": "AWS region is not configured", "status": "success"}
+
+    if "nocredentials" in err or "unable to locate credentials" in err:
+        print("AWS credentials are not configured")
+        return {"action": "stop", "handled": True, "message": "AWS credentials are not configured", "status": "success"}
 
     if "accessdenied" in err or "access denied" in err:
         print("AWS access was denied; trying auto-fix plan")
@@ -43,37 +51,37 @@ def handle_aws_cli_error(result):
         if error and error.get("type") == "fix":
             print("AUTO FIX TRIGGERED")
             execute_fix_plan(error.get("plan", []))
-            return {"action": "continue", "handled": True, "message": "Auto-fix executed for access issue"}
-        return {"action": "stop", "handled": True, "message": stderr}
+            return {"action": "continue", "handled": True, "message": "Auto-fix executed for access issue", "status": "success"}
+        return {"action": "stop", "handled": True, "message": stderr, "status": "failure"}
 
     if "throttling" in err or "rate exceeded" in err:
         print("AWS API throttled the request; stopping current plan")
-        return {"action": "stop", "handled": True, "message": stderr}
+        return {"action": "stop", "handled": True, "message": stderr, "status": "failure"}
 
     if "validationexception" in err or "paramvalidation" in err or "error parsing parameter" in err:
         print("AWS CLI rejected the command arguments")
-        return {"action": "stop", "handled": True, "message": stderr}
+        return {"action": "stop", "handled": True, "message": stderr, "status": "failure"}
 
     error = detect_error(stderr)
 
     if error:
         if error.get("type") == "ignore":
-            return {"action": "continue", "handled": True, "message": "Ignored recoverable AWS error"}
+            return {"action": "continue", "handled": True, "message": "Ignored recoverable AWS error", "status": "success"}
 
         if error.get("type") == "retry":
             print("Retry-worthy AWS error detected; stopping current plan")
-            return {"action": "stop", "handled": True, "message": stderr}
+            return {"action": "stop", "handled": True, "message": stderr, "status": "failure"}
 
         if error.get("type") == "fix":
             print("AUTO FIX TRIGGERED")
             execute_fix_plan(error.get("plan", []))
-            return {"action": "continue", "handled": True, "message": "Auto-fix executed"}
+            return {"action": "continue", "handled": True, "message": "Auto-fix executed", "status": "success"}
 
     if "an error occurred" in err:
         print("Unhandled AWS CLI error; stopping plan execution")
-        return {"action": "stop", "handled": True, "message": stderr}
+        return {"action": "stop", "handled": True, "message": stderr, "status": "failure"}
 
-    return {"action": "stop", "handled": False, "message": stderr}
+    return {"action": "stop", "handled": False, "message": stderr, "status": "failure"}
 
 
 def execute_fix_plan(plan):
@@ -178,6 +186,7 @@ def main():
                     details = error_result["message"]
                     continue
 
+                status = error_result.get("status", "failure")
                 details = error_result["message"]
                 break
         else:
