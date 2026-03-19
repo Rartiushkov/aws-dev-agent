@@ -1,0 +1,27 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      python: 3.11
+    commands:
+      - pip install -r requirements.txt
+  build:
+    commands:
+      - mkdir -p reports
+      - python -m unittest discover -s tests -p "test_*.py"
+      - python -m unittest discover -s tests -p "test_*.py" > reports/unittest.txt
+
+artifacts:
+  files:
+    - reports/**/*
+    - project.md
+    - response.json
+  discard-paths: no
+
+reports:
+  aws_dev_agent_reports:
+    files:
+      - unittest.txt
+    base-directory: reports
+    file-format: RAW

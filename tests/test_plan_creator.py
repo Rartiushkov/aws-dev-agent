@@ -39,6 +39,10 @@ class PlanCreatorTests(unittest.TestCase):
         plan = create_plan("run tests for lambda")
         self.assertEqual(plan[0]["cmd"], 'python -m unittest discover -s tests -p "test_plan_creator.py"')
 
+    def test_run_autotest_in_aws_uses_codebuild(self):
+        plan = create_plan("run autotest in aws")
+        self.assertEqual(plan[0]["cmd"], "aws codebuild start-build --project-name aws-dev-agent-tests")
+
 
 if __name__ == "__main__":
     unittest.main()

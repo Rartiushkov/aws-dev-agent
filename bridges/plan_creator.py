@@ -12,6 +12,8 @@ FEATURE_TEST_PATTERNS = {
     "plan": "test_plan_creator.py",
 }
 
+CODEBUILD_PROJECT_NAME = "aws-dev-agent-tests"
+
 
 def autotest_step(goal_text=None):
     goal_text = (goal_text or "").lower()
@@ -144,6 +146,22 @@ def create_plan(goal):
 
     if "list lambda" in goal:
         return [{"type": "command", "cmd": "aws lambda list-functions"}]
+
+    if "run autotest in aws" in goal or "run tests in aws" in goal:
+        return [
+            {
+                "type": "command",
+                "cmd": f"aws codebuild start-build --project-name {CODEBUILD_PROJECT_NAME}"
+            }
+        ]
+
+    if "list codebuild projects" in goal or "list codebuild" in goal:
+        return [
+            {
+                "type": "command",
+                "cmd": "aws codebuild list-projects"
+            }
+        ]
 
     if "autotest" in goal or "run tests" in goal or "run autotest" in goal:
         return [
