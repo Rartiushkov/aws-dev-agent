@@ -1,0 +1,15 @@
+{
+  "source_env": "",
+  "team": "",
+  "region": "us-east-1",
+  "account_id": "027087672282",
+  "counts": {
+    "lambda_functions": 10,
+    "cloudformation_stacks": 0,
+    "load_balancers": 0,
+    "security_groups": 1,
+    "ecs_clusters": 0,
+    "ecs_services": 0,
+    "ecs_task_definitions": 0
+  }
+}

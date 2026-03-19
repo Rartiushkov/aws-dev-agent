@@ -1,0 +1,429 @@
+{
+  "captured_at": "2026-03-19T09:30:10.802261+00:00",
+  "account_id": "027087672282",
+  "region": "us-east-1",
+  "source_env": "",
+  "team": "",
+  "lambda_functions": [
+    {
+      "FunctionName": "remediator",
+      "FunctionArn": "arn:aws:lambda:us-east-1:027087672282:function:remediator",
+      "Runtime": "nodejs20.x",
+      "Role": "arn:aws:iam::027087672282:role/remediator-role",
+      "Handler": "index.handler",
+      "CodeSize": 3852688,
+      "Description": "",
+      "Timeout": 60,
+      "MemorySize": 512,
+      "LastModified": "2026-03-02T18:44:23.000+0000",
+      "CodeSha256": "InI3hYdguH3xFK+AC+2nyRxETzPDgwdCJwsXupNGPJM=",
+      "Version": "$LATEST",
+      "Environment": {
+        "Variables": {
+          "PLANS_TABLE": "agent_fix_plans",
+          "BEDROCK_MODEL_ID": "global.anthropic.claude-sonnet-4-20250514-v1:0",
+          "REGION": "us-east-1"
+        }
+      },
+      "TracingConfig": {
+        "Mode": "PassThrough"
+      },
+      "RevisionId": "7af5ae3e-b7b4-48df-b79e-312edff45335",
+      "PackageType": "Zip",
+      "Architectures": [
+        "x86_64"
+      ],
+      "EphemeralStorage": {
+        "Size": 512
+      },
+      "SnapStart": {
+        "ApplyOn": "None",
+        "OptimizationStatus": "Off"
+      },
+      "LoggingConfig": {
+        "LogFormat": "Text",
+        "LogGroup": "/aws/lambda/remediator"
+      }
+    },
+    {
+      "FunctionName": "task-dispatcher",
+      "FunctionArn": "arn:aws:lambda:us-east-1:027087672282:function:task-dispatcher",
+      "Runtime": "nodejs20.x",
+      "Role": "arn:aws:iam::027087672282:role/task-dispatcher-role",
+      "Handler": "index.handler",
+      "CodeSize": 2971378,
+      "Description": "",
+      "Timeout": 15,
+      "MemorySize": 256,
+      "LastModified": "2026-02-23T07:58:54.000+0000",
+      "CodeSha256": "tmPr0QaIaIP15xv+0imdMRY0baHZ83524WDu4l2tJQg=",
+      "Version": "$LATEST",
+      "Environment": {
+        "Variables": {
+          "FIX_QUEUE_URL": "https://sqs.us-east-1.amazonaws.com/027087672282/agent-fix-tasks.fifo"
+        }
+      },
+      "TracingConfig": {
+        "Mode": "PassThrough"
+      },
+      "RevisionId": "8c1f4bf0-4f08-416d-b6cc-e36cb83baae6",
+      "PackageType": "Zip",
+      "Architectures": [
+        "x86_64"
+      ],
+      "EphemeralStorage": {
+        "Size": 512
+      },
+      "SnapStart": {
+        "ApplyOn": "None",
+        "OptimizationStatus": "Off"
+      },
+      "LoggingConfig": {
+        "LogFormat": "Text",
+        "LogGroup": "/aws/lambda/task-dispatcher"
+      }
+    },
+    {
+      "FunctionName": "ai-orchestrator",
+      "FunctionArn": "arn:aws:lambda:us-east-1:027087672282:function:ai-orchestrator",
+      "Runtime": "nodejs20.x",
+      "Role": "arn:aws:iam::027087672282:role/plan-executor-role",
+      "Handler": "index.handler",
+      "CodeSize": 3863503,
+      "Description": "",
+      "Timeout": 3,
+      "MemorySize": 128,
+      "LastModified": "2026-03-02T17:34:17.000+0000",
+      "CodeSha256": "tFQlFUNRSbH0p+mRh+Whk6OEubtt6OBXyEhcI8QlXQY=",
+      "Version": "$LATEST",
+      "Environment": {
+        "Variables": {
+          "PLANS_TABLE": "agent_fix_plans"
+        }
+      },
+      "TracingConfig": {
+        "Mode": "PassThrough"
+      },
+      "RevisionId": "4a5f0a75-1dcf-4365-a380-f8309a289619",
+      "PackageType": "Zip",
+      "Architectures": [
+        "x86_64"
+      ],
+      "EphemeralStorage": {
+        "Size": 512
+      },
+      "SnapStart": {
+        "ApplyOn": "None",
+        "OptimizationStatus": "Off"
+      },
+      "LoggingConfig": {
+        "LogFormat": "Text",
+        "LogGroup": "/aws/lambda/ai-orchestrator"
+      }
+    },
+    {
+      "FunctionName": "connector-worker",
+      "FunctionArn": "arn:aws:lambda:us-east-1:027087672282:function:connector-worker",
+      "Runtime": "nodejs20.x",
+      "Role": "arn:aws:iam::027087672282:role/setup-agent-role",
+      "Handler": "index.handler",
+      "CodeSize": 1056,
+      "Description": "",
+      "Timeout": 30,
+      "MemorySize": 256,
+      "LastModified": "2026-02-28T05:52:56.000+0000",
+      "CodeSha256": "JesixLSu1fC6/zovUMNEot3oRnFhxLt2VEReSeFUffo=",
+      "Version": "$LATEST",
+      "Environment": {
+        "Variables": {
+          "OUT_QUEUE_URL": "https://sqs.us-east-1.amazonaws.com/027087672282/agent-fix-tasks.fifo",
+          "QUEUE_NAME": "connector-tasks.fifo",
+          "REGION": "us-east-1"
+        }
+      },
+      "TracingConfig": {
+        "Mode": "PassThrough"
+      },
+      "RevisionId": "38fafbb1-2822-434b-872c-3427fdd91b1c",
+      "PackageType": "Zip",
+      "Architectures": [
+        "x86_64"
+      ],
+      "EphemeralStorage": {
+        "Size": 512
+      },
+      "SnapStart": {
+        "ApplyOn": "None",
+        "OptimizationStatus": "Off"
+      },
+      "LoggingConfig": {
+        "LogFormat": "Text",
+        "LogGroup": "/aws/lambda/connector-worker"
+      }
+    },
+    {
+      "FunctionName": "agent-planner",
+      "FunctionArn": "arn:aws:lambda:us-east-1:027087672282:function:agent-planner",
+      "Runtime": "nodejs20.x",
+      "Role": "arn:aws:iam::027087672282:role/agent-planner-role",
+      "Handler": "agent-planner/index.handler",
+      "CodeSize": 4145721,
+      "Description": "",
+      "Timeout": 30,
+      "MemorySize": 256,
+      "LastModified": "2026-03-04T20:41:33.000+0000",
+      "CodeSha256": "vfHiazTLKdMfdyx6xl2IAdSV5wrd30OP0hBSGWefVtk=",
+      "Version": "$LATEST",
+      "Environment": {
+        "Variables": {
+          "EXECUTOR_QUEUE_URL": "https://sqs.us-east-1.amazonaws.com/027087672282/plan-executor-queue",
+          "PLANS_TABLE": "agent_fix_plans",
+          "BEDROCK_MODEL": "mistral.ministral-3-8b-instruct"
+        }
+      },
+      "TracingConfig": {
+        "Mode": "PassThrough"
+      },
+      "RevisionId": "a32a8e56-c2e5-433f-8315-82c2941a43bb",
+      "PackageType": "Zip",
+      "Architectures": [
+        "x86_64"
+      ],
+      "EphemeralStorage": {
+        "Size": 512
+      },
+      "SnapStart": {
+        "ApplyOn": "None",
+        "OptimizationStatus": "Off"
+      },
+      "LoggingConfig": {
+        "LogFormat": "Text",
+        "LogGroup": "/aws/lambda/agent-planner"
+      }
+    },
+    {
+      "FunctionName": "setup-agent",
+      "FunctionArn": "arn:aws:lambda:us-east-1:027087672282:function:setup-agent",
+      "Runtime": "python3.12",
+      "Role": "arn:aws:iam::027087672282:role/setup-agent-role",
+      "Handler": "lambda_function.handler",
+      "CodeSize": 2490,
+      "Description": "",
+      "Timeout": 30,
+      "MemorySize": 256,
+      "LastModified": "2026-02-22T19:01:34.000+0000",
+      "CodeSha256": "yB846DRwG30oBvG0be9gRaF1P8Hx02N1tyES83me3TM=",
+      "Version": "$LATEST",
+      "TracingConfig": {
+        "Mode": "PassThrough"
+      },
+      "RevisionId": "73e7959b-63bf-4084-98f6-0a3729d75342",
+      "PackageType": "Zip",
+      "Architectures": [
+        "x86_64"
+      ],
+      "EphemeralStorage": {
+        "Size": 512
+      },
+      "SnapStart": {
+        "ApplyOn": "None",
+        "OptimizationStatus": "Off"
+      },
+      "LoggingConfig": {
+        "LogFormat": "Text",
+        "LogGroup": "/aws/lambda/setup-agent"
+      }
+    },
+    {
+      "FunctionName": "test-lambda-integration",
+      "FunctionArn": "arn:aws:lambda:us-east-1:027087672282:function:test-lambda-integration",
+      "Runtime": "python3.11",
+      "Role": "arn:aws:iam::027087672282:role/lambda-basic-role",
+      "Handler": "lambda_function.handler",
+      "CodeSize": 1603,
+      "Description": "",
+      "Timeout": 3,
+      "MemorySize": 128,
+      "LastModified": "2026-03-19T08:39:58.000+0000",
+      "CodeSha256": "fFHt1kuwzz7A2ASkmoHNwsXL7Nh3qBqirv9qz9SppAw=",
+      "Version": "$LATEST",
+      "TracingConfig": {
+        "Mode": "PassThrough"
+      },
+      "RevisionId": "01c1688a-744d-4b0e-81b9-3e457cd7f256",
+      "PackageType": "Zip",
+      "Architectures": [
+        "x86_64"
+      ],
+      "EphemeralStorage": {
+        "Size": 512
+      },
+      "SnapStart": {
+        "ApplyOn": "None",
+        "OptimizationStatus": "Off"
+      },
+      "LoggingConfig": {
+        "LogFormat": "Text",
+        "LogGroup": "/aws/lambda/test-lambda-integration"
+      }
+    },
+    {
+      "FunctionName": "plan-executor",
+      "FunctionArn": "arn:aws:lambda:us-east-1:027087672282:function:plan-executor",
+      "Runtime": "nodejs20.x",
+      "Role": "arn:aws:iam::027087672282:role/plan-executor-role",
+      "Handler": "index.handler",
+      "CodeSize": 5817593,
+      "Description": "reload-secure-1772647748",
+      "Timeout": 30,
+      "MemorySize": 256,
+      "LastModified": "2026-03-17T16:08:45.000+0000",
+      "CodeSha256": "nX11d9Utju29efU7RD5bWdEGHID0TU4KUZzuqYpn6Tk=",
+      "Version": "$LATEST",
+      "Environment": {
+        "Variables": {
+          "GITHUB_SECRET_ID": "hippa-signer/github/pat",
+          "GITHUB_REPO": "hippa-signer",
+          "GITHUB_OWNER": "Rartiushkov",
+          "PLANS_TABLE": "agent_fix_plans",
+          "BATCH_LIMIT": "10",
+          "GITHUB_BASE_BRANCH": "main"
+        }
+      },
+      "TracingConfig": {
+        "Mode": "PassThrough"
+      },
+      "RevisionId": "14673f9f-8d66-42a3-b5ee-cfe92dc0d7c4",
+      "PackageType": "Zip",
+      "Architectures": [
+        "x86_64"
+      ],
+      "EphemeralStorage": {
+        "Size": 512
+      },
+      "SnapStart": {
+        "ApplyOn": "None",
+        "OptimizationStatus": "Off"
+      },
+      "LoggingConfig": {
+        "LogFormat": "Text",
+        "LogGroup": "/aws/lambda/plan-executor"
+      }
+    },
+    {
+      "FunctionName": "hello-world-fn",
+      "FunctionArn": "arn:aws:lambda:us-east-1:027087672282:function:hello-world-fn",
+      "Runtime": "python3.11",
+      "Role": "arn:aws:iam::027087672282:role/lambda-basic-role",
+      "Handler": "lambda_function.handler",
+      "CodeSize": 218,
+      "Description": "",
+      "Timeout": 3,
+      "MemorySize": 128,
+      "LastModified": "2026-03-19T08:33:46.000+0000",
+      "CodeSha256": "zuz4886lbcUeyn3b21aL/z/n8v2+u+zC/cTLHJK5GnI=",
+      "Version": "$LATEST",
+      "TracingConfig": {
+        "Mode": "PassThrough"
+      },
+      "RevisionId": "03d39f82-d3d6-497d-9710-60a337563007",
+      "PackageType": "Zip",
+      "Architectures": [
+        "x86_64"
+      ],
+      "EphemeralStorage": {
+        "Size": 512
+      },
+      "SnapStart": {
+        "ApplyOn": "None",
+        "OptimizationStatus": "Off"
+      },
+      "LoggingConfig": {
+        "LogFormat": "Text",
+        "LogGroup": "/aws/lambda/hello-world-fn"
+      }
+    },
+    {
+      "FunctionName": "log-collector",
+      "FunctionArn": "arn:aws:lambda:us-east-1:027087672282:function:log-collector",
+      "Runtime": "nodejs20.x",
+      "Role": "arn:aws:iam::027087672282:role/setup-agent-role",
+      "Handler": "index.handler",
+      "CodeSize": 1367,
+      "Description": "",
+      "Timeout": 30,
+      "MemorySize": 256,
+      "LastModified": "2026-02-23T06:43:05.000+0000",
+      "CodeSha256": "bTr3fEcjasdq4tjNxvNMkBleZpZysL36BviXG0jwC98=",
+      "Version": "$LATEST",
+      "Environment": {
+        "Variables": {
+          "ERRORS_TABLE": "agent_errors"
+        }
+      },
+      "TracingConfig": {
+        "Mode": "PassThrough"
+      },
+      "RevisionId": "7d16ee01-ab42-4134-886f-55be2591f1b0",
+      "PackageType": "Zip",
+      "Architectures": [
+        "x86_64"
+      ],
+      "EphemeralStorage": {
+        "Size": 512
+      },
+      "SnapStart": {
+        "ApplyOn": "None",
+        "OptimizationStatus": "Off"
+      },
+      "LoggingConfig": {
+        "LogFormat": "Text",
+        "LogGroup": "/aws/lambda/log-collector"
+      }
+    }
+  ],
+  "cloudformation_stacks": [],
+  "load_balancers": [],
+  "security_groups": [
+    {
+      "GroupId": "sg-090d92bd87212a26f",
+      "IpPermissionsEgress": [
+        {
+          "IpProtocol": "-1",
+          "UserIdGroupPairs": [],
+          "IpRanges": [
+            {
+              "CidrIp": "0.0.0.0/0"
+            }
+          ],
+          "Ipv6Ranges": [],
+          "PrefixListIds": []
+        }
+      ],
+      "VpcId": "vpc-03d4bf4fd56283eb5",
+      "SecurityGroupArn": "arn:aws:ec2:us-east-1:027087672282:security-group/sg-090d92bd87212a26f",
+      "OwnerId": "027087672282",
+      "GroupName": "default",
+      "Description": "default VPC security group",
+      "IpPermissions": [
+        {
+          "IpProtocol": "-1",
+          "UserIdGroupPairs": [
+            {
+              "UserId": "027087672282",
+              "GroupId": "sg-090d92bd87212a26f"
+            }
+          ],
+          "IpRanges": [],
+          "Ipv6Ranges": [],
+          "PrefixListIds": []
+        }
+      ]
+    }
+  ],
+  "ecs": {
+    "clusters": [],
+    "services": [],
+    "task_definitions": []
+  }
+}
