@@ -18,7 +18,7 @@ CODEBUILD_PROJECT_NAME = "aws-dev-agent-tests"
 def extract_clone_request(raw_goal):
     source_cluster_match = re.search(r"cluster(?:\s+named)?\s+([a-zA-Z0-9-_]+)", raw_goal, re.IGNORECASE)
     source_service_match = re.search(r"service(?:\s+named)?\s+([a-zA-Z0-9-_]+)", raw_goal, re.IGNORECASE)
-    target_env_match = re.search(r"(?:to\s+)?(?:new\s+env|environment|env)(?:\s+named)?\s+([a-zA-Z0-9-_]+)", raw_goal, re.IGNORECASE)
+    target_env_match = re.search(r"to\s+(?:new\s+)?(?:environment|env)(?:\s+named)?\s+([a-zA-Z0-9-_]+)", raw_goal, re.IGNORECASE)
     team_match = re.search(r"team(?:\s+named)?\s+([a-zA-Z0-9-_]+)", raw_goal, re.IGNORECASE)
 
     return {
