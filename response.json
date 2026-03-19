@@ -1,1 +1,1 @@
-{"ok":true,"picked":0}
+{"errorMessage": "Syntax error in module 'lambda_function': unexpected character after line continuation character (lambda_function.py, line 1)", "errorType": "Runtime.UserCodeSyntaxError", "requestId": "", "stackTrace": ["  File \"/var/task/lambda_function.py\" Line 1\n    def handler(event, context):\\n    return {'statusCode': 200, 'body': 'Hello World'} \n"]}
