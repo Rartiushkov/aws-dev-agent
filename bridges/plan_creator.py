@@ -19,7 +19,7 @@ def create_plan(goal):
             },
             {
                 "type": "command",
-                "cmd": f"aws iam get-role --role-name {role_name} || aws iam create-role --role-name {role_name} --assume-role-policy-document file://trust-policy.json"
+                "cmd": f"aws iam create-role --role-name {role_name} --assume-role-policy-document file://trust-policy.json"
             },
             {
                 "type": "command",
@@ -27,7 +27,7 @@ def create_plan(goal):
             },
             {
                 "type": "command",
-                "cmd": "del trust-policy.json 2>nul || rm trust-policy.json"
+                "cmd": "del trust-policy.json 2>nul"
             }
         ]
 
@@ -49,7 +49,7 @@ def create_plan(goal):
             },
             {
                 "type": "command",
-                "cmd": f"aws lambda get-function --function-name {function_name} || aws lambda create-function --function-name {function_name} --runtime python3.11 --role {role_arn} --handler lambda_function.handler --zip-file fileb://function.zip"
+                "cmd": f"aws lambda create-function --function-name {function_name} --runtime python3.11 --role {role_arn} --handler lambda_function.handler --zip-file fileb://function.zip"
             }
         ]
 
