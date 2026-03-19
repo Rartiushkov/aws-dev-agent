@@ -1,13 +1,33 @@
 from bridges.dynamo_writer import send_plan
 from executor.safe_mode import safe_fallback
 import json
+import re
 import time
+
+
+def extract_lambda_name(raw_goal):
+
+    match = re.search(r"named\s+(.+?)(?:\s+test lambda|\s+for integration|\s+integration|$)", raw_goal, re.IGNORECASE)
+
+    if not match:
+        return "hello-world-fn"
+
+    candidate = match.group(1).strip().lower()
+    candidate = re.sub(r"[^a-z0-9-_]+", "-", candidate)
+    candidate = re.sub(r"-{2,}", "-", candidate).strip("-_")
+
+    if not candidate:
+        return "hello-world-fn"
+
+    return candidate[:64]
 
 
 def create_plan(goal):
 
-    goal = goal.lower().strip()
-    function_name = "hello-world-fn"
+    raw_goal = goal.strip()
+    goal = raw_goal.lower()
+    function_name = extract_lambda_name(raw_goal)
+    wants_lambda_test = "test lambda" in goal or "integration" in goal
 
     if "create iam role" in goal and "lambda" in goal:
 
@@ -59,7 +79,7 @@ def create_plan(goal):
             }
         ]
 
-        if "test lambda" in goal:
+        if wants_lambda_test:
             plan.extend([
                 {
                     "type": "command",
@@ -73,7 +93,7 @@ def create_plan(goal):
 
         return plan
 
-    if "test lambda" in goal:
+    if "test lambda" in goal or "integration" in goal:
         return [
             {
                 "type": "command",
