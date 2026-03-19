@@ -71,6 +71,10 @@ def create_plan(goal):
             },
             {
                 "type": "command",
+                "cmd": f"aws lambda wait function-active-v2 --function-name {function_name}"
+            },
+            {
+                "type": "command",
                 "cmd": f"aws lambda update-function-code --function-name {function_name} --zip-file fileb://function.zip"
             },
             {
