@@ -4,74 +4,308 @@
   "target_env": "virgin",
   "team": "platform",
   "region": "us-east-1",
+  "roles": [
+    {
+      "source_role": "lambda-basic-role",
+      "target_role": "virgin-lambda-basic-role-platform",
+      "target_role_arn": "arn:aws:iam::027087672282:role/virgin-lambda-basic-role-platform",
+      "operation": "created"
+    },
+    {
+      "source_role": "plan-executor-role",
+      "target_role": "virgin-plan-executor-role-platform",
+      "target_role_arn": "arn:aws:iam::027087672282:role/virgin-plan-executor-role-platform",
+      "operation": "created"
+    },
+    {
+      "source_role": "remediator-role",
+      "target_role": "virgin-remediator-role-platform",
+      "target_role_arn": "arn:aws:iam::027087672282:role/virgin-remediator-role-platform",
+      "operation": "created"
+    },
+    {
+      "source_role": "agent-planner-role",
+      "target_role": "virgin-agent-planner-role-platform",
+      "target_role_arn": "arn:aws:iam::027087672282:role/virgin-agent-planner-role-platform",
+      "operation": "created"
+    },
+    {
+      "source_role": "task-dispatcher-role",
+      "target_role": "virgin-task-dispatcher-role-platform",
+      "target_role_arn": "arn:aws:iam::027087672282:role/virgin-task-dispatcher-role-platform",
+      "operation": "created"
+    }
+  ],
+  "sqs_queues": [
+    {
+      "source_queue": "agent-error-queue",
+      "target_queue": "virgin-agent-error-queue-platform",
+      "target_queue_url": "https://sqs.us-east-1.amazonaws.com/027087672282/virgin-agent-error-queue-platform",
+      "target_queue_arn": "arn:aws:sqs:us-east-1:027087672282:virgin-agent-error-queue-platform",
+      "operation": "created"
+    },
+    {
+      "source_queue": "agent-fix-tasks-dlq.fifo",
+      "target_queue": "virgin-agent-fix-tasks-dlq-platform.fifo",
+      "target_queue_url": "https://sqs.us-east-1.amazonaws.com/027087672282/virgin-agent-fix-tasks-dlq-platform.fifo",
+      "target_queue_arn": "arn:aws:sqs:us-east-1:027087672282:virgin-agent-fix-tasks-dlq-platform.fifo",
+      "operation": "created"
+    },
+    {
+      "source_queue": "agent-fix-tasks.fifo",
+      "target_queue": "virgin-agent-fix-tasks-platform.fifo",
+      "target_queue_url": "https://sqs.us-east-1.amazonaws.com/027087672282/virgin-agent-fix-tasks-platform.fifo",
+      "target_queue_arn": "arn:aws:sqs:us-east-1:027087672282:virgin-agent-fix-tasks-platform.fifo",
+      "operation": "created"
+    },
+    {
+      "source_queue": "connector-tasks.fifo",
+      "target_queue": "virgin-connector-tasks-platform.fifo",
+      "target_queue_url": "https://sqs.us-east-1.amazonaws.com/027087672282/virgin-connector-tasks-platform.fifo",
+      "target_queue_arn": "arn:aws:sqs:us-east-1:027087672282:virgin-connector-tasks-platform.fifo",
+      "operation": "created"
+    },
+    {
+      "source_queue": "plan-executor-queue",
+      "target_queue": "virgin-plan-executor-queue-platform",
+      "target_queue_url": "https://sqs.us-east-1.amazonaws.com/027087672282/virgin-plan-executor-queue-platform",
+      "target_queue_arn": "arn:aws:sqs:us-east-1:027087672282:virgin-plan-executor-queue-platform",
+      "operation": "created"
+    }
+  ],
+  "sns_topics": [],
   "lambda_functions": [
     {
-      "source_function": "connector-worker",
-      "target_function": "virgin-connector-worker-platform",
+      "source_function": "virgin-log-collector-platform",
+      "target_function": "virgin-virgin-log-collector-platform",
+      "target_function_arn": "arn:aws:lambda:us-east-1:027087672282:function:virgin-virgin-log-collector-platform",
       "operation": "created",
-      "execution_role": "arn:aws:iam::027087672282:role/lambda-basic-role",
+      "execution_role": "arn:aws:iam::027087672282:role/virgin-lambda-basic-role-platform",
       "fallback_role_used": true
     },
     {
-      "source_function": "agent-planner",
-      "target_function": "virgin-agent-planner-platform",
+      "source_function": "virgin-plan-executor-platform",
+      "target_function": "virgin-virgin-plan-executor-platform",
+      "target_function_arn": "arn:aws:lambda:us-east-1:027087672282:function:virgin-virgin-plan-executor-platform",
       "operation": "created",
-      "execution_role": "arn:aws:iam::027087672282:role/agent-planner-role",
-      "fallback_role_used": false
-    },
-    {
-      "source_function": "setup-agent",
-      "target_function": "virgin-setup-agent-platform",
-      "operation": "created",
-      "execution_role": "arn:aws:iam::027087672282:role/lambda-basic-role",
+      "execution_role": "arn:aws:iam::027087672282:role/virgin-plan-executor-role-platform",
       "fallback_role_used": true
     },
     {
-      "source_function": "test-lambda-integration",
-      "target_function": "virgin-test-lambda-integration-platform",
+      "source_function": "virgin-ai-orchestrator-platform",
+      "target_function": "virgin-virgin-ai-orchestrator-platform",
+      "target_function_arn": "arn:aws:lambda:us-east-1:027087672282:function:virgin-virgin-ai-orchestrator-platform",
       "operation": "created",
-      "execution_role": "arn:aws:iam::027087672282:role/lambda-basic-role",
-      "fallback_role_used": false
+      "execution_role": "arn:aws:iam::027087672282:role/virgin-plan-executor-role-platform",
+      "fallback_role_used": true
     },
     {
-      "source_function": "plan-executor",
-      "target_function": "virgin-plan-executor-platform",
+      "source_function": "virgin-agent-planner-platform",
+      "target_function": "virgin-virgin-agent-planner-platform",
+      "target_function_arn": "arn:aws:lambda:us-east-1:027087672282:function:virgin-virgin-agent-planner-platform",
       "operation": "created",
-      "execution_role": "arn:aws:iam::027087672282:role/plan-executor-role",
-      "fallback_role_used": false
+      "execution_role": "arn:aws:iam::027087672282:role/virgin-agent-planner-role-platform",
+      "fallback_role_used": true
     },
     {
-      "source_function": "hello-world-fn",
-      "target_function": "virgin-hello-world-fn-platform",
+      "source_function": "virgin-hello-world-fn-platform",
+      "target_function": "virgin-virgin-hello-world-fn-platform",
+      "target_function_arn": "arn:aws:lambda:us-east-1:027087672282:function:virgin-virgin-hello-world-fn-platform",
       "operation": "created",
-      "execution_role": "arn:aws:iam::027087672282:role/lambda-basic-role",
-      "fallback_role_used": false
+      "execution_role": "arn:aws:iam::027087672282:role/virgin-lambda-basic-role-platform",
+      "fallback_role_used": true
     },
     {
-      "source_function": "log-collector",
-      "target_function": "virgin-log-collector-platform",
+      "source_function": "virgin-remediator-platform",
+      "target_function": "virgin-virgin-remediator-platform",
+      "target_function_arn": "arn:aws:lambda:us-east-1:027087672282:function:virgin-virgin-remediator-platform",
       "operation": "created",
-      "execution_role": "arn:aws:iam::027087672282:role/lambda-basic-role",
+      "execution_role": "arn:aws:iam::027087672282:role/virgin-remediator-role-platform",
+      "fallback_role_used": true
+    },
+    {
+      "source_function": "virgin-setup-agent-platform",
+      "target_function": "virgin-virgin-setup-agent-platform",
+      "target_function_arn": "arn:aws:lambda:us-east-1:027087672282:function:virgin-virgin-setup-agent-platform",
+      "operation": "created",
+      "execution_role": "arn:aws:iam::027087672282:role/virgin-lambda-basic-role-platform",
+      "fallback_role_used": true
+    },
+    {
+      "source_function": "virgin-test-lambda-integration-platform",
+      "target_function": "virgin-virgin-test-lambda-integration-platform",
+      "target_function_arn": "arn:aws:lambda:us-east-1:027087672282:function:virgin-virgin-test-lambda-integration-platform",
+      "operation": "created",
+      "execution_role": "arn:aws:iam::027087672282:role/virgin-lambda-basic-role-platform",
+      "fallback_role_used": true
+    },
+    {
+      "source_function": "virgin-connector-worker-platform",
+      "target_function": "virgin-virgin-connector-worker-platform",
+      "target_function_arn": "arn:aws:lambda:us-east-1:027087672282:function:virgin-virgin-connector-worker-platform",
+      "operation": "created",
+      "execution_role": "arn:aws:iam::027087672282:role/virgin-lambda-basic-role-platform",
+      "fallback_role_used": true
+    },
+    {
+      "source_function": "virgin-task-dispatcher-platform",
+      "target_function": "virgin-virgin-task-dispatcher-platform",
+      "target_function_arn": "arn:aws:lambda:us-east-1:027087672282:function:virgin-virgin-task-dispatcher-platform",
+      "operation": "created",
+      "execution_role": "arn:aws:iam::027087672282:role/virgin-task-dispatcher-role-platform",
       "fallback_role_used": true
     }
   ],
-  "failed_lambda_functions": [
-    {
-      "source_function": "remediator",
-      "target_function": "virgin-remediator-platform",
-      "error": "An error occurred (ResourceConflictException) when calling the UpdateFunctionConfiguration operation: The operation cannot be performed at this time. An update is in progress for resource: arn:aws:lambda:us-east-1:027087672282:function:virgin-remediator-platform"
+  "lambda_event_source_mappings": [],
+  "lambda_permissions": [],
+  "sns_subscriptions": [],
+  "api_gateways": [],
+  "resource_mappings": {
+    "role_arns": {
+      "arn:aws:iam::027087672282:role/lambda-basic-role": "arn:aws:iam::027087672282:role/virgin-lambda-basic-role-platform",
+      "arn:aws:iam::027087672282:role/plan-executor-role": "arn:aws:iam::027087672282:role/virgin-plan-executor-role-platform",
+      "arn:aws:iam::027087672282:role/remediator-role": "arn:aws:iam::027087672282:role/virgin-remediator-role-platform",
+      "arn:aws:iam::027087672282:role/agent-planner-role": "arn:aws:iam::027087672282:role/virgin-agent-planner-role-platform",
+      "arn:aws:iam::027087672282:role/task-dispatcher-role": "arn:aws:iam::027087672282:role/virgin-task-dispatcher-role-platform"
     },
-    {
-      "source_function": "task-dispatcher",
-      "target_function": "virgin-task-dispatcher-platform",
-      "error": "An error occurred (ResourceConflictException) when calling the UpdateFunctionConfiguration operation: The operation cannot be performed at this time. An update is in progress for resource: arn:aws:lambda:us-east-1:027087672282:function:virgin-task-dispatcher-platform"
+    "role_names": {
+      "lambda-basic-role": "virgin-lambda-basic-role-platform",
+      "plan-executor-role": "virgin-plan-executor-role-platform",
+      "remediator-role": "virgin-remediator-role-platform",
+      "agent-planner-role": "virgin-agent-planner-role-platform",
+      "task-dispatcher-role": "virgin-task-dispatcher-role-platform"
     },
-    {
-      "source_function": "ai-orchestrator",
-      "target_function": "virgin-ai-orchestrator-platform",
-      "error": "An error occurred (ResourceConflictException) when calling the UpdateFunctionConfiguration operation: The operation cannot be performed at this time. An update is in progress for resource: arn:aws:lambda:us-east-1:027087672282:function:virgin-ai-orchestrator-platform"
-    }
-  ],
+    "queue_urls": {
+      "https://sqs.us-east-1.amazonaws.com/027087672282/agent-error-queue": "https://sqs.us-east-1.amazonaws.com/027087672282/virgin-agent-error-queue-platform",
+      "https://sqs.us-east-1.amazonaws.com/027087672282/agent-fix-tasks-dlq.fifo": "https://sqs.us-east-1.amazonaws.com/027087672282/virgin-agent-fix-tasks-dlq-platform.fifo",
+      "https://sqs.us-east-1.amazonaws.com/027087672282/agent-fix-tasks.fifo": "https://sqs.us-east-1.amazonaws.com/027087672282/virgin-agent-fix-tasks-platform.fifo",
+      "https://sqs.us-east-1.amazonaws.com/027087672282/connector-tasks.fifo": "https://sqs.us-east-1.amazonaws.com/027087672282/virgin-connector-tasks-platform.fifo",
+      "https://sqs.us-east-1.amazonaws.com/027087672282/plan-executor-queue": "https://sqs.us-east-1.amazonaws.com/027087672282/virgin-plan-executor-queue-platform"
+    },
+    "queue_arns": {
+      "arn:aws:sqs:us-east-1:027087672282:agent-error-queue": "arn:aws:sqs:us-east-1:027087672282:virgin-agent-error-queue-platform",
+      "arn:aws:sqs:us-east-1:027087672282:agent-fix-tasks-dlq.fifo": "arn:aws:sqs:us-east-1:027087672282:virgin-agent-fix-tasks-dlq-platform.fifo",
+      "arn:aws:sqs:us-east-1:027087672282:agent-fix-tasks.fifo": "arn:aws:sqs:us-east-1:027087672282:virgin-agent-fix-tasks-platform.fifo",
+      "arn:aws:sqs:us-east-1:027087672282:connector-tasks.fifo": "arn:aws:sqs:us-east-1:027087672282:virgin-connector-tasks-platform.fifo",
+      "arn:aws:sqs:us-east-1:027087672282:plan-executor-queue": "arn:aws:sqs:us-east-1:027087672282:virgin-plan-executor-queue-platform"
+    },
+    "queue_names": {
+      "agent-error-queue": "virgin-agent-error-queue-platform",
+      "agent-fix-tasks-dlq.fifo": "virgin-agent-fix-tasks-dlq-platform.fifo",
+      "agent-fix-tasks.fifo": "virgin-agent-fix-tasks-platform.fifo",
+      "connector-tasks.fifo": "virgin-connector-tasks-platform.fifo",
+      "plan-executor-queue": "virgin-plan-executor-queue-platform"
+    },
+    "topic_arns": {},
+    "topic_names": {},
+    "function_arns": {
+      "arn:aws:lambda:us-east-1:027087672282:function:virgin-log-collector-platform": "arn:aws:lambda:us-east-1:027087672282:function:virgin-virgin-log-collector-platform",
+      "arn:aws:lambda:us-east-1:027087672282:function:virgin-plan-executor-platform": "arn:aws:lambda:us-east-1:027087672282:function:virgin-virgin-plan-executor-platform",
+      "arn:aws:lambda:us-east-1:027087672282:function:virgin-ai-orchestrator-platform": "arn:aws:lambda:us-east-1:027087672282:function:virgin-virgin-ai-orchestrator-platform",
+      "arn:aws:lambda:us-east-1:027087672282:function:virgin-agent-planner-platform": "arn:aws:lambda:us-east-1:027087672282:function:virgin-virgin-agent-planner-platform",
+      "arn:aws:lambda:us-east-1:027087672282:function:virgin-hello-world-fn-platform": "arn:aws:lambda:us-east-1:027087672282:function:virgin-virgin-hello-world-fn-platform",
+      "arn:aws:lambda:us-east-1:027087672282:function:virgin-remediator-platform": "arn:aws:lambda:us-east-1:027087672282:function:virgin-virgin-remediator-platform",
+      "arn:aws:lambda:us-east-1:027087672282:function:virgin-setup-agent-platform": "arn:aws:lambda:us-east-1:027087672282:function:virgin-virgin-setup-agent-platform",
+      "arn:aws:lambda:us-east-1:027087672282:function:virgin-test-lambda-integration-platform": "arn:aws:lambda:us-east-1:027087672282:function:virgin-virgin-test-lambda-integration-platform",
+      "arn:aws:lambda:us-east-1:027087672282:function:virgin-connector-worker-platform": "arn:aws:lambda:us-east-1:027087672282:function:virgin-virgin-connector-worker-platform",
+      "arn:aws:lambda:us-east-1:027087672282:function:virgin-task-dispatcher-platform": "arn:aws:lambda:us-east-1:027087672282:function:virgin-virgin-task-dispatcher-platform"
+    },
+    "function_names": {
+      "virgin-log-collector-platform": "virgin-virgin-log-collector-platform",
+      "virgin-plan-executor-platform": "virgin-virgin-plan-executor-platform",
+      "virgin-ai-orchestrator-platform": "virgin-virgin-ai-orchestrator-platform",
+      "virgin-agent-planner-platform": "virgin-virgin-agent-planner-platform",
+      "virgin-hello-world-fn-platform": "virgin-virgin-hello-world-fn-platform",
+      "virgin-remediator-platform": "virgin-virgin-remediator-platform",
+      "virgin-setup-agent-platform": "virgin-virgin-setup-agent-platform",
+      "virgin-test-lambda-integration-platform": "virgin-virgin-test-lambda-integration-platform",
+      "virgin-connector-worker-platform": "virgin-virgin-connector-worker-platform",
+      "virgin-task-dispatcher-platform": "virgin-virgin-task-dispatcher-platform"
+    },
+    "api_ids": {}
+  },
+  "failures": {
+    "roles": [],
+    "queues": [],
+    "topics": [],
+    "lambda_functions": [
+      {
+        "source_function": "remediator",
+        "target_function": "virgin-remediator-platform",
+        "error": "An error occurred (ResourceConflictException) when calling the UpdateFunctionConfiguration operation: The operation cannot be performed at this time. An update is in progress for resource: arn:aws:lambda:us-east-1:027087672282:function:virgin-remediator-platform"
+      },
+      {
+        "source_function": "task-dispatcher",
+        "target_function": "virgin-task-dispatcher-platform",
+        "error": "An error occurred (ResourceConflictException) when calling the UpdateFunctionConfiguration operation: The operation cannot be performed at this time. An update is in progress for resource: arn:aws:lambda:us-east-1:027087672282:function:virgin-task-dispatcher-platform"
+      },
+      {
+        "source_function": "ai-orchestrator",
+        "target_function": "virgin-ai-orchestrator-platform",
+        "error": "An error occurred (ResourceConflictException) when calling the UpdateFunctionConfiguration operation: The operation cannot be performed at this time. An update is in progress for resource: arn:aws:lambda:us-east-1:027087672282:function:virgin-ai-orchestrator-platform"
+      },
+      {
+        "source_function": "connector-worker",
+        "target_function": "virgin-connector-worker-platform",
+        "error": "An error occurred (ResourceConflictException) when calling the UpdateFunctionConfiguration operation: The operation cannot be performed at this time. An update is in progress for resource: arn:aws:lambda:us-east-1:027087672282:function:virgin-connector-worker-platform"
+      },
+      {
+        "source_function": "agent-planner",
+        "target_function": "virgin-agent-planner-platform",
+        "error": "An error occurred (ResourceConflictException) when calling the UpdateFunctionConfiguration operation: The operation cannot be performed at this time. An update is in progress for resource: arn:aws:lambda:us-east-1:027087672282:function:virgin-agent-planner-platform"
+      },
+      {
+        "source_function": "setup-agent",
+        "target_function": "virgin-setup-agent-platform",
+        "error": "An error occurred (ResourceConflictException) when calling the UpdateFunctionConfiguration operation: The operation cannot be performed at this time. An update is in progress for resource: arn:aws:lambda:us-east-1:027087672282:function:virgin-setup-agent-platform"
+      },
+      {
+        "source_function": "test-lambda-integration",
+        "target_function": "virgin-test-lambda-integration-platform",
+        "error": "An error occurred (ResourceConflictException) when calling the UpdateFunctionConfiguration operation: The operation cannot be performed at this time. An update is in progress for resource: arn:aws:lambda:us-east-1:027087672282:function:virgin-test-lambda-integration-platform"
+      },
+      {
+        "source_function": "plan-executor",
+        "target_function": "virgin-plan-executor-platform",
+        "error": "An error occurred (ResourceConflictException) when calling the UpdateFunctionConfiguration operation: The operation cannot be performed at this time. An update is in progress for resource: arn:aws:lambda:us-east-1:027087672282:function:virgin-plan-executor-platform"
+      },
+      {
+        "source_function": "hello-world-fn",
+        "target_function": "virgin-hello-world-fn-platform",
+        "error": "An error occurred (ResourceConflictException) when calling the UpdateFunctionConfiguration operation: The operation cannot be performed at this time. An update is in progress for resource: arn:aws:lambda:us-east-1:027087672282:function:virgin-hello-world-fn-platform"
+      },
+      {
+        "source_function": "log-collector",
+        "target_function": "virgin-log-collector-platform",
+        "error": "An error occurred (ResourceConflictException) when calling the UpdateFunctionConfiguration operation: The operation cannot be performed at this time. An update is in progress for resource: arn:aws:lambda:us-east-1:027087672282:function:virgin-log-collector-platform"
+      }
+    ],
+    "event_source_mappings": [
+      {
+        "source_mapping": "55dbb09e-8b4d-4594-8c41-8fa4181ad929",
+        "error": "Missing target function or event source"
+      },
+      {
+        "source_mapping": "3f3bd44c-b2cb-432d-b97c-d34246296a1d",
+        "error": "Missing target function or event source"
+      },
+      {
+        "source_mapping": "e1eb804b-5d2c-4c56-b1db-4aa5a8107250",
+        "error": "Missing target function or event source"
+      },
+      {
+        "source_mapping": "715dc62f-47bf-4f1f-b8fb-9d25947dc437",
+        "error": "Missing target function or event source"
+      },
+      {
+        "source_mapping": "4b361b04-2403-4343-aa61-32e97d094f82",
+        "error": "Missing target function or event source"
+      }
+    ],
+    "lambda_permissions": [],
+    "sns_subscriptions": [],
+    "api_gateways": []
+  },
   "follow_up": {
     "manual_review_required": true,
     "cloudformation_stacks_review_required": false,

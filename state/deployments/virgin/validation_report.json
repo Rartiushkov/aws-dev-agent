@@ -4,7 +4,7 @@
   "region": "us-east-1",
   "functions": [
     {
-      "function_name": "virgin-connector-worker-platform",
+      "function_name": "virgin-virgin-log-collector-platform",
       "state": "Active",
       "last_update_status": "Successful",
       "issues": [
@@ -12,7 +12,7 @@
       ]
     },
     {
-      "function_name": "virgin-agent-planner-platform",
+      "function_name": "virgin-virgin-plan-executor-platform",
       "state": "Active",
       "last_update_status": "Successful",
       "issues": [
@@ -20,7 +20,7 @@
       ]
     },
     {
-      "function_name": "virgin-setup-agent-platform",
+      "function_name": "virgin-virgin-ai-orchestrator-platform",
       "state": "Active",
       "last_update_status": "Successful",
       "issues": [
@@ -28,7 +28,7 @@
       ]
     },
     {
-      "function_name": "virgin-test-lambda-integration-platform",
+      "function_name": "virgin-virgin-agent-planner-platform",
       "state": "Active",
       "last_update_status": "Successful",
       "issues": [
@@ -36,7 +36,7 @@
       ]
     },
     {
-      "function_name": "virgin-plan-executor-platform",
+      "function_name": "virgin-virgin-hello-world-fn-platform",
       "state": "Active",
       "last_update_status": "Successful",
       "issues": [
@@ -44,7 +44,7 @@
       ]
     },
     {
-      "function_name": "virgin-hello-world-fn-platform",
+      "function_name": "virgin-virgin-remediator-platform",
       "state": "Active",
       "last_update_status": "Successful",
       "issues": [
@@ -52,7 +52,31 @@
       ]
     },
     {
-      "function_name": "virgin-log-collector-platform",
+      "function_name": "virgin-virgin-setup-agent-platform",
+      "state": "Active",
+      "last_update_status": "Successful",
+      "issues": [
+        "log-check-failed: An error occurred (ResourceNotFoundException) when calling the FilterLogEvents operation: The specified log group does not exist."
+      ]
+    },
+    {
+      "function_name": "virgin-virgin-test-lambda-integration-platform",
+      "state": "Active",
+      "last_update_status": "Successful",
+      "issues": [
+        "log-check-failed: An error occurred (ResourceNotFoundException) when calling the FilterLogEvents operation: The specified log group does not exist."
+      ]
+    },
+    {
+      "function_name": "virgin-virgin-connector-worker-platform",
+      "state": "Active",
+      "last_update_status": "Successful",
+      "issues": [
+        "log-check-failed: An error occurred (ResourceNotFoundException) when calling the FilterLogEvents operation: The specified log group does not exist."
+      ]
+    },
+    {
+      "function_name": "virgin-virgin-task-dispatcher-platform",
       "state": "Active",
       "last_update_status": "Successful",
       "issues": [
