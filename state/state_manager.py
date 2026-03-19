@@ -4,12 +4,13 @@ import time
 
 class StateManager:
 
-    def save(self, goal, result):
+    def save(self, goal, result, metadata=None):
 
         data = {
             "time": time.time(),
             "goal": goal,
-            "result": result
+            "result": result,
+            "metadata": metadata or {}
         }
 
         with open("agent_state.json", "w") as f:

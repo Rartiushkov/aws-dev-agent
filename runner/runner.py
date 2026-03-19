@@ -20,6 +20,52 @@ class Runner:
         self.llm = BedrockClient()
         self.log_scanner = LogScanner()
 
+    def inspect_cloudwatch_errors(self, aws_state):
+
+        findings = []
+
+        for fn in aws_state.get("lambdas", []):
+
+            try:
+
+                logs = self.log_scanner.scan_lambda_logs(fn)
+
+                if not logs:
+                    continue
+
+                text = logs.lower()
+
+                if "error" not in text and "exception" not in text and "accessdenied" not in text:
+                    continue
+
+                description = f"""
+Lambda error detected from CloudWatch logs.
+
+Lambda:
+{fn}
+
+Logs:
+{logs[:1000]}
+"""
+
+                fix_plan = create_fix_plan(description)
+                finding = {
+                    "lambda": fn,
+                    "source": "cloudwatch",
+                    "message": "CloudWatch error detected; fix plan created and user should be notified",
+                    "logs": logs[:1000],
+                    "fix_plan": fix_plan,
+                }
+                findings.append(finding)
+
+                print(f"CloudWatch error detected in {fn}")
+                print("User notification: CloudWatch error found, AWS structure reviewed, fix plan created.")
+
+            except Exception as e:
+                print(f"Log scan failed for {fn}: {e}")
+
+        return findings
+
     def run(self, goal: str):
 
         print("\n============================")
@@ -39,39 +85,10 @@ class Runner:
         # ---------- SCAN LAMBDA LOGS ----------
         print("\nScanning Lambda logs...\n")
 
-        for fn in aws_state.get("lambdas", []):
+        cloudwatch_findings = self.inspect_cloudwatch_errors(aws_state)
 
-            try:
-
-                logs = self.log_scanner.scan_lambda_logs(fn)
-
-                if not logs:
-                    continue
-
-                text = logs.lower()
-
-                if "error" in text or "exception" in text or "accessdenied" in text:
-
-                    print(f"Error detected in logs of {fn}")
-
-                    description = f"""
-Lambda error detected from CloudWatch logs.
-
-Lambda:
-{fn}
-
-Logs:
-{logs[:1000]}
-"""
-
-                    create_fix_plan(description)
-
-                    print("Fix plan created from logs.\n")
-
-                    break
-
-            except Exception as e:
-                print(f"Log scan failed for {fn}: {e}")
+        if cloudwatch_findings:
+            print("Fix plan created from CloudWatch logs.\n")
 
         # ---------- LOAD SYSTEM PROMPT ----------
         with open("prompts/system_prompt.txt") as f:
@@ -232,7 +249,14 @@ Suggest the next AWS CLI command or say DONE.
                 break
 
         # ---------- SAVE STATE ----------
-        self.state.save(goal, aws_state)
+        self.state.save(
+            goal,
+            aws_state,
+            metadata={
+                "cloudwatch_findings": cloudwatch_findings,
+                "user_notification_required": bool(cloudwatch_findings),
+            }
+        )
 
         print("\nState saved.")
         print("\nAgent cycle finished.\n")
