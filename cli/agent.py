@@ -3,8 +3,19 @@ from executor.action_executor import execute_action
 from agents.error_detector import detect_error
 from executor.git_snapshot import save_snapshot
 
+import os
 import subprocess
 import sys
+
+
+DEFAULT_AWS_REGION = "us-east-1"
+
+
+def build_command_env():
+    env = os.environ.copy()
+    env.setdefault("AWS_DEFAULT_REGION", DEFAULT_AWS_REGION)
+    env.setdefault("AWS_REGION", DEFAULT_AWS_REGION)
+    return env
 
 
 def handle_aws_cli_error(result):
@@ -75,7 +86,7 @@ def execute_fix_plan(plan):
         print("Fix step:", step)
 
         if step.get("type") == "command":
-            subprocess.run(step.get("cmd"), shell=True)
+            subprocess.run(step.get("cmd"), shell=True, env=build_command_env())
 
         elif step.get("type") == "action":
             execute_action(step)
@@ -153,7 +164,8 @@ def main():
                 cmd,
                 shell=True,
                 capture_output=True,
-                text=True
+                text=True,
+                env=build_command_env()
             )
 
             if result.stdout:
