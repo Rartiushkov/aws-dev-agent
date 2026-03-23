@@ -1,0 +1,8 @@
+{
+  "generated_at": "2026-03-19T16:25:46.881133+00:00",
+  "source_env": "",
+  "region": "us-east-1",
+  "kms_key_count": 0,
+  "keys": [],
+  "recommended_next_step": "Map customer-managed KMS keys and key policies before production migration."
+}

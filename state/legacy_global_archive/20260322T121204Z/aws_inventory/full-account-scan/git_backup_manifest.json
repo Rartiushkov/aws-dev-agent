@@ -1,0 +1,55 @@
+{
+  "captured_at": "2026-03-19T15:13:46.171340+00:00",
+  "source_env": "full-account-scan",
+  "account_id": "",
+  "region": "",
+  "git_provider": "github",
+  "git_host": "github.com",
+  "git_organization": "rartiushkov",
+  "repository_count": 1,
+  "repositories": [
+    {
+      "url": "https://github.com/Rartiushkov/aws-dev-agent-backup-test.git",
+      "host": "github.com",
+      "name": "aws-dev-agent-backup-test",
+      "sources": [
+        {
+          "type": "direct-input",
+          "name": "aws-dev-agent-backup-test"
+        }
+      ],
+      "backup_mode": "mirror",
+      "destination_repo_name": "backup-aws-dev-agent-backup-test",
+      "destination_url": "https://github.com/rartiushkov/backup-aws-dev-agent-backup-test.git",
+      "local_mirror_path": "state/git_backups/full-account-scan/backup-aws-dev-agent-backup-test.git",
+      "commands": [
+        "git clone --mirror https://github.com/Rartiushkov/aws-dev-agent-backup-test.git state/git_backups/full-account-scan/backup-aws-dev-agent-backup-test.git",
+        "git -C state/git_backups/full-account-scan/backup-aws-dev-agent-backup-test.git remote add client https://github.com/rartiushkov/backup-aws-dev-agent-backup-test.git",
+        "git -C state/git_backups/full-account-scan/backup-aws-dev-agent-backup-test.git push --mirror client"
+      ]
+    }
+  ],
+  "git_backup": {
+    "provider": "github",
+    "host": "github.com",
+    "protocol": "https",
+    "organization": "rartiushkov",
+    "repo_prefix": "backup",
+    "create_repos": false,
+    "username": "rartiushkov",
+    "token_env": "CLIENT_GIT_TOKEN"
+  },
+  "execution_results": [
+    {
+      "repository": "aws-dev-agent-backup-test",
+      "clone": {
+        "status": "skipped",
+        "details": "Local mirror already exists"
+      },
+      "push": {
+        "status": "failed",
+        "details": "remote: Repository not found.\nfatal: repository 'https://github.com/rartiushkov/backup-aws-dev-agent-backup-test.git/' not found"
+      }
+    }
+  ]
+}

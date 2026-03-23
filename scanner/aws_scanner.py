@@ -1,14 +1,14 @@
-import subprocess
 import json
+
+from executor.command_runner import run_command
 
 
 class AWSScanner:
 
     def run(self, cmd):
 
-        result = subprocess.run(
+        result = run_command(
             cmd,
-            shell=True,
             capture_output=True,
             text=True
         )

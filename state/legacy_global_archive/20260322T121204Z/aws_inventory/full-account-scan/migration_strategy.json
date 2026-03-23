@@ -1,0 +1,169 @@
+{
+  "generated_at": "2026-03-19T16:13:15.115580+00:00",
+  "source_env": "",
+  "account_id": "027087672282",
+  "region": "us-east-1",
+  "overall_status": "partial",
+  "risk_summary": {
+    "high": 0,
+    "medium": 17,
+    "low": 1
+  },
+  "tracks": [
+    {
+      "name": "network",
+      "status": "partial",
+      "resource_counts": {
+        "vpcs": 0,
+        "subnets": 0,
+        "route_tables": 0,
+        "security_groups": 1
+      },
+      "current_support": [
+        "discovery and dependency graph for VPC, subnet, route table, security group",
+        "risk scan for public exposure and route topology",
+        "Lambda VPC config recreation when subnet/security group IDs already exist"
+      ],
+      "recommended_method": "Recreate network explicitly before application deploy; map or precreate VPC/subnet/security-group targets.",
+      "next_steps": [
+        "Add VPC/subnet/security-group create/update scripts",
+        "Add target-side mapping for route tables and VPC IDs"
+      ]
+    },
+    {
+      "name": "api_gateway",
+      "status": "covered",
+      "resource_counts": {
+        "api_gateways": 0
+      },
+      "current_support": [
+        "API Gateway discovery is implemented",
+        "API creation is implemented in deploy flow"
+      ],
+      "recommended_method": "Use current deploy flow for simple REST APIs; keep stage/domain/integration review manual until expanded coverage lands.",
+      "next_steps": [
+        "Add stage deployment, authorizers, domain mappings, and usage plans",
+        "Add validation of API integrations after deploy"
+      ]
+    },
+    {
+      "name": "rds_data_migration",
+      "status": "covered",
+      "resource_counts": {
+        "rds_instances": 0,
+        "rds_clusters": 0
+      },
+      "current_support": [
+        "RDS discovery and risk analysis are implemented",
+        "No live RDS migration executor is implemented yet"
+      ],
+      "recommended_method": "Use AWS DMS or snapshot/restore strategy depending on engine and downtime needs.",
+      "next_steps": [
+        "Add engine-aware migration planner",
+        "Add DMS task generation or snapshot-based runbook export"
+      ]
+    },
+    {
+      "name": "s3_object_transfer",
+      "status": "manual",
+      "resource_counts": {
+        "s3_buckets": 2
+      },
+      "current_support": [
+        "S3 bucket discovery and review flags are implemented",
+        "Object transfer is not automated yet"
+      ],
+      "recommended_method": "Use S3 sync/replication/DataSync-style transfer plan for bucket objects; keep object migration explicit.",
+      "next_steps": [
+        "Add bucket policy recreation",
+        "Add object copy/sync executor with dry-run and checksum reporting"
+      ]
+    },
+    {
+      "name": "full_ecs_service_migration",
+      "status": "covered",
+      "resource_counts": {
+        "ecs_clusters": 1,
+        "ecs_services": 0,
+        "ecs_task_definitions": 0
+      },
+      "current_support": [
+        "ECS clusters, task definitions, and services are present in deploy flow",
+        "ECS discovery includes tasks, schedules, metrics, and event history"
+      ],
+      "recommended_method": "Use current ECS deploy path for metadata recreation; add image, networking, and LB validation for production-grade migrations.",
+      "next_steps": [
+        "Add load balancer/target group handling",
+        "Add ECR image strategy and ECS service validation checks"
+      ]
+    },
+    {
+      "name": "ec2_strategy",
+      "status": "manual",
+      "resource_counts": {
+        "ec2_like_signals": 1
+      },
+      "current_support": [
+        "No direct EC2 migration executor is implemented",
+        "Infrastructure discovery can expose surrounding dependencies"
+      ],
+      "recommended_method": "Use AMI copy/share for image-based moves or AWS MGN for continuous server replication.",
+      "next_steps": [
+        "Add EC2/AMI discovery and recommendation engine",
+        "Generate AMI/MGN runbooks from snapshot data"
+      ]
+    },
+    {
+      "name": "iam_kms_deeper_handling",
+      "status": "covered",
+      "resource_counts": {
+        "kms_signals": 0
+      },
+      "current_support": [
+        "IAM role cloning is implemented",
+        "Secrets and queues preserve KMS references when present",
+        "Risk scan catches overly broad IAM patterns"
+      ],
+      "recommended_method": "Use current IAM clone flow for roles; add customer-managed KMS key mapping and policy narrowing before production rollout.",
+      "next_steps": [
+        "Add KMS key discovery and remapping",
+        "Add least-privilege IAM rewrite suggestions"
+      ]
+    },
+    {
+      "name": "iac_export",
+      "status": "partial",
+      "resource_counts": {
+        "cloudformation_stacks": 1
+      },
+      "current_support": [
+        "CloudFormation discovery and review flags are implemented",
+        "AWS-to-Git export of discovered artifacts is implemented"
+      ],
+      "recommended_method": "Use snapshot export as the current audit artifact; add Terraform/CloudFormation generation as a dedicated export layer.",
+      "next_steps": [
+        "Generate Terraform/CloudFormation templates from sanitized snapshot",
+        "Annotate unsupported resources in export report"
+      ]
+    },
+    {
+      "name": "zero_downtime_orchestration",
+      "status": "partial",
+      "resource_counts": {
+        "api_gateways": 0,
+        "ecs_services": 0,
+        "rds_instances": 0,
+        "s3_buckets": 2
+      },
+      "current_support": [
+        "Validation and redeploy flows exist",
+        "No full change-plan / cutover orchestrator is implemented yet"
+      ],
+      "recommended_method": "Use staged deploy plus validate for now; add cutover plans per service type before advertising zero-downtime migrations.",
+      "next_steps": [
+        "Introduce dry-run change plan and cutover ordering",
+        "Add rollback hints and per-service downtime classification"
+      ]
+    }
+  ]
+}

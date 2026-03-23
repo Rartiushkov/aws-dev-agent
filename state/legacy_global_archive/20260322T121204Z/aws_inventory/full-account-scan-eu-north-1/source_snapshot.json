@@ -1,0 +1,2420 @@
+{
+  "captured_at": "2026-03-22T08:35:00.612260+00:00",
+  "account_id": "027087672282",
+  "region": "eu-north-1",
+  "source_env": "",
+  "team": "",
+  "lambda_functions": [
+    {
+      "FunctionName": "trial-hipaa-whatsapp",
+      "FunctionArn": "arn:aws:lambda:eu-north-1:027087672282:function:trial-hipaa-whatsapp",
+      "Runtime": "python3.12",
+      "Role": "arn:aws:iam::027087672282:role/service-role/trial-hipaa-whatsapp-role-wi6bxn4h",
+      "Handler": "lambda_function.lambda_handler",
+      "CodeSize": 10601,
+      "Description": "",
+      "Timeout": 10,
+      "MemorySize": 256,
+      "LastModified": "2026-02-16T11:32:33.000+0000",
+      "CodeSha256": "RRELVjOjDN2U4WxlDdPCzkIiXhXo2JTPvTmeF3A8qgM=",
+      "Version": "$LATEST",
+      "Environment": {
+        "Variables": {
+          "CORS_ALLOW_ORIGINS": "https://hippsign.app,https://rartiushkov.github.io",
+          "TRIAL_SIGNER_EMAIL": "rartiushkov@gmail.com",
+          "ATHENA_CLIENT_SECRET": "us0RlBURpRbIEyo7nEn2xG0sTMSrbqxyUjEn9aAZqEqoVDwKtpQx5AJ3paCzPFgh",
+          "WEBHOOK_URL": "https://6cxl9xwo00.execute-api.eu-north-1.amazonaws.com/webhooks/whatsapp",
+          "OAUTH_STATE_SECRET": "By1gBjOUOpzPM/pi+1v7eRMk/EWaABRqMEMP9wWK/ZyDON+DezcaUFORJUI2zd3a",
+          "ATHENA_SECRET_PREFIX": "hipaa-signer/tenants",
+          "ATHENA_TOKEN_URL": "https://identity.athenahealth.com/oauth2/aus2hfei6ookPyyCA297/v1/token",
+          "TABLE_TASKS": "connector_tasks",
+          "ENABLE_TASK_SALESFORCE": "1",
+          "DROPBOXSIGN_TEST_MODE": "1",
+          "ATHENA_AUTHORIZE_URL": "https://identity.athenahealth.com/oauth2/aus2hfei6ookPyyCA297/v1/authorize",
+          "DROPBOXSIGN_CLIENT_ID": "e5959db3f636f2ec85181103365d12c7",
+          "TABLE_EVENTS": "consent_events",
+          "DROPBOXSIGN_API_KEY": "d33f6a812b3377685c2a1f3b6990e65e29ab00cc37ffc83b27cf0a0a3b9056e9",
+          "SF_CLIENT_ID": "3MVG9dAEux2v1sLuYootELZZnEsT324awLNxRI5znF78l7mzxNyZ_.eup4Zyn18xBVUwYFh5JKMj4w4GxKs7B",
+          "ATHENA_SCOPES": "user/Encounter.r user/Encounter.rs user/Encounter.s user/Organization.r user/Organization.rs user/Organization.s user/Patient.r user/Patient.rs user/Patient.s user/Practitioner.r user/Practitioner.rs user/Practitioner.s user/Provenance.r user/Provenance.rs user/Provenance.s patient/Encounter.r patient/Encounter.rs patient/Encounter.s patient/Organization.r patient/Organization.rs patient/Organization.s patient/Patient.r patient/Patient.rs patient/Patient.s patient/Practitioner.r patient/Practitioner.rs patient/Practitioner.s patient/Provenance.r patient/Provenance.rs patient/Provenance.s",
+          "SQS_QUEUE_URL": "https://sqs.eu-north-1.amazonaws.com/027087672282/connector-tasks.fifo",
+          "TABLE_CLINICS": "clinics",
+          "ATHENA_CALLBACK_URL": "https://6cxl9xwo00.execute-api.eu-north-1.amazonaws.com/connect/athena/callback",
+          "SF_CLIENT_SECRET": "D96A2C738CF8831373C505912DBCF16A7F47DC882B777C12C332B17E721130B5",
+          "SIGN_PAGE_BASE_URL": "https://rartiushkov.github.io/Hippa",
+          "CONSENT_PDF_URL": "https://www.uab.edu/research/home/images/IRB/Forms/Consent-Assent/Sample_Consent_Template_REDLINE.pdf",
+          "ATHENA_CLIENT_ID": "0oa11274apv4eWxGL298",
+          "ENABLE_TASK_SHEETS": "0",
+          "SF_CALLBACK_URL": "https://6cxl9xwo00.execute-api.eu-north-1.amazonaws.com/connect/salesforce/callback",
+          "TWILIO_AUTH_TOKEN": "7cb73f6e03a66556f0c3e9952f84d616",
+          "TABLE_CONSENTS": "consents"
+        }
+      },
+      "TracingConfig": {
+        "Mode": "PassThrough"
+      },
+      "RevisionId": "259f1bff-f6c7-4d6e-8bd8-52ee68ce58cd",
+      "PackageType": "Zip",
+      "Architectures": [
+        "x86_64"
+      ],
+      "EphemeralStorage": {
+        "Size": 512
+      },
+      "SnapStart": {
+        "ApplyOn": "None",
+        "OptimizationStatus": "Off"
+      },
+      "LoggingConfig": {
+        "LogFormat": "Text",
+        "LogGroup": "/aws/lambda/trial-hipaa-whatsapp"
+      }
+    },
+    {
+      "FunctionName": "SalesforceWorker",
+      "FunctionArn": "arn:aws:lambda:eu-north-1:027087672282:function:SalesforceWorker",
+      "Runtime": "nodejs20.x",
+      "Role": "arn:aws:iam::027087672282:role/service-role/SalesforceWorker-role-8sch7ic9",
+      "Handler": "index.handler",
+      "CodeSize": 4027,
+      "Description": "",
+      "Timeout": 20,
+      "MemorySize": 256,
+      "LastModified": "2026-02-15T21:23:33.000+0000",
+      "CodeSha256": "xcSDGSzH9pjg4x3Xvxf792Grrik60V/k6WyeEVmpKtI=",
+      "Version": "$LATEST",
+      "Environment": {
+        "Variables": {
+          "CONSENTS_TABLE": "consents",
+          "SF_WRITE_MODE": "TASK",
+          "EVENTS_TABLE": "consent_events",
+          "SF_API_VERSION": "v60.0",
+          "LOCKS_TABLE": "idempotency_locks",
+          "CLINICS_TABLE": "clinics"
+        }
+      },
+      "TracingConfig": {
+        "Mode": "PassThrough"
+      },
+      "RevisionId": "620d6f6e-99b9-493d-a8a8-4fdbb05a52a1",
+      "PackageType": "Zip",
+      "Architectures": [
+        "x86_64"
+      ],
+      "EphemeralStorage": {
+        "Size": 512
+      },
+      "SnapStart": {
+        "ApplyOn": "None",
+        "OptimizationStatus": "Off"
+      },
+      "LoggingConfig": {
+        "LogFormat": "Text",
+        "LogGroup": "/aws/lambda/SalesforceWorker"
+      }
+    },
+    {
+      "FunctionName": "repo_tool-kkesh",
+      "FunctionArn": "arn:aws:lambda:eu-north-1:027087672282:function:repo_tool-kkesh",
+      "Runtime": "python3.12",
+      "Role": "arn:aws:iam::027087672282:role/service-role/repo_tool-kkesh-role-6M8HZL71VI9",
+      "Handler": "dummy_lambda.lambda_handler",
+      "CodeSize": 2639,
+      "Description": "",
+      "Timeout": 3,
+      "MemorySize": 128,
+      "LastModified": "2026-02-22T11:38:51.000+0000",
+      "CodeSha256": "vff+Adp5DIKA43w4Y7+nXwzulHxxbPEGRZehbYqq+PY=",
+      "Version": "$LATEST",
+      "Environment": {
+        "Variables": {
+          "GITHUB_SECRET_ID": "hippa-signer/github-token"
+        }
+      },
+      "TracingConfig": {
+        "Mode": "PassThrough"
+      },
+      "RevisionId": "b223938e-fb26-41c3-bd77-d85322bbd3f6",
+      "PackageType": "Zip",
+      "Architectures": [
+        "x86_64"
+      ],
+      "EphemeralStorage": {
+        "Size": 512
+      },
+      "SnapStart": {
+        "ApplyOn": "None",
+        "OptimizationStatus": "Off"
+      },
+      "LoggingConfig": {
+        "LogFormat": "Text",
+        "LogGroup": "/aws/lambda/repo_tool-kkesh"
+      }
+    },
+    {
+      "FunctionName": "connector-worker",
+      "FunctionArn": "arn:aws:lambda:eu-north-1:027087672282:function:connector-worker",
+      "Runtime": "nodejs20.x",
+      "Role": "arn:aws:iam::027087672282:role/service-role/connector-worker-role-k1nbfwrr",
+      "Handler": "workerzip/index.handler",
+      "CodeSize": 25312496,
+      "Description": "",
+      "Timeout": 30,
+      "MemorySize": 512,
+      "LastModified": "2026-02-15T15:14:57.000+0000",
+      "CodeSha256": "kblHZrPDcCL3AkWBqqoqklYgyLSBvloBY9Kqdz/4QlQ=",
+      "Version": "$LATEST",
+      "Environment": {
+        "Variables": {
+          "GOOGLE_SA_SECRET_ID": "google-sheets-service-account",
+          "TABLE_CLINICS": "clinics",
+          "LOCKS_TABLE": "idempotency_locks",
+          "GOOGLE_SHEET_ID": "1GfVVhd5tB2PaEMqii05kW0fMrdHiMzmot78CXtqfhM0",
+          "GOOGLE_SHEET_RANGE": "Sheet1!A:E",
+          "TABLE_TASKS": "connector_tasks",
+          "TABLE_EVENTS": "consent_events",
+          "TABLE_CONSENTS": "consents"
+        }
+      },
+      "TracingConfig": {
+        "Mode": "PassThrough"
+      },
+      "RevisionId": "8278dac3-dedd-41bf-95d7-90e1045d315a",
+      "PackageType": "Zip",
+      "Architectures": [
+        "x86_64"
+      ],
+      "EphemeralStorage": {
+        "Size": 512
+      },
+      "SnapStart": {
+        "ApplyOn": "None",
+        "OptimizationStatus": "Off"
+      },
+      "LoggingConfig": {
+        "LogFormat": "Text",
+        "LogGroup": "/aws/lambda/connector-worker"
+      }
+    },
+    {
+      "FunctionName": "Athena-Connection",
+      "FunctionArn": "arn:aws:lambda:eu-north-1:027087672282:function:Athena-Connection",
+      "Runtime": "nodejs20.x",
+      "Role": "arn:aws:iam::027087672282:role/service-role/Athena-Connection-role-w1lmlvgb",
+      "Handler": "index.handler",
+      "CodeSize": 295,
+      "Description": "",
+      "Timeout": 3,
+      "MemorySize": 128,
+      "LastModified": "2026-02-16T06:43:23.808+0000",
+      "CodeSha256": "q8E7Nexf5xxhKT9/d4bGpAYOXJYFAUjJ0UDj8OivK8E=",
+      "Version": "$LATEST",
+      "TracingConfig": {
+        "Mode": "PassThrough"
+      },
+      "RevisionId": "17bd012e-aa5c-47e0-a4b0-ac48dcedd446",
+      "PackageType": "Zip",
+      "Architectures": [
+        "x86_64"
+      ],
+      "EphemeralStorage": {
+        "Size": 512
+      },
+      "SnapStart": {
+        "ApplyOn": "None",
+        "OptimizationStatus": "Off"
+      },
+      "LoggingConfig": {
+        "LogFormat": "Text",
+        "LogGroup": "/aws/lambda/Athena-Connection"
+      }
+    }
+  ],
+  "lambda_event_source_mappings": [
+    {
+      "UUID": "57bf3dad-c475-427b-9796-6b4b905345d0",
+      "BatchSize": 1,
+      "MaximumBatchingWindowInSeconds": 0,
+      "EventSourceArn": "arn:aws:sqs:eu-north-1:027087672282:connector-tasks.fifo",
+      "FunctionArn": "arn:aws:lambda:eu-north-1:027087672282:function:SalesforceWorker",
+      "LastModified": "2026-02-15 20:30:47.644000+03:00",
+      "State": "Enabled",
+      "StateTransitionReason": "USER_INITIATED",
+      "FunctionResponseTypes": [],
+      "EventSourceMappingArn": "arn:aws:lambda:eu-north-1:027087672282:event-source-mapping:57bf3dad-c475-427b-9796-6b4b905345d0",
+      "MetricsConfig": {
+        "Metrics": []
+      }
+    },
+    {
+      "UUID": "b1d22d32-5ccb-4aa0-8a0f-eb2b6adddfd6",
+      "BatchSize": 1,
+      "MaximumBatchingWindowInSeconds": 0,
+      "EventSourceArn": "arn:aws:sqs:eu-north-1:027087672282:connector-tasks.fifo",
+      "FunctionArn": "arn:aws:lambda:eu-north-1:027087672282:function:connector-worker",
+      "LastModified": "2026-02-15 15:14:45.428000+03:00",
+      "State": "Enabled",
+      "StateTransitionReason": "USER_INITIATED",
+      "FunctionResponseTypes": [],
+      "EventSourceMappingArn": "arn:aws:lambda:eu-north-1:027087672282:event-source-mapping:b1d22d32-5ccb-4aa0-8a0f-eb2b6adddfd6",
+      "MetricsConfig": {
+        "Metrics": []
+      }
+    }
+  ],
+  "lambda_permissions": [
+    {
+      "FunctionName": "trial-hipaa-whatsapp",
+      "Policy": {
+        "Version": "2012-10-17",
+        "Id": "default",
+        "Statement": [
+          {
+            "Sid": "b9fa415a-01e9-5ef4-a49f-3305dd604860",
+            "Effect": "Allow",
+            "Principal": {
+              "Service": "apigateway.amazonaws.com"
+            },
+            "Action": "lambda:InvokeFunction",
+            "Resource": "arn:aws:lambda:eu-north-1:027087672282:function:trial-hipaa-whatsapp",
+            "Condition": {
+              "ArnLike": {
+                "AWS:SourceArn": "arn:aws:execute-api:eu-north-1:027087672282:6cxl9xwo00/*/*/webhooks/whatsapp"
+              }
+            }
+          },
+          {
+            "Sid": "e1db5b27-e9f4-58e4-b0dd-98e79872f49c",
+            "Effect": "Allow",
+            "Principal": {
+              "Service": "apigateway.amazonaws.com"
+            },
+            "Action": "lambda:InvokeFunction",
+            "Resource": "arn:aws:lambda:eu-north-1:027087672282:function:trial-hipaa-whatsapp",
+            "Condition": {
+              "ArnLike": {
+                "AWS:SourceArn": "arn:aws:execute-api:eu-north-1:027087672282:6cxl9xwo00/*/*/webhooks/dropboxsign"
+              }
+            }
+          },
+          {
+            "Sid": "7ec4e94e-2174-5038-99cb-232d6f285854",
+            "Effect": "Allow",
+            "Principal": {
+              "Service": "apigateway.amazonaws.com"
+            },
+            "Action": "lambda:InvokeFunction",
+            "Resource": "arn:aws:lambda:eu-north-1:027087672282:function:trial-hipaa-whatsapp",
+            "Condition": {
+              "ArnLike": {
+                "AWS:SourceArn": "arn:aws:execute-api:eu-north-1:027087672282:6cxl9xwo00/*/*/api/sign_url"
+              }
+            }
+          },
+          {
+            "Sid": "e5975ab9-37a2-5816-a404-eb1528af040c",
+            "Effect": "Allow",
+            "Principal": {
+              "Service": "apigateway.amazonaws.com"
+            },
+            "Action": "lambda:InvokeFunction",
+            "Resource": "arn:aws:lambda:eu-north-1:027087672282:function:trial-hipaa-whatsapp",
+            "Condition": {
+              "ArnLike": {
+                "AWS:SourceArn": "arn:aws:execute-api:eu-north-1:027087672282:6cxl9xwo00/*/*/connect/salesforce/start"
+              }
+            }
+          },
+          {
+            "Sid": "bff9e641-5589-5d87-af99-2d352677cc51",
+            "Effect": "Allow",
+            "Principal": {
+              "Service": "apigateway.amazonaws.com"
+            },
+            "Action": "lambda:InvokeFunction",
+            "Resource": "arn:aws:lambda:eu-north-1:027087672282:function:trial-hipaa-whatsapp",
+            "Condition": {
+              "ArnLike": {
+                "AWS:SourceArn": "arn:aws:execute-api:eu-north-1:027087672282:6cxl9xwo00/*/*/connect/salesforce/callback"
+              }
+            }
+          },
+          {
+            "Sid": "0f52f136-1a56-5924-ba2e-9f7404131c79",
+            "Effect": "Allow",
+            "Principal": {
+              "Service": "apigateway.amazonaws.com"
+            },
+            "Action": "lambda:InvokeFunction",
+            "Resource": "arn:aws:lambda:eu-north-1:027087672282:function:trial-hipaa-whatsapp",
+            "Condition": {
+              "ArnLike": {
+                "AWS:SourceArn": "arn:aws:execute-api:eu-north-1:027087672282:6cxl9xwo00/*/*/connect/athena/callback"
+              }
+            }
+          },
+          {
+            "Sid": "11459174-3a4d-5827-8e0a-6ae18658c59a",
+            "Effect": "Allow",
+            "Principal": {
+              "Service": "apigateway.amazonaws.com"
+            },
+            "Action": "lambda:InvokeFunction",
+            "Resource": "arn:aws:lambda:eu-north-1:027087672282:function:trial-hipaa-whatsapp",
+            "Condition": {
+              "ArnLike": {
+                "AWS:SourceArn": "arn:aws:execute-api:eu-north-1:027087672282:6cxl9xwo00/*/*/connect/athena/start"
+              }
+            }
+          },
+          {
+            "Sid": "f0284bd2-d1d4-5da4-9aa8-4b5e9f7460c4",
+            "Effect": "Allow",
+            "Principal": {
+              "Service": "apigateway.amazonaws.com"
+            },
+            "Action": "lambda:InvokeFunction",
+            "Resource": "arn:aws:lambda:eu-north-1:027087672282:function:trial-hipaa-whatsapp",
+            "Condition": {
+              "ArnLike": {
+                "AWS:SourceArn": "arn:aws:execute-api:eu-north-1:027087672282:6cxl9xwo00/*/*/connect/athena/test"
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "FunctionName": "repo_tool-kkesh",
+      "Policy": {
+        "Version": "2012-10-17",
+        "Id": "default",
+        "Statement": [
+          {
+            "Sid": "agentsInvokeFunction",
+            "Effect": "Allow",
+            "Principal": {
+              "Service": "bedrock.amazonaws.com"
+            },
+            "Action": "lambda:invokeFunction",
+            "Resource": "arn:aws:lambda:eu-north-1:027087672282:function:repo_tool-kkesh"
+          }
+        ]
+      }
+    }
+  ],
+  "iam_roles": [
+    {
+      "RoleName": "trial-hipaa-whatsapp-role-wi6bxn4h",
+      "Arn": "arn:aws:iam::027087672282:role/service-role/trial-hipaa-whatsapp-role-wi6bxn4h",
+      "AssumeRolePolicyDocument": {
+        "Version": "2012-10-17",
+        "Statement": [
+          {
+            "Effect": "Allow",
+            "Principal": {
+              "Service": "lambda.amazonaws.com"
+            },
+            "Action": "sts:AssumeRole"
+          }
+        ]
+      },
+      "Description": "",
+      "Path": "/service-role/",
+      "ManagedPolicies": [
+        {
+          "PolicyName": "LambdaDynamoConsentsPolicy",
+          "PolicyArn": "arn:aws:iam::027087672282:policy/LambdaDynamoConsentsPolicy"
+        },
+        {
+          "PolicyName": "AWSLambdaSQSQueueExecutionRole",
+          "PolicyArn": "arn:aws:iam::aws:policy/service-role/AWSLambdaSQSQueueExecutionRole"
+        }
+      ],
+      "InlinePolicies": [
+        {
+          "PolicyName": "DynamoDB",
+          "PolicyDocument": {
+            "Version": "2012-10-17",
+            "Statement": [
+              {
+                "Sid": "DynamoClinicsWrite",
+                "Effect": "Allow",
+                "Action": [
+                  "dynamodb:UpdateItem",
+                  "dynamodb:GetItem",
+                  "dynamodb:PutItem",
+                  "dynamodb:Query"
+                ],
+                "Resource": [
+                  "arn:aws:dynamodb:eu-north-1:027087672282:table/clinics",
+                  "arn:aws:dynamodb:eu-north-1:027087672282:table/clinics/index/*"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "PolicyName": "GEtter",
+          "PolicyDocument": {
+            "Version": "2012-10-17",
+            "Statement": [
+              {
+                "Sid": "ClinicsRead",
+                "Effect": "Allow",
+                "Action": [
+                  "dynamodb:GetItem",
+                  "dynamodb:Query"
+                ],
+                "Resource": [
+                  "arn:aws:dynamodb:eu-north-1:027087672282:table/TABLE_CLINICS",
+                  "arn:aws:dynamodb:eu-north-1:027087672282:table/TABLE_CLINICS/index/*"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "PolicyName": "idempotency_locks",
+          "PolicyDocument": {
+            "Version": "2012-10-17",
+            "Statement": [
+              {
+                "Sid": "DynamoIdempotencyLocksRW",
+                "Effect": "Allow",
+                "Action": [
+                  "dynamodb:PutItem",
+                  "dynamodb:DeleteItem"
+                ],
+                "Resource": "arn:aws:dynamodb:eu-north-1:027087672282:table/idempotency_locks"
+              }
+            ]
+          }
+        },
+        {
+          "PolicyName": "Secrets_Manager",
+          "PolicyDocument": {
+            "Version": "2012-10-17",
+            "Statement": [
+              {
+                "Sid": "SecretsCrudForTenantSalesforce",
+                "Effect": "Allow",
+                "Action": [
+                  "secretsmanager:CreateSecret",
+                  "secretsmanager:PutSecretValue",
+                  "secretsmanager:DescribeSecret",
+                  "secretsmanager:GetSecretValue"
+                ],
+                "Resource": "arn:aws:secretsmanager:eu-north-1:027087672282:secret:hipaa-signer/tenants/*/salesforce*"
+              }
+            ]
+          }
+        },
+        {
+          "PolicyName": "SQS_2",
+          "PolicyDocument": {
+            "Version": "2012-10-17",
+            "Statement": [
+              {
+                "Sid": "AllowSendToConnectorTasksFifo",
+                "Effect": "Allow",
+                "Action": "sqs:SendMessage",
+                "Resource": "arn:aws:sqs:eu-north-1:027087672282:connector-tasks.fifo"
+              }
+            ]
+          }
+        },
+        {
+          "PolicyName": "SQS_Policy",
+          "PolicyDocument": {
+            "Version": "2012-10-17",
+            "Statement": [
+              {
+                "Sid": "SQSSendMessage",
+                "Effect": "Allow",
+                "Action": [
+                  "sqs:SendMessage"
+                ],
+                "Resource": "arn:aws:sqs:eu-north-1:123456789012:connector-tasks.fifo"
+              },
+              {
+                "Sid": "DynamoConsentsAccess",
+                "Effect": "Allow",
+                "Action": [
+                  "dynamodb:PutItem",
+                  "dynamodb:UpdateItem",
+                  "dynamodb:GetItem",
+                  "dynamodb:Query"
+                ],
+                "Resource": [
+                  "arn:aws:dynamodb:eu-north-1:123456789012:table/consents",
+                  "arn:aws:dynamodb:eu-north-1:123456789012:table/consents/index/*"
+                ]
+              },
+              {
+                "Sid": "DynamoClinicsAccess",
+                "Effect": "Allow",
+                "Action": [
+                  "dynamodb:GetItem",
+                  "dynamodb:Query"
+                ],
+                "Resource": [
+                  "arn:aws:dynamodb:eu-north-1:123456789012:table/clinics",
+                  "arn:aws:dynamodb:eu-north-1:123456789012:table/clinics/index/*"
+                ]
+              },
+              {
+                "Sid": "DynamoEventsAccess",
+                "Effect": "Allow",
+                "Action": [
+                  "dynamodb:PutItem"
+                ],
+                "Resource": "arn:aws:dynamodb:eu-north-1:123456789012:table/consent_events"
+              }
+            ]
+          }
+        },
+        {
+          "PolicyName": "Tables",
+          "PolicyDocument": {
+            "Version": "2012-10-17",
+            "Statement": [
+              {
+                "Sid": "ClinicsQueryByWhatsAppTo",
+                "Effect": "Allow",
+                "Action": [
+                  "dynamodb:Query"
+                ],
+                "Resource": [
+                  "arn:aws:dynamodb:eu-north-1:027087672282:table/clinics",
+                  "arn:aws:dynamodb:eu-north-1:027087672282:table/clinics/index/WhatsAppToIndex"
+                ]
+              },
+              {
+                "Sid": "ConsentsWriteAndQueryByDropboxSig",
+                "Effect": "Allow",
+                "Action": [
+                  "dynamodb:PutItem",
+                  "dynamodb:UpdateItem",
+                  "dynamodb:Query"
+                ],
+                "Resource": [
+                  "arn:aws:dynamodb:eu-north-1:027087672282:table/consents",
+                  "arn:aws:dynamodb:eu-north-1:027087672282:table/consents/index/DropboxSigIndex"
+                ]
+              },
+              {
+                "Sid": "TasksPut",
+                "Effect": "Allow",
+                "Action": [
+                  "dynamodb:PutItem"
+                ],
+                "Resource": "arn:aws:dynamodb:eu-north-1:027087672282:table/connector_tasks"
+              },
+              {
+                "Sid": "EventsPut",
+                "Effect": "Allow",
+                "Action": [
+                  "dynamodb:PutItem"
+                ],
+                "Resource": "arn:aws:dynamodb:eu-north-1:027087672282:table/consent_events"
+              },
+              {
+                "Sid": "CloudWatchLogs",
+                "Effect": "Allow",
+                "Action": [
+                  "logs:CreateLogGroup",
+                  "logs:CreateLogStream",
+                  "logs:PutLogEvents"
+                ],
+                "Resource": "*"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "RoleName": "SalesforceWorker-role-8sch7ic9",
+      "Arn": "arn:aws:iam::027087672282:role/service-role/SalesforceWorker-role-8sch7ic9",
+      "AssumeRolePolicyDocument": {
+        "Version": "2012-10-17",
+        "Statement": [
+          {
+            "Effect": "Allow",
+            "Principal": {
+              "Service": "lambda.amazonaws.com"
+            },
+            "Action": "sts:AssumeRole"
+          }
+        ]
+      },
+      "Description": "",
+      "Path": "/service-role/",
+      "ManagedPolicies": [
+        {
+          "PolicyName": "AWSLambdaBasicExecutionRole-0fa37b62-4f90-4fa3-94e5-5d7f22dcea98",
+          "PolicyArn": "arn:aws:iam::027087672282:policy/service-role/AWSLambdaBasicExecutionRole-0fa37b62-4f90-4fa3-94e5-5d7f22dcea98"
+        },
+        {
+          "PolicyName": "AmazonDMSCloudWatchLogsRole",
+          "PolicyArn": "arn:aws:iam::aws:policy/service-role/AmazonDMSCloudWatchLogsRole"
+        },
+        {
+          "PolicyName": "AWSLambdaSQSQueueExecutionRole",
+          "PolicyArn": "arn:aws:iam::aws:policy/service-role/AWSLambdaSQSQueueExecutionRole"
+        },
+        {
+          "PolicyName": "AmazonAPIGatewayPushToCloudWatchLogs",
+          "PolicyArn": "arn:aws:iam::aws:policy/service-role/AmazonAPIGatewayPushToCloudWatchLogs"
+        },
+        {
+          "PolicyName": "CloudWatchLogsFullAccess",
+          "PolicyArn": "arn:aws:iam::aws:policy/CloudWatchLogsFullAccess"
+        },
+        {
+          "PolicyName": "AWSAppSyncPushToCloudWatchLogs",
+          "PolicyArn": "arn:aws:iam::aws:policy/service-role/AWSAppSyncPushToCloudWatchLogs"
+        },
+        {
+          "PolicyName": "CloudWatchLogsReadOnlyAccess",
+          "PolicyArn": "arn:aws:iam::aws:policy/CloudWatchLogsReadOnlyAccess"
+        },
+        {
+          "PolicyName": "CloudWatchLogsCrossAccountSharingConfiguration",
+          "PolicyArn": "arn:aws:iam::aws:policy/CloudWatchLogsCrossAccountSharingConfiguration"
+        }
+      ],
+      "InlinePolicies": [
+        {
+          "PolicyName": "Acceess",
+          "PolicyDocument": {
+            "Version": "2012-10-17",
+            "Statement": [
+              {
+                "Sid": "SQSAccess",
+                "Effect": "Allow",
+                "Action": [
+                  "sqs:ReceiveMessage",
+                  "sqs:DeleteMessage",
+                  "sqs:GetQueueAttributes",
+                  "sqs:ChangeMessageVisibility"
+                ],
+                "Resource": "arn:aws:sqs:eu-north-1:027087672282:connector-tasks.fifo"
+              },
+              {
+                "Sid": "DynamoClinics",
+                "Effect": "Allow",
+                "Action": [
+                  "dynamodb:GetItem",
+                  "dynamodb:Query",
+                  "dynamodb:UpdateItem"
+                ],
+                "Resource": "arn:aws:dynamodb:eu-north-1:027087672282:table/clinics"
+              },
+              {
+                "Sid": "DynamoConsents",
+                "Effect": "Allow",
+                "Action": [
+                  "dynamodb:GetItem",
+                  "dynamodb:Query",
+                  "dynamodb:UpdateItem"
+                ],
+                "Resource": "arn:aws:dynamodb:eu-north-1:027087672282:table/consents"
+              },
+              {
+                "Sid": "DynamoEvents",
+                "Effect": "Allow",
+                "Action": [
+                  "dynamodb:PutItem"
+                ],
+                "Resource": "arn:aws:dynamodb:eu-north-1:027087672282:table/consent_events"
+              },
+              {
+                "Sid": "DynamoLocks",
+                "Effect": "Allow",
+                "Action": [
+                  "dynamodb:PutItem",
+                  "dynamodb:DeleteItem"
+                ],
+                "Resource": "arn:aws:dynamodb:eu-north-1:027087672282:table/idempotency_locks"
+              },
+              {
+                "Sid": "SecretsSalesforceTenants",
+                "Effect": "Allow",
+                "Action": [
+                  "secretsmanager:GetSecretValue"
+                ],
+                "Resource": "arn:aws:secretsmanager:eu-north-1:027087672282:secret:hipaa-signer/tenants/*/salesforce*"
+              }
+            ]
+          }
+        },
+        {
+          "PolicyName": "DynamoDBSecretsManagerSQS",
+          "PolicyDocument": {
+            "Version": "2012-10-17",
+            "Statement": [
+              {
+                "Sid": "SecretsReadTenantSalesforce",
+                "Effect": "Allow",
+                "Action": [
+                  "secretsmanager:GetSecretValue",
+                  "secretsmanager:DescribeSecret"
+                ],
+                "Resource": "arn:aws:secretsmanager:eu-north-1:027087672282:secret:hipaa-signer/tenants/*"
+              },
+              {
+                "Sid": "DynamoReadWriteHipaaTables",
+                "Effect": "Allow",
+                "Action": [
+                  "dynamodb:GetItem",
+                  "dynamodb:PutItem",
+                  "dynamodb:UpdateItem"
+                ],
+                "Resource": [
+                  "arn:aws:dynamodb:eu-north-1:027087672282:table/clinics",
+                  "arn:aws:dynamodb:eu-north-1:027087672282:table/clinics/index/*",
+                  "arn:aws:dynamodb:eu-north-1:027087672282:table/consents",
+                  "arn:aws:dynamodb:eu-north-1:027087672282:table/consents/index/*",
+                  "arn:aws:dynamodb:eu-north-1:027087672282:table/consent_events",
+                  "arn:aws:dynamodb:eu-north-1:027087672282:table/consent_events/index/*",
+                  "arn:aws:dynamodb:eu-north-1:027087672282:table/idempotency_locks",
+                  "arn:aws:dynamodb:eu-north-1:027087672282:table/idempotency_locks/index/*"
+                ]
+              },
+              {
+                "Sid": "SqsConsumeTasks",
+                "Effect": "Allow",
+                "Action": [
+                  "sqs:ReceiveMessage",
+                  "sqs:DeleteMessage",
+                  "sqs:GetQueueAttributes",
+                  "sqs:ChangeMessageVisibility"
+                ],
+                "Resource": "arn:aws:sqs:eu-north-1:027087672282:YOUR_QUEUE_NAME"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "RoleName": "repo_tool-kkesh-role-6M8HZL71VI9",
+      "Arn": "arn:aws:iam::027087672282:role/service-role/repo_tool-kkesh-role-6M8HZL71VI9",
+      "AssumeRolePolicyDocument": {
+        "Version": "2012-10-17",
+        "Statement": [
+          {
+            "Sid": "LambdaAssumeRole",
+            "Effect": "Allow",
+            "Principal": {
+              "Service": "lambda.amazonaws.com"
+            },
+            "Action": "sts:AssumeRole",
+            "Condition": {
+              "StringEquals": {
+                "aws:SourceAccount": "027087672282"
+              }
+            }
+          }
+        ]
+      },
+      "Description": "",
+      "Path": "/service-role/",
+      "ManagedPolicies": [
+        {
+          "PolicyName": "AmazonBedrockAgentQuickCreateLambdaPolicyProd_2PDV0W7OFZA",
+          "PolicyArn": "arn:aws:iam::027087672282:policy/service-role/AmazonBedrockAgentQuickCreateLambdaPolicyProd_2PDV0W7OFZA"
+        }
+      ],
+      "InlinePolicies": [
+        {
+          "PolicyName": "Bedrock",
+          "PolicyDocument": {
+            "Version": "2012-10-17",
+            "Statement": [
+              {
+                "Sid": "BedrockInvoke",
+                "Effect": "Allow",
+                "Action": [
+                  "bedrock:InvokeModel",
+                  "bedrock:InvokeModelWithResponseStream"
+                ],
+                "Resource": "*"
+              }
+            ]
+          }
+        },
+        {
+          "PolicyName": "SecretsManagerRepo",
+          "PolicyDocument": {
+            "Version": "2012-10-17",
+            "Statement": [
+              {
+                "Effect": "Allow",
+                "Action": "secretsmanager:GetSecretValue",
+                "Resource": "*"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "RoleName": "connector-worker-role-k1nbfwrr",
+      "Arn": "arn:aws:iam::027087672282:role/service-role/connector-worker-role-k1nbfwrr",
+      "AssumeRolePolicyDocument": {
+        "Version": "2012-10-17",
+        "Statement": [
+          {
+            "Effect": "Allow",
+            "Principal": {
+              "Service": "lambda.amazonaws.com"
+            },
+            "Action": "sts:AssumeRole"
+          }
+        ]
+      },
+      "Description": "",
+      "Path": "/service-role/",
+      "ManagedPolicies": [
+        {
+          "PolicyName": "AWSLambdaBasicExecutionRole-0b349660-c3a0-4718-b94d-6e235a20a018",
+          "PolicyArn": "arn:aws:iam::027087672282:policy/service-role/AWSLambdaBasicExecutionRole-0b349660-c3a0-4718-b94d-6e235a20a018"
+        },
+        {
+          "PolicyName": "AWSLambdaSQSQueueExecutionRole",
+          "PolicyArn": "arn:aws:iam::aws:policy/service-role/AWSLambdaSQSQueueExecutionRole"
+        }
+      ],
+      "InlinePolicies": [
+        {
+          "PolicyName": "AWS_ACCESS_WA",
+          "PolicyDocument": {
+            "Version": "2012-10-17",
+            "Statement": [
+              {
+                "Sid": "DynamoReadWriteTables",
+                "Effect": "Allow",
+                "Action": [
+                  "dynamodb:GetItem",
+                  "dynamodb:PutItem",
+                  "dynamodb:UpdateItem",
+                  "dynamodb:Query",
+                  "dynamodb:Scan"
+                ],
+                "Resource": [
+                  "arn:aws:dynamodb:eu-north-1:027087672282:table/clinics",
+                  "arn:aws:dynamodb:eu-north-1:027087672282:table/consents",
+                  "arn:aws:dynamodb:eu-north-1:027087672282:table/connector_tasks",
+                  "arn:aws:dynamodb:eu-north-1:027087672282:table/consent_events"
+                ]
+              },
+              {
+                "Sid": "DynamoQueryIndexes",
+                "Effect": "Allow",
+                "Action": [
+                  "dynamodb:Query"
+                ],
+                "Resource": [
+                  "arn:aws:dynamodb:eu-north-1:027087672282:table/clinics/index/*",
+                  "arn:aws:dynamodb:eu-north-1:027087672282:table/consents/index/*",
+                  "arn:aws:dynamodb:eu-north-1:027087672282:table/connector_tasks/index/*"
+                ]
+              },
+              {
+                "Sid": "SecretsManagerRead",
+                "Effect": "Allow",
+                "Action": [
+                  "secretsmanager:GetSecretValue"
+                ],
+                "Resource": "arn:aws:secretsmanager:eu-north-1:027087672282:secret:*"
+              }
+            ]
+          }
+        },
+        {
+          "PolicyName": "Clinics_Table_Access",
+          "PolicyDocument": {
+            "Version": "2012-10-17",
+            "Statement": [
+              {
+                "Sid": "ClinicsRead",
+                "Effect": "Allow",
+                "Action": [
+                  "dynamodb:GetItem"
+                ],
+                "Resource": "arn:aws:dynamodb:eu-north-1:027087672282:table/clinics"
+              }
+            ]
+          }
+        },
+        {
+          "PolicyName": "dynamodbScan",
+          "PolicyDocument": {
+            "Version": "2012-10-17",
+            "Statement": [
+              {
+                "Sid": "DynamoTasks",
+                "Effect": "Allow",
+                "Action": [
+                  "dynamodb:Scan",
+                  "dynamodb:Query",
+                  "dynamodb:GetItem",
+                  "dynamodb:PutItem",
+                  "dynamodb:UpdateItem"
+                ],
+                "Resource": [
+                  "arn:aws:dynamodb:eu-north-1:027087672282:table/connector_tasks",
+                  "arn:aws:dynamodb:eu-north-1:027087672282:table/consents",
+                  "arn:aws:dynamodb:eu-north-1:027087672282:table/consent_events"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "PolicyName": "hippa-signer",
+          "PolicyDocument": {
+            "Version": "2012-10-17",
+            "Statement": [
+              {
+                "Effect": "Allow",
+                "Action": "secretsmanager:GetSecretValue",
+                "Resource": "*"
+              }
+            ]
+          }
+        },
+        {
+          "PolicyName": "idempotency_locks",
+          "PolicyDocument": {
+            "Version": "2012-10-17",
+            "Statement": [
+              {
+                "Sid": "DynamoIdempotencyLocksRW",
+                "Effect": "Allow",
+                "Action": [
+                  "dynamodb:PutItem",
+                  "dynamodb:DeleteItem"
+                ],
+                "Resource": "arn:aws:dynamodb:eu-north-1:027087672282:table/idempotency_locks"
+              }
+            ]
+          }
+        },
+        {
+          "PolicyName": "SQS_Policy_WOR",
+          "PolicyDocument": {
+            "Version": "2012-10-17",
+            "Statement": [
+              {
+                "Sid": "AllowConsumeFromConnectorTasksQueue",
+                "Effect": "Allow",
+                "Action": [
+                  "sqs:ReceiveMessage",
+                  "sqs:DeleteMessage",
+                  "sqs:GetQueueAttributes",
+                  "sqs:ChangeMessageVisibility"
+                ],
+                "Resource": "arn:aws:sqs:eu-north-1:123456789012:connector-tasks.fifo"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "RoleName": "Athena-Connection-role-w1lmlvgb",
+      "Arn": "arn:aws:iam::027087672282:role/service-role/Athena-Connection-role-w1lmlvgb",
+      "AssumeRolePolicyDocument": {
+        "Version": "2012-10-17",
+        "Statement": [
+          {
+            "Effect": "Allow",
+            "Principal": {
+              "Service": "lambda.amazonaws.com"
+            },
+            "Action": "sts:AssumeRole"
+          }
+        ]
+      },
+      "Description": "",
+      "Path": "/service-role/",
+      "ManagedPolicies": [
+        {
+          "PolicyName": "AWSLambdaBasicExecutionRole-397179e0-9f98-44d2-9420-5f8a3c43f271",
+          "PolicyArn": "arn:aws:iam::027087672282:policy/service-role/AWSLambdaBasicExecutionRole-397179e0-9f98-44d2-9420-5f8a3c43f271"
+        }
+      ],
+      "InlinePolicies": []
+    }
+  ],
+  "sqs_queues": [
+    {
+      "QueueName": "connector-tasks-dlq.fifo",
+      "QueueUrl": "https://sqs.eu-north-1.amazonaws.com/027087672282/connector-tasks-dlq.fifo",
+      "Attributes": {
+        "QueueArn": "arn:aws:sqs:eu-north-1:027087672282:connector-tasks-dlq.fifo",
+        "ApproximateNumberOfMessages": "0",
+        "ApproximateNumberOfMessagesNotVisible": "0",
+        "ApproximateNumberOfMessagesDelayed": "0",
+        "CreatedTimestamp": "1771156093",
+        "LastModifiedTimestamp": "1771156093",
+        "VisibilityTimeout": "30",
+        "MaximumMessageSize": "1048576",
+        "MessageRetentionPeriod": "345600",
+        "DelaySeconds": "0",
+        "Policy": "{\"Version\":\"2012-10-17\",\"Id\":\"__default_policy_ID\",\"Statement\":[{\"Sid\":\"__owner_statement\",\"Effect\":\"Allow\",\"Principal\":{\"AWS\":\"arn:aws:iam::027087672282:root\"},\"Action\":\"SQS:*\",\"Resource\":\"arn:aws:sqs:eu-north-1:027087672282:connector-tasks-dlq.fifo\"}]}",
+        "ReceiveMessageWaitTimeSeconds": "0",
+        "SqsManagedSseEnabled": "true",
+        "FifoQueue": "true",
+        "DeduplicationScope": "queue",
+        "FifoThroughputLimit": "perQueue",
+        "ContentBasedDeduplication": "true"
+      },
+      "Tags": {}
+    },
+    {
+      "QueueName": "connector-tasks.fifo",
+      "QueueUrl": "https://sqs.eu-north-1.amazonaws.com/027087672282/connector-tasks.fifo",
+      "Attributes": {
+        "QueueArn": "arn:aws:sqs:eu-north-1:027087672282:connector-tasks.fifo",
+        "ApproximateNumberOfMessages": "0",
+        "ApproximateNumberOfMessagesNotVisible": "0",
+        "ApproximateNumberOfMessagesDelayed": "0",
+        "CreatedTimestamp": "1771156320",
+        "LastModifiedTimestamp": "1771156320",
+        "VisibilityTimeout": "120",
+        "MaximumMessageSize": "1048576",
+        "MessageRetentionPeriod": "345600",
+        "DelaySeconds": "0",
+        "Policy": "{\"Version\":\"2012-10-17\",\"Id\":\"__default_policy_ID\",\"Statement\":[{\"Sid\":\"__owner_statement\",\"Effect\":\"Allow\",\"Principal\":{\"AWS\":\"arn:aws:iam::027087672282:root\"},\"Action\":\"SQS:*\",\"Resource\":\"arn:aws:sqs:eu-north-1:027087672282:connector-tasks.fifo\"}]}",
+        "RedriveAllowPolicy": "{\"redrivePermission\":\"byQueue\",\"sourceQueueArns\":[\"arn:aws:sqs:eu-north-1:027087672282:connector-tasks-dlq.fifo\"]}",
+        "ReceiveMessageWaitTimeSeconds": "0",
+        "SqsManagedSseEnabled": "true",
+        "FifoQueue": "true",
+        "DeduplicationScope": "queue",
+        "FifoThroughputLimit": "perQueue",
+        "ContentBasedDeduplication": "false"
+      },
+      "Tags": {}
+    }
+  ],
+  "sns_topics": [],
+  "secrets": [
+    {
+      "ARN": "arn:aws:secretsmanager:eu-north-1:027087672282:secret:google-sheets-service-account-XizaRv",
+      "Name": "google-sheets-service-account",
+      "Description": "",
+      "KmsKeyId": null,
+      "Tags": [],
+      "HasSecretString": true,
+      "HasSecretBinary": false,
+      "VersionId": "e0793e54-4684-432e-895b-e49ccafb73a8"
+    },
+    {
+      "ARN": "arn:aws:secretsmanager:eu-north-1:027087672282:secret:hipaa-signer/tenants/clinic_us_001/salesforce-I1EQo1",
+      "Name": "hipaa-signer/tenants/clinic_us_001/salesforce",
+      "Description": "",
+      "KmsKeyId": null,
+      "Tags": [],
+      "HasSecretString": true,
+      "HasSecretBinary": false,
+      "VersionId": "c5fc45b0-2a8a-445b-b8e3-cf0d653627b7"
+    },
+    {
+      "ARN": "arn:aws:secretsmanager:eu-north-1:027087672282:secret:hippa-signer/github-token-sAYrlh",
+      "Name": "hippa-signer/github-token",
+      "Description": "",
+      "KmsKeyId": null,
+      "Tags": [],
+      "HasSecretString": true,
+      "HasSecretBinary": false,
+      "VersionId": "a3ddd89e-756e-4abb-a11b-0afd8728d15d"
+    },
+    {
+      "ARN": "arn:aws:secretsmanager:eu-north-1:027087672282:secret:hippa-signer/github/pat-AiK8y7",
+      "Name": "hippa-signer/github/pat",
+      "Description": "",
+      "KmsKeyId": null,
+      "Tags": [],
+      "HasSecretString": true,
+      "HasSecretBinary": false,
+      "VersionId": "6e86eeb9-b5f3-4c69-ae79-0d04a1a7cdb3"
+    }
+  ],
+  "dynamodb_tables": [
+    {
+      "Table": {
+        "AttributeDefinitions": [
+          {
+            "AttributeName": "clinic_id",
+            "AttributeType": "S"
+          },
+          {
+            "AttributeName": "whatsapp_to_number",
+            "AttributeType": "S"
+          }
+        ],
+        "TableName": "clinics",
+        "KeySchema": [
+          {
+            "AttributeName": "clinic_id",
+            "KeyType": "HASH"
+          }
+        ],
+        "TableStatus": "ACTIVE",
+        "CreationDateTime": "2026-02-14 10:45:30.523000+03:00",
+        "ProvisionedThroughput": {
+          "NumberOfDecreasesToday": 0,
+          "ReadCapacityUnits": 0,
+          "WriteCapacityUnits": 0
+        },
+        "TableSizeBytes": 922,
+        "ItemCount": 2,
+        "TableArn": "arn:aws:dynamodb:eu-north-1:027087672282:table/clinics",
+        "TableId": "ed80a9f3-e192-4dc7-9590-638252caf5e6",
+        "BillingModeSummary": {
+          "BillingMode": "PAY_PER_REQUEST",
+          "LastUpdateToPayPerRequestDateTime": "2026-02-14 10:45:30.523000+03:00"
+        },
+        "GlobalSecondaryIndexes": [
+          {
+            "IndexName": "WhatsAppToIndex",
+            "KeySchema": [
+              {
+                "AttributeName": "whatsapp_to_number",
+                "KeyType": "HASH"
+              }
+            ],
+            "Projection": {
+              "ProjectionType": "ALL"
+            },
+            "IndexStatus": "ACTIVE",
+            "ProvisionedThroughput": {
+              "NumberOfDecreasesToday": 0,
+              "ReadCapacityUnits": 0,
+              "WriteCapacityUnits": 0
+            },
+            "IndexSizeBytes": 922,
+            "ItemCount": 2,
+            "IndexArn": "arn:aws:dynamodb:eu-north-1:027087672282:table/clinics/index/WhatsAppToIndex",
+            "WarmThroughput": {
+              "ReadUnitsPerSecond": 12000,
+              "WriteUnitsPerSecond": 4000,
+              "Status": "ACTIVE"
+            }
+          }
+        ],
+        "TableClassSummary": {
+          "TableClass": "STANDARD"
+        },
+        "DeletionProtectionEnabled": false,
+        "WarmThroughput": {
+          "ReadUnitsPerSecond": 12000,
+          "WriteUnitsPerSecond": 4000,
+          "Status": "ACTIVE"
+        }
+      },
+      "Tags": [],
+      "TimeToLiveDescription": {
+        "TimeToLiveStatus": "DISABLED"
+      },
+      "ContinuousBackupsDescription": {
+        "ContinuousBackupsStatus": "ENABLED",
+        "PointInTimeRecoveryDescription": {
+          "PointInTimeRecoveryStatus": "DISABLED"
+        }
+      }
+    },
+    {
+      "Table": {
+        "AttributeDefinitions": [
+          {
+            "AttributeName": "clinic_id",
+            "AttributeType": "S"
+          },
+          {
+            "AttributeName": "task_id",
+            "AttributeType": "S"
+          }
+        ],
+        "TableName": "connector_tasks",
+        "KeySchema": [
+          {
+            "AttributeName": "clinic_id",
+            "KeyType": "HASH"
+          },
+          {
+            "AttributeName": "task_id",
+            "KeyType": "RANGE"
+          }
+        ],
+        "TableStatus": "ACTIVE",
+        "CreationDateTime": "2026-02-14 07:50:01.916000+03:00",
+        "ProvisionedThroughput": {
+          "NumberOfDecreasesToday": 0,
+          "ReadCapacityUnits": 0,
+          "WriteCapacityUnits": 0
+        },
+        "TableSizeBytes": 12013,
+        "ItemCount": 62,
+        "TableArn": "arn:aws:dynamodb:eu-north-1:027087672282:table/connector_tasks",
+        "TableId": "6046f5b6-606a-4e28-b3d7-34a660c3689c",
+        "BillingModeSummary": {
+          "BillingMode": "PAY_PER_REQUEST",
+          "LastUpdateToPayPerRequestDateTime": "2026-02-14 07:50:01.916000+03:00"
+        },
+        "TableClassSummary": {
+          "TableClass": "STANDARD"
+        },
+        "DeletionProtectionEnabled": false,
+        "WarmThroughput": {
+          "ReadUnitsPerSecond": 12000,
+          "WriteUnitsPerSecond": 4000,
+          "Status": "ACTIVE"
+        }
+      },
+      "Tags": [],
+      "TimeToLiveDescription": {
+        "TimeToLiveStatus": "DISABLED"
+      },
+      "ContinuousBackupsDescription": {
+        "ContinuousBackupsStatus": "ENABLED",
+        "PointInTimeRecoveryDescription": {
+          "PointInTimeRecoveryStatus": "ENABLED",
+          "RecoveryPeriodInDays": 35,
+          "EarliestRestorableDateTime": "2026-02-15 11:35:21.275000+03:00",
+          "LatestRestorableDateTime": "2026-03-22 11:30:21.275000+03:00"
+        }
+      }
+    },
+    {
+      "Table": {
+        "AttributeDefinitions": [
+          {
+            "AttributeName": "consent_pk",
+            "AttributeType": "S"
+          },
+          {
+            "AttributeName": "sk",
+            "AttributeType": "S"
+          }
+        ],
+        "TableName": "consent_events",
+        "KeySchema": [
+          {
+            "AttributeName": "consent_pk",
+            "KeyType": "HASH"
+          },
+          {
+            "AttributeName": "sk",
+            "KeyType": "RANGE"
+          }
+        ],
+        "TableStatus": "ACTIVE",
+        "CreationDateTime": "2026-02-13 23:52:09.817000+03:00",
+        "ProvisionedThroughput": {
+          "NumberOfDecreasesToday": 0,
+          "ReadCapacityUnits": 0,
+          "WriteCapacityUnits": 0
+        },
+        "TableSizeBytes": 73700,
+        "ItemCount": 298,
+        "TableArn": "arn:aws:dynamodb:eu-north-1:027087672282:table/consent_events",
+        "TableId": "68d98cf8-7dc5-4c87-bd1c-99685b48e4e9",
+        "BillingModeSummary": {
+          "BillingMode": "PAY_PER_REQUEST",
+          "LastUpdateToPayPerRequestDateTime": "2026-02-13 23:52:09.817000+03:00"
+        },
+        "TableClassSummary": {
+          "TableClass": "STANDARD"
+        },
+        "DeletionProtectionEnabled": false,
+        "WarmThroughput": {
+          "ReadUnitsPerSecond": 12000,
+          "WriteUnitsPerSecond": 4000,
+          "Status": "ACTIVE"
+        }
+      },
+      "Tags": [],
+      "TimeToLiveDescription": {
+        "TimeToLiveStatus": "DISABLED"
+      },
+      "ContinuousBackupsDescription": {
+        "ContinuousBackupsStatus": "ENABLED",
+        "PointInTimeRecoveryDescription": {
+          "PointInTimeRecoveryStatus": "ENABLED",
+          "RecoveryPeriodInDays": 35,
+          "EarliestRestorableDateTime": "2026-02-15 11:35:22.309000+03:00",
+          "LatestRestorableDateTime": "2026-03-22 11:30:22.309000+03:00"
+        }
+      }
+    },
+    {
+      "Table": {
+        "AttributeDefinitions": [
+          {
+            "AttributeName": "clinic_id",
+            "AttributeType": "S"
+          },
+          {
+            "AttributeName": "consent_id",
+            "AttributeType": "S"
+          }
+        ],
+        "TableName": "consents",
+        "KeySchema": [
+          {
+            "AttributeName": "clinic_id",
+            "KeyType": "HASH"
+          },
+          {
+            "AttributeName": "consent_id",
+            "KeyType": "RANGE"
+          }
+        ],
+        "TableStatus": "ACTIVE",
+        "CreationDateTime": "2026-02-14 08:00:09.898000+03:00",
+        "ProvisionedThroughput": {
+          "NumberOfDecreasesToday": 0,
+          "ReadCapacityUnits": 0,
+          "WriteCapacityUnits": 0
+        },
+        "TableSizeBytes": 10156,
+        "ItemCount": 39,
+        "TableArn": "arn:aws:dynamodb:eu-north-1:027087672282:table/consents",
+        "TableId": "6ee90b4d-b822-41a7-8c94-03411ed53714",
+        "BillingModeSummary": {
+          "BillingMode": "PAY_PER_REQUEST",
+          "LastUpdateToPayPerRequestDateTime": "2026-02-14 08:00:09.898000+03:00"
+        },
+        "TableClassSummary": {
+          "TableClass": "STANDARD"
+        },
+        "DeletionProtectionEnabled": false,
+        "WarmThroughput": {
+          "ReadUnitsPerSecond": 12000,
+          "WriteUnitsPerSecond": 4000,
+          "Status": "ACTIVE"
+        }
+      },
+      "Tags": [],
+      "TimeToLiveDescription": {
+        "TimeToLiveStatus": "DISABLED"
+      },
+      "ContinuousBackupsDescription": {
+        "ContinuousBackupsStatus": "ENABLED",
+        "PointInTimeRecoveryDescription": {
+          "PointInTimeRecoveryStatus": "ENABLED",
+          "RecoveryPeriodInDays": 35,
+          "EarliestRestorableDateTime": "2026-02-15 11:35:23.344000+03:00",
+          "LatestRestorableDateTime": "2026-03-22 11:30:23.344000+03:00"
+        }
+      }
+    },
+    {
+      "Table": {
+        "AttributeDefinitions": [
+          {
+            "AttributeName": "pk",
+            "AttributeType": "S"
+          }
+        ],
+        "TableName": "idempotency_locks",
+        "KeySchema": [
+          {
+            "AttributeName": "pk",
+            "KeyType": "HASH"
+          }
+        ],
+        "TableStatus": "ACTIVE",
+        "CreationDateTime": "2026-02-15 16:54:37.610000+03:00",
+        "ProvisionedThroughput": {
+          "NumberOfDecreasesToday": 0,
+          "ReadCapacityUnits": 0,
+          "WriteCapacityUnits": 0
+        },
+        "TableSizeBytes": 175,
+        "ItemCount": 2,
+        "TableArn": "arn:aws:dynamodb:eu-north-1:027087672282:table/idempotency_locks",
+        "TableId": "c6d383fb-51bd-4e35-b064-5868dbd35dd2",
+        "BillingModeSummary": {
+          "BillingMode": "PAY_PER_REQUEST",
+          "LastUpdateToPayPerRequestDateTime": "2026-02-15 16:54:37.610000+03:00"
+        },
+        "TableClassSummary": {
+          "TableClass": "STANDARD"
+        },
+        "DeletionProtectionEnabled": false,
+        "WarmThroughput": {
+          "ReadUnitsPerSecond": 12000,
+          "WriteUnitsPerSecond": 4000,
+          "Status": "ACTIVE"
+        }
+      },
+      "Tags": [],
+      "TimeToLiveDescription": {
+        "TimeToLiveStatus": "ENABLED",
+        "AttributeName": "expiresAt"
+      },
+      "ContinuousBackupsDescription": {
+        "ContinuousBackupsStatus": "ENABLED",
+        "PointInTimeRecoveryDescription": {
+          "PointInTimeRecoveryStatus": "DISABLED"
+        }
+      }
+    }
+  ],
+  "api_gateways": [],
+  "codebuild_projects": [],
+  "s3_buckets": [],
+  "cloudformation_stacks": [],
+  "load_balancers": [],
+  "security_groups": [
+    {
+      "GroupId": "sg-09f842cbbe2f5854a",
+      "IpPermissionsEgress": [
+        {
+          "IpProtocol": "-1",
+          "UserIdGroupPairs": [],
+          "IpRanges": [
+            {
+              "CidrIp": "0.0.0.0/0"
+            }
+          ],
+          "Ipv6Ranges": [],
+          "PrefixListIds": []
+        }
+      ],
+      "VpcId": "vpc-0003f6f665f2905cb",
+      "SecurityGroupArn": "arn:aws:ec2:eu-north-1:027087672282:security-group/sg-09f842cbbe2f5854a",
+      "OwnerId": "027087672282",
+      "GroupName": "default",
+      "Description": "default VPC security group",
+      "IpPermissions": [
+        {
+          "IpProtocol": "-1",
+          "UserIdGroupPairs": [
+            {
+              "UserId": "027087672282",
+              "GroupId": "sg-09f842cbbe2f5854a"
+            }
+          ],
+          "IpRanges": [],
+          "Ipv6Ranges": [],
+          "PrefixListIds": []
+        }
+      ]
+    }
+  ],
+  "vpcs": [
+    {
+      "OwnerId": "027087672282",
+      "InstanceTenancy": "default",
+      "CidrBlockAssociationSet": [
+        {
+          "AssociationId": "vpc-cidr-assoc-08a866a7c14193298",
+          "CidrBlock": "172.31.0.0/16",
+          "CidrBlockState": {
+            "State": "associated"
+          }
+        }
+      ],
+      "IsDefault": true,
+      "BlockPublicAccessStates": {
+        "InternetGatewayBlockMode": "off"
+      },
+      "VpcId": "vpc-0003f6f665f2905cb",
+      "State": "available",
+      "CidrBlock": "172.31.0.0/16",
+      "DhcpOptionsId": "dopt-07b77ba3726bf20a8"
+    }
+  ],
+  "subnets": [
+    {
+      "AvailabilityZoneId": "eun1-az2",
+      "MapCustomerOwnedIpOnLaunch": false,
+      "OwnerId": "027087672282",
+      "AssignIpv6AddressOnCreation": false,
+      "Ipv6CidrBlockAssociationSet": [],
+      "SubnetArn": "arn:aws:ec2:eu-north-1:027087672282:subnet/subnet-0063e272c595421be",
+      "EnableDns64": false,
+      "Ipv6Native": false,
+      "PrivateDnsNameOptionsOnLaunch": {
+        "HostnameType": "ip-name",
+        "EnableResourceNameDnsARecord": false,
+        "EnableResourceNameDnsAAAARecord": false
+      },
+      "BlockPublicAccessStates": {
+        "InternetGatewayBlockMode": "off"
+      },
+      "SubnetId": "subnet-0063e272c595421be",
+      "State": "available",
+      "VpcId": "vpc-0003f6f665f2905cb",
+      "CidrBlock": "172.31.32.0/20",
+      "AvailableIpAddressCount": 4091,
+      "AvailabilityZone": "eu-north-1b",
+      "DefaultForAz": true,
+      "MapPublicIpOnLaunch": true
+    },
+    {
+      "AvailabilityZoneId": "eun1-az1",
+      "MapCustomerOwnedIpOnLaunch": false,
+      "OwnerId": "027087672282",
+      "AssignIpv6AddressOnCreation": false,
+      "Ipv6CidrBlockAssociationSet": [],
+      "SubnetArn": "arn:aws:ec2:eu-north-1:027087672282:subnet/subnet-055e92d71b3530813",
+      "EnableDns64": false,
+      "Ipv6Native": false,
+      "PrivateDnsNameOptionsOnLaunch": {
+        "HostnameType": "ip-name",
+        "EnableResourceNameDnsARecord": false,
+        "EnableResourceNameDnsAAAARecord": false
+      },
+      "BlockPublicAccessStates": {
+        "InternetGatewayBlockMode": "off"
+      },
+      "SubnetId": "subnet-055e92d71b3530813",
+      "State": "available",
+      "VpcId": "vpc-0003f6f665f2905cb",
+      "CidrBlock": "172.31.16.0/20",
+      "AvailableIpAddressCount": 4091,
+      "AvailabilityZone": "eu-north-1a",
+      "DefaultForAz": true,
+      "MapPublicIpOnLaunch": true
+    },
+    {
+      "AvailabilityZoneId": "eun1-az3",
+      "MapCustomerOwnedIpOnLaunch": false,
+      "OwnerId": "027087672282",
+      "AssignIpv6AddressOnCreation": false,
+      "Ipv6CidrBlockAssociationSet": [],
+      "SubnetArn": "arn:aws:ec2:eu-north-1:027087672282:subnet/subnet-0aed14255c93aca92",
+      "EnableDns64": false,
+      "Ipv6Native": false,
+      "PrivateDnsNameOptionsOnLaunch": {
+        "HostnameType": "ip-name",
+        "EnableResourceNameDnsARecord": false,
+        "EnableResourceNameDnsAAAARecord": false
+      },
+      "BlockPublicAccessStates": {
+        "InternetGatewayBlockMode": "off"
+      },
+      "SubnetId": "subnet-0aed14255c93aca92",
+      "State": "available",
+      "VpcId": "vpc-0003f6f665f2905cb",
+      "CidrBlock": "172.31.0.0/20",
+      "AvailableIpAddressCount": 4091,
+      "AvailabilityZone": "eu-north-1c",
+      "DefaultForAz": true,
+      "MapPublicIpOnLaunch": true
+    }
+  ],
+  "route_tables": [
+    {
+      "Associations": [
+        {
+          "Main": true,
+          "RouteTableAssociationId": "rtbassoc-0c77fdb06d36162e3",
+          "RouteTableId": "rtb-0fb783290d8bc1afa",
+          "AssociationState": {
+            "State": "associated"
+          }
+        }
+      ],
+      "PropagatingVgws": [],
+      "RouteTableId": "rtb-0fb783290d8bc1afa",
+      "Routes": [
+        {
+          "DestinationCidrBlock": "172.31.0.0/16",
+          "GatewayId": "local",
+          "Origin": "CreateRouteTable",
+          "State": "active"
+        },
+        {
+          "DestinationCidrBlock": "0.0.0.0/0",
+          "GatewayId": "igw-0b6af2172209f30b6",
+          "Origin": "CreateRoute",
+          "State": "active"
+        }
+      ],
+      "Tags": [],
+      "VpcId": "vpc-0003f6f665f2905cb",
+      "OwnerId": "027087672282"
+    }
+  ],
+  "rds": {
+    "instances": [],
+    "clusters": [],
+    "subnet_groups": [],
+    "parameter_groups": []
+  },
+  "ecs": {
+    "clusters": [],
+    "services": [],
+    "task_definitions": [],
+    "tasks": []
+  },
+  "ecs_scheduled_tasks": [],
+  "ecs_metrics": {
+    "clusters": [],
+    "services": []
+  },
+  "ecs_event_history": [
+    {
+      "EventId": "c5fa09a5-b9de-4b9e-b844-e6e6474521d4",
+      "EventName": "ListClusters",
+      "ReadOnly": "true",
+      "AccessKeyId": "[REDACTED]",
+      "EventTime": "2026-03-21 17:32:51+03:00",
+      "EventSource": "ecs.amazonaws.com",
+      "Username": "CodexVSCode",
+      "Resources": [],
+      "CloudTrailEvent": "[REDACTED]"
+    },
+    {
+      "EventId": "320b0a28-d26d-422d-b27a-953544b26f21",
+      "EventName": "ListClusters",
+      "ReadOnly": "true",
+      "AccessKeyId": "[REDACTED]",
+      "EventTime": "2026-03-21 17:30:41+03:00",
+      "EventSource": "ecs.amazonaws.com",
+      "Username": "CodexVSCode",
+      "Resources": [],
+      "CloudTrailEvent": "[REDACTED]"
+    },
+    {
+      "EventId": "6a74b19b-1eca-4254-9b7c-7e0e9e40af6c",
+      "EventName": "CreateCluster",
+      "ReadOnly": "false",
+      "AccessKeyId": "[REDACTED]",
+      "EventTime": "2026-03-19 16:11:29+03:00",
+      "EventSource": "ecs.amazonaws.com",
+      "Username": "root",
+      "Resources": [
+        {
+          "ResourceType": "AWS::ECS::Cluster",
+          "ResourceName": "artistic-dog-qg8s8c"
+        }
+      ],
+      "CloudTrailEvent": "[REDACTED]"
+    },
+    {
+      "EventId": "e0a40d9f-6475-4ece-a4ef-88026d5a7531",
+      "EventName": "DescribeClusters",
+      "ReadOnly": "true",
+      "AccessKeyId": "[REDACTED]",
+      "EventTime": "2026-03-19 16:11:24+03:00",
+      "EventSource": "ecs.amazonaws.com",
+      "Username": "root",
+      "Resources": [],
+      "CloudTrailEvent": "[REDACTED]"
+    },
+    {
+      "EventId": "55f6781b-bc54-42c1-9506-b3726b32cc22",
+      "EventName": "ListClusters",
+      "ReadOnly": "true",
+      "AccessKeyId": "[REDACTED]",
+      "EventTime": "2026-03-19 16:11:23+03:00",
+      "EventSource": "ecs.amazonaws.com",
+      "Username": "root",
+      "Resources": [],
+      "CloudTrailEvent": "[REDACTED]"
+    },
+    {
+      "EventId": "98e86011-644c-4664-b05b-9b652c862fe4",
+      "EventName": "DescribeClusters",
+      "ReadOnly": "true",
+      "AccessKeyId": "[REDACTED]",
+      "EventTime": "2026-03-19 16:11:22+03:00",
+      "EventSource": "ecs.amazonaws.com",
+      "Username": "root",
+      "Resources": [],
+      "CloudTrailEvent": "[REDACTED]"
+    },
+    {
+      "EventId": "9f28513f-ac7c-4fca-95e0-724e25971d44",
+      "EventName": "DescribeClusters",
+      "ReadOnly": "true",
+      "AccessKeyId": "[REDACTED]",
+      "EventTime": "2026-03-19 16:11:20+03:00",
+      "EventSource": "ecs.amazonaws.com",
+      "Username": "root",
+      "Resources": [],
+      "CloudTrailEvent": "[REDACTED]"
+    },
+    {
+      "EventId": "5a66c052-453d-4800-b0fb-3a463cf2a62c",
+      "EventName": "ListAccountSettings",
+      "ReadOnly": "true",
+      "AccessKeyId": "[REDACTED]",
+      "EventTime": "2026-03-19 16:11:15+03:00",
+      "EventSource": "ecs.amazonaws.com",
+      "Username": "root",
+      "Resources": [],
+      "CloudTrailEvent": "[REDACTED]"
+    },
+    {
+      "EventId": "78773ed2-ee5f-476d-a240-cd6150ffeacd",
+      "EventName": "ListAccountSettings",
+      "ReadOnly": "true",
+      "AccessKeyId": "[REDACTED]",
+      "EventTime": "2026-03-19 16:11:15+03:00",
+      "EventSource": "ecs.amazonaws.com",
+      "Username": "root",
+      "Resources": [],
+      "CloudTrailEvent": "[REDACTED]"
+    },
+    {
+      "EventId": "b7f059b4-b767-4a7d-a285-1f5520281c94",
+      "EventName": "ListClusters",
+      "ReadOnly": "true",
+      "AccessKeyId": "[REDACTED]",
+      "EventTime": "2026-03-19 16:11:14+03:00",
+      "EventSource": "ecs.amazonaws.com",
+      "Username": "root",
+      "Resources": [],
+      "CloudTrailEvent": "[REDACTED]"
+    },
+    {
+      "EventId": "def24894-7b89-4b8a-8375-ccfeef55b866",
+      "EventName": "DescribeClusters",
+      "ReadOnly": "true",
+      "AccessKeyId": "[REDACTED]",
+      "EventTime": "2026-03-19 16:11:14+03:00",
+      "EventSource": "ecs.amazonaws.com",
+      "Username": "root",
+      "Resources": [],
+      "CloudTrailEvent": "[REDACTED]"
+    },
+    {
+      "EventId": "506f4d9b-994a-493d-8cad-55baae68ed8b",
+      "EventName": "ListClusters",
+      "ReadOnly": "true",
+      "AccessKeyId": "[REDACTED]",
+      "EventTime": "2026-03-19 16:09:19+03:00",
+      "EventSource": "ecs.amazonaws.com",
+      "Username": "root",
+      "Resources": [],
+      "CloudTrailEvent": "[REDACTED]"
+    },
+    {
+      "EventId": "ae5ac536-44ce-459b-9c63-4d67922309ad",
+      "EventName": "ListClusters",
+      "ReadOnly": "true",
+      "AccessKeyId": "[REDACTED]",
+      "EventTime": "2026-03-19 16:08:30+03:00",
+      "EventSource": "ecs.amazonaws.com",
+      "Username": "root",
+      "Resources": [],
+      "CloudTrailEvent": "[REDACTED]"
+    },
+    {
+      "EventId": "53a44601-b3f9-423d-b625-c244c73ef467",
+      "EventName": "ListTaskDefinitions",
+      "ReadOnly": "true",
+      "AccessKeyId": "[REDACTED]",
+      "EventTime": "2026-03-09 02:14:44+03:00",
+      "EventSource": "ecs.amazonaws.com",
+      "Username": "resource-explorer-2",
+      "Resources": [],
+      "CloudTrailEvent": "[REDACTED]"
+    },
+    {
+      "EventId": "36066f46-41db-4f74-88b9-5753e1256396",
+      "EventName": "ListClusters",
+      "ReadOnly": "true",
+      "AccessKeyId": "[REDACTED]",
+      "EventTime": "2026-03-08 09:31:21+03:00",
+      "EventSource": "ecs.amazonaws.com",
+      "Username": "resource-explorer-2",
+      "Resources": [],
+      "CloudTrailEvent": "[REDACTED]"
+    },
+    {
+      "EventId": "e56772eb-7bd3-40b5-98a3-73ffadb49027",
+      "EventName": "DescribeCapacityProviders",
+      "ReadOnly": "true",
+      "AccessKeyId": "[REDACTED]",
+      "EventTime": "2026-03-08 06:49:38+03:00",
+      "EventSource": "ecs.amazonaws.com",
+      "Username": "resource-explorer-2",
+      "Resources": [],
+      "CloudTrailEvent": "[REDACTED]"
+    },
+    {
+      "EventId": "7009f8b3-3946-42dd-9b49-83c6ac86cc68",
+      "EventName": "ListClusters",
+      "ReadOnly": "true",
+      "AccessKeyId": "[REDACTED]",
+      "EventTime": "2026-03-08 01:17:22+03:00",
+      "EventSource": "ecs.amazonaws.com",
+      "Username": "resource-explorer-2",
+      "Resources": [],
+      "CloudTrailEvent": "[REDACTED]"
+    },
+    {
+      "EventId": "361dd419-2638-4ee6-b8a8-058ec969fd1b",
+      "EventName": "ListClusters",
+      "ReadOnly": "true",
+      "AccessKeyId": "[REDACTED]",
+      "EventTime": "2026-03-05 20:59:56+03:00",
+      "EventSource": "ecs.amazonaws.com",
+      "Username": "resource-explorer-2",
+      "Resources": [],
+      "CloudTrailEvent": "[REDACTED]"
+    },
+    {
+      "EventId": "23d63995-1845-4768-a5af-3c014fd921fc",
+      "EventName": "ListClusters",
+      "ReadOnly": "true",
+      "AccessKeyId": "[REDACTED]",
+      "EventTime": "2026-02-28 09:23:31+03:00",
+      "EventSource": "ecs.amazonaws.com",
+      "Username": "resource-explorer-2",
+      "Resources": [],
+      "CloudTrailEvent": "[REDACTED]"
+    },
+    {
+      "EventId": "6dd340b9-c898-4b49-8489-66b87a1fa257",
+      "EventName": "ListTaskDefinitions",
+      "ReadOnly": "true",
+      "AccessKeyId": "[REDACTED]",
+      "EventTime": "2026-02-19 19:47:42+03:00",
+      "EventSource": "ecs.amazonaws.com",
+      "Username": "resource-explorer-2",
+      "Resources": [],
+      "CloudTrailEvent": "[REDACTED]"
+    },
+    {
+      "EventId": "70284dbf-9035-4167-8325-c84c49b4ac41",
+      "EventName": "ListClusters",
+      "ReadOnly": "true",
+      "AccessKeyId": "[REDACTED]",
+      "EventTime": "2026-02-19 00:27:28+03:00",
+      "EventSource": "ecs.amazonaws.com",
+      "Username": "resource-explorer-2",
+      "Resources": [],
+      "CloudTrailEvent": "[REDACTED]"
+    },
+    {
+      "EventId": "1c6ad428-8bf6-4804-8728-745cd71c9c32",
+      "EventName": "ListClusters",
+      "ReadOnly": "true",
+      "AccessKeyId": "[REDACTED]",
+      "EventTime": "2026-02-18 21:51:16+03:00",
+      "EventSource": "ecs.amazonaws.com",
+      "Username": "resource-explorer-2",
+      "Resources": [],
+      "CloudTrailEvent": "[REDACTED]"
+    },
+    {
+      "EventId": "feb57a9f-bbfc-4846-8bf0-4862d7bee586",
+      "EventName": "DescribeCapacityProviders",
+      "ReadOnly": "true",
+      "AccessKeyId": "[REDACTED]",
+      "EventTime": "2026-02-18 21:42:36+03:00",
+      "EventSource": "ecs.amazonaws.com",
+      "Username": "resource-explorer-2",
+      "Resources": [],
+      "CloudTrailEvent": "[REDACTED]"
+    },
+    {
+      "EventId": "5f9a5b2d-3195-4d85-bf53-b2c28a9fbf0a",
+      "EventName": "ListClusters",
+      "ReadOnly": "true",
+      "AccessKeyId": "[REDACTED]",
+      "EventTime": "2026-02-18 13:35:58+03:00",
+      "EventSource": "ecs.amazonaws.com",
+      "Username": "resource-explorer-2",
+      "Resources": [],
+      "CloudTrailEvent": "[REDACTED]"
+    },
+    {
+      "EventId": "1ad63ace-436a-45c4-80c2-8273ec028ed3",
+      "EventName": "ListClusters",
+      "ReadOnly": "true",
+      "AccessKeyId": "[REDACTED]",
+      "EventTime": "2026-02-17 23:03:55+03:00",
+      "EventSource": "ecs.amazonaws.com",
+      "Username": "resource-explorer-2",
+      "Resources": [],
+      "CloudTrailEvent": "[REDACTED]"
+    },
+    {
+      "EventId": "4b481036-dfa3-4009-8d5e-41f3639c3286",
+      "EventName": "ListTaskDefinitions",
+      "ReadOnly": "true",
+      "AccessKeyId": "[REDACTED]",
+      "EventTime": "2026-02-14 19:47:42+03:00",
+      "EventSource": "ecs.amazonaws.com",
+      "Username": "resource-explorer-2",
+      "Resources": [],
+      "CloudTrailEvent": "[REDACTED]"
+    },
+    {
+      "EventId": "42e136a8-7df0-423f-bc70-11944fb4f6bc",
+      "EventName": "ListClusters",
+      "ReadOnly": "true",
+      "AccessKeyId": "[REDACTED]",
+      "EventTime": "2026-02-14 00:27:28+03:00",
+      "EventSource": "ecs.amazonaws.com",
+      "Username": "resource-explorer-2",
+      "Resources": [],
+      "CloudTrailEvent": "[REDACTED]"
+    },
+    {
+      "EventId": "d9ef6b9a-d1e3-4d0c-b839-8be8c985093c",
+      "EventName": "ListClusters",
+      "ReadOnly": "true",
+      "AccessKeyId": "[REDACTED]",
+      "EventTime": "2026-02-13 21:51:16+03:00",
+      "EventSource": "ecs.amazonaws.com",
+      "Username": "resource-explorer-2",
+      "Resources": [],
+      "CloudTrailEvent": "[REDACTED]"
+    },
+    {
+      "EventId": "9dab5074-bf16-4a1f-bee9-8bf4c126db12",
+      "EventName": "ListClusters",
+      "ReadOnly": "true",
+      "AccessKeyId": "[REDACTED]",
+      "EventTime": "2026-02-13 21:47:43+03:00",
+      "EventSource": "ecs.amazonaws.com",
+      "Username": "resource-explorer-2",
+      "Resources": [],
+      "CloudTrailEvent": "[REDACTED]"
+    },
+    {
+      "EventId": "4870021c-8175-407c-ba0b-d6b6d2c2b544",
+      "EventName": "DescribeCapacityProviders",
+      "ReadOnly": "true",
+      "AccessKeyId": "[REDACTED]",
+      "EventTime": "2026-02-13 21:47:42+03:00",
+      "EventSource": "ecs.amazonaws.com",
+      "Username": "resource-explorer-2",
+      "Resources": [],
+      "CloudTrailEvent": "[REDACTED]"
+    },
+    {
+      "EventId": "c9652c7a-237c-402f-bb67-7b3b83aac2b6",
+      "EventName": "ListClusters",
+      "ReadOnly": "true",
+      "AccessKeyId": "[REDACTED]",
+      "EventTime": "2026-02-13 21:47:42+03:00",
+      "EventSource": "ecs.amazonaws.com",
+      "Username": "resource-explorer-2",
+      "Resources": [],
+      "CloudTrailEvent": "[REDACTED]"
+    },
+    {
+      "EventId": "b800d832-718c-444a-b850-c30e4c893148",
+      "EventName": "ListClusters",
+      "ReadOnly": "true",
+      "AccessKeyId": "[REDACTED]",
+      "EventTime": "2026-02-13 17:27:36+03:00",
+      "EventSource": "ecs.amazonaws.com",
+      "Username": "resource-explorer-2",
+      "Resources": [],
+      "CloudTrailEvent": "[REDACTED]"
+    },
+    {
+      "EventId": "5c44af35-a0b5-45a4-b29a-e5da8c50ef14",
+      "EventName": "ListClusters",
+      "ReadOnly": "true",
+      "AccessKeyId": "[REDACTED]",
+      "EventTime": "2026-02-13 17:14:30+03:00",
+      "EventSource": "ecs.amazonaws.com",
+      "Username": "resource-explorer-2",
+      "Resources": [],
+      "CloudTrailEvent": "[REDACTED]"
+    },
+    {
+      "EventId": "d3cb21a4-d58d-4762-9cca-917080a0f032",
+      "EventName": "ListClusters",
+      "ReadOnly": "true",
+      "AccessKeyId": "[REDACTED]",
+      "EventTime": "2026-02-13 17:04:39+03:00",
+      "EventSource": "ecs.amazonaws.com",
+      "Username": "resource-explorer-2",
+      "Resources": [],
+      "CloudTrailEvent": "[REDACTED]"
+    },
+    {
+      "EventId": "d3cb21a4-d58d-4762-9cca-917080a0f032",
+      "EventName": "ListClusters",
+      "ReadOnly": "true",
+      "AccessKeyId": "[REDACTED]",
+      "EventTime": "2026-02-13 17:04:39+03:00",
+      "EventSource": "ecs.amazonaws.com",
+      "Username": "resource-explorer-2",
+      "Resources": [],
+      "CloudTrailEvent": "[REDACTED]"
+    },
+    {
+      "EventId": "9e543b71-e211-4de4-b831-6207824d88db",
+      "EventName": "ListClusters",
+      "ReadOnly": "true",
+      "AccessKeyId": "[REDACTED]",
+      "EventTime": "2026-02-13 16:53:45+03:00",
+      "EventSource": "ecs.amazonaws.com",
+      "Username": "resource-explorer-2",
+      "Resources": [],
+      "CloudTrailEvent": "[REDACTED]"
+    },
+    {
+      "EventId": "33ec4abf-8be3-4c45-b29b-ca9ed4fb0c45",
+      "EventName": "ListTaskDefinitions",
+      "ReadOnly": "true",
+      "AccessKeyId": "[REDACTED]",
+      "EventTime": "2026-02-13 16:50:52+03:00",
+      "EventSource": "ecs.amazonaws.com",
+      "Username": "resource-explorer-2",
+      "Resources": [],
+      "CloudTrailEvent": "[REDACTED]"
+    },
+    {
+      "EventId": "58a1904c-2778-477f-95a3-c32bb6e049b9",
+      "EventName": "DescribeCapacityProviders",
+      "ReadOnly": "true",
+      "AccessKeyId": "[REDACTED]",
+      "EventTime": "2026-02-13 16:39:44+03:00",
+      "EventSource": "ecs.amazonaws.com",
+      "Username": "resource-explorer-2",
+      "Resources": [],
+      "CloudTrailEvent": "[REDACTED]"
+    }
+  ],
+  "git_repositories": [
+    {
+      "url": "https://hippsign.app,https://rartiushkov.git",
+      "host": "hippsign.app,https",
+      "name": "rartiushkov",
+      "sources": [
+        {
+          "type": "lambda-env",
+          "name": "trial-hipaa-whatsapp",
+          "key": "CORS_ALLOW_ORIGINS"
+        }
+      ]
+    },
+    {
+      "url": "https://rartiushkov.git",
+      "host": "rartiushkov.git",
+      "name": "https://rartiushkov",
+      "sources": [
+        {
+          "type": "lambda-env",
+          "name": "trial-hipaa-whatsapp",
+          "key": "SIGN_PAGE_BASE_URL"
+        }
+      ]
+    }
+  ],
+  "dependency_graph": {
+    "nodes": [
+      {
+        "id": "arn:aws:sqs:eu-north-1:027087672282:connector-tasks-dlq.fifo",
+        "type": "sqs",
+        "name": "connector-tasks-dlq.fifo"
+      },
+      {
+        "id": "arn:aws:sqs:eu-north-1:027087672282:connector-tasks.fifo",
+        "type": "sqs",
+        "name": "connector-tasks.fifo"
+      },
+      {
+        "id": "arn:aws:iam::027087672282:role/service-role/trial-hipaa-whatsapp-role-wi6bxn4h",
+        "type": "iam-role",
+        "name": "trial-hipaa-whatsapp-role-wi6bxn4h"
+      },
+      {
+        "id": "arn:aws:iam::027087672282:role/service-role/SalesforceWorker-role-8sch7ic9",
+        "type": "iam-role",
+        "name": "SalesforceWorker-role-8sch7ic9"
+      },
+      {
+        "id": "arn:aws:iam::027087672282:role/service-role/repo_tool-kkesh-role-6M8HZL71VI9",
+        "type": "iam-role",
+        "name": "repo_tool-kkesh-role-6M8HZL71VI9"
+      },
+      {
+        "id": "arn:aws:iam::027087672282:role/service-role/connector-worker-role-k1nbfwrr",
+        "type": "iam-role",
+        "name": "connector-worker-role-k1nbfwrr"
+      },
+      {
+        "id": "arn:aws:iam::027087672282:role/service-role/Athena-Connection-role-w1lmlvgb",
+        "type": "iam-role",
+        "name": "Athena-Connection-role-w1lmlvgb"
+      },
+      {
+        "id": "vpc-0003f6f665f2905cb",
+        "type": "vpc",
+        "name": "vpc-0003f6f665f2905cb"
+      },
+      {
+        "id": "subnet-0063e272c595421be",
+        "type": "subnet",
+        "name": "subnet-0063e272c595421be"
+      },
+      {
+        "id": "subnet-055e92d71b3530813",
+        "type": "subnet",
+        "name": "subnet-055e92d71b3530813"
+      },
+      {
+        "id": "subnet-0aed14255c93aca92",
+        "type": "subnet",
+        "name": "subnet-0aed14255c93aca92"
+      },
+      {
+        "id": "sg-09f842cbbe2f5854a",
+        "type": "security-group",
+        "name": "default"
+      },
+      {
+        "id": "https://hippsign.app,https://rartiushkov.git",
+        "type": "git-repository",
+        "name": "rartiushkov"
+      },
+      {
+        "id": "https://rartiushkov.git",
+        "type": "git-repository",
+        "name": "https://rartiushkov"
+      },
+      {
+        "id": "arn:aws:secretsmanager:eu-north-1:027087672282:secret:google-sheets-service-account-XizaRv",
+        "type": "secret",
+        "name": "google-sheets-service-account"
+      },
+      {
+        "id": "arn:aws:secretsmanager:eu-north-1:027087672282:secret:hipaa-signer/tenants/clinic_us_001/salesforce-I1EQo1",
+        "type": "secret",
+        "name": "hipaa-signer/tenants/clinic_us_001/salesforce"
+      },
+      {
+        "id": "arn:aws:secretsmanager:eu-north-1:027087672282:secret:hippa-signer/github-token-sAYrlh",
+        "type": "secret",
+        "name": "hippa-signer/github-token"
+      },
+      {
+        "id": "arn:aws:secretsmanager:eu-north-1:027087672282:secret:hippa-signer/github/pat-AiK8y7",
+        "type": "secret",
+        "name": "hippa-signer/github/pat"
+      },
+      {
+        "id": "arn:aws:dynamodb:eu-north-1:027087672282:table/clinics",
+        "type": "dynamodb",
+        "name": "clinics"
+      },
+      {
+        "id": "arn:aws:dynamodb:eu-north-1:027087672282:table/connector_tasks",
+        "type": "dynamodb",
+        "name": "connector_tasks"
+      },
+      {
+        "id": "arn:aws:dynamodb:eu-north-1:027087672282:table/consent_events",
+        "type": "dynamodb",
+        "name": "consent_events"
+      },
+      {
+        "id": "arn:aws:dynamodb:eu-north-1:027087672282:table/consents",
+        "type": "dynamodb",
+        "name": "consents"
+      },
+      {
+        "id": "arn:aws:dynamodb:eu-north-1:027087672282:table/idempotency_locks",
+        "type": "dynamodb",
+        "name": "idempotency_locks"
+      },
+      {
+        "id": "arn:aws:lambda:eu-north-1:027087672282:function:trial-hipaa-whatsapp",
+        "type": "lambda",
+        "name": "trial-hipaa-whatsapp"
+      },
+      {
+        "id": "arn:aws:lambda:eu-north-1:027087672282:function:SalesforceWorker",
+        "type": "lambda",
+        "name": "SalesforceWorker"
+      },
+      {
+        "id": "arn:aws:lambda:eu-north-1:027087672282:function:repo_tool-kkesh",
+        "type": "lambda",
+        "name": "repo_tool-kkesh"
+      },
+      {
+        "id": "arn:aws:lambda:eu-north-1:027087672282:function:connector-worker",
+        "type": "lambda",
+        "name": "connector-worker"
+      },
+      {
+        "id": "arn:aws:lambda:eu-north-1:027087672282:function:Athena-Connection",
+        "type": "lambda",
+        "name": "Athena-Connection"
+      },
+      {
+        "id": "arn:aws:lambda:eu-north-1:027087672282:event-source-mapping:57bf3dad-c475-427b-9796-6b4b905345d0",
+        "type": "lambda-event-source-mapping",
+        "name": "57bf3dad-c475-427b-9796-6b4b905345d0"
+      },
+      {
+        "id": "arn:aws:lambda:eu-north-1:027087672282:event-source-mapping:b1d22d32-5ccb-4aa0-8a0f-eb2b6adddfd6",
+        "type": "lambda-event-source-mapping",
+        "name": "b1d22d32-5ccb-4aa0-8a0f-eb2b6adddfd6"
+      }
+    ],
+    "edges": [
+      {
+        "from": "subnet-0063e272c595421be",
+        "to": "vpc-0003f6f665f2905cb",
+        "relationship": "subnet-of-vpc"
+      },
+      {
+        "from": "subnet-055e92d71b3530813",
+        "to": "vpc-0003f6f665f2905cb",
+        "relationship": "subnet-of-vpc"
+      },
+      {
+        "from": "subnet-0aed14255c93aca92",
+        "to": "vpc-0003f6f665f2905cb",
+        "relationship": "subnet-of-vpc"
+      },
+      {
+        "from": "sg-09f842cbbe2f5854a",
+        "to": "vpc-0003f6f665f2905cb",
+        "relationship": "security-group-in-vpc"
+      },
+      {
+        "from": "arn:aws:lambda:eu-north-1:027087672282:function:trial-hipaa-whatsapp",
+        "to": "arn:aws:iam::027087672282:role/service-role/trial-hipaa-whatsapp-role-wi6bxn4h",
+        "relationship": "assumes-role"
+      },
+      {
+        "from": "arn:aws:lambda:eu-north-1:027087672282:function:trial-hipaa-whatsapp",
+        "to": "https://hippsign.app,https://rartiushkov.git",
+        "relationship": "env:CORS_ALLOW_ORIGINS"
+      },
+      {
+        "from": "arn:aws:lambda:eu-north-1:027087672282:function:trial-hipaa-whatsapp",
+        "to": "https://rartiushkov.git",
+        "relationship": "env:SIGN_PAGE_BASE_URL"
+      },
+      {
+        "from": "arn:aws:lambda:eu-north-1:027087672282:function:SalesforceWorker",
+        "to": "arn:aws:iam::027087672282:role/service-role/SalesforceWorker-role-8sch7ic9",
+        "relationship": "assumes-role"
+      },
+      {
+        "from": "arn:aws:lambda:eu-north-1:027087672282:function:repo_tool-kkesh",
+        "to": "arn:aws:iam::027087672282:role/service-role/repo_tool-kkesh-role-6M8HZL71VI9",
+        "relationship": "assumes-role"
+      },
+      {
+        "from": "arn:aws:lambda:eu-north-1:027087672282:function:connector-worker",
+        "to": "arn:aws:iam::027087672282:role/service-role/connector-worker-role-k1nbfwrr",
+        "relationship": "assumes-role"
+      },
+      {
+        "from": "arn:aws:lambda:eu-north-1:027087672282:function:Athena-Connection",
+        "to": "arn:aws:iam::027087672282:role/service-role/Athena-Connection-role-w1lmlvgb",
+        "relationship": "assumes-role"
+      },
+      {
+        "from": "arn:aws:lambda:eu-north-1:027087672282:event-source-mapping:57bf3dad-c475-427b-9796-6b4b905345d0",
+        "to": "arn:aws:lambda:eu-north-1:027087672282:function:SalesforceWorker",
+        "relationship": "invokes-function"
+      },
+      {
+        "from": "arn:aws:lambda:eu-north-1:027087672282:event-source-mapping:57bf3dad-c475-427b-9796-6b4b905345d0",
+        "to": "arn:aws:sqs:eu-north-1:027087672282:connector-tasks.fifo",
+        "relationship": "reads-from"
+      },
+      {
+        "from": "arn:aws:sqs:eu-north-1:027087672282:connector-tasks.fifo",
+        "to": "arn:aws:lambda:eu-north-1:027087672282:event-source-mapping:57bf3dad-c475-427b-9796-6b4b905345d0",
+        "relationship": "feeds-mapping"
+      },
+      {
+        "from": "arn:aws:lambda:eu-north-1:027087672282:function:SalesforceWorker",
+        "to": "arn:aws:sqs:eu-north-1:027087672282:connector-tasks.fifo",
+        "relationship": "event-source-mapping"
+      },
+      {
+        "from": "arn:aws:lambda:eu-north-1:027087672282:event-source-mapping:b1d22d32-5ccb-4aa0-8a0f-eb2b6adddfd6",
+        "to": "arn:aws:lambda:eu-north-1:027087672282:function:connector-worker",
+        "relationship": "invokes-function"
+      },
+      {
+        "from": "arn:aws:lambda:eu-north-1:027087672282:event-source-mapping:b1d22d32-5ccb-4aa0-8a0f-eb2b6adddfd6",
+        "to": "arn:aws:sqs:eu-north-1:027087672282:connector-tasks.fifo",
+        "relationship": "reads-from"
+      },
+      {
+        "from": "arn:aws:sqs:eu-north-1:027087672282:connector-tasks.fifo",
+        "to": "arn:aws:lambda:eu-north-1:027087672282:event-source-mapping:b1d22d32-5ccb-4aa0-8a0f-eb2b6adddfd6",
+        "relationship": "feeds-mapping"
+      },
+      {
+        "from": "arn:aws:lambda:eu-north-1:027087672282:function:connector-worker",
+        "to": "arn:aws:sqs:eu-north-1:027087672282:connector-tasks.fifo",
+        "relationship": "event-source-mapping"
+      },
+      {
+        "from": "apigateway.amazonaws.com",
+        "to": "arn:aws:lambda:eu-north-1:027087672282:function:trial-hipaa-whatsapp",
+        "relationship": "invoke-permission",
+        "source_arn": "arn:aws:execute-api:eu-north-1:027087672282:6cxl9xwo00/*/*/webhooks/whatsapp"
+      },
+      {
+        "from": "apigateway.amazonaws.com",
+        "to": "arn:aws:lambda:eu-north-1:027087672282:function:trial-hipaa-whatsapp",
+        "relationship": "invoke-permission",
+        "source_arn": "arn:aws:execute-api:eu-north-1:027087672282:6cxl9xwo00/*/*/webhooks/dropboxsign"
+      },
+      {
+        "from": "apigateway.amazonaws.com",
+        "to": "arn:aws:lambda:eu-north-1:027087672282:function:trial-hipaa-whatsapp",
+        "relationship": "invoke-permission",
+        "source_arn": "arn:aws:execute-api:eu-north-1:027087672282:6cxl9xwo00/*/*/api/sign_url"
+      },
+      {
+        "from": "apigateway.amazonaws.com",
+        "to": "arn:aws:lambda:eu-north-1:027087672282:function:trial-hipaa-whatsapp",
+        "relationship": "invoke-permission",
+        "source_arn": "arn:aws:execute-api:eu-north-1:027087672282:6cxl9xwo00/*/*/connect/salesforce/start"
+      },
+      {
+        "from": "apigateway.amazonaws.com",
+        "to": "arn:aws:lambda:eu-north-1:027087672282:function:trial-hipaa-whatsapp",
+        "relationship": "invoke-permission",
+        "source_arn": "arn:aws:execute-api:eu-north-1:027087672282:6cxl9xwo00/*/*/connect/salesforce/callback"
+      },
+      {
+        "from": "apigateway.amazonaws.com",
+        "to": "arn:aws:lambda:eu-north-1:027087672282:function:trial-hipaa-whatsapp",
+        "relationship": "invoke-permission",
+        "source_arn": "arn:aws:execute-api:eu-north-1:027087672282:6cxl9xwo00/*/*/connect/athena/callback"
+      },
+      {
+        "from": "apigateway.amazonaws.com",
+        "to": "arn:aws:lambda:eu-north-1:027087672282:function:trial-hipaa-whatsapp",
+        "relationship": "invoke-permission",
+        "source_arn": "arn:aws:execute-api:eu-north-1:027087672282:6cxl9xwo00/*/*/connect/athena/start"
+      },
+      {
+        "from": "apigateway.amazonaws.com",
+        "to": "arn:aws:lambda:eu-north-1:027087672282:function:trial-hipaa-whatsapp",
+        "relationship": "invoke-permission",
+        "source_arn": "arn:aws:execute-api:eu-north-1:027087672282:6cxl9xwo00/*/*/connect/athena/test"
+      },
+      {
+        "from": "bedrock.amazonaws.com",
+        "to": "arn:aws:lambda:eu-north-1:027087672282:function:repo_tool-kkesh",
+        "relationship": "invoke-permission"
+      }
+    ]
+  }
+}

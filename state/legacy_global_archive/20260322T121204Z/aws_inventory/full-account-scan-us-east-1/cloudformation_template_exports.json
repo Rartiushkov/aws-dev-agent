@@ -1,0 +1,8 @@
+{
+  "stacks": [
+    {
+      "stack_name": "Infra-ECS-Cluster-carefree-crocodile-bf3zi5-326d268b",
+      "template_path": "state\\aws_inventory\\full-account-scan-us-east-1\\cloudformation_templates\\Infra-ECS-Cluster-carefree-crocodile-bf3zi5-326d268b.json"
+    }
+  ]
+}

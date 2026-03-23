@@ -1,13 +1,12 @@
-import subprocess
+from executor.command_runner import run_command
 
 
 def execute_command(cmd):
     print(f"Executing: {cmd}")
 
     try:
-        result = subprocess.run(
+        result = run_command(
             cmd,
-            shell=True,
             capture_output=True,
             text=True
         )
@@ -32,9 +31,8 @@ class ShellExecutor:
         print(f"Executing: {cmd}")
 
         try:
-            result = subprocess.run(
+            result = run_command(
                 cmd,
-                shell=True,
                 capture_output=True,
                 text=True
             )

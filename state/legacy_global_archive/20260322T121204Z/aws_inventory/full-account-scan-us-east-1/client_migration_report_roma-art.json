@@ -1,0 +1,72 @@
+{
+  "target_env": "roma-art",
+  "summary": {
+    "roles": 8,
+    "queues": 5,
+    "tables": 7,
+    "lambdas": 10,
+    "ecs_services": 2,
+    "codebuild_projects": 1,
+    "cloudformation": {
+      "deploy_attempted": 1,
+      "import_attempted": 1,
+      "imported": 1,
+      "import_required": 1,
+      "failed": 0
+    },
+    "validation": {
+      "issues_found": false,
+      "passed_checks": 14,
+      "failed_checks": 0,
+      "failed_check_names": []
+    }
+  },
+  "outcome": "ready",
+  "messages": [
+    "Deployed 10 Lambda functions and 7 DynamoDB tables.",
+    "CloudFormation imports completed: 1.",
+    "Validation checks passed: 14/14."
+  ],
+  "cloudformation_deploy_result": {
+    "results": [
+      {
+        "source_stack": "Infra-ECS-Cluster-carefree-crocodile-bf3zi5-326d268b",
+        "target_stack": "roma-art-Infra-ECS-Cluster-carefree-crocodile-bf3zi5-326d268b",
+        "operation": "skipped",
+        "stack_status": "ROLLBACK_COMPLETE",
+        "parameter_overrides": [
+          {
+            "ParameterKey": "ECSClusterName",
+            "ParameterValue": "roma-art-carefree-crocodile-bf3zi5"
+          },
+          {
+            "ParameterKey": "SecurityGroupIds",
+            "ParameterValue": "sg-047aefd11fe5f242f"
+          },
+          {
+            "ParameterKey": "VpcId",
+            "ParameterValue": "vpc-097485674e092c5af"
+          },
+          {
+            "ParameterKey": "SubnetIds",
+            "ParameterValue": "subnet-0df48f840cba46d3a,subnet-0c72210761876f0c6,subnet-0e729e0e9bf8476dd,subnet-09be768f629cfa18f,subnet-0f63bf83cff68b23f,subnet-00ee1a4345762bc13"
+          }
+        ],
+        "import_required": true,
+        "failure_reason": "ECS cluster roma-art-carefree-crocodile-bf3zi5 already exists in the target environment and is currently managed by the direct deploy flow."
+      }
+    ]
+  },
+  "cloudformation_import_result": {
+    "results": [
+      {
+        "stack_name": "roma-art-Infra-ECS-Cluster-carefree-crocodile-bf3zi5-326d268b",
+        "cleanup_action": "",
+        "change_set_name": "import-2542425c",
+        "operation": "imported",
+        "status": "IMPORT_COMPLETE",
+        "resource_count": 1
+      }
+    ]
+  }
+}

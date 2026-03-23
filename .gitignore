@@ -5,3 +5,9 @@ venv/
 agent_state.json
 response.json
 reports/
+*.zip
+function.zip
+invoke_payload.json
+state/client_git_exports/
+state/git_backups/
+state/test_export_layout/

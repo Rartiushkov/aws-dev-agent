@@ -1,0 +1,178 @@
+{
+  "generated_at": "2026-03-21T21:05:04.072569+00:00",
+  "source_env": "full-account-scan",
+  "region": "us-east-1",
+  "account_id": "027087672282",
+  "headline": "Most likely slowdown drivers: an event-driven Lambda consumer is broken; an ECS service cannot start healthy tasks; an ECS service cannot start healthy tasks.",
+  "finding_count": 15,
+  "incident_count": 5,
+  "top_incidents": [
+    {
+      "severity": "high",
+      "title": "ECS service has desired tasks but no healthy running capacity (2 related findings)",
+      "category": "ecs-unavailable",
+      "resource_id": "arn:aws:ecs:us-east-1:027087672282:service/carefree-crocodile-bf3zi5/test_def-service-vnwns50w",
+      "probable_cause": "test_def-service-vnwns50w cannot start healthy tasks, so the service path is unavailable or degraded.",
+      "recommended_action": "Fix image pull, task definition, IAM, networking, or dependency startup issues before scaling traffic back to the service.",
+      "dependency_chain": [
+        {
+          "id": "arn:aws:ecs:us-east-1:027087672282:service/carefree-crocodile-bf3zi5/test_def-service-vnwns50w",
+          "type": "ecs-service",
+          "name": "test_def-service-vnwns50w"
+        },
+        {
+          "id": "arn:aws:ecs:us-east-1:027087672282:task-definition/test_def:1",
+          "type": "ecs-task-definition",
+          "name": "test_def"
+        },
+        {
+          "id": "arn:aws:iam::027087672282:role/ecsTaskExecutionRole",
+          "type": "",
+          "name": "arn:aws:iam::027087672282:role/ecsTaskExecutionRole"
+        }
+      ],
+      "affected_resources": [
+        "arn:aws:ecs:us-east-1:027087672282:service/carefree-crocodile-bf3zi5/test_def-service-vnwns50w",
+        "arn:aws:ecs:us-east-1:027087672282:service/carefree-crocodile-bf3zi5/test_def-service-64zgxsih"
+      ],
+      "finding_count": 2,
+      "business_impact": "Multiple ECS services in the same deployment path are unavailable, so client-facing features or internal jobs on that path may be down."
+    },
+    {
+      "severity": "high",
+      "title": "Lambda event source is failing to process records",
+      "category": "lambda-trigger-failure",
+      "resource_id": "arn:aws:lambda:us-east-1:027087672282:event-source-mapping:3f3bd44c-b2cb-432d-b97c-d34246296a1d",
+      "probable_cause": "task-dispatcher cannot successfully consume from its event source.",
+      "recommended_action": "Fix the execution role or permissions, then re-enable healthy processing and drain backlog.",
+      "dependency_chain": [
+        {
+          "id": "arn:aws:dynamodb:us-east-1:027087672282:table/agent_errors/stream/2026-02-23T07:46:15.921",
+          "type": "",
+          "name": "arn:aws:dynamodb:us-east-1:027087672282:table/agent_errors/stream/2026-02-23T07:46:15.921"
+        },
+        {
+          "id": "arn:aws:lambda:us-east-1:027087672282:event-source-mapping:3f3bd44c-b2cb-432d-b97c-d34246296a1d",
+          "type": "lambda-event-source-mapping",
+          "name": "3f3bd44c-b2cb-432d-b97c-d34246296a1d"
+        },
+        {
+          "id": "arn:aws:lambda:us-east-1:027087672282:function:task-dispatcher",
+          "type": "lambda",
+          "name": "task-dispatcher"
+        },
+        {
+          "id": "arn:aws:iam::027087672282:role/task-dispatcher-role",
+          "type": "",
+          "name": "arn:aws:iam::027087672282:role/task-dispatcher-role"
+        }
+      ],
+      "affected_resources": [
+        "arn:aws:lambda:us-east-1:027087672282:event-source-mapping:3f3bd44c-b2cb-432d-b97c-d34246296a1d"
+      ],
+      "finding_count": 1,
+      "business_impact": "Events from arn:aws:dynamodb:us-east-1:027087672282:table/agent_errors/stream/2026-02-23T07:46:15.921 are likely not being processed by task-dispatcher, so async workflows can stall or fall behind."
+    },
+    {
+      "severity": "medium",
+      "title": "ECS service has no recent utilization datapoints in the snapshot (2 related findings)",
+      "category": "missing-ecs-utilization",
+      "resource_id": "arn:aws:ecs:us-east-1:027087672282:service/carefree-crocodile-bf3zi5/test_def-service-vnwns50w",
+      "probable_cause": "Without CPU or memory history, rightsizing and bottleneck analysis are blind.",
+      "recommended_action": "Collect CloudWatch CPU and memory utilization history for this service to confirm whether it is starved or overprovisioned.",
+      "dependency_chain": [
+        {
+          "id": "arn:aws:ecs:us-east-1:027087672282:service/carefree-crocodile-bf3zi5/test_def-service-vnwns50w",
+          "type": "ecs-service",
+          "name": "test_def-service-vnwns50w"
+        },
+        {
+          "id": "arn:aws:ecs:us-east-1:027087672282:task-definition/test_def:1",
+          "type": "ecs-task-definition",
+          "name": "test_def"
+        },
+        {
+          "id": "arn:aws:iam::027087672282:role/ecsTaskExecutionRole",
+          "type": "",
+          "name": "arn:aws:iam::027087672282:role/ecsTaskExecutionRole"
+        }
+      ],
+      "affected_resources": [
+        "arn:aws:ecs:us-east-1:027087672282:service/carefree-crocodile-bf3zi5/test_def-service-vnwns50w",
+        "arn:aws:ecs:us-east-1:027087672282:service/carefree-crocodile-bf3zi5/test_def-service-64zgxsih"
+      ],
+      "finding_count": 2,
+      "business_impact": "The service can still be running, but there is not enough telemetry to tell whether it is under-sized, over-sized, or intermittently saturated."
+    },
+    {
+      "severity": "medium",
+      "title": "A disabled event source mapping may leave async work unprocessed",
+      "category": "disabled-processing-path",
+      "resource_id": "arn:aws:lambda:us-east-1:027087672282:event-source-mapping:55dbb09e-8b4d-4594-8c41-8fa4181ad929",
+      "probable_cause": "Messages or stream records may not be flowing into the consumer path.",
+      "recommended_action": "Confirm whether this path is intentionally paused. If not, restore the mapping after validating the consumer.",
+      "dependency_chain": [
+        {
+          "id": "arn:aws:sqs:us-east-1:027087672282:agent-fix-tasks.fifo",
+          "type": "sqs",
+          "name": "agent-fix-tasks.fifo"
+        },
+        {
+          "id": "arn:aws:lambda:us-east-1:027087672282:event-source-mapping:55dbb09e-8b4d-4594-8c41-8fa4181ad929",
+          "type": "lambda-event-source-mapping",
+          "name": "55dbb09e-8b4d-4594-8c41-8fa4181ad929"
+        },
+        {
+          "id": "arn:aws:lambda:us-east-1:027087672282:function:remediator",
+          "type": "lambda",
+          "name": "remediator"
+        },
+        {
+          "id": "arn:aws:iam::027087672282:role/remediator-role",
+          "type": "",
+          "name": "arn:aws:iam::027087672282:role/remediator-role"
+        }
+      ],
+      "affected_resources": [
+        "arn:aws:lambda:us-east-1:027087672282:event-source-mapping:55dbb09e-8b4d-4594-8c41-8fa4181ad929"
+      ],
+      "finding_count": 1,
+      "business_impact": "Work from agent-fix-tasks.fifo is currently paused before it reaches remediator, which can delay async jobs or retries."
+    },
+    {
+      "severity": "medium",
+      "title": "A disabled event source mapping may leave async work unprocessed",
+      "category": "disabled-processing-path",
+      "resource_id": "arn:aws:lambda:us-east-1:027087672282:event-source-mapping:3f3bd44c-b2cb-432d-b97c-d34246296a1d",
+      "probable_cause": "Messages or stream records may not be flowing into the consumer path.",
+      "recommended_action": "Confirm whether this path is intentionally paused. If not, restore the mapping after validating the consumer.",
+      "dependency_chain": [
+        {
+          "id": "arn:aws:dynamodb:us-east-1:027087672282:table/agent_errors/stream/2026-02-23T07:46:15.921",
+          "type": "",
+          "name": "arn:aws:dynamodb:us-east-1:027087672282:table/agent_errors/stream/2026-02-23T07:46:15.921"
+        },
+        {
+          "id": "arn:aws:lambda:us-east-1:027087672282:event-source-mapping:3f3bd44c-b2cb-432d-b97c-d34246296a1d",
+          "type": "lambda-event-source-mapping",
+          "name": "3f3bd44c-b2cb-432d-b97c-d34246296a1d"
+        },
+        {
+          "id": "arn:aws:lambda:us-east-1:027087672282:function:task-dispatcher",
+          "type": "lambda",
+          "name": "task-dispatcher"
+        },
+        {
+          "id": "arn:aws:iam::027087672282:role/task-dispatcher-role",
+          "type": "",
+          "name": "arn:aws:iam::027087672282:role/task-dispatcher-role"
+        }
+      ],
+      "affected_resources": [
+        "arn:aws:lambda:us-east-1:027087672282:event-source-mapping:3f3bd44c-b2cb-432d-b97c-d34246296a1d"
+      ],
+      "finding_count": 1,
+      "business_impact": "Work from arn:aws:dynamodb:us-east-1:027087672282:table/agent_errors/stream/2026-02-23T07:46:15.921 is currently paused before it reaches task-dispatcher, which can delay async jobs or retries."
+    }
+  ]
+}

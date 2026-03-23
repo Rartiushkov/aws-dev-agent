@@ -1,0 +1,147 @@
+{
+  "mode": "read-only-assessment",
+  "source_env": "full-account-scan",
+  "target_env": "new-account",
+  "team": "",
+  "planned_actions": {
+    "roles": 0,
+    "sqs_queues": 0,
+    "sns_topics": 0,
+    "secrets": 0,
+    "dynamodb_tables": 0,
+    "lambda_functions": 0,
+    "lambda_event_source_mappings": 0,
+    "lambda_permissions": 0,
+    "sns_subscriptions": 0,
+    "api_gateways": 0,
+    "codebuild_projects": 0,
+    "ecs_clusters": 0,
+    "ecs_task_definitions": 0,
+    "ecs_services": 0
+  },
+  "manual_review": {
+    "cloudformation_stacks": 0,
+    "s3_buckets": 0,
+    "load_balancers": 0,
+    "rds_instances": 0,
+    "rds_clusters": 0
+  },
+  "preflight_checks": [
+    {
+      "name": "scope",
+      "status": "ok",
+      "details": {
+        "source_account_id": "027087672282",
+        "target_account_id": "",
+        "source_region": "ca-central-1",
+        "target_region": "ca-central-1",
+        "same_account": false,
+        "same_region": true
+      }
+    },
+    {
+      "name": "kms-remap",
+      "status": "ok",
+      "details": {
+        "unresolved_reference_count": 0,
+        "sample": []
+      }
+    },
+    {
+      "name": "ecs-network-dependencies",
+      "status": "ok",
+      "details": {
+        "service_count": 0,
+        "services": [],
+        "vpc_count": 1,
+        "subnet_count": 3
+      }
+    },
+    {
+      "name": "hardcoded-source-account-references",
+      "status": "warning",
+      "details": {
+        "count": 12,
+        "sample": [
+          {
+            "path": "$.account_id",
+            "value": "027087672282"
+          },
+          {
+            "path": "$.security_groups[0].SecurityGroupArn",
+            "value": "arn:aws:ec2:ca-central-1:027087672282:security-group/sg-05b621fed72c76bf0"
+          },
+          {
+            "path": "$.security_groups[0].OwnerId",
+            "value": "027087672282"
+          },
+          {
+            "path": "$.security_groups[0].IpPermissions[0].UserIdGroupPairs[0].UserId",
+            "value": "027087672282"
+          },
+          {
+            "path": "$.vpcs[0].OwnerId",
+            "value": "027087672282"
+          },
+          {
+            "path": "$.subnets[0].OwnerId",
+            "value": "027087672282"
+          },
+          {
+            "path": "$.subnets[0].SubnetArn",
+            "value": "arn:aws:ec2:ca-central-1:027087672282:subnet/subnet-04bdfb4c9651f0e82"
+          },
+          {
+            "path": "$.subnets[1].OwnerId",
+            "value": "027087672282"
+          },
+          {
+            "path": "$.subnets[1].SubnetArn",
+            "value": "arn:aws:ec2:ca-central-1:027087672282:subnet/subnet-03c5acc0c0554c352"
+          },
+          {
+            "path": "$.subnets[2].OwnerId",
+            "value": "027087672282"
+          }
+        ]
+      },
+      "known_fixes": [
+        {
+          "summary": "kms-keys-ready: source region alias aws s3 remained in source arn during cross-region validation",
+          "resolution": "rewrite aws managed alias kms arns to the target region and target account before describe_key validation",
+          "validated_fix_count": 1,
+          "occurrences": 1,
+          "tags": [
+            "validation",
+            "kms",
+            "codebuild"
+          ]
+        },
+        {
+          "summary": "ecs-services-steady: running=0 desired=1 because awslogs region stayed in source region",
+          "resolution": "rewrite awslogs-region to target_region in ecs task definitions before register_task_definition",
+          "validated_fix_count": 1,
+          "occurrences": 1,
+          "tags": [
+            "validation",
+            "ecs",
+            "logging"
+          ]
+        },
+        {
+          "summary": "lambda-event-source-mappings-enabled: mapping appeared disabled after migration but source snapshot state was also disabled",
+          "resolution": "compare target event source mapping state with source snapshot state instead of forcing enabled as a universal success condition",
+          "validated_fix_count": 1,
+          "occurrences": 1,
+          "tags": [
+            "validation",
+            "lambda",
+            "parity"
+          ]
+        }
+      ]
+    }
+  ],
+  "source_snapshot": "state\\aws_inventory\\full-account-scan-ca-central-1\\source_snapshot.json",
+  "region": "ca-central-1"
+}

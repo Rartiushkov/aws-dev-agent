@@ -1,0 +1,21 @@
+[
+  {
+    "signature": "validation-smoke-check-issue:ca033c886122f851",
+    "kind": "validation-smoke-check-issue",
+    "scope": "global",
+    "summary": "ecs service failed because awslogs region stayed in source region",
+    "tags": [
+      "ecs",
+      "validation"
+    ],
+    "source_env": "",
+    "target_env": "",
+    "occurrences": 4,
+    "validated_fix_count": 4,
+    "first_seen": "2026-03-22T12:12:46.024971+00:00",
+    "last_seen": "2026-03-22T13:13:25.570856+00:00",
+    "last_validated_at": "2026-03-22T13:13:25.570856+00:00",
+    "last_resolution": "rewrite awslogs-region to target region",
+    "sample_details": {}
+  }
+]

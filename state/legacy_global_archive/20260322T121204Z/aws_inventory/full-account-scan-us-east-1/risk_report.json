@@ -1,0 +1,104 @@
+{
+  "captured_at": "2026-03-22T04:56:12.486460+00:00",
+  "source_env": "",
+  "account_id": "027087672282",
+  "region": "us-east-1",
+  "summary": {
+    "high": 0,
+    "medium": 12,
+    "low": 1
+  },
+  "findings": [
+    {
+      "severity": "medium",
+      "category": "lambda-networking",
+      "title": "Lambda function is not attached to a VPC",
+      "resource_id": "arn:aws:lambda:us-east-1:027087672282:function:remediator",
+      "details": "remediator may need manual networking validation if it depends on private resources."
+    },
+    {
+      "severity": "medium",
+      "category": "lambda-networking",
+      "title": "Lambda function is not attached to a VPC",
+      "resource_id": "arn:aws:lambda:us-east-1:027087672282:function:task-dispatcher",
+      "details": "task-dispatcher may need manual networking validation if it depends on private resources."
+    },
+    {
+      "severity": "medium",
+      "category": "lambda-networking",
+      "title": "Lambda function is not attached to a VPC",
+      "resource_id": "arn:aws:lambda:us-east-1:027087672282:function:ai-orchestrator",
+      "details": "ai-orchestrator may need manual networking validation if it depends on private resources."
+    },
+    {
+      "severity": "medium",
+      "category": "lambda-networking",
+      "title": "Lambda function is not attached to a VPC",
+      "resource_id": "arn:aws:lambda:us-east-1:027087672282:function:connector-worker",
+      "details": "connector-worker may need manual networking validation if it depends on private resources."
+    },
+    {
+      "severity": "medium",
+      "category": "lambda-networking",
+      "title": "Lambda function is not attached to a VPC",
+      "resource_id": "arn:aws:lambda:us-east-1:027087672282:function:agent-planner",
+      "details": "agent-planner may need manual networking validation if it depends on private resources."
+    },
+    {
+      "severity": "medium",
+      "category": "lambda-networking",
+      "title": "Lambda function is not attached to a VPC",
+      "resource_id": "arn:aws:lambda:us-east-1:027087672282:function:setup-agent",
+      "details": "setup-agent may need manual networking validation if it depends on private resources."
+    },
+    {
+      "severity": "medium",
+      "category": "lambda-networking",
+      "title": "Lambda function is not attached to a VPC",
+      "resource_id": "arn:aws:lambda:us-east-1:027087672282:function:test-lambda-integration",
+      "details": "test-lambda-integration may need manual networking validation if it depends on private resources."
+    },
+    {
+      "severity": "medium",
+      "category": "lambda-networking",
+      "title": "Lambda function is not attached to a VPC",
+      "resource_id": "arn:aws:lambda:us-east-1:027087672282:function:plan-executor",
+      "details": "plan-executor may need manual networking validation if it depends on private resources."
+    },
+    {
+      "severity": "medium",
+      "category": "lambda-networking",
+      "title": "Lambda function is not attached to a VPC",
+      "resource_id": "arn:aws:lambda:us-east-1:027087672282:function:hello-world-fn",
+      "details": "hello-world-fn may need manual networking validation if it depends on private resources."
+    },
+    {
+      "severity": "medium",
+      "category": "lambda-networking",
+      "title": "Lambda function is not attached to a VPC",
+      "resource_id": "arn:aws:lambda:us-east-1:027087672282:function:log-collector",
+      "details": "log-collector may need manual networking validation if it depends on private resources."
+    },
+    {
+      "severity": "medium",
+      "category": "network-topology",
+      "title": "Route table contains a public internet route",
+      "resource_id": "rtb-003f6dd0bc997539c",
+      "details": "Route table rtb-003f6dd0bc997539c has 0.0.0.0/0 via igw-06f63edcb7932b8da."
+    },
+    {
+      "severity": "medium",
+      "category": "iac-review",
+      "title": "CloudFormation stacks require manual migration review",
+      "resource_id": "",
+      "details": "1 CloudFormation stack(s) were discovered."
+    },
+    {
+      "severity": "low",
+      "category": "s3-review",
+      "title": "S3 buckets require manual data migration review",
+      "resource_id": "",
+      "details": "2 bucket(s) were discovered."
+    }
+  ]
+}

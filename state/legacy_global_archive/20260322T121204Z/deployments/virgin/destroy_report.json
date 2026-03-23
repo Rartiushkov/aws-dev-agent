@@ -1,0 +1,193 @@
+{
+  "manifest_path": "state\\deployments\\virgin\\deployment_manifest.json",
+  "target_env": "virgin",
+  "region": "us-east-2",
+  "deleted": {
+    "event_source_mappings": [
+      {
+        "uuid": "7fb4f49d-f8fb-46dc-aec6-ec8ea83dfdb3"
+      },
+      {
+        "uuid": "b1cd2e48-d388-4622-bf97-c6135ab281dc"
+      },
+      {
+        "uuid": "7a2e08fb-c5a7-419d-a916-0e40e1bedc7b"
+      },
+      {
+        "uuid": "e11a8c09-67af-444c-9668-f44e592ee845"
+      },
+      {
+        "uuid": "dceca44b-960a-4687-a776-9d9772be06be"
+      }
+    ],
+    "api_gateways": [],
+    "sns_subscriptions": [],
+    "lambda_permissions": [
+      {
+        "function_name": "plan-executor",
+        "statement_id": "cloned-1-plan-executor"
+      },
+      {
+        "function_name": "log-collector",
+        "statement_id": "cloned-1-log-collector"
+      }
+    ],
+    "ecs_services": [
+      {
+        "cluster_arn": "arn:aws:ecs:us-east-2:027087672282:cluster/carefree-crocodile-bf3zi5",
+        "service_name": "test_def-service-vnwns50w"
+      },
+      {
+        "cluster_arn": "arn:aws:ecs:us-east-2:027087672282:cluster/carefree-crocodile-bf3zi5",
+        "service_name": "test_def-service-64zgxsih"
+      }
+    ],
+    "ecs_task_definitions": [
+      {
+        "task_definition_arn": "arn:aws:ecs:us-east-2:027087672282:task-definition/test_def:12"
+      }
+    ],
+    "ecs_clusters": [
+      {
+        "cluster_name": "carefree-crocodile-bf3zi5",
+        "cluster_arn": "arn:aws:ecs:us-east-2:027087672282:cluster/carefree-crocodile-bf3zi5"
+      }
+    ],
+    "codebuild_projects": [
+      {
+        "project_name": "aws-dev-agent-tests"
+      }
+    ],
+    "lambda_functions": [
+      {
+        "function_name": "remediator"
+      },
+      {
+        "function_name": "task-dispatcher"
+      },
+      {
+        "function_name": "ai-orchestrator"
+      },
+      {
+        "function_name": "connector-worker"
+      },
+      {
+        "function_name": "agent-planner"
+      },
+      {
+        "function_name": "setup-agent"
+      },
+      {
+        "function_name": "test-lambda-integration"
+      },
+      {
+        "function_name": "plan-executor"
+      },
+      {
+        "function_name": "hello-world-fn"
+      },
+      {
+        "function_name": "log-collector"
+      }
+    ],
+    "sqs_queues": [
+      {
+        "queue_name": "agent-error-queue",
+        "queue_url": "https://sqs.us-east-2.amazonaws.com/027087672282/agent-error-queue"
+      },
+      {
+        "queue_name": "agent-fix-tasks-dlq.fifo",
+        "queue_url": "https://sqs.us-east-2.amazonaws.com/027087672282/agent-fix-tasks-dlq.fifo"
+      },
+      {
+        "queue_name": "agent-fix-tasks.fifo",
+        "queue_url": "https://sqs.us-east-2.amazonaws.com/027087672282/agent-fix-tasks.fifo"
+      },
+      {
+        "queue_name": "connector-tasks.fifo",
+        "queue_url": "https://sqs.us-east-2.amazonaws.com/027087672282/connector-tasks.fifo"
+      },
+      {
+        "queue_name": "plan-executor-queue",
+        "queue_url": "https://sqs.us-east-2.amazonaws.com/027087672282/plan-executor-queue"
+      }
+    ],
+    "sns_topics": [],
+    "dynamodb_tables": [
+      {
+        "table_name": "agent_errors"
+      },
+      {
+        "table_name": "agent_fix_plans"
+      },
+      {
+        "table_name": "agent_tasks"
+      },
+      {
+        "table_name": "clinics"
+      },
+      {
+        "table_name": "consent_events"
+      },
+      {
+        "table_name": "consents"
+      },
+      {
+        "table_name": "idempotency_locks"
+      }
+    ],
+    "secrets": [
+      {
+        "secret_name": "hippa-signer/github/pat"
+      }
+    ],
+    "route_tables": [
+      {
+        "route_table_id": "rtb-0c67058d81fabb241"
+      }
+    ],
+    "subnets": [],
+    "security_groups": [],
+    "vpcs": [],
+    "roles": [
+      {
+        "role_name": "remediator-role"
+      },
+      {
+        "role_name": "task-dispatcher-role"
+      },
+      {
+        "role_name": "plan-executor-role"
+      },
+      {
+        "role_name": "setup-agent-role"
+      },
+      {
+        "role_name": "agent-planner-role"
+      },
+      {
+        "role_name": "lambda-basic-role"
+      }
+    ]
+  },
+  "failed": {
+    "event_source_mappings": [],
+    "api_gateways": [],
+    "sns_subscriptions": [],
+    "lambda_permissions": [],
+    "ecs_services": [],
+    "ecs_task_definitions": [],
+    "ecs_clusters": [],
+    "codebuild_projects": [],
+    "lambda_functions": [],
+    "sqs_queues": [],
+    "sns_topics": [],
+    "dynamodb_tables": [],
+    "secrets": [],
+    "route_tables": [],
+    "subnets": [],
+    "security_groups": [],
+    "vpcs": [],
+    "roles": []
+  }
+}

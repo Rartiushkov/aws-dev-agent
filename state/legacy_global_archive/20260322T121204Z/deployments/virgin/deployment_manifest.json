@@ -1,0 +1,670 @@
+{
+  "source_snapshot": "state\\aws_inventory\\full-account-scan\\source_snapshot.json",
+  "source_env": "full-account-scan",
+  "target_env": "virgin",
+  "team": "platform",
+  "source_account_id": "027087672282",
+  "target_account_id": "027087672282",
+  "source_region": "us-east-1",
+  "region": "us-east-2",
+  "config_path": "",
+  "source_role_arn": "",
+  "target_role_arn": "",
+  "roles": [
+    {
+      "source_role": "remediator-role",
+      "target_role": "remediator-role",
+      "target_role_arn": "arn:aws:iam::027087672282:role/remediator-role",
+      "operation": "created"
+    },
+    {
+      "source_role": "task-dispatcher-role",
+      "target_role": "task-dispatcher-role",
+      "target_role_arn": "arn:aws:iam::027087672282:role/task-dispatcher-role",
+      "operation": "created"
+    },
+    {
+      "source_role": "plan-executor-role",
+      "target_role": "plan-executor-role",
+      "target_role_arn": "arn:aws:iam::027087672282:role/plan-executor-role",
+      "operation": "created"
+    },
+    {
+      "source_role": "setup-agent-role",
+      "target_role": "setup-agent-role",
+      "target_role_arn": "arn:aws:iam::027087672282:role/setup-agent-role",
+      "operation": "created"
+    },
+    {
+      "source_role": "agent-planner-role",
+      "target_role": "agent-planner-role",
+      "target_role_arn": "arn:aws:iam::027087672282:role/agent-planner-role",
+      "operation": "created"
+    },
+    {
+      "source_role": "lambda-basic-role",
+      "target_role": "lambda-basic-role",
+      "target_role_arn": "arn:aws:iam::027087672282:role/lambda-basic-role",
+      "operation": "created"
+    }
+  ],
+  "sqs_queues": [
+    {
+      "source_queue": "agent-error-queue",
+      "target_queue": "agent-error-queue",
+      "target_queue_url": "https://sqs.us-east-2.amazonaws.com/027087672282/agent-error-queue",
+      "target_queue_arn": "arn:aws:sqs:us-east-2:027087672282:agent-error-queue",
+      "operation": "created"
+    },
+    {
+      "source_queue": "agent-fix-tasks-dlq.fifo",
+      "target_queue": "agent-fix-tasks-dlq.fifo",
+      "target_queue_url": "https://sqs.us-east-2.amazonaws.com/027087672282/agent-fix-tasks-dlq.fifo",
+      "target_queue_arn": "arn:aws:sqs:us-east-2:027087672282:agent-fix-tasks-dlq.fifo",
+      "operation": "created"
+    },
+    {
+      "source_queue": "agent-fix-tasks.fifo",
+      "target_queue": "agent-fix-tasks.fifo",
+      "target_queue_url": "https://sqs.us-east-2.amazonaws.com/027087672282/agent-fix-tasks.fifo",
+      "target_queue_arn": "arn:aws:sqs:us-east-2:027087672282:agent-fix-tasks.fifo",
+      "operation": "created"
+    },
+    {
+      "source_queue": "connector-tasks.fifo",
+      "target_queue": "connector-tasks.fifo",
+      "target_queue_url": "https://sqs.us-east-2.amazonaws.com/027087672282/connector-tasks.fifo",
+      "target_queue_arn": "arn:aws:sqs:us-east-2:027087672282:connector-tasks.fifo",
+      "operation": "created"
+    },
+    {
+      "source_queue": "plan-executor-queue",
+      "target_queue": "plan-executor-queue",
+      "target_queue_url": "https://sqs.us-east-2.amazonaws.com/027087672282/plan-executor-queue",
+      "target_queue_arn": "arn:aws:sqs:us-east-2:027087672282:plan-executor-queue",
+      "operation": "created"
+    }
+  ],
+  "sns_topics": [],
+  "secrets": [
+    {
+      "source_secret": "hippa-signer/github/pat",
+      "target_secret": "hippa-signer/github/pat",
+      "target_secret_arn": "arn:aws:secretsmanager:us-east-2:027087672282:secret:hippa-signer/github/pat-IMz45k",
+      "operation": "created"
+    }
+  ],
+  "dynamodb_tables": [
+    {
+      "source_table": "agent_errors",
+      "target_table": "agent_errors",
+      "target_table_arn": "arn:aws:dynamodb:us-east-2:027087672282:table/agent_errors",
+      "target_stream_arn": "arn:aws:dynamodb:us-east-2:027087672282:table/agent_errors/stream/2026-03-20T07:58:33.300",
+      "operation": "created"
+    },
+    {
+      "source_table": "agent_fix_plans",
+      "target_table": "agent_fix_plans",
+      "target_table_arn": "arn:aws:dynamodb:us-east-2:027087672282:table/agent_fix_plans",
+      "target_stream_arn": null,
+      "operation": "created"
+    },
+    {
+      "source_table": "agent_tasks",
+      "target_table": "agent_tasks",
+      "target_table_arn": "arn:aws:dynamodb:us-east-2:027087672282:table/agent_tasks",
+      "target_stream_arn": null,
+      "operation": "created"
+    },
+    {
+      "source_table": "clinics",
+      "target_table": "clinics",
+      "target_table_arn": "arn:aws:dynamodb:us-east-2:027087672282:table/clinics",
+      "target_stream_arn": null,
+      "operation": "created"
+    },
+    {
+      "source_table": "consent_events",
+      "target_table": "consent_events",
+      "target_table_arn": "arn:aws:dynamodb:us-east-2:027087672282:table/consent_events",
+      "target_stream_arn": null,
+      "operation": "created"
+    },
+    {
+      "source_table": "consents",
+      "target_table": "consents",
+      "target_table_arn": "arn:aws:dynamodb:us-east-2:027087672282:table/consents",
+      "target_stream_arn": null,
+      "operation": "created"
+    },
+    {
+      "source_table": "idempotency_locks",
+      "target_table": "idempotency_locks",
+      "target_table_arn": "arn:aws:dynamodb:us-east-2:027087672282:table/idempotency_locks",
+      "target_stream_arn": null,
+      "operation": "created"
+    }
+  ],
+  "dynamodb_table_items": [
+    {
+      "source_table": "agent_errors",
+      "target_table": "agent_errors",
+      "copied_item_count": 11
+    },
+    {
+      "source_table": "agent_fix_plans",
+      "target_table": "agent_fix_plans",
+      "copied_item_count": 105
+    },
+    {
+      "source_table": "agent_tasks",
+      "target_table": "agent_tasks",
+      "copied_item_count": 1
+    },
+    {
+      "source_table": "clinics",
+      "target_table": "clinics",
+      "copied_item_count": 0
+    },
+    {
+      "source_table": "consent_events",
+      "target_table": "consent_events",
+      "copied_item_count": 0
+    },
+    {
+      "source_table": "consents",
+      "target_table": "consents",
+      "copied_item_count": 0
+    },
+    {
+      "source_table": "idempotency_locks",
+      "target_table": "idempotency_locks",
+      "copied_item_count": 0
+    }
+  ],
+  "lambda_functions": [
+    {
+      "source_function": "remediator",
+      "target_function": "remediator",
+      "target_function_arn": "arn:aws:lambda:us-east-2:027087672282:function:remediator",
+      "operation": "created",
+      "execution_role": "arn:aws:iam::027087672282:role/remediator-role",
+      "fallback_role_used": false
+    },
+    {
+      "source_function": "task-dispatcher",
+      "target_function": "task-dispatcher",
+      "target_function_arn": "arn:aws:lambda:us-east-2:027087672282:function:task-dispatcher",
+      "operation": "created",
+      "execution_role": "arn:aws:iam::027087672282:role/task-dispatcher-role",
+      "fallback_role_used": false
+    },
+    {
+      "source_function": "ai-orchestrator",
+      "target_function": "ai-orchestrator",
+      "target_function_arn": "arn:aws:lambda:us-east-2:027087672282:function:ai-orchestrator",
+      "operation": "created",
+      "execution_role": "arn:aws:iam::027087672282:role/plan-executor-role",
+      "fallback_role_used": false
+    },
+    {
+      "source_function": "connector-worker",
+      "target_function": "connector-worker",
+      "target_function_arn": "arn:aws:lambda:us-east-2:027087672282:function:connector-worker",
+      "operation": "created",
+      "execution_role": "arn:aws:iam::027087672282:role/setup-agent-role",
+      "fallback_role_used": false
+    },
+    {
+      "source_function": "agent-planner",
+      "target_function": "agent-planner",
+      "target_function_arn": "arn:aws:lambda:us-east-2:027087672282:function:agent-planner",
+      "operation": "created",
+      "execution_role": "arn:aws:iam::027087672282:role/agent-planner-role",
+      "fallback_role_used": false
+    },
+    {
+      "source_function": "setup-agent",
+      "target_function": "setup-agent",
+      "target_function_arn": "arn:aws:lambda:us-east-2:027087672282:function:setup-agent",
+      "operation": "created",
+      "execution_role": "arn:aws:iam::027087672282:role/setup-agent-role",
+      "fallback_role_used": false
+    },
+    {
+      "source_function": "test-lambda-integration",
+      "target_function": "test-lambda-integration",
+      "target_function_arn": "arn:aws:lambda:us-east-2:027087672282:function:test-lambda-integration",
+      "operation": "created",
+      "execution_role": "arn:aws:iam::027087672282:role/lambda-basic-role",
+      "fallback_role_used": false
+    },
+    {
+      "source_function": "plan-executor",
+      "target_function": "plan-executor",
+      "target_function_arn": "arn:aws:lambda:us-east-2:027087672282:function:plan-executor",
+      "operation": "created",
+      "execution_role": "arn:aws:iam::027087672282:role/plan-executor-role",
+      "fallback_role_used": false
+    },
+    {
+      "source_function": "hello-world-fn",
+      "target_function": "hello-world-fn",
+      "target_function_arn": "arn:aws:lambda:us-east-2:027087672282:function:hello-world-fn",
+      "operation": "created",
+      "execution_role": "arn:aws:iam::027087672282:role/lambda-basic-role",
+      "fallback_role_used": false
+    },
+    {
+      "source_function": "log-collector",
+      "target_function": "log-collector",
+      "target_function_arn": "arn:aws:lambda:us-east-2:027087672282:function:log-collector",
+      "operation": "created",
+      "execution_role": "arn:aws:iam::027087672282:role/setup-agent-role",
+      "fallback_role_used": false
+    }
+  ],
+  "lambda_event_source_mappings": [
+    {
+      "source_uuid": "55dbb09e-8b4d-4594-8c41-8fa4181ad929",
+      "target_uuid": "7fb4f49d-f8fb-46dc-aec6-ec8ea83dfdb3",
+      "target_function": "remediator",
+      "target_event_source_arn": "arn:aws:sqs:us-east-2:027087672282:agent-fix-tasks.fifo",
+      "operation": "created"
+    },
+    {
+      "source_uuid": "3f3bd44c-b2cb-432d-b97c-d34246296a1d",
+      "target_uuid": "b1cd2e48-d388-4622-bf97-c6135ab281dc",
+      "target_function": "task-dispatcher",
+      "target_event_source_arn": "arn:aws:dynamodb:us-east-2:027087672282:table/agent_errors/stream/2026-03-20T07:58:33.300",
+      "operation": "created-after-stream-policy-update"
+    },
+    {
+      "source_uuid": "e1eb804b-5d2c-4c56-b1db-4aa5a8107250",
+      "target_uuid": "7a2e08fb-c5a7-419d-a916-0e40e1bedc7b",
+      "target_function": "connector-worker",
+      "target_event_source_arn": "arn:aws:sqs:us-east-2:027087672282:connector-tasks.fifo",
+      "operation": "created"
+    },
+    {
+      "source_uuid": "715dc62f-47bf-4f1f-b8fb-9d25947dc437",
+      "target_uuid": "e11a8c09-67af-444c-9668-f44e592ee845",
+      "target_function": "agent-planner",
+      "target_event_source_arn": "arn:aws:sqs:us-east-2:027087672282:agent-error-queue",
+      "operation": "created"
+    },
+    {
+      "source_uuid": "4b361b04-2403-4343-aa61-32e97d094f82",
+      "target_uuid": "dceca44b-960a-4687-a776-9d9772be06be",
+      "target_function": "plan-executor",
+      "target_event_source_arn": "arn:aws:sqs:us-east-2:027087672282:plan-executor-queue",
+      "operation": "created"
+    }
+  ],
+  "lambda_permissions": [
+    {
+      "target_function": "plan-executor",
+      "statement_id": "cloned-1-plan-executor",
+      "principal": "events.amazonaws.com"
+    },
+    {
+      "target_function": "log-collector",
+      "statement_id": "cloned-1-log-collector",
+      "principal": "logs.amazonaws.com"
+    }
+  ],
+  "sns_subscriptions": [],
+  "api_gateways": [],
+  "codebuild_projects": [
+    {
+      "source_project": "aws-dev-agent-tests",
+      "target_project": "aws-dev-agent-tests",
+      "target_project_arn": "arn:aws:codebuild:us-east-2:027087672282:project/aws-dev-agent-tests",
+      "operation": "created"
+    }
+  ],
+  "vpcs": [
+    {
+      "source_vpc": "vpc-03d4bf4fd56283eb5",
+      "target_vpc": "vpc-01209ca70655a3a1f",
+      "target_name": "vpc-03d4bf4fd56283eb5",
+      "operation": "adopted-existing"
+    }
+  ],
+  "subnets": [
+    {
+      "source_subnet": "subnet-0fd8f3eece23aa6b1",
+      "target_subnet": "subnet-06ff2d45e9757db71",
+      "target_name": "subnet-0fd8f3eece23aa6b1",
+      "operation": "adopted-existing"
+    },
+    {
+      "source_subnet": "subnet-011181ad481a04d3d",
+      "target_subnet": "subnet-074c79625057ac73a",
+      "target_name": "subnet-011181ad481a04d3d",
+      "operation": "adopted-existing"
+    },
+    {
+      "source_subnet": "subnet-0c81726f63be41cce",
+      "target_subnet": "subnet-028804c2be33078a5",
+      "target_name": "subnet-0c81726f63be41cce",
+      "operation": "adopted-existing"
+    },
+    {
+      "source_subnet": "subnet-029a2424e7216e913",
+      "target_subnet": "subnet-0aa42b2acf7dc27e5",
+      "target_name": "subnet-029a2424e7216e913",
+      "operation": "adopted-existing"
+    },
+    {
+      "source_subnet": "subnet-04553ddb12f80aa24",
+      "target_subnet": "subnet-0b421c1677fcec6fd",
+      "target_name": "subnet-04553ddb12f80aa24",
+      "operation": "adopted-existing"
+    },
+    {
+      "source_subnet": "subnet-00c176177ea82ab38",
+      "target_subnet": "subnet-0bcee60eca400460c",
+      "target_name": "subnet-00c176177ea82ab38",
+      "operation": "adopted-existing"
+    }
+  ],
+  "route_tables": [
+    {
+      "source_route_table": "rtb-003f6dd0bc997539c",
+      "target_route_table": "rtb-0c67058d81fabb241",
+      "target_name": "rtb-003f6dd0bc997539c",
+      "operation": "created"
+    }
+  ],
+  "security_groups": [
+    {
+      "source_group": "sg-090d92bd87212a26f",
+      "target_group": "sg-0f94b212e0df9f302",
+      "target_name": "default",
+      "operation": "mapped-default"
+    }
+  ],
+  "ecs_clusters": [
+    {
+      "source_cluster": "carefree-crocodile-bf3zi5",
+      "target_cluster": "carefree-crocodile-bf3zi5",
+      "target_cluster_arn": "arn:aws:ecs:us-east-2:027087672282:cluster/carefree-crocodile-bf3zi5",
+      "operation": "created"
+    }
+  ],
+  "ecs_task_definitions": [
+    {
+      "source_task_definition": "arn:aws:ecs:us-east-1:027087672282:task-definition/test_def:1",
+      "target_task_definition": "arn:aws:ecs:us-east-2:027087672282:task-definition/test_def:12",
+      "operation": "registered"
+    }
+  ],
+  "ecs_services": [
+    {
+      "source_service": "test_def-service-vnwns50w",
+      "target_service": "test_def-service-vnwns50w",
+      "target_cluster_arn": "arn:aws:ecs:us-east-2:027087672282:cluster/carefree-crocodile-bf3zi5",
+      "target_service_arn": "arn:aws:ecs:us-east-2:027087672282:service/carefree-crocodile-bf3zi5/test_def-service-vnwns50w",
+      "operation": "created"
+    },
+    {
+      "source_service": "test_def-service-64zgxsih",
+      "target_service": "test_def-service-64zgxsih",
+      "target_cluster_arn": "arn:aws:ecs:us-east-2:027087672282:cluster/carefree-crocodile-bf3zi5",
+      "target_service_arn": "arn:aws:ecs:us-east-2:027087672282:service/carefree-crocodile-bf3zi5/test_def-service-64zgxsih",
+      "operation": "created"
+    }
+  ],
+  "queue_visibility_adjustments": [],
+  "resource_mappings": {
+    "role_arns": {
+      "arn:aws:iam::027087672282:role/remediator-role": "arn:aws:iam::027087672282:role/remediator-role",
+      "arn:aws:iam::027087672282:role/task-dispatcher-role": "arn:aws:iam::027087672282:role/task-dispatcher-role",
+      "arn:aws:iam::027087672282:role/plan-executor-role": "arn:aws:iam::027087672282:role/plan-executor-role",
+      "arn:aws:iam::027087672282:role/setup-agent-role": "arn:aws:iam::027087672282:role/setup-agent-role",
+      "arn:aws:iam::027087672282:role/agent-planner-role": "arn:aws:iam::027087672282:role/agent-planner-role",
+      "arn:aws:iam::027087672282:role/lambda-basic-role": "arn:aws:iam::027087672282:role/lambda-basic-role"
+    },
+    "role_names": {
+      "remediator-role": "remediator-role",
+      "task-dispatcher-role": "task-dispatcher-role",
+      "plan-executor-role": "plan-executor-role",
+      "setup-agent-role": "setup-agent-role",
+      "agent-planner-role": "agent-planner-role",
+      "lambda-basic-role": "lambda-basic-role"
+    },
+    "queue_urls": {
+      "https://sqs.us-east-1.amazonaws.com/027087672282/agent-error-queue": "https://sqs.us-east-2.amazonaws.com/027087672282/agent-error-queue",
+      "https://sqs.us-east-1.amazonaws.com/027087672282/agent-fix-tasks-dlq.fifo": "https://sqs.us-east-2.amazonaws.com/027087672282/agent-fix-tasks-dlq.fifo",
+      "https://sqs.us-east-1.amazonaws.com/027087672282/agent-fix-tasks.fifo": "https://sqs.us-east-2.amazonaws.com/027087672282/agent-fix-tasks.fifo",
+      "https://sqs.us-east-1.amazonaws.com/027087672282/connector-tasks.fifo": "https://sqs.us-east-2.amazonaws.com/027087672282/connector-tasks.fifo",
+      "https://sqs.us-east-1.amazonaws.com/027087672282/plan-executor-queue": "https://sqs.us-east-2.amazonaws.com/027087672282/plan-executor-queue"
+    },
+    "queue_arns": {
+      "arn:aws:sqs:us-east-1:027087672282:agent-error-queue": "arn:aws:sqs:us-east-2:027087672282:agent-error-queue",
+      "arn:aws:sqs:us-east-1:027087672282:agent-fix-tasks-dlq.fifo": "arn:aws:sqs:us-east-2:027087672282:agent-fix-tasks-dlq.fifo",
+      "arn:aws:sqs:us-east-1:027087672282:agent-fix-tasks.fifo": "arn:aws:sqs:us-east-2:027087672282:agent-fix-tasks.fifo",
+      "arn:aws:sqs:us-east-1:027087672282:connector-tasks.fifo": "arn:aws:sqs:us-east-2:027087672282:connector-tasks.fifo",
+      "arn:aws:sqs:us-east-1:027087672282:plan-executor-queue": "arn:aws:sqs:us-east-2:027087672282:plan-executor-queue"
+    },
+    "queue_names": {
+      "agent-error-queue": "agent-error-queue",
+      "agent-fix-tasks-dlq.fifo": "agent-fix-tasks-dlq.fifo",
+      "agent-fix-tasks.fifo": "agent-fix-tasks.fifo",
+      "connector-tasks.fifo": "connector-tasks.fifo",
+      "plan-executor-queue": "plan-executor-queue"
+    },
+    "topic_arns": {},
+    "topic_names": {},
+    "secret_arns": {
+      "arn:aws:secretsmanager:us-east-1:027087672282:secret:hippa-signer/github/pat-XPcYpy": "arn:aws:secretsmanager:us-east-2:027087672282:secret:hippa-signer/github/pat-IMz45k"
+    },
+    "secret_names": {
+      "hippa-signer/github/pat": "hippa-signer/github/pat"
+    },
+    "dynamodb_table_names": {
+      "agent_errors": "agent_errors",
+      "agent_fix_plans": "agent_fix_plans",
+      "agent_tasks": "agent_tasks",
+      "clinics": "clinics",
+      "consent_events": "consent_events",
+      "consents": "consents",
+      "idempotency_locks": "idempotency_locks"
+    },
+    "dynamodb_table_arns": {
+      "arn:aws:dynamodb:us-east-1:027087672282:table/agent_errors": "arn:aws:dynamodb:us-east-2:027087672282:table/agent_errors",
+      "arn:aws:dynamodb:us-east-1:027087672282:table/agent_fix_plans": "arn:aws:dynamodb:us-east-2:027087672282:table/agent_fix_plans",
+      "arn:aws:dynamodb:us-east-1:027087672282:table/agent_tasks": "arn:aws:dynamodb:us-east-2:027087672282:table/agent_tasks",
+      "arn:aws:dynamodb:us-east-1:027087672282:table/clinics": "arn:aws:dynamodb:us-east-2:027087672282:table/clinics",
+      "arn:aws:dynamodb:us-east-1:027087672282:table/consent_events": "arn:aws:dynamodb:us-east-2:027087672282:table/consent_events",
+      "arn:aws:dynamodb:us-east-1:027087672282:table/consents": "arn:aws:dynamodb:us-east-2:027087672282:table/consents",
+      "arn:aws:dynamodb:us-east-1:027087672282:table/idempotency_locks": "arn:aws:dynamodb:us-east-2:027087672282:table/idempotency_locks"
+    },
+    "dynamodb_stream_arns": {
+      "arn:aws:dynamodb:us-east-1:027087672282:table/agent_errors/stream/2026-02-23T07:46:15.921": "arn:aws:dynamodb:us-east-2:027087672282:table/agent_errors/stream/2026-03-20T07:58:33.300"
+    },
+    "function_arns": {
+      "arn:aws:lambda:us-east-1:027087672282:function:remediator": "arn:aws:lambda:us-east-2:027087672282:function:remediator",
+      "arn:aws:lambda:us-east-1:027087672282:function:task-dispatcher": "arn:aws:lambda:us-east-2:027087672282:function:task-dispatcher",
+      "arn:aws:lambda:us-east-1:027087672282:function:ai-orchestrator": "arn:aws:lambda:us-east-2:027087672282:function:ai-orchestrator",
+      "arn:aws:lambda:us-east-1:027087672282:function:connector-worker": "arn:aws:lambda:us-east-2:027087672282:function:connector-worker",
+      "arn:aws:lambda:us-east-1:027087672282:function:agent-planner": "arn:aws:lambda:us-east-2:027087672282:function:agent-planner",
+      "arn:aws:lambda:us-east-1:027087672282:function:setup-agent": "arn:aws:lambda:us-east-2:027087672282:function:setup-agent",
+      "arn:aws:lambda:us-east-1:027087672282:function:test-lambda-integration": "arn:aws:lambda:us-east-2:027087672282:function:test-lambda-integration",
+      "arn:aws:lambda:us-east-1:027087672282:function:plan-executor": "arn:aws:lambda:us-east-2:027087672282:function:plan-executor",
+      "arn:aws:lambda:us-east-1:027087672282:function:hello-world-fn": "arn:aws:lambda:us-east-2:027087672282:function:hello-world-fn",
+      "arn:aws:lambda:us-east-1:027087672282:function:log-collector": "arn:aws:lambda:us-east-2:027087672282:function:log-collector"
+    },
+    "function_names": {
+      "remediator": "remediator",
+      "task-dispatcher": "task-dispatcher",
+      "ai-orchestrator": "ai-orchestrator",
+      "connector-worker": "connector-worker",
+      "agent-planner": "agent-planner",
+      "setup-agent": "setup-agent",
+      "test-lambda-integration": "test-lambda-integration",
+      "plan-executor": "plan-executor",
+      "hello-world-fn": "hello-world-fn",
+      "log-collector": "log-collector"
+    },
+    "api_ids": {},
+    "vpc_ids": {
+      "vpc-03d4bf4fd56283eb5": "vpc-01209ca70655a3a1f"
+    },
+    "subnet_ids": {
+      "subnet-0fd8f3eece23aa6b1": "subnet-06ff2d45e9757db71",
+      "subnet-011181ad481a04d3d": "subnet-074c79625057ac73a",
+      "subnet-0c81726f63be41cce": "subnet-028804c2be33078a5",
+      "subnet-029a2424e7216e913": "subnet-0aa42b2acf7dc27e5",
+      "subnet-04553ddb12f80aa24": "subnet-0b421c1677fcec6fd",
+      "subnet-00c176177ea82ab38": "subnet-0bcee60eca400460c"
+    },
+    "route_table_ids": {
+      "rtb-003f6dd0bc997539c": "rtb-0c67058d81fabb241"
+    },
+    "security_group_ids": {
+      "sg-090d92bd87212a26f": "sg-0f94b212e0df9f302"
+    },
+    "kms_key_ids": {},
+    "kms_aliases": {},
+    "codebuild_project_arns": {
+      "arn:aws:codebuild:us-east-1:027087672282:project/aws-dev-agent-tests": "arn:aws:codebuild:us-east-2:027087672282:project/aws-dev-agent-tests"
+    },
+    "codebuild_project_names": {
+      "aws-dev-agent-tests": "aws-dev-agent-tests"
+    },
+    "ecs_cluster_arns": {
+      "arn:aws:ecs:us-east-1:027087672282:cluster/carefree-crocodile-bf3zi5": "arn:aws:ecs:us-east-2:027087672282:cluster/carefree-crocodile-bf3zi5"
+    },
+    "ecs_cluster_names": {
+      "carefree-crocodile-bf3zi5": "carefree-crocodile-bf3zi5"
+    },
+    "ecs_task_definition_arns": {
+      "arn:aws:ecs:us-east-1:027087672282:task-definition/test_def:1": "arn:aws:ecs:us-east-2:027087672282:task-definition/test_def:12"
+    },
+    "ecs_task_definition_families": {
+      "test_def": "test_def"
+    },
+    "source_account_id": "027087672282",
+    "target_account_id": "027087672282",
+    "target_env": "virgin",
+    "team": "platform",
+    "target_region": "us-east-2"
+  },
+  "preserve_names": true,
+  "preflight_checks": [
+    {
+      "name": "scope",
+      "status": "ok",
+      "details": {
+        "source_account_id": "027087672282",
+        "target_account_id": "027087672282",
+        "source_region": "us-east-1",
+        "target_region": "us-east-2",
+        "same_account": true,
+        "same_region": false
+      }
+    },
+    {
+      "name": "kms-remap",
+      "status": "warning",
+      "details": {
+        "unresolved_reference_count": 1,
+        "sample": [
+          "arn:aws:kms:us-east-1:027087672282:alias/aws/s3"
+        ]
+      }
+    },
+    {
+      "name": "ecs-network-dependencies",
+      "status": "ok",
+      "details": {
+        "service_count": 2,
+        "services": [
+          "test_def-service-vnwns50w",
+          "test_def-service-64zgxsih"
+        ],
+        "vpc_count": 1,
+        "subnet_count": 6
+      }
+    },
+    {
+      "name": "hardcoded-source-account-references",
+      "status": "ok",
+      "details": {
+        "count": 177,
+        "sample": [
+          {
+            "path": "$.account_id",
+            "value": "027087672282"
+          },
+          {
+            "path": "$.lambda_functions[0].FunctionArn",
+            "value": "arn:aws:lambda:us-east-1:027087672282:function:remediator"
+          },
+          {
+            "path": "$.lambda_functions[0].Role",
+            "value": "arn:aws:iam::027087672282:role/remediator-role"
+          },
+          {
+            "path": "$.lambda_functions[1].FunctionArn",
+            "value": "arn:aws:lambda:us-east-1:027087672282:function:task-dispatcher"
+          },
+          {
+            "path": "$.lambda_functions[1].Role",
+            "value": "arn:aws:iam::027087672282:role/task-dispatcher-role"
+          },
+          {
+            "path": "$.lambda_functions[1].Environment.Variables.FIX_QUEUE_URL",
+            "value": "https://sqs.us-east-1.amazonaws.com/027087672282/agent-fix-tasks.fifo"
+          },
+          {
+            "path": "$.lambda_functions[2].FunctionArn",
+            "value": "arn:aws:lambda:us-east-1:027087672282:function:ai-orchestrator"
+          },
+          {
+            "path": "$.lambda_functions[2].Role",
+            "value": "arn:aws:iam::027087672282:role/plan-executor-role"
+          },
+          {
+            "path": "$.lambda_functions[3].FunctionArn",
+            "value": "arn:aws:lambda:us-east-1:027087672282:function:connector-worker"
+          },
+          {
+            "path": "$.lambda_functions[3].Role",
+            "value": "arn:aws:iam::027087672282:role/setup-agent-role"
+          }
+        ]
+      }
+    }
+  ],
+  "failures": {
+    "roles": [],
+    "queues": [],
+    "topics": [],
+    "secrets": [],
+    "dynamodb_tables": [],
+    "dynamodb_table_items": [],
+    "lambda_functions": [],
+    "event_source_mappings": [],
+    "lambda_permissions": [],
+    "sns_subscriptions": [],
+    "api_gateways": [],
+    "codebuild_projects": [],
+    "vpcs": [],
+    "subnets": [],
+    "route_tables": [],
+    "security_groups": [],
+    "ecs_clusters": [],
+    "ecs_task_definitions": [],
+    "ecs_services": []
+  },
+  "follow_up": {
+    "manual_review_required": false,
+    "cloudformation_stacks_review_required": true,
+    "load_balancer_review_required": false,
+    "s3_review_required": true,
+    "ecs_review_required": false
+  }
+}

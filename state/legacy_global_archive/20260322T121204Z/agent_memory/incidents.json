@@ -1,0 +1,134 @@
+[
+  {
+    "signature": "validation-smoke-check-issue:9a09c6845472b319",
+    "kind": "validation-smoke-check-issue",
+    "scope": "global",
+    "summary": "s3-bucket-parity: an error occurred (403) when calling the headbucket operation: forbidden",
+    "tags": [
+      "s3-bucket-parity",
+      "validation"
+    ],
+    "source_env": "",
+    "target_env": "roma-art",
+    "occurrences": 8,
+    "validated_fix_count": 0,
+    "first_seen": "2026-03-22T08:54:11.873164+00:00",
+    "last_seen": "2026-03-22T09:37:37.756181+00:00",
+    "last_validated_at": "",
+    "last_resolution": "",
+    "sample_details": {
+      "bucket": "hippa-signer-artifacts-027087672282",
+      "target_bucket": "hippa-signer-artifacts-027087672282"
+    }
+  },
+  {
+    "signature": "validation-smoke-check-issue:4da31bfb9c4904d8",
+    "kind": "validation-smoke-check-issue",
+    "scope": "global",
+    "summary": "ecs-services-steady: running=0 desired=1 because awslogs region stayed in source region",
+    "tags": [
+      "validation",
+      "ecs",
+      "logging"
+    ],
+    "source_env": "",
+    "target_env": "",
+    "occurrences": 1,
+    "validated_fix_count": 1,
+    "first_seen": "2026-03-20T00:00:00+00:00",
+    "last_seen": "2026-03-20T00:00:00+00:00",
+    "last_validated_at": "2026-03-20T00:00:00+00:00",
+    "last_resolution": "rewrite awslogs-region to target_region in ecs task definitions before register_task_definition",
+    "sample_details": {
+      "resource_type": "ecs-service"
+    }
+  },
+  {
+    "signature": "validation-smoke-check-issue:e4cbf6359f31c690",
+    "kind": "validation-smoke-check-issue",
+    "scope": "global",
+    "summary": "lambda-event-source-mappings-enabled: dynamodb stream mapping missing getrecords getsharditerator describestream liststreams permissions",
+    "tags": [
+      "validation",
+      "lambda",
+      "dynamodb-stream"
+    ],
+    "source_env": "",
+    "target_env": "",
+    "occurrences": 1,
+    "validated_fix_count": 1,
+    "first_seen": "2026-03-20T00:00:00+00:00",
+    "last_seen": "2026-03-20T00:00:00+00:00",
+    "last_validated_at": "2026-03-20T00:00:00+00:00",
+    "last_resolution": "attach stream read permissions to the lambda execution role before creating the event source mapping",
+    "sample_details": {
+      "resource_type": "lambda-event-source-mapping"
+    }
+  },
+  {
+    "signature": "validation-smoke-check-issue:5af75b78138c55cc",
+    "kind": "validation-smoke-check-issue",
+    "scope": "global",
+    "summary": "network-resources-present: vpc creation failed with vpclimitexceeded and ecs reused source subnet ids",
+    "tags": [
+      "validation",
+      "network",
+      "ecs"
+    ],
+    "source_env": "",
+    "target_env": "",
+    "occurrences": 1,
+    "validated_fix_count": 1,
+    "first_seen": "2026-03-20T00:00:00+00:00",
+    "last_seen": "2026-03-20T00:00:00+00:00",
+    "last_validated_at": "2026-03-20T00:00:00+00:00",
+    "last_resolution": "adopt existing target vpc and subnets by name or cidr, then block ecs create when network ids are not remapped",
+    "sample_details": {
+      "resource_type": "vpc"
+    }
+  },
+  {
+    "signature": "validation-smoke-check-issue:7c6da2f5dca1124b",
+    "kind": "validation-smoke-check-issue",
+    "scope": "global",
+    "summary": "kms-keys-ready: source region alias aws s3 remained in source arn during cross-region validation",
+    "tags": [
+      "validation",
+      "kms",
+      "codebuild"
+    ],
+    "source_env": "",
+    "target_env": "",
+    "occurrences": 1,
+    "validated_fix_count": 1,
+    "first_seen": "2026-03-20T00:00:00+00:00",
+    "last_seen": "2026-03-20T00:00:00+00:00",
+    "last_validated_at": "2026-03-20T00:00:00+00:00",
+    "last_resolution": "rewrite aws managed alias kms arns to the target region and target account before describe_key validation",
+    "sample_details": {
+      "resource_type": "kms"
+    }
+  },
+  {
+    "signature": "validation-smoke-check-issue:9c02b5c929d253ed",
+    "kind": "validation-smoke-check-issue",
+    "scope": "global",
+    "summary": "lambda-event-source-mappings-enabled: mapping appeared disabled after migration but source snapshot state was also disabled",
+    "tags": [
+      "validation",
+      "lambda",
+      "parity"
+    ],
+    "source_env": "",
+    "target_env": "",
+    "occurrences": 1,
+    "validated_fix_count": 1,
+    "first_seen": "2026-03-20T00:00:00+00:00",
+    "last_seen": "2026-03-20T00:00:00+00:00",
+    "last_validated_at": "2026-03-20T00:00:00+00:00",
+    "last_resolution": "compare target event source mapping state with source snapshot state instead of forcing enabled as a universal success condition",
+    "sample_details": {
+      "resource_type": "lambda-event-source-mapping"
+    }
+  }
+]

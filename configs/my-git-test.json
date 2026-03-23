@@ -1,0 +1,20 @@
+{
+  "overrides": {
+    "source_region": "us-east-1",
+    "target_region": "us-east-2",
+    "preserve_names": true,
+    "allow_same_scope": false
+  },
+  "git_backup": {
+    "provider": "github",
+    "host": "github.com",
+    "protocol": "https",
+    "organization": "rartiushkov",
+    "repo_prefix": "backup",
+    "create_repos": false,
+    "username": "rartiushkov",
+    "token_env": "CLIENT_GIT_TOKEN",
+    "test_repo_url": "https://github.com/Rartiushkov/aws-dev-agent-backup-test.git"
+  },
+  "exclusions": {}
+}

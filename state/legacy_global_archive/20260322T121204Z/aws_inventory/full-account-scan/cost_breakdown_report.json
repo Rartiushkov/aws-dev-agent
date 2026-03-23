@@ -1,0 +1,1547 @@
+{
+  "generated_at": "2026-03-21T20:20:46.704486+00:00",
+  "window_days": 30,
+  "time_period": {
+    "Start": "2026-02-19",
+    "End": "2026-03-21"
+  },
+  "total_cost": {
+    "amount": -0.0,
+    "unit": "USD"
+  },
+  "service_costs": [
+    {
+      "service": "AWS CloudShell",
+      "amount": 0.0,
+      "unit": "USD"
+    },
+    {
+      "service": "AWS Data Transfer",
+      "amount": -0.0,
+      "unit": "USD"
+    },
+    {
+      "service": "AWS Glue",
+      "amount": 0.0,
+      "unit": "USD"
+    },
+    {
+      "service": "AWS Key Management Service",
+      "amount": 0.0,
+      "unit": "USD"
+    },
+    {
+      "service": "AWS Lambda",
+      "amount": 0.0,
+      "unit": "USD"
+    },
+    {
+      "service": "AWS Secrets Manager",
+      "amount": -0.0,
+      "unit": "USD"
+    },
+    {
+      "service": "Amazon DynamoDB",
+      "amount": -0.0,
+      "unit": "USD"
+    },
+    {
+      "service": "Amazon Simple Notification Service",
+      "amount": 0.0,
+      "unit": "USD"
+    },
+    {
+      "service": "Amazon Simple Queue Service",
+      "amount": 0.0,
+      "unit": "USD"
+    },
+    {
+      "service": "Amazon Simple Storage Service",
+      "amount": 0.0,
+      "unit": "USD"
+    },
+    {
+      "service": "AmazonCloudWatch",
+      "amount": 0.0,
+      "unit": "USD"
+    },
+    {
+      "service": "Amazon API Gateway",
+      "amount": 0.0,
+      "unit": "USD"
+    },
+    {
+      "service": "Amazon Bedrock",
+      "amount": 0.0,
+      "unit": "USD"
+    },
+    {
+      "service": "Amazon Elastic Container Service",
+      "amount": 0.0,
+      "unit": "USD"
+    },
+    {
+      "service": "Amazon Virtual Private Cloud",
+      "amount": 0.0,
+      "unit": "USD"
+    },
+    {
+      "service": "Claude 3 Haiku (Amazon Bedrock Edition)",
+      "amount": 0.0,
+      "unit": "USD"
+    },
+    {
+      "service": "Claude Sonnet 4 (Amazon Bedrock Edition)",
+      "amount": 0.0,
+      "unit": "USD"
+    },
+    {
+      "service": "CodeBuild",
+      "amount": 0.0,
+      "unit": "USD"
+    },
+    {
+      "service": "Tax",
+      "amount": 0.0,
+      "unit": "USD"
+    }
+  ],
+  "region_costs": [
+    {
+      "region": "eu-north-1",
+      "amount": 0.0,
+      "unit": "USD"
+    },
+    {
+      "region": "global",
+      "amount": 0.0,
+      "unit": "USD"
+    },
+    {
+      "region": "us-east-1",
+      "amount": -0.0,
+      "unit": "USD"
+    },
+    {
+      "region": "us-west-2",
+      "amount": 0.0,
+      "unit": "USD"
+    },
+    {
+      "region": "NoRegion",
+      "amount": 0.0,
+      "unit": "USD"
+    },
+    {
+      "region": "us-east-2",
+      "amount": -0.0,
+      "unit": "USD"
+    }
+  ],
+  "daily_costs": [
+    {
+      "date": "2026-02-19",
+      "services": [
+        {
+          "service": "AWS Data Transfer",
+          "amount": -0.0,
+          "unit": "USD"
+        },
+        {
+          "service": "AWS Glue",
+          "amount": 0.0,
+          "unit": "USD"
+        },
+        {
+          "service": "AWS Secrets Manager",
+          "amount": 0.0,
+          "unit": "USD"
+        },
+        {
+          "service": "Amazon DynamoDB",
+          "amount": -0.0,
+          "unit": "USD"
+        },
+        {
+          "service": "Amazon Simple Queue Service",
+          "amount": 0.0,
+          "unit": "USD"
+        },
+        {
+          "service": "Amazon Simple Storage Service",
+          "amount": 0.0,
+          "unit": "USD"
+        },
+        {
+          "service": "AmazonCloudWatch",
+          "amount": 0.0,
+          "unit": "USD"
+        }
+      ]
+    },
+    {
+      "date": "2026-02-20",
+      "services": [
+        {
+          "service": "AWS Glue",
+          "amount": 0.0,
+          "unit": "USD"
+        },
+        {
+          "service": "AWS Secrets Manager",
+          "amount": 0.0,
+          "unit": "USD"
+        },
+        {
+          "service": "Amazon DynamoDB",
+          "amount": -0.0,
+          "unit": "USD"
+        },
+        {
+          "service": "Amazon Simple Queue Service",
+          "amount": 0.0,
+          "unit": "USD"
+        },
+        {
+          "service": "AmazonCloudWatch",
+          "amount": 0.0,
+          "unit": "USD"
+        }
+      ]
+    },
+    {
+      "date": "2026-02-21",
+      "services": [
+        {
+          "service": "AWS Glue",
+          "amount": 0.0,
+          "unit": "USD"
+        },
+        {
+          "service": "AWS Secrets Manager",
+          "amount": 0.0,
+          "unit": "USD"
+        },
+        {
+          "service": "Amazon DynamoDB",
+          "amount": -0.0,
+          "unit": "USD"
+        },
+        {
+          "service": "Amazon Simple Queue Service",
+          "amount": 0.0,
+          "unit": "USD"
+        },
+        {
+          "service": "AmazonCloudWatch",
+          "amount": 0.0,
+          "unit": "USD"
+        }
+      ]
+    },
+    {
+      "date": "2026-02-22",
+      "services": [
+        {
+          "service": "AWS CloudShell",
+          "amount": 0.0,
+          "unit": "USD"
+        },
+        {
+          "service": "AWS Glue",
+          "amount": 0.0,
+          "unit": "USD"
+        },
+        {
+          "service": "AWS Key Management Service",
+          "amount": 0.0,
+          "unit": "USD"
+        },
+        {
+          "service": "AWS Lambda",
+          "amount": 0.0,
+          "unit": "USD"
+        },
+        {
+          "service": "AWS Secrets Manager",
+          "amount": -0.0,
+          "unit": "USD"
+        },
+        {
+          "service": "Amazon DynamoDB",
+          "amount": -0.0,
+          "unit": "USD"
+        },
+        {
+          "service": "Amazon Simple Notification Service",
+          "amount": 0.0,
+          "unit": "USD"
+        },
+        {
+          "service": "Amazon Simple Queue Service",
+          "amount": 0.0,
+          "unit": "USD"
+        },
+        {
+          "service": "Amazon Simple Storage Service",
+          "amount": 0.0,
+          "unit": "USD"
+        },
+        {
+          "service": "AmazonCloudWatch",
+          "amount": 0.0,
+          "unit": "USD"
+        }
+      ]
+    },
+    {
+      "date": "2026-02-23",
+      "services": [
+        {
+          "service": "AWS Glue",
+          "amount": 0.0,
+          "unit": "USD"
+        },
+        {
+          "service": "AWS Key Management Service",
+          "amount": 0.0,
+          "unit": "USD"
+        },
+        {
+          "service": "AWS Lambda",
+          "amount": 0.0,
+          "unit": "USD"
+        },
+        {
+          "service": "AWS Secrets Manager",
+          "amount": -0.0,
+          "unit": "USD"
+        },
+        {
+          "service": "Amazon DynamoDB",
+          "amount": -0.0,
+          "unit": "USD"
+        },
+        {
+          "service": "Amazon Simple Notification Service",
+          "amount": 0.0,
+          "unit": "USD"
+        },
+        {
+          "service": "Amazon Simple Queue Service",
+          "amount": 0.0,
+          "unit": "USD"
+        },
+        {
+          "service": "Amazon Simple Storage Service",
+          "amount": 0.0,
+          "unit": "USD"
+        },
+        {
+          "service": "AmazonCloudWatch",
+          "amount": 0.0,
+          "unit": "USD"
+        }
+      ]
+    },
+    {
+      "date": "2026-02-24",
+      "services": [
+        {
+          "service": "AWS Glue",
+          "amount": 0.0,
+          "unit": "USD"
+        },
+        {
+          "service": "AWS Lambda",
+          "amount": 0.0,
+          "unit": "USD"
+        },
+        {
+          "service": "AWS Secrets Manager",
+          "amount": -0.0,
+          "unit": "USD"
+        },
+        {
+          "service": "Amazon DynamoDB",
+          "amount": -0.0,
+          "unit": "USD"
+        },
+        {
+          "service": "Amazon Simple Queue Service",
+          "amount": 0.0,
+          "unit": "USD"
+        },
+        {
+          "service": "Amazon Simple Storage Service",
+          "amount": 0.0,
+          "unit": "USD"
+        },
+        {
+          "service": "AmazonCloudWatch",
+          "amount": 0.0,
+          "unit": "USD"
+        }
+      ]
+    },
+    {
+      "date": "2026-02-25",
+      "services": [
+        {
+          "service": "AWS Glue",
+          "amount": 0.0,
+          "unit": "USD"
+        },
+        {
+          "service": "AWS Lambda",
+          "amount": 0.0,
+          "unit": "USD"
+        },
+        {
+          "service": "AWS Secrets Manager",
+          "amount": -0.0,
+          "unit": "USD"
+        },
+        {
+          "service": "Amazon DynamoDB",
+          "amount": -0.0,
+          "unit": "USD"
+        },
+        {
+          "service": "Amazon Simple Queue Service",
+          "amount": 0.0,
+          "unit": "USD"
+        },
+        {
+          "service": "Amazon Simple Storage Service",
+          "amount": 0.0,
+          "unit": "USD"
+        },
+        {
+          "service": "AmazonCloudWatch",
+          "amount": 0.0,
+          "unit": "USD"
+        }
+      ]
+    },
+    {
+      "date": "2026-02-26",
+      "services": [
+        {
+          "service": "AWS Glue",
+          "amount": 0.0,
+          "unit": "USD"
+        },
+        {
+          "service": "AWS Lambda",
+          "amount": 0.0,
+          "unit": "USD"
+        },
+        {
+          "service": "AWS Secrets Manager",
+          "amount": -0.0,
+          "unit": "USD"
+        },
+        {
+          "service": "Amazon DynamoDB",
+          "amount": -0.0,
+          "unit": "USD"
+        },
+        {
+          "service": "Amazon Simple Queue Service",
+          "amount": 0.0,
+          "unit": "USD"
+        },
+        {
+          "service": "Amazon Simple Storage Service",
+          "amount": 0.0,
+          "unit": "USD"
+        },
+        {
+          "service": "AmazonCloudWatch",
+          "amount": 0.0,
+          "unit": "USD"
+        }
+      ]
+    },
+    {
+      "date": "2026-02-27",
+      "services": [
+        {
+          "service": "AWS Glue",
+          "amount": 0.0,
+          "unit": "USD"
+        },
+        {
+          "service": "AWS Key Management Service",
+          "amount": 0.0,
+          "unit": "USD"
+        },
+        {
+          "service": "AWS Lambda",
+          "amount": 0.0,
+          "unit": "USD"
+        },
+        {
+          "service": "AWS Secrets Manager",
+          "amount": -0.0,
+          "unit": "USD"
+        },
+        {
+          "service": "Amazon DynamoDB",
+          "amount": -0.0,
+          "unit": "USD"
+        },
+        {
+          "service": "Amazon Simple Notification Service",
+          "amount": 0.0,
+          "unit": "USD"
+        },
+        {
+          "service": "Amazon Simple Queue Service",
+          "amount": 0.0,
+          "unit": "USD"
+        },
+        {
+          "service": "Amazon Simple Storage Service",
+          "amount": 0.0,
+          "unit": "USD"
+        },
+        {
+          "service": "AmazonCloudWatch",
+          "amount": 0.0,
+          "unit": "USD"
+        }
+      ]
+    },
+    {
+      "date": "2026-02-28",
+      "services": [
+        {
+          "service": "AWS Glue",
+          "amount": 0.0,
+          "unit": "USD"
+        },
+        {
+          "service": "AWS Key Management Service",
+          "amount": 0.0,
+          "unit": "USD"
+        },
+        {
+          "service": "AWS Lambda",
+          "amount": 0.0,
+          "unit": "USD"
+        },
+        {
+          "service": "AWS Secrets Manager",
+          "amount": -0.0,
+          "unit": "USD"
+        },
+        {
+          "service": "Amazon DynamoDB",
+          "amount": -0.0,
+          "unit": "USD"
+        },
+        {
+          "service": "Amazon Simple Queue Service",
+          "amount": 0.0,
+          "unit": "USD"
+        },
+        {
+          "service": "Amazon Simple Storage Service",
+          "amount": 0.0,
+          "unit": "USD"
+        },
+        {
+          "service": "AmazonCloudWatch",
+          "amount": 0.0,
+          "unit": "USD"
+        }
+      ]
+    },
+    {
+      "date": "2026-03-01",
+      "services": [
+        {
+          "service": "AWS Glue",
+          "amount": 0.0,
+          "unit": "USD"
+        },
+        {
+          "service": "AWS Lambda",
+          "amount": 0.0,
+          "unit": "USD"
+        },
+        {
+          "service": "AWS Secrets Manager",
+          "amount": 0.0,
+          "unit": "USD"
+        },
+        {
+          "service": "Amazon Bedrock",
+          "amount": 0.0,
+          "unit": "USD"
+        },
+        {
+          "service": "Amazon DynamoDB",
+          "amount": -0.0,
+          "unit": "USD"
+        },
+        {
+          "service": "Amazon Simple Queue Service",
+          "amount": 0.0,
+          "unit": "USD"
+        },
+        {
+          "service": "Amazon Simple Storage Service",
+          "amount": 0.0,
+          "unit": "USD"
+        },
+        {
+          "service": "AmazonCloudWatch",
+          "amount": 0.0,
+          "unit": "USD"
+        },
+        {
+          "service": "Claude Sonnet 4 (Amazon Bedrock Edition)",
+          "amount": 0.0,
+          "unit": "USD"
+        },
+        {
+          "service": "Tax",
+          "amount": 0.0,
+          "unit": "USD"
+        }
+      ]
+    },
+    {
+      "date": "2026-03-02",
+      "services": [
+        {
+          "service": "AWS Data Transfer",
+          "amount": -0.0,
+          "unit": "USD"
+        },
+        {
+          "service": "AWS Glue",
+          "amount": 0.0,
+          "unit": "USD"
+        },
+        {
+          "service": "AWS Key Management Service",
+          "amount": 0.0,
+          "unit": "USD"
+        },
+        {
+          "service": "AWS Lambda",
+          "amount": 0.0,
+          "unit": "USD"
+        },
+        {
+          "service": "AWS Secrets Manager",
+          "amount": 0.0,
+          "unit": "USD"
+        },
+        {
+          "service": "Amazon DynamoDB",
+          "amount": -0.0,
+          "unit": "USD"
+        },
+        {
+          "service": "Amazon Simple Queue Service",
+          "amount": 0.0,
+          "unit": "USD"
+        },
+        {
+          "service": "Amazon Simple Storage Service",
+          "amount": 0.0,
+          "unit": "USD"
+        },
+        {
+          "service": "AmazonCloudWatch",
+          "amount": 0.0,
+          "unit": "USD"
+        },
+        {
+          "service": "Claude 3 Haiku (Amazon Bedrock Edition)",
+          "amount": 0.0,
+          "unit": "USD"
+        }
+      ]
+    },
+    {
+      "date": "2026-03-03",
+      "services": [
+        {
+          "service": "AWS CloudShell",
+          "amount": 0.0,
+          "unit": "USD"
+        },
+        {
+          "service": "AWS Data Transfer",
+          "amount": -0.0,
+          "unit": "USD"
+        },
+        {
+          "service": "AWS Glue",
+          "amount": 0.0,
+          "unit": "USD"
+        },
+        {
+          "service": "AWS Lambda",
+          "amount": 0.0,
+          "unit": "USD"
+        },
+        {
+          "service": "AWS Secrets Manager",
+          "amount": 0.0,
+          "unit": "USD"
+        },
+        {
+          "service": "Amazon Bedrock",
+          "amount": 0.0,
+          "unit": "USD"
+        },
+        {
+          "service": "Amazon DynamoDB",
+          "amount": -0.0,
+          "unit": "USD"
+        },
+        {
+          "service": "Amazon Simple Queue Service",
+          "amount": 0.0,
+          "unit": "USD"
+        },
+        {
+          "service": "Amazon Simple Storage Service",
+          "amount": 0.0,
+          "unit": "USD"
+        },
+        {
+          "service": "AmazonCloudWatch",
+          "amount": 0.0,
+          "unit": "USD"
+        }
+      ]
+    },
+    {
+      "date": "2026-03-04",
+      "services": [
+        {
+          "service": "AWS Data Transfer",
+          "amount": -0.0,
+          "unit": "USD"
+        },
+        {
+          "service": "AWS Glue",
+          "amount": 0.0,
+          "unit": "USD"
+        },
+        {
+          "service": "AWS Key Management Service",
+          "amount": 0.0,
+          "unit": "USD"
+        },
+        {
+          "service": "AWS Lambda",
+          "amount": 0.0,
+          "unit": "USD"
+        },
+        {
+          "service": "AWS Secrets Manager",
+          "amount": 0.0,
+          "unit": "USD"
+        },
+        {
+          "service": "Amazon Bedrock",
+          "amount": 0.0,
+          "unit": "USD"
+        },
+        {
+          "service": "Amazon DynamoDB",
+          "amount": -0.0,
+          "unit": "USD"
+        },
+        {
+          "service": "Amazon Simple Queue Service",
+          "amount": 0.0,
+          "unit": "USD"
+        },
+        {
+          "service": "Amazon Simple Storage Service",
+          "amount": 0.0,
+          "unit": "USD"
+        },
+        {
+          "service": "AmazonCloudWatch",
+          "amount": 0.0,
+          "unit": "USD"
+        }
+      ]
+    },
+    {
+      "date": "2026-03-05",
+      "services": [
+        {
+          "service": "AWS Glue",
+          "amount": 0.0,
+          "unit": "USD"
+        },
+        {
+          "service": "AWS Lambda",
+          "amount": 0.0,
+          "unit": "USD"
+        },
+        {
+          "service": "AWS Secrets Manager",
+          "amount": 0.0,
+          "unit": "USD"
+        },
+        {
+          "service": "Amazon API Gateway",
+          "amount": 0.0,
+          "unit": "USD"
+        },
+        {
+          "service": "Amazon Bedrock",
+          "amount": 0.0,
+          "unit": "USD"
+        },
+        {
+          "service": "Amazon DynamoDB",
+          "amount": -0.0,
+          "unit": "USD"
+        },
+        {
+          "service": "Amazon Simple Queue Service",
+          "amount": 0.0,
+          "unit": "USD"
+        },
+        {
+          "service": "Amazon Simple Storage Service",
+          "amount": 0.0,
+          "unit": "USD"
+        },
+        {
+          "service": "AmazonCloudWatch",
+          "amount": 0.0,
+          "unit": "USD"
+        },
+        {
+          "service": "Claude 3 Haiku (Amazon Bedrock Edition)",
+          "amount": 0.0,
+          "unit": "USD"
+        }
+      ]
+    },
+    {
+      "date": "2026-03-06",
+      "services": [
+        {
+          "service": "AWS Glue",
+          "amount": 0.0,
+          "unit": "USD"
+        },
+        {
+          "service": "AWS Lambda",
+          "amount": 0.0,
+          "unit": "USD"
+        },
+        {
+          "service": "AWS Secrets Manager",
+          "amount": 0.0,
+          "unit": "USD"
+        },
+        {
+          "service": "Amazon DynamoDB",
+          "amount": -0.0,
+          "unit": "USD"
+        },
+        {
+          "service": "Amazon Simple Queue Service",
+          "amount": 0.0,
+          "unit": "USD"
+        },
+        {
+          "service": "Amazon Simple Storage Service",
+          "amount": 0.0,
+          "unit": "USD"
+        },
+        {
+          "service": "AmazonCloudWatch",
+          "amount": 0.0,
+          "unit": "USD"
+        }
+      ]
+    },
+    {
+      "date": "2026-03-07",
+      "services": [
+        {
+          "service": "AWS Glue",
+          "amount": 0.0,
+          "unit": "USD"
+        },
+        {
+          "service": "AWS Lambda",
+          "amount": 0.0,
+          "unit": "USD"
+        },
+        {
+          "service": "AWS Secrets Manager",
+          "amount": 0.0,
+          "unit": "USD"
+        },
+        {
+          "service": "Amazon DynamoDB",
+          "amount": -0.0,
+          "unit": "USD"
+        },
+        {
+          "service": "Amazon Simple Queue Service",
+          "amount": 0.0,
+          "unit": "USD"
+        },
+        {
+          "service": "Amazon Simple Storage Service",
+          "amount": 0.0,
+          "unit": "USD"
+        },
+        {
+          "service": "AmazonCloudWatch",
+          "amount": 0.0,
+          "unit": "USD"
+        }
+      ]
+    },
+    {
+      "date": "2026-03-08",
+      "services": [
+        {
+          "service": "AWS Data Transfer",
+          "amount": -0.0,
+          "unit": "USD"
+        },
+        {
+          "service": "AWS Glue",
+          "amount": 0.0,
+          "unit": "USD"
+        },
+        {
+          "service": "AWS Lambda",
+          "amount": 0.0,
+          "unit": "USD"
+        },
+        {
+          "service": "AWS Secrets Manager",
+          "amount": 0.0,
+          "unit": "USD"
+        },
+        {
+          "service": "Amazon DynamoDB",
+          "amount": -0.0,
+          "unit": "USD"
+        },
+        {
+          "service": "Amazon Simple Queue Service",
+          "amount": 0.0,
+          "unit": "USD"
+        },
+        {
+          "service": "Amazon Simple Storage Service",
+          "amount": 0.0,
+          "unit": "USD"
+        },
+        {
+          "service": "AmazonCloudWatch",
+          "amount": 0.0,
+          "unit": "USD"
+        }
+      ]
+    },
+    {
+      "date": "2026-03-09",
+      "services": [
+        {
+          "service": "AWS Glue",
+          "amount": 0.0,
+          "unit": "USD"
+        },
+        {
+          "service": "AWS Key Management Service",
+          "amount": 0.0,
+          "unit": "USD"
+        },
+        {
+          "service": "AWS Lambda",
+          "amount": 0.0,
+          "unit": "USD"
+        },
+        {
+          "service": "AWS Secrets Manager",
+          "amount": 0.0,
+          "unit": "USD"
+        },
+        {
+          "service": "Amazon DynamoDB",
+          "amount": -0.0,
+          "unit": "USD"
+        },
+        {
+          "service": "Amazon Simple Queue Service",
+          "amount": 0.0,
+          "unit": "USD"
+        },
+        {
+          "service": "Amazon Simple Storage Service",
+          "amount": 0.0,
+          "unit": "USD"
+        },
+        {
+          "service": "AmazonCloudWatch",
+          "amount": 0.0,
+          "unit": "USD"
+        }
+      ]
+    },
+    {
+      "date": "2026-03-10",
+      "services": [
+        {
+          "service": "AWS Glue",
+          "amount": 0.0,
+          "unit": "USD"
+        },
+        {
+          "service": "AWS Lambda",
+          "amount": 0.0,
+          "unit": "USD"
+        },
+        {
+          "service": "AWS Secrets Manager",
+          "amount": 0.0,
+          "unit": "USD"
+        },
+        {
+          "service": "Amazon DynamoDB",
+          "amount": -0.0,
+          "unit": "USD"
+        },
+        {
+          "service": "Amazon Simple Queue Service",
+          "amount": 0.0,
+          "unit": "USD"
+        },
+        {
+          "service": "Amazon Simple Storage Service",
+          "amount": 0.0,
+          "unit": "USD"
+        },
+        {
+          "service": "AmazonCloudWatch",
+          "amount": 0.0,
+          "unit": "USD"
+        }
+      ]
+    },
+    {
+      "date": "2026-03-11",
+      "services": [
+        {
+          "service": "AWS Glue",
+          "amount": 0.0,
+          "unit": "USD"
+        },
+        {
+          "service": "AWS Lambda",
+          "amount": 0.0,
+          "unit": "USD"
+        },
+        {
+          "service": "AWS Secrets Manager",
+          "amount": 0.0,
+          "unit": "USD"
+        },
+        {
+          "service": "Amazon API Gateway",
+          "amount": 0.0,
+          "unit": "USD"
+        },
+        {
+          "service": "Amazon DynamoDB",
+          "amount": -0.0,
+          "unit": "USD"
+        },
+        {
+          "service": "Amazon Simple Queue Service",
+          "amount": 0.0,
+          "unit": "USD"
+        },
+        {
+          "service": "Amazon Simple Storage Service",
+          "amount": 0.0,
+          "unit": "USD"
+        },
+        {
+          "service": "AmazonCloudWatch",
+          "amount": 0.0,
+          "unit": "USD"
+        }
+      ]
+    },
+    {
+      "date": "2026-03-12",
+      "services": [
+        {
+          "service": "AWS Glue",
+          "amount": 0.0,
+          "unit": "USD"
+        },
+        {
+          "service": "AWS Lambda",
+          "amount": 0.0,
+          "unit": "USD"
+        },
+        {
+          "service": "AWS Secrets Manager",
+          "amount": 0.0,
+          "unit": "USD"
+        },
+        {
+          "service": "Amazon DynamoDB",
+          "amount": -0.0,
+          "unit": "USD"
+        },
+        {
+          "service": "Amazon Simple Queue Service",
+          "amount": 0.0,
+          "unit": "USD"
+        },
+        {
+          "service": "Amazon Simple Storage Service",
+          "amount": 0.0,
+          "unit": "USD"
+        },
+        {
+          "service": "AmazonCloudWatch",
+          "amount": 0.0,
+          "unit": "USD"
+        }
+      ]
+    },
+    {
+      "date": "2026-03-13",
+      "services": [
+        {
+          "service": "AWS Glue",
+          "amount": 0.0,
+          "unit": "USD"
+        },
+        {
+          "service": "AWS Lambda",
+          "amount": 0.0,
+          "unit": "USD"
+        },
+        {
+          "service": "AWS Secrets Manager",
+          "amount": 0.0,
+          "unit": "USD"
+        },
+        {
+          "service": "Amazon API Gateway",
+          "amount": 0.0,
+          "unit": "USD"
+        },
+        {
+          "service": "Amazon DynamoDB",
+          "amount": -0.0,
+          "unit": "USD"
+        },
+        {
+          "service": "Amazon Simple Queue Service",
+          "amount": 0.0,
+          "unit": "USD"
+        },
+        {
+          "service": "Amazon Simple Storage Service",
+          "amount": 0.0,
+          "unit": "USD"
+        },
+        {
+          "service": "AmazonCloudWatch",
+          "amount": 0.0,
+          "unit": "USD"
+        }
+      ]
+    },
+    {
+      "date": "2026-03-14",
+      "services": [
+        {
+          "service": "AWS Glue",
+          "amount": 0.0,
+          "unit": "USD"
+        },
+        {
+          "service": "AWS Key Management Service",
+          "amount": 0.0,
+          "unit": "USD"
+        },
+        {
+          "service": "AWS Lambda",
+          "amount": 0.0,
+          "unit": "USD"
+        },
+        {
+          "service": "AWS Secrets Manager",
+          "amount": 0.0,
+          "unit": "USD"
+        },
+        {
+          "service": "Amazon DynamoDB",
+          "amount": 0.0,
+          "unit": "USD"
+        },
+        {
+          "service": "Amazon Simple Notification Service",
+          "amount": 0.0,
+          "unit": "USD"
+        },
+        {
+          "service": "Amazon Simple Queue Service",
+          "amount": 0.0,
+          "unit": "USD"
+        },
+        {
+          "service": "Amazon Simple Storage Service",
+          "amount": 0.0,
+          "unit": "USD"
+        },
+        {
+          "service": "AmazonCloudWatch",
+          "amount": 0.0,
+          "unit": "USD"
+        }
+      ]
+    },
+    {
+      "date": "2026-03-15",
+      "services": [
+        {
+          "service": "AWS Glue",
+          "amount": 0.0,
+          "unit": "USD"
+        },
+        {
+          "service": "AWS Key Management Service",
+          "amount": 0.0,
+          "unit": "USD"
+        },
+        {
+          "service": "AWS Lambda",
+          "amount": 0.0,
+          "unit": "USD"
+        },
+        {
+          "service": "AWS Secrets Manager",
+          "amount": 0.0,
+          "unit": "USD"
+        },
+        {
+          "service": "Amazon DynamoDB",
+          "amount": 0.0,
+          "unit": "USD"
+        },
+        {
+          "service": "Amazon Simple Queue Service",
+          "amount": 0.0,
+          "unit": "USD"
+        },
+        {
+          "service": "Amazon Simple Storage Service",
+          "amount": 0.0,
+          "unit": "USD"
+        },
+        {
+          "service": "AmazonCloudWatch",
+          "amount": 0.0,
+          "unit": "USD"
+        }
+      ]
+    },
+    {
+      "date": "2026-03-16",
+      "services": [
+        {
+          "service": "AWS Glue",
+          "amount": 0.0,
+          "unit": "USD"
+        },
+        {
+          "service": "AWS Lambda",
+          "amount": 0.0,
+          "unit": "USD"
+        },
+        {
+          "service": "AWS Secrets Manager",
+          "amount": 0.0,
+          "unit": "USD"
+        },
+        {
+          "service": "Amazon DynamoDB",
+          "amount": 0.0,
+          "unit": "USD"
+        },
+        {
+          "service": "Amazon Simple Queue Service",
+          "amount": 0.0,
+          "unit": "USD"
+        },
+        {
+          "service": "Amazon Simple Storage Service",
+          "amount": 0.0,
+          "unit": "USD"
+        },
+        {
+          "service": "AmazonCloudWatch",
+          "amount": 0.0,
+          "unit": "USD"
+        },
+        {
+          "service": "Claude 3 Haiku (Amazon Bedrock Edition)",
+          "amount": 0.0,
+          "unit": "USD"
+        }
+      ]
+    },
+    {
+      "date": "2026-03-17",
+      "services": [
+        {
+          "service": "AWS Glue",
+          "amount": 0.0,
+          "unit": "USD"
+        },
+        {
+          "service": "AWS Lambda",
+          "amount": 0.0,
+          "unit": "USD"
+        },
+        {
+          "service": "AWS Secrets Manager",
+          "amount": 0.0,
+          "unit": "USD"
+        },
+        {
+          "service": "Amazon Bedrock",
+          "amount": 0.0,
+          "unit": "USD"
+        },
+        {
+          "service": "Amazon DynamoDB",
+          "amount": 0.0,
+          "unit": "USD"
+        },
+        {
+          "service": "Amazon Simple Queue Service",
+          "amount": 0.0,
+          "unit": "USD"
+        },
+        {
+          "service": "Amazon Simple Storage Service",
+          "amount": 0.0,
+          "unit": "USD"
+        },
+        {
+          "service": "AmazonCloudWatch",
+          "amount": 0.0,
+          "unit": "USD"
+        },
+        {
+          "service": "Claude 3 Haiku (Amazon Bedrock Edition)",
+          "amount": 0.0,
+          "unit": "USD"
+        }
+      ]
+    },
+    {
+      "date": "2026-03-18",
+      "services": [
+        {
+          "service": "AWS Glue",
+          "amount": 0.0,
+          "unit": "USD"
+        },
+        {
+          "service": "AWS Lambda",
+          "amount": 0.0,
+          "unit": "USD"
+        },
+        {
+          "service": "AWS Secrets Manager",
+          "amount": 0.0,
+          "unit": "USD"
+        },
+        {
+          "service": "Amazon DynamoDB",
+          "amount": 0.0,
+          "unit": "USD"
+        },
+        {
+          "service": "Amazon Simple Queue Service",
+          "amount": 0.0,
+          "unit": "USD"
+        },
+        {
+          "service": "Amazon Simple Storage Service",
+          "amount": 0.0,
+          "unit": "USD"
+        },
+        {
+          "service": "AmazonCloudWatch",
+          "amount": 0.0,
+          "unit": "USD"
+        }
+      ]
+    },
+    {
+      "date": "2026-03-19",
+      "services": [
+        {
+          "service": "AWS Data Transfer",
+          "amount": -0.0,
+          "unit": "USD"
+        },
+        {
+          "service": "AWS Glue",
+          "amount": 0.0,
+          "unit": "USD"
+        },
+        {
+          "service": "AWS Key Management Service",
+          "amount": 0.0,
+          "unit": "USD"
+        },
+        {
+          "service": "AWS Lambda",
+          "amount": 0.0,
+          "unit": "USD"
+        },
+        {
+          "service": "AWS Secrets Manager",
+          "amount": -0.0,
+          "unit": "USD"
+        },
+        {
+          "service": "Amazon DynamoDB",
+          "amount": 0.0,
+          "unit": "USD"
+        },
+        {
+          "service": "Amazon Elastic Container Service",
+          "amount": 0.0,
+          "unit": "USD"
+        },
+        {
+          "service": "Amazon Simple Notification Service",
+          "amount": 0.0,
+          "unit": "USD"
+        },
+        {
+          "service": "Amazon Simple Queue Service",
+          "amount": 0.0,
+          "unit": "USD"
+        },
+        {
+          "service": "Amazon Simple Storage Service",
+          "amount": 0.0,
+          "unit": "USD"
+        },
+        {
+          "service": "Amazon Virtual Private Cloud",
+          "amount": 0.0,
+          "unit": "USD"
+        },
+        {
+          "service": "AmazonCloudWatch",
+          "amount": 0.0,
+          "unit": "USD"
+        },
+        {
+          "service": "CodeBuild",
+          "amount": 0.0,
+          "unit": "USD"
+        }
+      ]
+    },
+    {
+      "date": "2026-03-20",
+      "services": [
+        {
+          "service": "AWS Data Transfer",
+          "amount": -0.0,
+          "unit": "USD"
+        },
+        {
+          "service": "AWS Glue",
+          "amount": 0.0,
+          "unit": "USD"
+        },
+        {
+          "service": "AWS Key Management Service",
+          "amount": 0.0,
+          "unit": "USD"
+        },
+        {
+          "service": "AWS Secrets Manager",
+          "amount": -0.0,
+          "unit": "USD"
+        },
+        {
+          "service": "Amazon DynamoDB",
+          "amount": 0.0,
+          "unit": "USD"
+        },
+        {
+          "service": "Amazon Elastic Container Service",
+          "amount": 0.0,
+          "unit": "USD"
+        },
+        {
+          "service": "Amazon Simple Notification Service",
+          "amount": 0.0,
+          "unit": "USD"
+        },
+        {
+          "service": "Amazon Simple Queue Service",
+          "amount": 0.0,
+          "unit": "USD"
+        },
+        {
+          "service": "Amazon Simple Storage Service",
+          "amount": 0.0,
+          "unit": "USD"
+        },
+        {
+          "service": "Amazon Virtual Private Cloud",
+          "amount": 0.0,
+          "unit": "USD"
+        },
+        {
+          "service": "AmazonCloudWatch",
+          "amount": 0.0,
+          "unit": "USD"
+        }
+      ]
+    }
+  ],
+  "forecast": {
+    "amount": 0.0,
+    "unit": "USD",
+    "prediction_interval_lower": 0.0,
+    "prediction_interval_upper": 0.0,
+    "error": "An error occurred (ValidationException) when calling the GetCostForecast operation: Earliest supported Start is 2026-03-21"
+  },
+  "anomalies": [],
+  "anomalies_error": ""
+}

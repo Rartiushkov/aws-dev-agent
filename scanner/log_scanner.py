@@ -1,14 +1,16 @@
 import subprocess
 import json
 
+from executor.command_runner import tokenize_command
+
 
 class LogScanner:
 
     def run(self, cmd):
 
         result = subprocess.run(
-            cmd,
-            shell=True,
+            tokenize_command(cmd) if isinstance(cmd, str) else cmd,
+            shell=False,
             capture_output=True,
             text=True
         )
@@ -17,12 +19,11 @@ class LogScanner:
 
 
     def scan_lambda_logs(self, lambda_name):
-
-        cmd = f"aws logs tail /aws/lambda/{lambda_name} --since 5m"
+        cmd = ["aws", "logs", "tail", f"/aws/lambda/{lambda_name}", "--since", "5m"]
 
         result = subprocess.run(
             cmd,
-            shell=True,
+            shell=False,
             capture_output=True,
             text=True
         )

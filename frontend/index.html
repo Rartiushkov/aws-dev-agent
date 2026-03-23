@@ -1,0 +1,343 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AWS Dev Agent</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=Space+Grotesk:wght@500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <canvas id="particle-canvas" class="particle-canvas" aria-hidden="true"></canvas>
+      <div class="grid-overlay"></div>
+      <div class="cloud-band cloud-band-top"></div>
+      <div class="cloud-band cloud-band-bottom"></div>
+      <div class="hero-glow hero-glow-left"></div>
+      <div class="hero-glow hero-glow-right"></div>
+      <div class="ambient ambient-left"></div>
+      <div class="ambient ambient-right"></div>
+      <div class="site-network" aria-hidden="true">
+        <svg class="network-svg" viewBox="0 0 1440 2200" preserveAspectRatio="none">
+          <defs>
+            <filter id="signalGlow">
+              <feGaussianBlur stdDeviation="4" result="blur"></feGaussianBlur>
+              <feMerge>
+                <feMergeNode in="blur"></feMergeNode>
+                <feMergeNode in="SourceGraphic"></feMergeNode>
+              </feMerge>
+            </filter>
+          </defs>
+          <path id="signal-path-a" class="signal-path" data-speed="0.9" d="M 270 190 C 340 190, 384 190, 446 208 S 548 236, 620 252"></path>
+          <path id="signal-path-b" class="signal-path" data-speed="0.76" d="M 238 286 C 314 286, 332 320, 382 352 S 510 404, 612 430"></path>
+          <path id="signal-path-c" class="signal-path" data-speed="0.62" d="M 304 612 C 400 612, 454 612, 516 638 S 680 710, 860 754"></path>
+          <path id="signal-path-d" class="signal-path" data-speed="0.92" d="M 788 980 C 882 980, 958 988, 1034 992 S 1112 994, 1186 990"></path>
+          <path id="signal-path-e" class="signal-path" data-speed="0.58" d="M 276 1336 C 398 1336, 466 1366, 540 1398 S 824 1458, 1032 1490"></path>
+          <path id="signal-path-f" class="signal-path" data-speed="0.66" d="M 230 540 C 344 540, 422 554, 500 568 S 724 592, 900 618"></path>
+          <path id="signal-path-g" class="signal-path" data-speed="0.63" d="M 736 1144 C 820 1144, 890 1170, 958 1200 S 1094 1252, 1200 1298"></path>
+          <path id="signal-path-h" class="signal-path" data-speed="0.61" d="M 210 824 C 330 824, 406 842, 484 862 S 760 904, 954 934"></path>
+          <path id="signal-path-i" class="signal-path" data-speed="0.54" d="M 240 1748 C 404 1748, 500 1766, 600 1792 S 884 1838, 1128 1896"></path>
+          <g id="signal-dots-layer"></g>
+        </svg>
+        <div class="network-node node-lambda">
+          <div class="service-glyph glyph-lambda">Fn</div>
+          <div class="service-copy">
+            <span class="service-tag">AWS</span>
+            <strong>Lambda</strong>
+          </div>
+        </div>
+        <div class="network-node node-sqs">
+          <div class="service-glyph glyph-sqs">Q</div>
+          <div class="service-copy">
+            <span class="service-tag">AWS</span>
+            <strong>SQS</strong>
+          </div>
+        </div>
+        <div class="network-node node-dynamo">
+          <div class="service-glyph glyph-dynamo">DB</div>
+          <div class="service-copy">
+            <span class="service-tag">AWS</span>
+            <strong>DynamoDB</strong>
+          </div>
+        </div>
+        <div class="network-node node-sns">
+          <div class="service-glyph glyph-sns">N</div>
+          <div class="service-copy">
+            <span class="service-tag">AWS</span>
+            <strong>SNS</strong>
+          </div>
+        </div>
+        <div class="network-node node-ecs">
+          <div class="service-glyph glyph-ecs">C</div>
+          <div class="service-copy">
+            <span class="service-tag">AWS</span>
+            <strong>ECS</strong>
+          </div>
+        </div>
+        <div class="network-node node-apigw">
+          <div class="service-glyph glyph-apigw">API</div>
+          <div class="service-copy">
+            <span class="service-tag">AWS</span>
+            <strong>API</strong>
+          </div>
+        </div>
+      </div>
+
+      <header class="topbar">
+        <div class="brand">
+          <div class="brand-mark">A</div>
+          <div>
+            <strong>availabl</strong>
+            <span>AWS Migration Control Plane</span>
+          </div>
+        </div>
+        <nav class="topnav">
+          <a href="#product">Data Flow</a>
+          <a href="#workflow">Value Proposition</a>
+          <a href="#actions">Features</a>
+          <a href="#pricing">Pricing</a>
+          <a href="#pricing">AWS Status</a>
+        </nav>
+        <a class="topbar-cta" href="#product">Book a Demo</a>
+      </header>
+
+      <main>
+        <section class="hero" data-animate="hero">
+          <div class="hero-copy hero-copy-centered">
+            <h1 class="shimmer-title">Move Your AWS Infrastructure in 5 Minutes</h1>
+            <p class="hero-subtitle">From days of manual work to one command.</p>
+          </div>
+
+          <div class="hero-pill-row hero-pill-row-centered">
+            <div class="mini-pill active">One-Command Migration</div>
+            <div class="mini-pill">Auto-Create Resources</div>
+            <div class="mini-pill warning">Error Logs Included</div>
+          </div>
+
+          <div class="hero-card hero-card-centered">
+            <div class="hero-card-light"></div>
+
+            <div class="console-window">
+              <div class="console-line single-line">
+                <span class="prompt">$</span>
+                <span class="command">aws-migrate --source Account-A --target Account-B</span>
+              </div>
+            </div>
+
+            <div class="hero-demo-row">
+              <div class="hero-cta-column">
+                <button class="request-button">
+                  <span class="request-icon">[]</span>
+                  <span>Book a Demo by using Calendly</span>
+                </button>
+                <p>Seamlessly migrate your AWS environment with ease.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="hero-monitor-row">
+            <article class="monitor-card reveal-card">
+              <div class="monitor-card-head">
+                <span class="monitor-label">Signal Graph</span>
+                <span class="monitor-mute">Live</span>
+              </div>
+              <div class="monitor-grid">
+                <div class="monitor-node">SQS</div>
+                <div class="monitor-node">Lambda</div>
+                <div class="monitor-node">DynamoDB</div>
+                <div class="monitor-node">SNS</div>
+              </div>
+            </article>
+            <article class="monitor-card reveal-card">
+              <div class="monitor-card-head">
+                <span class="monitor-label">Incident Triage</span>
+                <span class="monitor-mute">Agent</span>
+              </div>
+              <div class="monitor-feed">
+                <div class="monitor-feed-line">
+                  <span class="feed-badge">A</span>
+                  <span>Known fix suggested</span>
+                </div>
+                <div class="monitor-feed-line">
+                  <span class="feed-badge">A</span>
+                  <span>Validation passed</span>
+                </div>
+                <div class="monitor-feed-line">
+                  <span class="feed-badge">A</span>
+                  <span>Artifacts ready</span>
+                </div>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <section class="section" id="product" data-animate="section">
+          <div class="section-heading">
+            <div class="eyebrow">What Clients Get</div>
+            <h2>A Product Surface, Not Just Scripts</h2>
+          </div>
+          <div class="tech-panels">
+            <article class="tech-panel reveal-card">
+              <div class="tech-panel-top">
+                <span class="tech-chip">Live AWS Flow</span>
+                <span class="tech-chip muted">100+ resources</span>
+              </div>
+              <div class="tech-panel-grid">
+                <div class="mini-service">SQS</div>
+                <div class="mini-service">Lambda</div>
+                <div class="mini-service">DynamoDB</div>
+                <div class="mini-service">SNS</div>
+                <div class="mini-service">ECS</div>
+                <div class="mini-service">API</div>
+              </div>
+            </article>
+            <article class="tech-panel reveal-card">
+              <div class="tech-panel-top">
+                <span class="tech-chip">Incident Feed</span>
+                <span class="tech-chip muted">Auto-remediation</span>
+              </div>
+              <div class="incident-lines">
+                <div class="incident-line">
+                  <span class="incident-badge">A</span>
+                  <div>
+                    <strong>Deployment issue detected</strong>
+                    <p>Known fix suggested from agent memory.</p>
+                  </div>
+                </div>
+                <div class="incident-line">
+                  <span class="incident-badge">A</span>
+                  <div>
+                    <strong>Validation completed</strong>
+                    <p>Artifacts and manifest ready for review.</p>
+                  </div>
+                </div>
+              </div>
+            </article>
+          </div>
+          <div class="feature-grid">
+            <article class="feature-card reveal-card">
+              <h3>Preview / Apply</h3>
+              <p>Every action can show the exact plan first, then require approval before writes.</p>
+            </article>
+            <article class="feature-card reveal-card">
+              <h3>Status + Artifacts</h3>
+              <p>Each run exposes manifest paths, validation results, destroy reports, and export indexes.</p>
+            </article>
+            <article class="feature-card reveal-card">
+              <h3>Git-Ready Backup</h3>
+              <p>Clients can choose organization, repo, test connection, export backup, and push safely.</p>
+            </article>
+            <article class="feature-card reveal-card">
+              <h3>AI Operator Layer</h3>
+              <p>Explain failures, prepare migrations, create Lambda scaffolds, and reuse known fixes.</p>
+            </article>
+          </div>
+        </section>
+
+        <section class="section workflow" id="workflow" data-animate="section">
+          <div class="section-heading">
+            <div class="eyebrow">Client Workflow</div>
+            <h2>From Connect To Validation</h2>
+          </div>
+          <div class="workflow-grid">
+            <div class="workflow-step reveal-card">
+              <span>01</span>
+              <h3>Connect AWS + Git</h3>
+              <p>Cross-account role with ExternalId, Git org or repo target, and token env setup.</p>
+            </div>
+            <div class="workflow-step reveal-card">
+              <span>02</span>
+              <h3>Scan + Preflight</h3>
+              <p>Discovery, risk scan, KMS analysis, and known-fix hints before anything changes.</p>
+            </div>
+            <div class="workflow-step reveal-card">
+              <span>03</span>
+              <h3>Preview Plan</h3>
+              <p>Structured forms show the commands, warnings, approval gates, and expected artifacts.</p>
+            </div>
+            <div class="workflow-step reveal-card">
+              <span>04</span>
+              <h3>Apply + Validate</h3>
+              <p>Deploy, rerun validation, inspect reports, and explain issues in one operator surface.</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="section actions-section" id="actions" data-animate="section">
+          <div class="section-heading">
+            <div class="eyebrow">Client Essentials</div>
+            <h2>Start With AWS And Git</h2>
+          </div>
+          <div class="actions-layout">
+            <div class="action-list" id="action-list"></div>
+            <aside class="action-preview">
+              <div class="preview-header">
+                <span class="preview-label">Selected Action</span>
+                <strong id="preview-title">Deploy Environment</strong>
+              </div>
+              <p id="preview-description">
+                Preview a deploy plan, then run deploy + validation with reports.
+              </p>
+
+              <div class="preview-mode-row">
+                <div class="mode-pill">Preview</div>
+                <div class="mode-pill apply">Apply</div>
+                <div class="mode-pill gated">Approval Gate</div>
+              </div>
+
+              <div class="preview-actions">
+                <button id="apply-button" class="run-button" type="button">Run Action</button>
+                <button id="status-button" class="ghost-button" type="button">Refresh Status</button>
+              </div>
+
+              <div class="run-status-block">
+                <div class="run-status-head">
+                  <span class="preview-label">Run Status</span>
+                  <strong id="run-status">idle</strong>
+                </div>
+                <pre id="run-output">No action started yet.</pre>
+              </div>
+
+              <div class="code-preview">
+                <pre id="preview-command"></pre>
+              </div>
+
+              <div class="artifact-block">
+                <h3>Artifacts</h3>
+                <ul id="artifact-list"></ul>
+              </div>
+            </aside>
+          </div>
+        </section>
+
+        <section class="section pricing" id="pricing" data-animate="section">
+          <div class="section-heading">
+            <div class="eyebrow">Packaging</div>
+            <h2>How This Turns Into A Client Offer</h2>
+          </div>
+          <div class="pricing-grid">
+            <article class="price-card reveal-card">
+              <h3>Starter</h3>
+              <p>Read-only AWS connect, discovery, preflight, risk reports, explain mode.</p>
+            </article>
+            <article class="price-card featured reveal-card">
+              <h3>Growth</h3>
+              <p>Deploy, validate, destroy/redeploy, Git backup, AI-assisted fixes, Lambda builder.</p>
+            </article>
+            <article class="price-card reveal-card">
+              <h3>Enterprise</h3>
+              <p>Private runners, approvals, audit trail, multi-account governance, advanced agent scope.</p>
+            </article>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script src="./app.js"></script>
+  </body>
+</html>

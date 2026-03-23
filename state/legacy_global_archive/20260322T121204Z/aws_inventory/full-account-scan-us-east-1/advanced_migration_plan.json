@@ -1,0 +1,27 @@
+{
+  "generated_at": "2026-03-22T09:52:22.244473+00:00",
+  "source_env": "",
+  "target_env": "roma-art",
+  "account_id": "027087672282",
+  "region": "us-east-1",
+  "rds": [],
+  "ec2": [],
+  "cloudformation": [
+    {
+      "stack_name": "Infra-ECS-Cluster-carefree-crocodile-bf3zi5-326d268b",
+      "target_stack_name": "roma-art-Infra-ECS-Cluster-carefree-crocodile-bf3zi5-326d268b",
+      "status": "CREATE_COMPLETE",
+      "strategy": "export-template-and-redeploy",
+      "requires_template_export": true,
+      "notes": [
+        "Export current template body from source account.",
+        "Review parameters, IAM capabilities, and any custom resource lambdas before deployment."
+      ]
+    }
+  ],
+  "summary": {
+    "rds_plan_count": 0,
+    "ec2_plan_count": 0,
+    "cloudformation_plan_count": 1
+  }
+}

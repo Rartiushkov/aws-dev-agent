@@ -1,0 +1,513 @@
+{
+  "nodes": [
+    {
+      "id": "arn:aws:sqs:us-east-1:027087672282:agent-error-queue",
+      "type": "sqs",
+      "name": "agent-error-queue"
+    },
+    {
+      "id": "arn:aws:sqs:us-east-1:027087672282:agent-fix-tasks-dlq.fifo",
+      "type": "sqs",
+      "name": "agent-fix-tasks-dlq.fifo"
+    },
+    {
+      "id": "arn:aws:sqs:us-east-1:027087672282:agent-fix-tasks.fifo",
+      "type": "sqs",
+      "name": "agent-fix-tasks.fifo"
+    },
+    {
+      "id": "arn:aws:sqs:us-east-1:027087672282:connector-tasks.fifo",
+      "type": "sqs",
+      "name": "connector-tasks.fifo"
+    },
+    {
+      "id": "arn:aws:sqs:us-east-1:027087672282:plan-executor-queue",
+      "type": "sqs",
+      "name": "plan-executor-queue"
+    },
+    {
+      "id": "arn:aws:ecs:us-east-1:027087672282:cluster/carefree-crocodile-bf3zi5",
+      "type": "ecs-cluster",
+      "name": "carefree-crocodile-bf3zi5"
+    },
+    {
+      "id": "arn:aws:ecs:us-east-1:027087672282:service/carefree-crocodile-bf3zi5/test_def-service-vnwns50w",
+      "type": "ecs-service",
+      "name": "test_def-service-vnwns50w"
+    },
+    {
+      "id": "arn:aws:ecs:us-east-1:027087672282:service/carefree-crocodile-bf3zi5/test_def-service-64zgxsih",
+      "type": "ecs-service",
+      "name": "test_def-service-64zgxsih"
+    },
+    {
+      "id": "arn:aws:ecs:us-east-1:027087672282:task-definition/test_def:1",
+      "type": "ecs-task-definition",
+      "name": "test_def"
+    },
+    {
+      "id": "arn:aws:codebuild:us-east-1:027087672282:project/aws-dev-agent-tests",
+      "type": "codebuild-project",
+      "name": "aws-dev-agent-tests"
+    },
+    {
+      "id": "aws-dev-agent-codebuild-artifacts-027087672282-us-east-1",
+      "type": "s3-bucket",
+      "name": "aws-dev-agent-codebuild-artifacts-027087672282-us-east-1"
+    },
+    {
+      "id": "hippa-signer-artifacts-027087672282",
+      "type": "s3-bucket",
+      "name": "hippa-signer-artifacts-027087672282"
+    },
+    {
+      "id": "vpc-03d4bf4fd56283eb5",
+      "type": "vpc",
+      "name": "vpc-03d4bf4fd56283eb5"
+    },
+    {
+      "id": "subnet-0fd8f3eece23aa6b1",
+      "type": "subnet",
+      "name": "subnet-0fd8f3eece23aa6b1"
+    },
+    {
+      "id": "subnet-011181ad481a04d3d",
+      "type": "subnet",
+      "name": "subnet-011181ad481a04d3d"
+    },
+    {
+      "id": "subnet-0c81726f63be41cce",
+      "type": "subnet",
+      "name": "subnet-0c81726f63be41cce"
+    },
+    {
+      "id": "subnet-029a2424e7216e913",
+      "type": "subnet",
+      "name": "subnet-029a2424e7216e913"
+    },
+    {
+      "id": "subnet-04553ddb12f80aa24",
+      "type": "subnet",
+      "name": "subnet-04553ddb12f80aa24"
+    },
+    {
+      "id": "subnet-00c176177ea82ab38",
+      "type": "subnet",
+      "name": "subnet-00c176177ea82ab38"
+    },
+    {
+      "id": "sg-090d92bd87212a26f",
+      "type": "security-group",
+      "name": "default"
+    },
+    {
+      "id": "arn:aws:secretsmanager:us-east-1:027087672282:secret:hippa-signer/github/pat-XPcYpy",
+      "type": "secret",
+      "name": "hippa-signer/github/pat"
+    },
+    {
+      "id": "arn:aws:dynamodb:us-east-1:027087672282:table/agent_errors",
+      "type": "dynamodb",
+      "name": "agent_errors"
+    },
+    {
+      "id": "arn:aws:dynamodb:us-east-1:027087672282:table/agent_fix_plans",
+      "type": "dynamodb",
+      "name": "agent_fix_plans"
+    },
+    {
+      "id": "arn:aws:dynamodb:us-east-1:027087672282:table/agent_tasks",
+      "type": "dynamodb",
+      "name": "agent_tasks"
+    },
+    {
+      "id": "arn:aws:dynamodb:us-east-1:027087672282:table/clinics",
+      "type": "dynamodb",
+      "name": "clinics"
+    },
+    {
+      "id": "arn:aws:dynamodb:us-east-1:027087672282:table/consent_events",
+      "type": "dynamodb",
+      "name": "consent_events"
+    },
+    {
+      "id": "arn:aws:dynamodb:us-east-1:027087672282:table/consents",
+      "type": "dynamodb",
+      "name": "consents"
+    },
+    {
+      "id": "arn:aws:dynamodb:us-east-1:027087672282:table/idempotency_locks",
+      "type": "dynamodb",
+      "name": "idempotency_locks"
+    },
+    {
+      "id": "arn:aws:lambda:us-east-1:027087672282:function:remediator",
+      "type": "lambda",
+      "name": "remediator"
+    },
+    {
+      "id": "arn:aws:lambda:us-east-1:027087672282:function:task-dispatcher",
+      "type": "lambda",
+      "name": "task-dispatcher"
+    },
+    {
+      "id": "arn:aws:lambda:us-east-1:027087672282:function:ai-orchestrator",
+      "type": "lambda",
+      "name": "ai-orchestrator"
+    },
+    {
+      "id": "arn:aws:lambda:us-east-1:027087672282:function:connector-worker",
+      "type": "lambda",
+      "name": "connector-worker"
+    },
+    {
+      "id": "arn:aws:lambda:us-east-1:027087672282:function:agent-planner",
+      "type": "lambda",
+      "name": "agent-planner"
+    },
+    {
+      "id": "arn:aws:lambda:us-east-1:027087672282:function:setup-agent",
+      "type": "lambda",
+      "name": "setup-agent"
+    },
+    {
+      "id": "arn:aws:lambda:us-east-1:027087672282:function:test-lambda-integration",
+      "type": "lambda",
+      "name": "test-lambda-integration"
+    },
+    {
+      "id": "arn:aws:lambda:us-east-1:027087672282:function:plan-executor",
+      "type": "lambda",
+      "name": "plan-executor"
+    },
+    {
+      "id": "arn:aws:lambda:us-east-1:027087672282:function:hello-world-fn",
+      "type": "lambda",
+      "name": "hello-world-fn"
+    },
+    {
+      "id": "arn:aws:lambda:us-east-1:027087672282:function:log-collector",
+      "type": "lambda",
+      "name": "log-collector"
+    },
+    {
+      "id": "arn:aws:lambda:us-east-1:027087672282:event-source-mapping:55dbb09e-8b4d-4594-8c41-8fa4181ad929",
+      "type": "lambda-event-source-mapping",
+      "name": "55dbb09e-8b4d-4594-8c41-8fa4181ad929"
+    },
+    {
+      "id": "arn:aws:lambda:us-east-1:027087672282:event-source-mapping:3f3bd44c-b2cb-432d-b97c-d34246296a1d",
+      "type": "lambda-event-source-mapping",
+      "name": "3f3bd44c-b2cb-432d-b97c-d34246296a1d"
+    },
+    {
+      "id": "arn:aws:lambda:us-east-1:027087672282:event-source-mapping:e1eb804b-5d2c-4c56-b1db-4aa5a8107250",
+      "type": "lambda-event-source-mapping",
+      "name": "e1eb804b-5d2c-4c56-b1db-4aa5a8107250"
+    },
+    {
+      "id": "arn:aws:lambda:us-east-1:027087672282:event-source-mapping:715dc62f-47bf-4f1f-b8fb-9d25947dc437",
+      "type": "lambda-event-source-mapping",
+      "name": "715dc62f-47bf-4f1f-b8fb-9d25947dc437"
+    },
+    {
+      "id": "arn:aws:lambda:us-east-1:027087672282:event-source-mapping:4b361b04-2403-4343-aa61-32e97d094f82",
+      "type": "lambda-event-source-mapping",
+      "name": "4b361b04-2403-4343-aa61-32e97d094f82"
+    }
+  ],
+  "edges": [
+    {
+      "from": "arn:aws:ecs:us-east-1:027087672282:service/carefree-crocodile-bf3zi5/test_def-service-vnwns50w",
+      "to": "arn:aws:ecs:us-east-1:027087672282:cluster/carefree-crocodile-bf3zi5",
+      "relationship": "runs-in-cluster"
+    },
+    {
+      "from": "arn:aws:ecs:us-east-1:027087672282:service/carefree-crocodile-bf3zi5/test_def-service-vnwns50w",
+      "to": "arn:aws:ecs:us-east-1:027087672282:task-definition/test_def:1",
+      "relationship": "uses-task-definition"
+    },
+    {
+      "from": "arn:aws:ecs:us-east-1:027087672282:service/carefree-crocodile-bf3zi5/test_def-service-vnwns50w",
+      "to": "subnet-0fd8f3eece23aa6b1",
+      "relationship": "uses-subnet"
+    },
+    {
+      "from": "arn:aws:ecs:us-east-1:027087672282:service/carefree-crocodile-bf3zi5/test_def-service-vnwns50w",
+      "to": "subnet-011181ad481a04d3d",
+      "relationship": "uses-subnet"
+    },
+    {
+      "from": "arn:aws:ecs:us-east-1:027087672282:service/carefree-crocodile-bf3zi5/test_def-service-vnwns50w",
+      "to": "subnet-0c81726f63be41cce",
+      "relationship": "uses-subnet"
+    },
+    {
+      "from": "arn:aws:ecs:us-east-1:027087672282:service/carefree-crocodile-bf3zi5/test_def-service-vnwns50w",
+      "to": "subnet-029a2424e7216e913",
+      "relationship": "uses-subnet"
+    },
+    {
+      "from": "arn:aws:ecs:us-east-1:027087672282:service/carefree-crocodile-bf3zi5/test_def-service-vnwns50w",
+      "to": "subnet-04553ddb12f80aa24",
+      "relationship": "uses-subnet"
+    },
+    {
+      "from": "arn:aws:ecs:us-east-1:027087672282:service/carefree-crocodile-bf3zi5/test_def-service-vnwns50w",
+      "to": "subnet-00c176177ea82ab38",
+      "relationship": "uses-subnet"
+    },
+    {
+      "from": "arn:aws:ecs:us-east-1:027087672282:service/carefree-crocodile-bf3zi5/test_def-service-vnwns50w",
+      "to": "sg-090d92bd87212a26f",
+      "relationship": "uses-security-group"
+    },
+    {
+      "from": "arn:aws:ecs:us-east-1:027087672282:service/carefree-crocodile-bf3zi5/test_def-service-64zgxsih",
+      "to": "arn:aws:ecs:us-east-1:027087672282:cluster/carefree-crocodile-bf3zi5",
+      "relationship": "runs-in-cluster"
+    },
+    {
+      "from": "arn:aws:ecs:us-east-1:027087672282:service/carefree-crocodile-bf3zi5/test_def-service-64zgxsih",
+      "to": "arn:aws:ecs:us-east-1:027087672282:task-definition/test_def:1",
+      "relationship": "uses-task-definition"
+    },
+    {
+      "from": "arn:aws:ecs:us-east-1:027087672282:service/carefree-crocodile-bf3zi5/test_def-service-64zgxsih",
+      "to": "subnet-0fd8f3eece23aa6b1",
+      "relationship": "uses-subnet"
+    },
+    {
+      "from": "arn:aws:ecs:us-east-1:027087672282:service/carefree-crocodile-bf3zi5/test_def-service-64zgxsih",
+      "to": "subnet-011181ad481a04d3d",
+      "relationship": "uses-subnet"
+    },
+    {
+      "from": "arn:aws:ecs:us-east-1:027087672282:service/carefree-crocodile-bf3zi5/test_def-service-64zgxsih",
+      "to": "subnet-0c81726f63be41cce",
+      "relationship": "uses-subnet"
+    },
+    {
+      "from": "arn:aws:ecs:us-east-1:027087672282:service/carefree-crocodile-bf3zi5/test_def-service-64zgxsih",
+      "to": "subnet-029a2424e7216e913",
+      "relationship": "uses-subnet"
+    },
+    {
+      "from": "arn:aws:ecs:us-east-1:027087672282:service/carefree-crocodile-bf3zi5/test_def-service-64zgxsih",
+      "to": "subnet-04553ddb12f80aa24",
+      "relationship": "uses-subnet"
+    },
+    {
+      "from": "arn:aws:ecs:us-east-1:027087672282:service/carefree-crocodile-bf3zi5/test_def-service-64zgxsih",
+      "to": "subnet-00c176177ea82ab38",
+      "relationship": "uses-subnet"
+    },
+    {
+      "from": "arn:aws:ecs:us-east-1:027087672282:service/carefree-crocodile-bf3zi5/test_def-service-64zgxsih",
+      "to": "sg-090d92bd87212a26f",
+      "relationship": "uses-security-group"
+    },
+    {
+      "from": "arn:aws:ecs:us-east-1:027087672282:task-definition/test_def:1",
+      "to": "arn:aws:iam::027087672282:role/ecsTaskExecutionRole",
+      "relationship": "execution-role"
+    },
+    {
+      "from": "subnet-0fd8f3eece23aa6b1",
+      "to": "vpc-03d4bf4fd56283eb5",
+      "relationship": "subnet-of-vpc"
+    },
+    {
+      "from": "subnet-011181ad481a04d3d",
+      "to": "vpc-03d4bf4fd56283eb5",
+      "relationship": "subnet-of-vpc"
+    },
+    {
+      "from": "subnet-0c81726f63be41cce",
+      "to": "vpc-03d4bf4fd56283eb5",
+      "relationship": "subnet-of-vpc"
+    },
+    {
+      "from": "subnet-029a2424e7216e913",
+      "to": "vpc-03d4bf4fd56283eb5",
+      "relationship": "subnet-of-vpc"
+    },
+    {
+      "from": "subnet-04553ddb12f80aa24",
+      "to": "vpc-03d4bf4fd56283eb5",
+      "relationship": "subnet-of-vpc"
+    },
+    {
+      "from": "subnet-00c176177ea82ab38",
+      "to": "vpc-03d4bf4fd56283eb5",
+      "relationship": "subnet-of-vpc"
+    },
+    {
+      "from": "sg-090d92bd87212a26f",
+      "to": "vpc-03d4bf4fd56283eb5",
+      "relationship": "security-group-in-vpc"
+    },
+    {
+      "from": "arn:aws:lambda:us-east-1:027087672282:function:remediator",
+      "to": "arn:aws:iam::027087672282:role/remediator-role",
+      "relationship": "assumes-role"
+    },
+    {
+      "from": "arn:aws:lambda:us-east-1:027087672282:function:task-dispatcher",
+      "to": "arn:aws:iam::027087672282:role/task-dispatcher-role",
+      "relationship": "assumes-role"
+    },
+    {
+      "from": "arn:aws:lambda:us-east-1:027087672282:function:ai-orchestrator",
+      "to": "arn:aws:iam::027087672282:role/plan-executor-role",
+      "relationship": "assumes-role"
+    },
+    {
+      "from": "arn:aws:lambda:us-east-1:027087672282:function:connector-worker",
+      "to": "arn:aws:iam::027087672282:role/setup-agent-role",
+      "relationship": "assumes-role"
+    },
+    {
+      "from": "arn:aws:lambda:us-east-1:027087672282:function:agent-planner",
+      "to": "arn:aws:iam::027087672282:role/agent-planner-role",
+      "relationship": "assumes-role"
+    },
+    {
+      "from": "arn:aws:lambda:us-east-1:027087672282:function:setup-agent",
+      "to": "arn:aws:iam::027087672282:role/setup-agent-role",
+      "relationship": "assumes-role"
+    },
+    {
+      "from": "arn:aws:lambda:us-east-1:027087672282:function:test-lambda-integration",
+      "to": "arn:aws:iam::027087672282:role/lambda-basic-role",
+      "relationship": "assumes-role"
+    },
+    {
+      "from": "arn:aws:lambda:us-east-1:027087672282:function:plan-executor",
+      "to": "arn:aws:iam::027087672282:role/plan-executor-role",
+      "relationship": "assumes-role"
+    },
+    {
+      "from": "arn:aws:lambda:us-east-1:027087672282:function:hello-world-fn",
+      "to": "arn:aws:iam::027087672282:role/lambda-basic-role",
+      "relationship": "assumes-role"
+    },
+    {
+      "from": "arn:aws:lambda:us-east-1:027087672282:function:log-collector",
+      "to": "arn:aws:iam::027087672282:role/setup-agent-role",
+      "relationship": "assumes-role"
+    },
+    {
+      "from": "arn:aws:lambda:us-east-1:027087672282:event-source-mapping:55dbb09e-8b4d-4594-8c41-8fa4181ad929",
+      "to": "arn:aws:lambda:us-east-1:027087672282:function:remediator",
+      "relationship": "invokes-function"
+    },
+    {
+      "from": "arn:aws:lambda:us-east-1:027087672282:event-source-mapping:55dbb09e-8b4d-4594-8c41-8fa4181ad929",
+      "to": "arn:aws:sqs:us-east-1:027087672282:agent-fix-tasks.fifo",
+      "relationship": "reads-from"
+    },
+    {
+      "from": "arn:aws:sqs:us-east-1:027087672282:agent-fix-tasks.fifo",
+      "to": "arn:aws:lambda:us-east-1:027087672282:event-source-mapping:55dbb09e-8b4d-4594-8c41-8fa4181ad929",
+      "relationship": "feeds-mapping"
+    },
+    {
+      "from": "arn:aws:lambda:us-east-1:027087672282:function:remediator",
+      "to": "arn:aws:sqs:us-east-1:027087672282:agent-fix-tasks.fifo",
+      "relationship": "event-source-mapping"
+    },
+    {
+      "from": "arn:aws:lambda:us-east-1:027087672282:event-source-mapping:3f3bd44c-b2cb-432d-b97c-d34246296a1d",
+      "to": "arn:aws:lambda:us-east-1:027087672282:function:task-dispatcher",
+      "relationship": "invokes-function"
+    },
+    {
+      "from": "arn:aws:lambda:us-east-1:027087672282:event-source-mapping:3f3bd44c-b2cb-432d-b97c-d34246296a1d",
+      "to": "arn:aws:dynamodb:us-east-1:027087672282:table/agent_errors/stream/2026-02-23T07:46:15.921",
+      "relationship": "reads-from"
+    },
+    {
+      "from": "arn:aws:dynamodb:us-east-1:027087672282:table/agent_errors/stream/2026-02-23T07:46:15.921",
+      "to": "arn:aws:lambda:us-east-1:027087672282:event-source-mapping:3f3bd44c-b2cb-432d-b97c-d34246296a1d",
+      "relationship": "feeds-mapping"
+    },
+    {
+      "from": "arn:aws:lambda:us-east-1:027087672282:function:task-dispatcher",
+      "to": "arn:aws:dynamodb:us-east-1:027087672282:table/agent_errors/stream/2026-02-23T07:46:15.921",
+      "relationship": "event-source-mapping"
+    },
+    {
+      "from": "arn:aws:lambda:us-east-1:027087672282:event-source-mapping:e1eb804b-5d2c-4c56-b1db-4aa5a8107250",
+      "to": "arn:aws:lambda:us-east-1:027087672282:function:connector-worker",
+      "relationship": "invokes-function"
+    },
+    {
+      "from": "arn:aws:lambda:us-east-1:027087672282:event-source-mapping:e1eb804b-5d2c-4c56-b1db-4aa5a8107250",
+      "to": "arn:aws:sqs:us-east-1:027087672282:connector-tasks.fifo",
+      "relationship": "reads-from"
+    },
+    {
+      "from": "arn:aws:sqs:us-east-1:027087672282:connector-tasks.fifo",
+      "to": "arn:aws:lambda:us-east-1:027087672282:event-source-mapping:e1eb804b-5d2c-4c56-b1db-4aa5a8107250",
+      "relationship": "feeds-mapping"
+    },
+    {
+      "from": "arn:aws:lambda:us-east-1:027087672282:function:connector-worker",
+      "to": "arn:aws:sqs:us-east-1:027087672282:connector-tasks.fifo",
+      "relationship": "event-source-mapping"
+    },
+    {
+      "from": "arn:aws:lambda:us-east-1:027087672282:event-source-mapping:715dc62f-47bf-4f1f-b8fb-9d25947dc437",
+      "to": "arn:aws:lambda:us-east-1:027087672282:function:agent-planner",
+      "relationship": "invokes-function"
+    },
+    {
+      "from": "arn:aws:lambda:us-east-1:027087672282:event-source-mapping:715dc62f-47bf-4f1f-b8fb-9d25947dc437",
+      "to": "arn:aws:sqs:us-east-1:027087672282:agent-error-queue",
+      "relationship": "reads-from"
+    },
+    {
+      "from": "arn:aws:sqs:us-east-1:027087672282:agent-error-queue",
+      "to": "arn:aws:lambda:us-east-1:027087672282:event-source-mapping:715dc62f-47bf-4f1f-b8fb-9d25947dc437",
+      "relationship": "feeds-mapping"
+    },
+    {
+      "from": "arn:aws:lambda:us-east-1:027087672282:function:agent-planner",
+      "to": "arn:aws:sqs:us-east-1:027087672282:agent-error-queue",
+      "relationship": "event-source-mapping"
+    },
+    {
+      "from": "arn:aws:lambda:us-east-1:027087672282:event-source-mapping:4b361b04-2403-4343-aa61-32e97d094f82",
+      "to": "arn:aws:lambda:us-east-1:027087672282:function:plan-executor",
+      "relationship": "invokes-function"
+    },
+    {
+      "from": "arn:aws:lambda:us-east-1:027087672282:event-source-mapping:4b361b04-2403-4343-aa61-32e97d094f82",
+      "to": "arn:aws:sqs:us-east-1:027087672282:plan-executor-queue",
+      "relationship": "reads-from"
+    },
+    {
+      "from": "arn:aws:sqs:us-east-1:027087672282:plan-executor-queue",
+      "to": "arn:aws:lambda:us-east-1:027087672282:event-source-mapping:4b361b04-2403-4343-aa61-32e97d094f82",
+      "relationship": "feeds-mapping"
+    },
+    {
+      "from": "arn:aws:lambda:us-east-1:027087672282:function:plan-executor",
+      "to": "arn:aws:sqs:us-east-1:027087672282:plan-executor-queue",
+      "relationship": "event-source-mapping"
+    },
+    {
+      "from": "events.amazonaws.com",
+      "to": "arn:aws:lambda:us-east-1:027087672282:function:plan-executor",
+      "relationship": "invoke-permission",
+      "source_arn": "arn:aws:events:us-east-1:027087672282:rule/plan-executor-every-minute"
+    },
+    {
+      "from": "logs.amazonaws.com",
+      "to": "arn:aws:lambda:us-east-1:027087672282:function:log-collector",
+      "relationship": "invoke-permission",
+      "source_arn": "arn:aws:logs:us-east-1:027087672282:log-group:/aws/lambda/connector-worker:*"
+    }
+  ]
+}

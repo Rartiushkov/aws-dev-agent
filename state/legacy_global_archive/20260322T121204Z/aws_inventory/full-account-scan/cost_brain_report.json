@@ -1,0 +1,455 @@
+{
+  "generated_at": "2026-03-21T20:20:48.655292+00:00",
+  "source_env": "",
+  "region": "us-east-1",
+  "account_id": "027087672282",
+  "billing_window_days": 30,
+  "summary": {
+    "total_cost_last_window": {
+      "amount": -0.0,
+      "unit": "USD"
+    },
+    "forecast_next_window": {
+      "amount": 0.0,
+      "unit": "USD",
+      "prediction_interval_lower": 0.0,
+      "prediction_interval_upper": 0.0,
+      "error": "An error occurred (ValidationException) when calling the GetCostForecast operation: Earliest supported Start is 2026-03-21"
+    },
+    "current_month_to_date_cost": {
+      "amount": -0.0,
+      "unit": "USD"
+    },
+    "current_month_forecast": {
+      "amount": 1.05,
+      "unit": "USD",
+      "daily": [
+        {
+          "date": "2026-03-21",
+          "amount": 0.082
+        },
+        {
+          "date": "2026-03-22",
+          "amount": 0.0851
+        },
+        {
+          "date": "2026-03-23",
+          "amount": 0.0878
+        },
+        {
+          "date": "2026-03-24",
+          "amount": 0.0903
+        },
+        {
+          "date": "2026-03-25",
+          "amount": 0.0927
+        },
+        {
+          "date": "2026-03-26",
+          "amount": 0.0952
+        },
+        {
+          "date": "2026-03-27",
+          "amount": 0.0976
+        },
+        {
+          "date": "2026-03-28",
+          "amount": 0.1
+        },
+        {
+          "date": "2026-03-29",
+          "amount": 0.1024
+        },
+        {
+          "date": "2026-03-30",
+          "amount": 0.1048
+        },
+        {
+          "date": "2026-03-31",
+          "amount": 0.1073
+        }
+      ],
+      "error": ""
+    },
+    "estimated_monthly_savings": {
+      "amount": 0.0,
+      "unit": "USD"
+    },
+    "top_service_count": 5,
+    "recommendation_count": 20,
+    "automation_ready_count": 4
+  },
+  "summary_lines": [
+    "Top service cost in the last 30 days was AWS CloudShell at 0.0 USD.",
+    "Top optimization candidate is 'Pause failing ECS service until its image or task definition is fixed' with estimated savings of about 0.0 USD per month."
+  ],
+  "top_service_costs": [
+    {
+      "service": "AWS CloudShell",
+      "amount": 0.0,
+      "unit": "USD"
+    },
+    {
+      "service": "AWS Data Transfer",
+      "amount": -0.0,
+      "unit": "USD"
+    },
+    {
+      "service": "AWS Glue",
+      "amount": 0.0,
+      "unit": "USD"
+    },
+    {
+      "service": "AWS Key Management Service",
+      "amount": 0.0,
+      "unit": "USD"
+    },
+    {
+      "service": "AWS Lambda",
+      "amount": 0.0,
+      "unit": "USD"
+    }
+  ],
+  "top_region_costs": [
+    {
+      "region": "eu-north-1",
+      "amount": 0.0,
+      "unit": "USD"
+    },
+    {
+      "region": "global",
+      "amount": 0.0,
+      "unit": "USD"
+    },
+    {
+      "region": "us-east-1",
+      "amount": -0.0,
+      "unit": "USD"
+    },
+    {
+      "region": "us-west-2",
+      "amount": 0.0,
+      "unit": "USD"
+    },
+    {
+      "region": "NoRegion",
+      "amount": 0.0,
+      "unit": "USD"
+    }
+  ],
+  "current_month_top_service_costs": [
+    {
+      "service": "AWS CloudShell",
+      "amount": 0.0,
+      "unit": "USD"
+    },
+    {
+      "service": "AWS Data Transfer",
+      "amount": -0.0,
+      "unit": "USD"
+    },
+    {
+      "service": "AWS Glue",
+      "amount": 0.0,
+      "unit": "USD"
+    },
+    {
+      "service": "AWS Key Management Service",
+      "amount": 0.0,
+      "unit": "USD"
+    },
+    {
+      "service": "AWS Lambda",
+      "amount": 0.0,
+      "unit": "USD"
+    }
+  ],
+  "current_month_top_region_costs": [
+    {
+      "region": "NoRegion",
+      "amount": 0.0,
+      "unit": "USD"
+    },
+    {
+      "region": "eu-north-1",
+      "amount": 0.0,
+      "unit": "USD"
+    },
+    {
+      "region": "global",
+      "amount": 0.0,
+      "unit": "USD"
+    },
+    {
+      "region": "us-east-1",
+      "amount": -0.0,
+      "unit": "USD"
+    },
+    {
+      "region": "us-east-2",
+      "amount": -0.0,
+      "unit": "USD"
+    }
+  ],
+  "recent_anomalies": [],
+  "recommendations": [
+    {
+      "impact": "high",
+      "confidence": "high",
+      "category": "ecs-waste",
+      "title": "Pause failing ECS service until its image or task definition is fixed",
+      "resource_id": "arn:aws:ecs:us-east-1:027087672282:service/carefree-crocodile-bf3zi5/test_def-service-vnwns50w",
+      "rationale": "test_def-service-vnwns50w keeps retrying failed task launches (5 recent failure events) while desiredCount remains > 0.",
+      "recommendation": "Set desiredCount to 0 or disable the service until the container image and startup path are healthy.",
+      "automation_ready": true,
+      "estimated_monthly_savings": 0.0,
+      "estimated_unit": "USD"
+    },
+    {
+      "impact": "high",
+      "confidence": "high",
+      "category": "ecs-waste",
+      "title": "Pause failing ECS service until its image or task definition is fixed",
+      "resource_id": "arn:aws:ecs:us-east-1:027087672282:service/carefree-crocodile-bf3zi5/test_def-service-64zgxsih",
+      "rationale": "test_def-service-64zgxsih keeps retrying failed task launches (5 recent failure events) while desiredCount remains > 0.",
+      "recommendation": "Set desiredCount to 0 or disable the service until the container image and startup path are healthy.",
+      "automation_ready": true,
+      "estimated_monthly_savings": 0.0,
+      "estimated_unit": "USD"
+    },
+    {
+      "impact": "medium",
+      "confidence": "medium",
+      "category": "ecs-spot",
+      "title": "Move non-production ECS service to Fargate Spot when interruption is acceptable",
+      "resource_id": "arn:aws:ecs:us-east-1:027087672282:service/carefree-crocodile-bf3zi5/test_def-service-vnwns50w",
+      "rationale": "test_def-service-vnwns50w looks like a non-production workload and currently uses standard Fargate capacity.",
+      "recommendation": "Switch the capacity provider strategy to FARGATE_SPOT for interrupt-tolerant environments.",
+      "automation_ready": false,
+      "estimated_monthly_savings": 0.0,
+      "estimated_unit": "USD"
+    },
+    {
+      "impact": "medium",
+      "confidence": "medium",
+      "category": "ecs-rightsizing",
+      "title": "Review ECS task size for non-production workload",
+      "resource_id": "arn:aws:ecs:us-east-1:027087672282:service/carefree-crocodile-bf3zi5/test_def-service-vnwns50w",
+      "rationale": "test_def-service-vnwns50w uses a task definition sized at 1024 CPU units and 3072 MiB memory.",
+      "recommendation": "Validate actual CPU and memory usage and reduce the Fargate task size if headroom is consistently high.",
+      "automation_ready": false,
+      "estimated_monthly_savings": 0.0,
+      "estimated_unit": "USD"
+    },
+    {
+      "impact": "medium",
+      "confidence": "medium",
+      "category": "ecs-spot",
+      "title": "Move non-production ECS service to Fargate Spot when interruption is acceptable",
+      "resource_id": "arn:aws:ecs:us-east-1:027087672282:service/carefree-crocodile-bf3zi5/test_def-service-64zgxsih",
+      "rationale": "test_def-service-64zgxsih looks like a non-production workload and currently uses standard Fargate capacity.",
+      "recommendation": "Switch the capacity provider strategy to FARGATE_SPOT for interrupt-tolerant environments.",
+      "automation_ready": false,
+      "estimated_monthly_savings": 0.0,
+      "estimated_unit": "USD"
+    },
+    {
+      "impact": "medium",
+      "confidence": "medium",
+      "category": "ecs-rightsizing",
+      "title": "Review ECS task size for non-production workload",
+      "resource_id": "arn:aws:ecs:us-east-1:027087672282:service/carefree-crocodile-bf3zi5/test_def-service-64zgxsih",
+      "rationale": "test_def-service-64zgxsih uses a task definition sized at 1024 CPU units and 3072 MiB memory.",
+      "recommendation": "Validate actual CPU and memory usage and reduce the Fargate task size if headroom is consistently high.",
+      "automation_ready": false,
+      "estimated_monthly_savings": 0.0,
+      "estimated_unit": "USD"
+    },
+    {
+      "impact": "medium",
+      "confidence": "medium",
+      "category": "resource-cleanup",
+      "title": "Review test or temporary Lambda for removal",
+      "resource_id": "arn:aws:lambda:us-east-1:027087672282:function:test-lambda-integration",
+      "rationale": "test-lambda-integration looks like a test or temporary function that may no longer be needed.",
+      "recommendation": "Confirm recent usage and delete the function if it is no longer serving a workflow.",
+      "automation_ready": true,
+      "estimated_monthly_savings": 0.0,
+      "estimated_unit": "USD"
+    },
+    {
+      "impact": "medium",
+      "confidence": "medium",
+      "category": "resource-cleanup",
+      "title": "Review test or temporary Lambda for removal",
+      "resource_id": "arn:aws:lambda:us-east-1:027087672282:function:hello-world-fn",
+      "rationale": "hello-world-fn looks like a test or temporary function that may no longer be needed.",
+      "recommendation": "Confirm recent usage and delete the function if it is no longer serving a workflow.",
+      "automation_ready": true,
+      "estimated_monthly_savings": 0.0,
+      "estimated_unit": "USD"
+    },
+    {
+      "impact": "medium",
+      "confidence": "medium",
+      "category": "s3-lifecycle",
+      "title": "Review S3 lifecycle policies",
+      "resource_id": "aws-dev-agent-codebuild-artifacts-027087672282-us-east-1",
+      "rationale": "aws-dev-agent-codebuild-artifacts-027087672282-us-east-1 has no lifecycle rules in the snapshot.",
+      "recommendation": "Add lifecycle policies or review Intelligent-Tiering for stale objects and incomplete multipart uploads.",
+      "automation_ready": false,
+      "estimated_monthly_savings": 0.0,
+      "estimated_unit": "USD"
+    },
+    {
+      "impact": "medium",
+      "confidence": "medium",
+      "category": "s3-lifecycle",
+      "title": "Review S3 lifecycle policies",
+      "resource_id": "hippa-signer-artifacts-027087672282",
+      "rationale": "hippa-signer-artifacts-027087672282 has no lifecycle rules in the snapshot.",
+      "recommendation": "Add lifecycle policies or review Intelligent-Tiering for stale objects and incomplete multipart uploads.",
+      "automation_ready": false,
+      "estimated_monthly_savings": 0.0,
+      "estimated_unit": "USD"
+    }
+  ],
+  "unused_or_waste_summary": {
+    "finding_count": 13,
+    "high_confidence_count": 7,
+    "medium_confidence_count": 6,
+    "low_confidence_count": 0
+  },
+  "unused_or_waste_findings": [
+    {
+      "category": "disabled-trigger",
+      "title": "Disabled event source mapping may indicate a paused or unused workflow",
+      "resource_id": "arn:aws:lambda:us-east-1:027087672282:event-source-mapping:55dbb09e-8b4d-4594-8c41-8fa4181ad929",
+      "confidence": "high",
+      "waste_type": "paused-unused-path",
+      "why": "Mapping from arn:aws:sqs:us-east-1:027087672282:agent-fix-tasks.fifo to arn:aws:lambda:us-east-1:027087672282:function:remediator is disabled.",
+      "recommended_action": "Confirm whether this flow is still needed. Remove the mapping or retire the upstream queue/stream if the workflow is gone."
+    },
+    {
+      "category": "broken-trigger",
+      "title": "Enabled event source mapping is failing to process",
+      "resource_id": "arn:aws:lambda:us-east-1:027087672282:event-source-mapping:3f3bd44c-b2cb-432d-b97c-d34246296a1d",
+      "confidence": "high",
+      "waste_type": "broken-cost-path",
+      "why": "PROBLEM: Lambda failed to assume your function execution role. Please check if the role trust Lambda service principal, and make sure it does not require setting source identity to be assumed.",
+      "recommended_action": "Fix the execution role or disable the mapping until the downstream path is healthy."
+    },
+    {
+      "category": "disabled-trigger",
+      "title": "Disabled event source mapping may indicate a paused or unused workflow",
+      "resource_id": "arn:aws:lambda:us-east-1:027087672282:event-source-mapping:e1eb804b-5d2c-4c56-b1db-4aa5a8107250",
+      "confidence": "high",
+      "waste_type": "paused-unused-path",
+      "why": "Mapping from arn:aws:sqs:us-east-1:027087672282:connector-tasks.fifo to arn:aws:lambda:us-east-1:027087672282:function:connector-worker is disabled.",
+      "recommended_action": "Confirm whether this flow is still needed. Remove the mapping or retire the upstream queue/stream if the workflow is gone."
+    },
+    {
+      "category": "disabled-trigger",
+      "title": "Disabled event source mapping may indicate a paused or unused workflow",
+      "resource_id": "arn:aws:lambda:us-east-1:027087672282:event-source-mapping:715dc62f-47bf-4f1f-b8fb-9d25947dc437",
+      "confidence": "high",
+      "waste_type": "paused-unused-path",
+      "why": "Mapping from arn:aws:sqs:us-east-1:027087672282:agent-error-queue to arn:aws:lambda:us-east-1:027087672282:function:agent-planner is disabled.",
+      "recommended_action": "Confirm whether this flow is still needed. Remove the mapping or retire the upstream queue/stream if the workflow is gone."
+    },
+    {
+      "category": "disabled-trigger",
+      "title": "Disabled event source mapping may indicate a paused or unused workflow",
+      "resource_id": "arn:aws:lambda:us-east-1:027087672282:event-source-mapping:4b361b04-2403-4343-aa61-32e97d094f82",
+      "confidence": "high",
+      "waste_type": "paused-unused-path",
+      "why": "Mapping from arn:aws:sqs:us-east-1:027087672282:plan-executor-queue to arn:aws:lambda:us-east-1:027087672282:function:plan-executor is disabled.",
+      "recommended_action": "Confirm whether this flow is still needed. Remove the mapping or retire the upstream queue/stream if the workflow is gone."
+    },
+    {
+      "category": "failing-ecs-service",
+      "title": "ECS service is retrying but has no healthy running tasks",
+      "resource_id": "arn:aws:ecs:us-east-1:027087672282:service/carefree-crocodile-bf3zi5/test_def-service-vnwns50w",
+      "confidence": "high",
+      "waste_type": "active-waste",
+      "why": "test_def-service-vnwns50w has desiredCount=1, runningCount=0, and 5 recent failure events.",
+      "recommended_action": "Set desiredCount to 0 until the image and startup path are fixed."
+    },
+    {
+      "category": "failing-ecs-service",
+      "title": "ECS service is retrying but has no healthy running tasks",
+      "resource_id": "arn:aws:ecs:us-east-1:027087672282:service/carefree-crocodile-bf3zi5/test_def-service-64zgxsih",
+      "confidence": "high",
+      "waste_type": "active-waste",
+      "why": "test_def-service-64zgxsih has desiredCount=1, runningCount=0, and 5 recent failure events.",
+      "recommended_action": "Set desiredCount to 0 until the image and startup path are fixed."
+    },
+    {
+      "category": "test-lambda",
+      "title": "Lambda function looks like test or temporary code",
+      "resource_id": "arn:aws:lambda:us-east-1:027087672282:function:test-lambda-integration",
+      "confidence": "medium",
+      "waste_type": "likely-unused",
+      "why": "test-lambda-integration matches common test or temporary naming patterns.",
+      "recommended_action": "Check whether it is still invoked in a real workflow and remove it if not needed."
+    },
+    {
+      "category": "orphan-lambda",
+      "title": "Lambda has no discovered event source mappings and appears non-production",
+      "resource_id": "arn:aws:lambda:us-east-1:027087672282:function:test-lambda-integration",
+      "confidence": "medium",
+      "waste_type": "likely-unused",
+      "why": "test-lambda-integration has no discovered event source mappings in the snapshot.",
+      "recommended_action": "Confirm there are no schedules or manual invocations keeping it alive; if not, retire it."
+    },
+    {
+      "category": "test-lambda",
+      "title": "Lambda function looks like test or temporary code",
+      "resource_id": "arn:aws:lambda:us-east-1:027087672282:function:hello-world-fn",
+      "confidence": "medium",
+      "waste_type": "likely-unused",
+      "why": "hello-world-fn matches common test or temporary naming patterns.",
+      "recommended_action": "Check whether it is still invoked in a real workflow and remove it if not needed."
+    },
+    {
+      "category": "orphan-lambda",
+      "title": "Lambda has no discovered event source mappings and appears non-production",
+      "resource_id": "arn:aws:lambda:us-east-1:027087672282:function:hello-world-fn",
+      "confidence": "medium",
+      "waste_type": "likely-unused",
+      "why": "hello-world-fn has no discovered event source mappings in the snapshot.",
+      "recommended_action": "Confirm there are no schedules or manual invocations keeping it alive; if not, retire it."
+    },
+    {
+      "category": "bucket-lifecycle",
+      "title": "Bucket has no lifecycle rules and may grow storage cost over time",
+      "resource_id": "aws-dev-agent-codebuild-artifacts-027087672282-us-east-1",
+      "confidence": "medium",
+      "waste_type": "storage-growth-risk",
+      "why": "aws-dev-agent-codebuild-artifacts-027087672282-us-east-1 has no lifecycle rules in the snapshot.",
+      "recommended_action": "Add lifecycle rules for retention, archival, or incomplete multipart cleanup."
+    },
+    {
+      "category": "bucket-lifecycle",
+      "title": "Bucket has no lifecycle rules and may grow storage cost over time",
+      "resource_id": "hippa-signer-artifacts-027087672282",
+      "confidence": "medium",
+      "waste_type": "storage-growth-risk",
+      "why": "hippa-signer-artifacts-027087672282 has no lifecycle rules in the snapshot.",
+      "recommended_action": "Add lifecycle rules for retention, archival, or incomplete multipart cleanup."
+    }
+  ],
+  "strengths": [
+    "All discovered DynamoDB tables already use PAY_PER_REQUEST, which avoids idle provisioned capacity waste."
+  ],
+  "next_level_requirements": [
+    "Cost Explorer or CUR data to attach dollar impact instead of heuristic ranking.",
+    "CloudWatch utilization history to support rightsizing with evidence.",
+    "Tag coverage by team, env, and owner to attribute spend and automate cleanup safely.",
+    "Approval workflow for stop, delete, and resize actions."
+  ],
+  "billing_data_health": {
+    "forecast_error": "An error occurred (ValidationException) when calling the GetCostForecast operation: Earliest supported Start is 2026-03-21",
+    "anomalies_error": ""
+  }
+}

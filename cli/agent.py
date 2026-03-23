@@ -2,10 +2,12 @@ from bridges.plan_creator import create_plan
 from executor.action_executor import execute_action
 from agents.error_detector import detect_error
 from executor.git_snapshot import save_snapshot
+from executor.scripts.agent_memory import find_similar_incidents, record_incident
 
 import os
-import subprocess
 import sys
+
+from executor.command_runner import run_command
 
 
 DEFAULT_AWS_REGION = "us-east-1"
@@ -18,6 +20,32 @@ def build_command_env():
     return env
 
 
+def format_memory_matches(matches):
+    lines = []
+    for item in matches:
+        summary = item.get("summary", "").strip()
+        resolution = item.get("last_resolution", "").strip()
+        occurrences = item.get("occurrences", 0)
+        validated = item.get("validated_fix_count", 0)
+        line = f"- {summary}"
+        if resolution:
+            line += f" | fix: {resolution}"
+        line += f" | seen={occurrences}"
+        if validated:
+            line += f" | validated={validated}"
+        lines.append(line)
+    return "\n".join(lines)
+
+
+def print_relevant_memory(query, header):
+    matches = find_similar_incidents(query, limit=3)
+    if not matches:
+        return []
+    print(f"\n{header}")
+    print(format_memory_matches(matches))
+    return matches
+
+
 def handle_aws_cli_error(result):
 
     stderr = (result.stderr or "").strip()
@@ -26,6 +54,13 @@ def handle_aws_cli_error(result):
         return {"action": "stop", "handled": False, "message": "Unknown command failure", "status": "failure"}
 
     print("ERROR:", stderr)
+    record_incident(
+        "aws-cli-error",
+        stderr,
+        tags=["cli", "aws"],
+        details={"returncode": result.returncode},
+    )
+    print_relevant_memory(stderr, "Known Similar Issues:")
 
     err = stderr.lower()
 
@@ -55,6 +90,13 @@ def handle_aws_cli_error(result):
         if error and error.get("type") == "fix":
             print("AUTO FIX TRIGGERED")
             execute_fix_plan(error.get("plan", []))
+            record_incident(
+                "aws-cli-fix",
+                stderr,
+                tags=["cli", "aws", "auto-fix"],
+                resolution="auto-fix plan executed for access issue",
+                validated=True,
+            )
             return {"action": "continue", "handled": True, "message": "Auto-fix executed for access issue", "status": "success"}
         return {"action": "stop", "handled": True, "message": stderr, "status": "failure"}
 
@@ -79,6 +121,13 @@ def handle_aws_cli_error(result):
         if error.get("type") == "fix":
             print("AUTO FIX TRIGGERED")
             execute_fix_plan(error.get("plan", []))
+            record_incident(
+                "aws-cli-fix",
+                stderr,
+                tags=["cli", "aws", "auto-fix"],
+                resolution="auto-fix plan executed",
+                validated=True,
+            )
             return {"action": "continue", "handled": True, "message": "Auto-fix executed", "status": "success"}
 
     if "an error occurred" in err:
@@ -98,7 +147,7 @@ def execute_fix_plan(plan):
         print("Fix step:", step)
 
         if step.get("type") == "command":
-            subprocess.run(step.get("cmd"), shell=True, env=build_command_env())
+            run_command(step.get("cmd"), env=build_command_env(), check=False)
 
         elif step.get("type") == "action":
             execute_action(step)
@@ -129,6 +178,7 @@ def main():
     print("============================\n")
 
     print("Goal:", goal)
+    print_relevant_memory(goal, "Known Similar Requests:")
 
     plan = create_plan(goal)
 
@@ -172,9 +222,8 @@ def main():
 
             print("Executing:", cmd)
 
-            result = subprocess.run(
+            result = run_command(
                 cmd,
-                shell=True,
                 capture_output=True,
                 text=True,
                 env=build_command_env()

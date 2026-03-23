@@ -1,0 +1,225 @@
+{
+  "generated_at": "2026-03-21T19:44:54.922209+00:00",
+  "source_env": "",
+  "region": "us-east-1",
+  "account_id": "027087672282",
+  "summary": {
+    "opportunity_count": 20,
+    "automation_ready_count": 4,
+    "high_impact_count": 2,
+    "medium_impact_count": 8,
+    "low_impact_count": 10
+  },
+  "strengths": [
+    "All discovered DynamoDB tables already use PAY_PER_REQUEST, which avoids idle provisioned capacity waste."
+  ],
+  "opportunities": [
+    {
+      "impact": "high",
+      "confidence": "high",
+      "category": "ecs-waste",
+      "title": "Pause failing ECS service until its image or task definition is fixed",
+      "resource_id": "arn:aws:ecs:us-east-1:027087672282:service/carefree-crocodile-bf3zi5/test_def-service-vnwns50w",
+      "rationale": "test_def-service-vnwns50w keeps retrying failed task launches (5 recent failure events) while desiredCount remains > 0.",
+      "recommendation": "Set desiredCount to 0 or disable the service until the container image and startup path are healthy.",
+      "automation_ready": true
+    },
+    {
+      "impact": "high",
+      "confidence": "high",
+      "category": "ecs-waste",
+      "title": "Pause failing ECS service until its image or task definition is fixed",
+      "resource_id": "arn:aws:ecs:us-east-1:027087672282:service/carefree-crocodile-bf3zi5/test_def-service-64zgxsih",
+      "rationale": "test_def-service-64zgxsih keeps retrying failed task launches (5 recent failure events) while desiredCount remains > 0.",
+      "recommendation": "Set desiredCount to 0 or disable the service until the container image and startup path are healthy.",
+      "automation_ready": true
+    },
+    {
+      "impact": "medium",
+      "confidence": "medium",
+      "category": "ecs-spot",
+      "title": "Move non-production ECS service to Fargate Spot when interruption is acceptable",
+      "resource_id": "arn:aws:ecs:us-east-1:027087672282:service/carefree-crocodile-bf3zi5/test_def-service-vnwns50w",
+      "rationale": "test_def-service-vnwns50w looks like a non-production workload and currently uses standard Fargate capacity.",
+      "recommendation": "Switch the capacity provider strategy to FARGATE_SPOT for interrupt-tolerant environments.",
+      "automation_ready": false
+    },
+    {
+      "impact": "medium",
+      "confidence": "medium",
+      "category": "ecs-rightsizing",
+      "title": "Review ECS task size for non-production workload",
+      "resource_id": "arn:aws:ecs:us-east-1:027087672282:service/carefree-crocodile-bf3zi5/test_def-service-vnwns50w",
+      "rationale": "test_def-service-vnwns50w uses a task definition sized at 1024 CPU units and 3072 MiB memory.",
+      "recommendation": "Validate actual CPU and memory usage and reduce the Fargate task size if headroom is consistently high.",
+      "automation_ready": false
+    },
+    {
+      "impact": "medium",
+      "confidence": "medium",
+      "category": "ecs-spot",
+      "title": "Move non-production ECS service to Fargate Spot when interruption is acceptable",
+      "resource_id": "arn:aws:ecs:us-east-1:027087672282:service/carefree-crocodile-bf3zi5/test_def-service-64zgxsih",
+      "rationale": "test_def-service-64zgxsih looks like a non-production workload and currently uses standard Fargate capacity.",
+      "recommendation": "Switch the capacity provider strategy to FARGATE_SPOT for interrupt-tolerant environments.",
+      "automation_ready": false
+    },
+    {
+      "impact": "medium",
+      "confidence": "medium",
+      "category": "ecs-rightsizing",
+      "title": "Review ECS task size for non-production workload",
+      "resource_id": "arn:aws:ecs:us-east-1:027087672282:service/carefree-crocodile-bf3zi5/test_def-service-64zgxsih",
+      "rationale": "test_def-service-64zgxsih uses a task definition sized at 1024 CPU units and 3072 MiB memory.",
+      "recommendation": "Validate actual CPU and memory usage and reduce the Fargate task size if headroom is consistently high.",
+      "automation_ready": false
+    },
+    {
+      "impact": "medium",
+      "confidence": "medium",
+      "category": "resource-cleanup",
+      "title": "Review test or temporary Lambda for removal",
+      "resource_id": "arn:aws:lambda:us-east-1:027087672282:function:test-lambda-integration",
+      "rationale": "test-lambda-integration looks like a test or temporary function that may no longer be needed.",
+      "recommendation": "Confirm recent usage and delete the function if it is no longer serving a workflow.",
+      "automation_ready": true
+    },
+    {
+      "impact": "medium",
+      "confidence": "medium",
+      "category": "resource-cleanup",
+      "title": "Review test or temporary Lambda for removal",
+      "resource_id": "arn:aws:lambda:us-east-1:027087672282:function:hello-world-fn",
+      "rationale": "hello-world-fn looks like a test or temporary function that may no longer be needed.",
+      "recommendation": "Confirm recent usage and delete the function if it is no longer serving a workflow.",
+      "automation_ready": true
+    },
+    {
+      "impact": "medium",
+      "confidence": "medium",
+      "category": "s3-lifecycle",
+      "title": "Review S3 lifecycle policies",
+      "resource_id": "aws-dev-agent-codebuild-artifacts-027087672282-us-east-1",
+      "rationale": "aws-dev-agent-codebuild-artifacts-027087672282-us-east-1 has no lifecycle rules in the snapshot.",
+      "recommendation": "Add lifecycle policies or review Intelligent-Tiering for stale objects and incomplete multipart uploads.",
+      "automation_ready": false
+    },
+    {
+      "impact": "medium",
+      "confidence": "medium",
+      "category": "s3-lifecycle",
+      "title": "Review S3 lifecycle policies",
+      "resource_id": "hippa-signer-artifacts-027087672282",
+      "rationale": "hippa-signer-artifacts-027087672282 has no lifecycle rules in the snapshot.",
+      "recommendation": "Add lifecycle policies or review Intelligent-Tiering for stale objects and incomplete multipart uploads.",
+      "automation_ready": false
+    },
+    {
+      "impact": "low",
+      "confidence": "medium",
+      "category": "lambda-graviton",
+      "title": "Review Lambda for arm64 migration",
+      "resource_id": "arn:aws:lambda:us-east-1:027087672282:function:remediator",
+      "rationale": "remediator runs on nodejs20.x with x86_64 architecture.",
+      "recommendation": "Benchmark the function on arm64 and migrate if dependencies are compatible.",
+      "automation_ready": false
+    },
+    {
+      "impact": "low",
+      "confidence": "medium",
+      "category": "lambda-graviton",
+      "title": "Review Lambda for arm64 migration",
+      "resource_id": "arn:aws:lambda:us-east-1:027087672282:function:task-dispatcher",
+      "rationale": "task-dispatcher runs on nodejs20.x with x86_64 architecture.",
+      "recommendation": "Benchmark the function on arm64 and migrate if dependencies are compatible.",
+      "automation_ready": false
+    },
+    {
+      "impact": "low",
+      "confidence": "medium",
+      "category": "lambda-graviton",
+      "title": "Review Lambda for arm64 migration",
+      "resource_id": "arn:aws:lambda:us-east-1:027087672282:function:ai-orchestrator",
+      "rationale": "ai-orchestrator runs on nodejs20.x with x86_64 architecture.",
+      "recommendation": "Benchmark the function on arm64 and migrate if dependencies are compatible.",
+      "automation_ready": false
+    },
+    {
+      "impact": "low",
+      "confidence": "medium",
+      "category": "lambda-graviton",
+      "title": "Review Lambda for arm64 migration",
+      "resource_id": "arn:aws:lambda:us-east-1:027087672282:function:connector-worker",
+      "rationale": "connector-worker runs on nodejs20.x with x86_64 architecture.",
+      "recommendation": "Benchmark the function on arm64 and migrate if dependencies are compatible.",
+      "automation_ready": false
+    },
+    {
+      "impact": "low",
+      "confidence": "medium",
+      "category": "lambda-graviton",
+      "title": "Review Lambda for arm64 migration",
+      "resource_id": "arn:aws:lambda:us-east-1:027087672282:function:agent-planner",
+      "rationale": "agent-planner runs on nodejs20.x with x86_64 architecture.",
+      "recommendation": "Benchmark the function on arm64 and migrate if dependencies are compatible.",
+      "automation_ready": false
+    },
+    {
+      "impact": "low",
+      "confidence": "medium",
+      "category": "lambda-graviton",
+      "title": "Review Lambda for arm64 migration",
+      "resource_id": "arn:aws:lambda:us-east-1:027087672282:function:setup-agent",
+      "rationale": "setup-agent runs on python3.12 with x86_64 architecture.",
+      "recommendation": "Benchmark the function on arm64 and migrate if dependencies are compatible.",
+      "automation_ready": false
+    },
+    {
+      "impact": "low",
+      "confidence": "medium",
+      "category": "lambda-graviton",
+      "title": "Review Lambda for arm64 migration",
+      "resource_id": "arn:aws:lambda:us-east-1:027087672282:function:test-lambda-integration",
+      "rationale": "test-lambda-integration runs on python3.11 with x86_64 architecture.",
+      "recommendation": "Benchmark the function on arm64 and migrate if dependencies are compatible.",
+      "automation_ready": false
+    },
+    {
+      "impact": "low",
+      "confidence": "medium",
+      "category": "lambda-graviton",
+      "title": "Review Lambda for arm64 migration",
+      "resource_id": "arn:aws:lambda:us-east-1:027087672282:function:plan-executor",
+      "rationale": "plan-executor runs on nodejs20.x with x86_64 architecture.",
+      "recommendation": "Benchmark the function on arm64 and migrate if dependencies are compatible.",
+      "automation_ready": false
+    },
+    {
+      "impact": "low",
+      "confidence": "medium",
+      "category": "lambda-graviton",
+      "title": "Review Lambda for arm64 migration",
+      "resource_id": "arn:aws:lambda:us-east-1:027087672282:function:hello-world-fn",
+      "rationale": "hello-world-fn runs on python3.11 with x86_64 architecture.",
+      "recommendation": "Benchmark the function on arm64 and migrate if dependencies are compatible.",
+      "automation_ready": false
+    },
+    {
+      "impact": "low",
+      "confidence": "medium",
+      "category": "lambda-graviton",
+      "title": "Review Lambda for arm64 migration",
+      "resource_id": "arn:aws:lambda:us-east-1:027087672282:function:log-collector",
+      "rationale": "log-collector runs on nodejs20.x with x86_64 architecture.",
+      "recommendation": "Benchmark the function on arm64 and migrate if dependencies are compatible.",
+      "automation_ready": false
+    }
+  ],
+  "next_level_requirements": [
+    "Cost Explorer or CUR data to attach dollar impact instead of heuristic ranking.",
+    "CloudWatch utilization history to support rightsizing with evidence.",
+    "Tag coverage by team, env, and owner to attribute spend and automate cleanup safely.",
+    "Approval workflow for stop, delete, and resize actions."
+  ],
+  "disclaimer": "This report ranks likely optimization candidates from infrastructure metadata. Dollar estimates require billing data."
+}

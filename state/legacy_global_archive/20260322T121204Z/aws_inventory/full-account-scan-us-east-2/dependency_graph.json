@@ -1,0 +1,291 @@
+{
+  "nodes": [
+    {
+      "id": "vpc-01209ca70655a3a1f",
+      "type": "vpc",
+      "name": "vpc-01209ca70655a3a1f"
+    },
+    {
+      "id": "vpc-0386dd7e6b733ef08",
+      "type": "vpc",
+      "name": "vpc-0386dd7e6b733ef08"
+    },
+    {
+      "id": "vpc-0398076692ecf8c3d",
+      "type": "vpc",
+      "name": "vpc-0398076692ecf8c3d"
+    },
+    {
+      "id": "vpc-072a318f29e8e1fd0",
+      "type": "vpc",
+      "name": "vpc-072a318f29e8e1fd0"
+    },
+    {
+      "id": "vpc-07535aa035421c9e5",
+      "type": "vpc",
+      "name": "vpc-07535aa035421c9e5"
+    },
+    {
+      "id": "subnet-05ec6e9affd55b1ef",
+      "type": "subnet",
+      "name": "subnet-05ec6e9affd55b1ef"
+    },
+    {
+      "id": "subnet-0c72c704594443234",
+      "type": "subnet",
+      "name": "subnet-0c72c704594443234"
+    },
+    {
+      "id": "subnet-0aa42b2acf7dc27e5",
+      "type": "subnet",
+      "name": "subnet-0aa42b2acf7dc27e5"
+    },
+    {
+      "id": "subnet-0c8ba5242f85953cb",
+      "type": "subnet",
+      "name": "subnet-0c8ba5242f85953cb"
+    },
+    {
+      "id": "subnet-0024ca90ce274c67f",
+      "type": "subnet",
+      "name": "subnet-0024ca90ce274c67f"
+    },
+    {
+      "id": "subnet-093fadb02080880e6",
+      "type": "subnet",
+      "name": "subnet-093fadb02080880e6"
+    },
+    {
+      "id": "subnet-0f62645b51631471d",
+      "type": "subnet",
+      "name": "subnet-0f62645b51631471d"
+    },
+    {
+      "id": "subnet-0673dd40f22a02e33",
+      "type": "subnet",
+      "name": "subnet-0673dd40f22a02e33"
+    },
+    {
+      "id": "subnet-0e4568a59857b348c",
+      "type": "subnet",
+      "name": "subnet-0e4568a59857b348c"
+    },
+    {
+      "id": "subnet-0565b1e2fb6047507",
+      "type": "subnet",
+      "name": "subnet-0565b1e2fb6047507"
+    },
+    {
+      "id": "subnet-028804c2be33078a5",
+      "type": "subnet",
+      "name": "subnet-028804c2be33078a5"
+    },
+    {
+      "id": "subnet-0cf8d5a6114db9150",
+      "type": "subnet",
+      "name": "subnet-0cf8d5a6114db9150"
+    },
+    {
+      "id": "subnet-01947fad6da467141",
+      "type": "subnet",
+      "name": "subnet-01947fad6da467141"
+    },
+    {
+      "id": "subnet-034dd89f16a3b07f1",
+      "type": "subnet",
+      "name": "subnet-034dd89f16a3b07f1"
+    },
+    {
+      "id": "subnet-0b225689bb3417ff6",
+      "type": "subnet",
+      "name": "subnet-0b225689bb3417ff6"
+    },
+    {
+      "id": "subnet-0b421c1677fcec6fd",
+      "type": "subnet",
+      "name": "subnet-0b421c1677fcec6fd"
+    },
+    {
+      "id": "subnet-05eda22130e4d62c8",
+      "type": "subnet",
+      "name": "subnet-05eda22130e4d62c8"
+    },
+    {
+      "id": "subnet-074c79625057ac73a",
+      "type": "subnet",
+      "name": "subnet-074c79625057ac73a"
+    },
+    {
+      "id": "subnet-06ff2d45e9757db71",
+      "type": "subnet",
+      "name": "subnet-06ff2d45e9757db71"
+    },
+    {
+      "id": "subnet-0c4b4ae95844a3bf3",
+      "type": "subnet",
+      "name": "subnet-0c4b4ae95844a3bf3"
+    },
+    {
+      "id": "subnet-0bcee60eca400460c",
+      "type": "subnet",
+      "name": "subnet-0bcee60eca400460c"
+    },
+    {
+      "id": "sg-0b2a9e22de79a6968",
+      "type": "security-group",
+      "name": "default"
+    },
+    {
+      "id": "sg-0859e61e2175056f6",
+      "type": "security-group",
+      "name": "default"
+    },
+    {
+      "id": "sg-08747692431162822",
+      "type": "security-group",
+      "name": "default"
+    },
+    {
+      "id": "sg-053c4842081b6c4cb",
+      "type": "security-group",
+      "name": "default"
+    },
+    {
+      "id": "sg-0f94b212e0df9f302",
+      "type": "security-group",
+      "name": "default"
+    }
+  ],
+  "edges": [
+    {
+      "from": "subnet-05ec6e9affd55b1ef",
+      "to": "vpc-0386dd7e6b733ef08",
+      "relationship": "subnet-of-vpc"
+    },
+    {
+      "from": "subnet-0c72c704594443234",
+      "to": "vpc-0398076692ecf8c3d",
+      "relationship": "subnet-of-vpc"
+    },
+    {
+      "from": "subnet-0aa42b2acf7dc27e5",
+      "to": "vpc-01209ca70655a3a1f",
+      "relationship": "subnet-of-vpc"
+    },
+    {
+      "from": "subnet-0c8ba5242f85953cb",
+      "to": "vpc-0398076692ecf8c3d",
+      "relationship": "subnet-of-vpc"
+    },
+    {
+      "from": "subnet-0024ca90ce274c67f",
+      "to": "vpc-0398076692ecf8c3d",
+      "relationship": "subnet-of-vpc"
+    },
+    {
+      "from": "subnet-093fadb02080880e6",
+      "to": "vpc-07535aa035421c9e5",
+      "relationship": "subnet-of-vpc"
+    },
+    {
+      "from": "subnet-0f62645b51631471d",
+      "to": "vpc-07535aa035421c9e5",
+      "relationship": "subnet-of-vpc"
+    },
+    {
+      "from": "subnet-0673dd40f22a02e33",
+      "to": "vpc-07535aa035421c9e5",
+      "relationship": "subnet-of-vpc"
+    },
+    {
+      "from": "subnet-0e4568a59857b348c",
+      "to": "vpc-07535aa035421c9e5",
+      "relationship": "subnet-of-vpc"
+    },
+    {
+      "from": "subnet-0565b1e2fb6047507",
+      "to": "vpc-0386dd7e6b733ef08",
+      "relationship": "subnet-of-vpc"
+    },
+    {
+      "from": "subnet-028804c2be33078a5",
+      "to": "vpc-01209ca70655a3a1f",
+      "relationship": "subnet-of-vpc"
+    },
+    {
+      "from": "subnet-0cf8d5a6114db9150",
+      "to": "vpc-07535aa035421c9e5",
+      "relationship": "subnet-of-vpc"
+    },
+    {
+      "from": "subnet-01947fad6da467141",
+      "to": "vpc-0398076692ecf8c3d",
+      "relationship": "subnet-of-vpc"
+    },
+    {
+      "from": "subnet-034dd89f16a3b07f1",
+      "to": "vpc-0398076692ecf8c3d",
+      "relationship": "subnet-of-vpc"
+    },
+    {
+      "from": "subnet-0b225689bb3417ff6",
+      "to": "vpc-07535aa035421c9e5",
+      "relationship": "subnet-of-vpc"
+    },
+    {
+      "from": "subnet-0b421c1677fcec6fd",
+      "to": "vpc-01209ca70655a3a1f",
+      "relationship": "subnet-of-vpc"
+    },
+    {
+      "from": "subnet-05eda22130e4d62c8",
+      "to": "vpc-0398076692ecf8c3d",
+      "relationship": "subnet-of-vpc"
+    },
+    {
+      "from": "subnet-074c79625057ac73a",
+      "to": "vpc-01209ca70655a3a1f",
+      "relationship": "subnet-of-vpc"
+    },
+    {
+      "from": "subnet-06ff2d45e9757db71",
+      "to": "vpc-01209ca70655a3a1f",
+      "relationship": "subnet-of-vpc"
+    },
+    {
+      "from": "subnet-0c4b4ae95844a3bf3",
+      "to": "vpc-0386dd7e6b733ef08",
+      "relationship": "subnet-of-vpc"
+    },
+    {
+      "from": "subnet-0bcee60eca400460c",
+      "to": "vpc-01209ca70655a3a1f",
+      "relationship": "subnet-of-vpc"
+    },
+    {
+      "from": "sg-0b2a9e22de79a6968",
+      "to": "vpc-0398076692ecf8c3d",
+      "relationship": "security-group-in-vpc"
+    },
+    {
+      "from": "sg-0859e61e2175056f6",
+      "to": "vpc-0386dd7e6b733ef08",
+      "relationship": "security-group-in-vpc"
+    },
+    {
+      "from": "sg-08747692431162822",
+      "to": "vpc-072a318f29e8e1fd0",
+      "relationship": "security-group-in-vpc"
+    },
+    {
+      "from": "sg-053c4842081b6c4cb",
+      "to": "vpc-07535aa035421c9e5",
+      "relationship": "security-group-in-vpc"
+    },
+    {
+      "from": "sg-0f94b212e0df9f302",
+      "to": "vpc-01209ca70655a3a1f",
+      "relationship": "security-group-in-vpc"
+    }
+  ]
+}

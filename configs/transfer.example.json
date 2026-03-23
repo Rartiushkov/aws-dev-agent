@@ -1,0 +1,40 @@
+{
+  "overrides": {
+    "source_region": "us-east-1",
+    "target_region": "us-east-2",
+    "source_regions": ["us-east-1", "us-east-2"],
+    "preserve_names": true,
+    "allow_same_scope": false
+  },
+  "source_role_arn": "arn:aws:iam::<source-account-id>:role/SourceTransferRole",
+  "target_role_arn": "arn:aws:iam::<target-account-id>:role/TargetTransferRole",
+  "git_backup": {
+    "provider": "github",
+    "host": "github.com",
+    "protocol": "https",
+    "organization": "client-org",
+    "repo_prefix": "backup",
+    "create_repos": false,
+    "username": "",
+    "token_env": "CLIENT_GIT_TOKEN",
+    "test_repo_url": "https://github.com/client-org/example.git"
+  },
+  "exclusions": {
+    "lambda_functions": [
+      "example-skip-*"
+    ],
+    "sqs_queues": [],
+    "iam_roles": [],
+    "sns_topics": [],
+    "secrets": [],
+    "dynamodb_tables": [],
+    "s3_buckets": [],
+    "lambda_event_source_mappings": [],
+    "api_gateways": [],
+    "cloudformation_stacks": [],
+    "load_balancers": [],
+    "security_groups": [],
+    "ecs_clusters": [],
+    "ecs_services": []
+  }
+}

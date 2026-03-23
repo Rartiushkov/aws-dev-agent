@@ -1,0 +1,37 @@
+{
+  "generated_at": "2026-03-19T16:25:46.770980+00:00",
+  "source_env": "",
+  "region": "us-east-1",
+  "summary": {
+    "vpcs": 0,
+    "subnets": 0,
+    "route_tables": 0,
+    "security_groups": 1
+  },
+  "steps": [
+    {
+      "order": 1,
+      "resource": "vpcs",
+      "count": 0,
+      "action": "create-or-map"
+    },
+    {
+      "order": 2,
+      "resource": "subnets",
+      "count": 0,
+      "action": "create-or-map"
+    },
+    {
+      "order": 3,
+      "resource": "route_tables",
+      "count": 0,
+      "action": "create-or-map"
+    },
+    {
+      "order": 4,
+      "resource": "security_groups",
+      "count": 1,
+      "action": "create-or-map"
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "generated_at": "2026-03-21T20:42:03.155774+00:00",
+  "source_env": "full-account-scan",
+  "region": "us-east-1",
+  "account_id": "027087672282",
+  "headline": "No clear performance bottlenecks were detected in the current snapshot.",
+  "finding_count": 0,
+  "top_incidents": []
+}

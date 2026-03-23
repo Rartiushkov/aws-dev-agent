@@ -1,0 +1,131 @@
+{
+  "generated_at": "2026-03-21T20:20:48.655364+00:00",
+  "source_env": "",
+  "region": "us-east-1",
+  "account_id": "027087672282",
+  "summary": {
+    "finding_count": 13,
+    "high_confidence_count": 7,
+    "medium_confidence_count": 6,
+    "low_confidence_count": 0
+  },
+  "findings": [
+    {
+      "category": "disabled-trigger",
+      "title": "Disabled event source mapping may indicate a paused or unused workflow",
+      "resource_id": "arn:aws:lambda:us-east-1:027087672282:event-source-mapping:55dbb09e-8b4d-4594-8c41-8fa4181ad929",
+      "confidence": "high",
+      "waste_type": "paused-unused-path",
+      "why": "Mapping from arn:aws:sqs:us-east-1:027087672282:agent-fix-tasks.fifo to arn:aws:lambda:us-east-1:027087672282:function:remediator is disabled.",
+      "recommended_action": "Confirm whether this flow is still needed. Remove the mapping or retire the upstream queue/stream if the workflow is gone."
+    },
+    {
+      "category": "broken-trigger",
+      "title": "Enabled event source mapping is failing to process",
+      "resource_id": "arn:aws:lambda:us-east-1:027087672282:event-source-mapping:3f3bd44c-b2cb-432d-b97c-d34246296a1d",
+      "confidence": "high",
+      "waste_type": "broken-cost-path",
+      "why": "PROBLEM: Lambda failed to assume your function execution role. Please check if the role trust Lambda service principal, and make sure it does not require setting source identity to be assumed.",
+      "recommended_action": "Fix the execution role or disable the mapping until the downstream path is healthy."
+    },
+    {
+      "category": "disabled-trigger",
+      "title": "Disabled event source mapping may indicate a paused or unused workflow",
+      "resource_id": "arn:aws:lambda:us-east-1:027087672282:event-source-mapping:e1eb804b-5d2c-4c56-b1db-4aa5a8107250",
+      "confidence": "high",
+      "waste_type": "paused-unused-path",
+      "why": "Mapping from arn:aws:sqs:us-east-1:027087672282:connector-tasks.fifo to arn:aws:lambda:us-east-1:027087672282:function:connector-worker is disabled.",
+      "recommended_action": "Confirm whether this flow is still needed. Remove the mapping or retire the upstream queue/stream if the workflow is gone."
+    },
+    {
+      "category": "disabled-trigger",
+      "title": "Disabled event source mapping may indicate a paused or unused workflow",
+      "resource_id": "arn:aws:lambda:us-east-1:027087672282:event-source-mapping:715dc62f-47bf-4f1f-b8fb-9d25947dc437",
+      "confidence": "high",
+      "waste_type": "paused-unused-path",
+      "why": "Mapping from arn:aws:sqs:us-east-1:027087672282:agent-error-queue to arn:aws:lambda:us-east-1:027087672282:function:agent-planner is disabled.",
+      "recommended_action": "Confirm whether this flow is still needed. Remove the mapping or retire the upstream queue/stream if the workflow is gone."
+    },
+    {
+      "category": "disabled-trigger",
+      "title": "Disabled event source mapping may indicate a paused or unused workflow",
+      "resource_id": "arn:aws:lambda:us-east-1:027087672282:event-source-mapping:4b361b04-2403-4343-aa61-32e97d094f82",
+      "confidence": "high",
+      "waste_type": "paused-unused-path",
+      "why": "Mapping from arn:aws:sqs:us-east-1:027087672282:plan-executor-queue to arn:aws:lambda:us-east-1:027087672282:function:plan-executor is disabled.",
+      "recommended_action": "Confirm whether this flow is still needed. Remove the mapping or retire the upstream queue/stream if the workflow is gone."
+    },
+    {
+      "category": "failing-ecs-service",
+      "title": "ECS service is retrying but has no healthy running tasks",
+      "resource_id": "arn:aws:ecs:us-east-1:027087672282:service/carefree-crocodile-bf3zi5/test_def-service-vnwns50w",
+      "confidence": "high",
+      "waste_type": "active-waste",
+      "why": "test_def-service-vnwns50w has desiredCount=1, runningCount=0, and 5 recent failure events.",
+      "recommended_action": "Set desiredCount to 0 until the image and startup path are fixed."
+    },
+    {
+      "category": "failing-ecs-service",
+      "title": "ECS service is retrying but has no healthy running tasks",
+      "resource_id": "arn:aws:ecs:us-east-1:027087672282:service/carefree-crocodile-bf3zi5/test_def-service-64zgxsih",
+      "confidence": "high",
+      "waste_type": "active-waste",
+      "why": "test_def-service-64zgxsih has desiredCount=1, runningCount=0, and 5 recent failure events.",
+      "recommended_action": "Set desiredCount to 0 until the image and startup path are fixed."
+    },
+    {
+      "category": "test-lambda",
+      "title": "Lambda function looks like test or temporary code",
+      "resource_id": "arn:aws:lambda:us-east-1:027087672282:function:test-lambda-integration",
+      "confidence": "medium",
+      "waste_type": "likely-unused",
+      "why": "test-lambda-integration matches common test or temporary naming patterns.",
+      "recommended_action": "Check whether it is still invoked in a real workflow and remove it if not needed."
+    },
+    {
+      "category": "orphan-lambda",
+      "title": "Lambda has no discovered event source mappings and appears non-production",
+      "resource_id": "arn:aws:lambda:us-east-1:027087672282:function:test-lambda-integration",
+      "confidence": "medium",
+      "waste_type": "likely-unused",
+      "why": "test-lambda-integration has no discovered event source mappings in the snapshot.",
+      "recommended_action": "Confirm there are no schedules or manual invocations keeping it alive; if not, retire it."
+    },
+    {
+      "category": "test-lambda",
+      "title": "Lambda function looks like test or temporary code",
+      "resource_id": "arn:aws:lambda:us-east-1:027087672282:function:hello-world-fn",
+      "confidence": "medium",
+      "waste_type": "likely-unused",
+      "why": "hello-world-fn matches common test or temporary naming patterns.",
+      "recommended_action": "Check whether it is still invoked in a real workflow and remove it if not needed."
+    },
+    {
+      "category": "orphan-lambda",
+      "title": "Lambda has no discovered event source mappings and appears non-production",
+      "resource_id": "arn:aws:lambda:us-east-1:027087672282:function:hello-world-fn",
+      "confidence": "medium",
+      "waste_type": "likely-unused",
+      "why": "hello-world-fn has no discovered event source mappings in the snapshot.",
+      "recommended_action": "Confirm there are no schedules or manual invocations keeping it alive; if not, retire it."
+    },
+    {
+      "category": "bucket-lifecycle",
+      "title": "Bucket has no lifecycle rules and may grow storage cost over time",
+      "resource_id": "aws-dev-agent-codebuild-artifacts-027087672282-us-east-1",
+      "confidence": "medium",
+      "waste_type": "storage-growth-risk",
+      "why": "aws-dev-agent-codebuild-artifacts-027087672282-us-east-1 has no lifecycle rules in the snapshot.",
+      "recommended_action": "Add lifecycle rules for retention, archival, or incomplete multipart cleanup."
+    },
+    {
+      "category": "bucket-lifecycle",
+      "title": "Bucket has no lifecycle rules and may grow storage cost over time",
+      "resource_id": "hippa-signer-artifacts-027087672282",
+      "confidence": "medium",
+      "waste_type": "storage-growth-risk",
+      "why": "hippa-signer-artifacts-027087672282 has no lifecycle rules in the snapshot.",
+      "recommended_action": "Add lifecycle rules for retention, archival, or incomplete multipart cleanup."
+    }
+  ]
+}

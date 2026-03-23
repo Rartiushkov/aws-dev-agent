@@ -1,5 +1,6 @@
 import json
-import subprocess
+
+from executor.command_runner import run_command
 
 
 PROTECTED_PREFIXES = [
@@ -31,9 +32,8 @@ def is_safe_to_delete(role_name: str) -> bool:
 
 
 def run_cmd(cmd):
-    result = subprocess.run(
+    result = run_command(
         cmd,
-        shell=True,
         capture_output=True,
         text=True
     )

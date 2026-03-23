@@ -1,0 +1,25 @@
+{
+  "generated_at": "2026-03-19T16:25:47.860896+00:00",
+  "source_env": "",
+  "account_id": "027087672282",
+  "region": "us-east-1",
+  "bucket_count": 2,
+  "buckets": [
+    {
+      "source_bucket": "aws-dev-agent-codebuild-artifacts-027087672282-us-east-1",
+      "target_bucket": "aws-dev-agent-codebuild-artifacts-027087672282-us-east-1",
+      "source_region": "us-east-1",
+      "object_count_status": "unknown",
+      "mode": "copy-objects",
+      "manual_review": true
+    },
+    {
+      "source_bucket": "hippa-signer-artifacts-027087672282",
+      "target_bucket": "hippa-signer-artifacts-027087672282",
+      "source_region": "us-east-1",
+      "object_count_status": "unknown",
+      "mode": "copy-objects",
+      "manual_review": true
+    }
+  ]
+}

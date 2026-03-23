@@ -8,14 +8,13 @@ def save_snapshot(message="agent update"):
     commit_message = f"{message} | {timestamp}"
 
     try:
-        add_result = subprocess.run("git add .", shell=True, capture_output=True, text=True)
+        add_result = subprocess.run(["git", "add", "."], capture_output=True, text=True)
         if add_result.returncode != 0:
             print("Git add failed:", (add_result.stderr or "").strip())
             return
 
         commit_result = subprocess.run(
-            f'git commit -m "{commit_message}"',
-            shell=True,
+            ["git", "commit", "-m", commit_message],
             capture_output=True,
             text=True
         )
@@ -28,7 +27,7 @@ def save_snapshot(message="agent update"):
             print("Git commit failed:", commit_output.strip())
             return
 
-        push_result = subprocess.run("git push", shell=True, capture_output=True, text=True)
+        push_result = subprocess.run(["git", "push"], capture_output=True, text=True)
         if push_result.returncode != 0:
             print("Git push failed:", (push_result.stderr or "").strip())
             return

@@ -1,0 +1,162 @@
+{
+  "generated_at": "2026-03-21T20:20:48.655292+00:00",
+  "account_id": "027087672282",
+  "region": "us-east-1",
+  "period": {
+    "month_to_date_amount": -0.0,
+    "month_to_date_unit": "USD",
+    "month_end_forecast_amount": 1.05,
+    "month_end_forecast_unit": "USD"
+  },
+  "service_breakdown": [
+    {
+      "service": "AWS CloudShell",
+      "amount": 0.0,
+      "unit": "USD"
+    },
+    {
+      "service": "AWS Data Transfer",
+      "amount": -0.0,
+      "unit": "USD"
+    },
+    {
+      "service": "AWS Glue",
+      "amount": 0.0,
+      "unit": "USD"
+    },
+    {
+      "service": "AWS Key Management Service",
+      "amount": 0.0,
+      "unit": "USD"
+    },
+    {
+      "service": "AWS Lambda",
+      "amount": 0.0,
+      "unit": "USD"
+    }
+  ],
+  "region_breakdown": [
+    {
+      "region": "NoRegion",
+      "amount": 0.0,
+      "unit": "USD"
+    },
+    {
+      "region": "eu-north-1",
+      "amount": 0.0,
+      "unit": "USD"
+    },
+    {
+      "region": "global",
+      "amount": 0.0,
+      "unit": "USD"
+    },
+    {
+      "region": "us-east-1",
+      "amount": -0.0,
+      "unit": "USD"
+    },
+    {
+      "region": "us-east-2",
+      "amount": -0.0,
+      "unit": "USD"
+    }
+  ],
+  "recent_anomalies": [],
+  "recommended_actions": [
+    {
+      "priority": "high",
+      "title": "Pause failing ECS service until its image or task definition is fixed",
+      "resource_id": "arn:aws:ecs:us-east-1:027087672282:service/carefree-crocodile-bf3zi5/test_def-service-vnwns50w",
+      "why": "test_def-service-vnwns50w keeps retrying failed task launches (5 recent failure events) while desiredCount remains > 0.",
+      "action": "Set desiredCount to 0 or disable the service until the container image and startup path are healthy.",
+      "automation_ready": true
+    },
+    {
+      "priority": "high",
+      "title": "Pause failing ECS service until its image or task definition is fixed",
+      "resource_id": "arn:aws:ecs:us-east-1:027087672282:service/carefree-crocodile-bf3zi5/test_def-service-64zgxsih",
+      "why": "test_def-service-64zgxsih keeps retrying failed task launches (5 recent failure events) while desiredCount remains > 0.",
+      "action": "Set desiredCount to 0 or disable the service until the container image and startup path are healthy.",
+      "automation_ready": true
+    },
+    {
+      "priority": "medium",
+      "title": "Move non-production ECS service to Fargate Spot when interruption is acceptable",
+      "resource_id": "arn:aws:ecs:us-east-1:027087672282:service/carefree-crocodile-bf3zi5/test_def-service-vnwns50w",
+      "why": "test_def-service-vnwns50w looks like a non-production workload and currently uses standard Fargate capacity.",
+      "action": "Switch the capacity provider strategy to FARGATE_SPOT for interrupt-tolerant environments.",
+      "automation_ready": false
+    },
+    {
+      "priority": "medium",
+      "title": "Review ECS task size for non-production workload",
+      "resource_id": "arn:aws:ecs:us-east-1:027087672282:service/carefree-crocodile-bf3zi5/test_def-service-vnwns50w",
+      "why": "test_def-service-vnwns50w uses a task definition sized at 1024 CPU units and 3072 MiB memory.",
+      "action": "Validate actual CPU and memory usage and reduce the Fargate task size if headroom is consistently high.",
+      "automation_ready": false
+    },
+    {
+      "priority": "medium",
+      "title": "Move non-production ECS service to Fargate Spot when interruption is acceptable",
+      "resource_id": "arn:aws:ecs:us-east-1:027087672282:service/carefree-crocodile-bf3zi5/test_def-service-64zgxsih",
+      "why": "test_def-service-64zgxsih looks like a non-production workload and currently uses standard Fargate capacity.",
+      "action": "Switch the capacity provider strategy to FARGATE_SPOT for interrupt-tolerant environments.",
+      "automation_ready": false
+    }
+  ],
+  "unused_or_waste_findings": [
+    {
+      "category": "disabled-trigger",
+      "title": "Disabled event source mapping may indicate a paused or unused workflow",
+      "resource_id": "arn:aws:lambda:us-east-1:027087672282:event-source-mapping:55dbb09e-8b4d-4594-8c41-8fa4181ad929",
+      "confidence": "high",
+      "waste_type": "paused-unused-path",
+      "why": "Mapping from arn:aws:sqs:us-east-1:027087672282:agent-fix-tasks.fifo to arn:aws:lambda:us-east-1:027087672282:function:remediator is disabled.",
+      "recommended_action": "Confirm whether this flow is still needed. Remove the mapping or retire the upstream queue/stream if the workflow is gone."
+    },
+    {
+      "category": "broken-trigger",
+      "title": "Enabled event source mapping is failing to process",
+      "resource_id": "arn:aws:lambda:us-east-1:027087672282:event-source-mapping:3f3bd44c-b2cb-432d-b97c-d34246296a1d",
+      "confidence": "high",
+      "waste_type": "broken-cost-path",
+      "why": "PROBLEM: Lambda failed to assume your function execution role. Please check if the role trust Lambda service principal, and make sure it does not require setting source identity to be assumed.",
+      "recommended_action": "Fix the execution role or disable the mapping until the downstream path is healthy."
+    },
+    {
+      "category": "disabled-trigger",
+      "title": "Disabled event source mapping may indicate a paused or unused workflow",
+      "resource_id": "arn:aws:lambda:us-east-1:027087672282:event-source-mapping:e1eb804b-5d2c-4c56-b1db-4aa5a8107250",
+      "confidence": "high",
+      "waste_type": "paused-unused-path",
+      "why": "Mapping from arn:aws:sqs:us-east-1:027087672282:connector-tasks.fifo to arn:aws:lambda:us-east-1:027087672282:function:connector-worker is disabled.",
+      "recommended_action": "Confirm whether this flow is still needed. Remove the mapping or retire the upstream queue/stream if the workflow is gone."
+    },
+    {
+      "category": "disabled-trigger",
+      "title": "Disabled event source mapping may indicate a paused or unused workflow",
+      "resource_id": "arn:aws:lambda:us-east-1:027087672282:event-source-mapping:715dc62f-47bf-4f1f-b8fb-9d25947dc437",
+      "confidence": "high",
+      "waste_type": "paused-unused-path",
+      "why": "Mapping from arn:aws:sqs:us-east-1:027087672282:agent-error-queue to arn:aws:lambda:us-east-1:027087672282:function:agent-planner is disabled.",
+      "recommended_action": "Confirm whether this flow is still needed. Remove the mapping or retire the upstream queue/stream if the workflow is gone."
+    },
+    {
+      "category": "disabled-trigger",
+      "title": "Disabled event source mapping may indicate a paused or unused workflow",
+      "resource_id": "arn:aws:lambda:us-east-1:027087672282:event-source-mapping:4b361b04-2403-4343-aa61-32e97d094f82",
+      "confidence": "high",
+      "waste_type": "paused-unused-path",
+      "why": "Mapping from arn:aws:sqs:us-east-1:027087672282:plan-executor-queue to arn:aws:lambda:us-east-1:027087672282:function:plan-executor is disabled.",
+      "recommended_action": "Confirm whether this flow is still needed. Remove the mapping or retire the upstream queue/stream if the workflow is gone."
+    }
+  ],
+  "client_summary": {
+    "headline": "Month-to-date AWS spend is -0.0 USD, with a forecast of 1.05 USD by month end.",
+    "top_cost_service": "AWS CloudShell",
+    "top_cost_region": "NoRegion",
+    "recommendation_count": 5,
+    "unused_or_waste_count": 13
+  }
+}

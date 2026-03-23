@@ -1,0 +1,215 @@
+{
+  "manifest_path": "state\\deployments\\roma-art-us-east-1\\deployment_manifest.json",
+  "target_env": "roma-art",
+  "deployment_key": "roma-art-us-east-1",
+  "region": "us-east-1",
+  "functions": [
+    {
+      "function_name": "roma-art-remediator",
+      "state": "Active",
+      "last_update_status": "Successful",
+      "issues": []
+    },
+    {
+      "function_name": "roma-art-task-dispatcher",
+      "state": "Active",
+      "last_update_status": "Successful",
+      "issues": []
+    },
+    {
+      "function_name": "roma-art-ai-orchestrator",
+      "state": "Active",
+      "last_update_status": "Successful",
+      "issues": []
+    },
+    {
+      "function_name": "roma-art-connector-worker",
+      "state": "Active",
+      "last_update_status": "Successful",
+      "issues": []
+    },
+    {
+      "function_name": "roma-art-agent-planner",
+      "state": "Active",
+      "last_update_status": "Successful",
+      "issues": []
+    },
+    {
+      "function_name": "roma-art-setup-agent",
+      "state": "Active",
+      "last_update_status": "Successful",
+      "issues": []
+    },
+    {
+      "function_name": "roma-art-test-lambda-integration",
+      "state": "Active",
+      "last_update_status": "Successful",
+      "issues": []
+    },
+    {
+      "function_name": "roma-art-plan-executor",
+      "state": "Active",
+      "last_update_status": "Successful",
+      "issues": []
+    },
+    {
+      "function_name": "roma-art-hello-world-fn",
+      "state": "Active",
+      "last_update_status": "Successful",
+      "issues": []
+    },
+    {
+      "function_name": "roma-art-log-collector",
+      "state": "Active",
+      "last_update_status": "Successful",
+      "issues": []
+    }
+  ],
+  "secrets": [
+    {
+      "secret_name": "roma-art-hippa-signer/github/pat",
+      "present": true,
+      "arn": "arn:aws:secretsmanager:us-east-1:198758256518:secret:roma-art-hippa-signer/github/pat-IxHdoD",
+      "issues": []
+    }
+  ],
+  "dynamodb_tables": [
+    {
+      "source_table": "agent_errors",
+      "target_table": "roma-art-agent_errors",
+      "present": true,
+      "expected_item_count": 11,
+      "actual_item_count": 11,
+      "source_item_count": 11,
+      "issues": []
+    },
+    {
+      "source_table": "agent_fix_plans",
+      "target_table": "roma-art-agent_fix_plans",
+      "present": true,
+      "expected_item_count": 105,
+      "actual_item_count": 105,
+      "source_item_count": 105,
+      "issues": []
+    },
+    {
+      "source_table": "agent_tasks",
+      "target_table": "roma-art-agent_tasks",
+      "present": true,
+      "expected_item_count": 1,
+      "actual_item_count": 1,
+      "source_item_count": 1,
+      "issues": []
+    },
+    {
+      "source_table": "clinics",
+      "target_table": "roma-art-clinics",
+      "present": true,
+      "expected_item_count": 0,
+      "actual_item_count": 0,
+      "source_item_count": 0,
+      "issues": []
+    },
+    {
+      "source_table": "consent_events",
+      "target_table": "roma-art-consent_events",
+      "present": true,
+      "expected_item_count": 0,
+      "actual_item_count": 0,
+      "source_item_count": 0,
+      "issues": []
+    },
+    {
+      "source_table": "consents",
+      "target_table": "roma-art-consents",
+      "present": true,
+      "expected_item_count": 0,
+      "actual_item_count": 0,
+      "source_item_count": 0,
+      "issues": []
+    },
+    {
+      "source_table": "idempotency_locks",
+      "target_table": "roma-art-idempotency_locks",
+      "present": true,
+      "expected_item_count": 0,
+      "actual_item_count": 0,
+      "source_item_count": 0,
+      "issues": []
+    }
+  ],
+  "smoke_checks": [
+    {
+      "name": "lambda-functions-active",
+      "status": "ok",
+      "issues": []
+    },
+    {
+      "name": "lambda-dry-run-invoke",
+      "status": "ok",
+      "issues": []
+    },
+    {
+      "name": "lambda-event-source-mapping-count",
+      "status": "ok",
+      "expected": 5,
+      "actual": 5
+    },
+    {
+      "name": "lambda-event-source-mappings-enabled",
+      "status": "ok",
+      "issues": []
+    },
+    {
+      "name": "sqs-queues-present",
+      "status": "ok",
+      "issues": []
+    },
+    {
+      "name": "ecs-clusters-present",
+      "status": "ok",
+      "issues": []
+    },
+    {
+      "name": "ecs-services-steady",
+      "status": "ok",
+      "issues": []
+    },
+    {
+      "name": "api-gateways-present",
+      "status": "ok",
+      "issues": []
+    },
+    {
+      "name": "api-gateway-stages-present",
+      "status": "ok",
+      "issues": []
+    },
+    {
+      "name": "network-resources-present",
+      "status": "ok",
+      "issues": []
+    },
+    {
+      "name": "codebuild-projects-ready",
+      "status": "ok",
+      "issues": []
+    },
+    {
+      "name": "kms-keys-ready",
+      "status": "ok",
+      "issues": []
+    },
+    {
+      "name": "api-gateway-extras-parity",
+      "status": "ok",
+      "issues": []
+    },
+    {
+      "name": "s3-bucket-parity",
+      "status": "ok",
+      "issues": []
+    }
+  ],
+  "issues_found": false
+}

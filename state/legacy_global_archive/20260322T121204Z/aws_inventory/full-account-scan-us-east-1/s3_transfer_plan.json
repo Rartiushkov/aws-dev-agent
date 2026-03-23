@@ -1,0 +1,156 @@
+{
+  "generated_at": "2026-03-22T09:37:16.687981+00:00",
+  "source_env": "",
+  "target_env": "roma-art",
+  "account_id": "027087672282",
+  "target_account_id": "198758256518",
+  "region": "us-east-1",
+  "target_region": "us-east-1",
+  "bucket_count": 2,
+  "buckets": [
+    {
+      "source_bucket": "aws-dev-agent-codebuild-artifacts-027087672282-us-east-1",
+      "target_bucket": "aws-dev-agent-codebuild-artifacts-198758256518-us-east-1",
+      "source_region": "us-east-1",
+      "object_count_status": "unknown",
+      "mode": "copy-objects",
+      "tags": [],
+      "versioning": {
+        "ResponseMetadata": {
+          "RequestId": "2N4H5B3MRAHK6TA6",
+          "HostId": "sZ/HywHesi+LeyTXMzN+g4w8PguOUgjSTQaojg4/u5/XoZP/Yca+EjmBAefGuRscDaF4GFbu+rerDG9a/UlGREV0W381y/nT",
+          "HTTPStatusCode": 200,
+          "HTTPHeaders": {
+            "x-amz-id-2": "sZ/HywHesi+LeyTXMzN+g4w8PguOUgjSTQaojg4/u5/XoZP/Yca+EjmBAefGuRscDaF4GFbu+rerDG9a/UlGREV0W381y/nT",
+            "x-amz-request-id": "2N4H5B3MRAHK6TA6",
+            "date": "Sun, 22 Mar 2026 08:41:02 GMT",
+            "transfer-encoding": "chunked",
+            "server": "AmazonS3"
+          },
+          "RetryAttempts": 0
+        }
+      },
+      "bucket_encryption": {
+        "Rules": [
+          {
+            "ApplyServerSideEncryptionByDefault": {
+              "SSEAlgorithm": "AES256"
+            },
+            "BucketKeyEnabled": false
+          }
+        ]
+      },
+      "lifecycle_rules": [],
+      "cors_rules": [],
+      "policy": "",
+      "notification_configuration": {
+        "ResponseMetadata": {
+          "RequestId": "2N4TTGTB68ZEWYVS",
+          "HostId": "DqMrJO0GAGA0/1gxnnQK1EtDBnlQGticq1LMGPGeHjeJlkTFcyp6PoCslaxV7RIjVvZ9aFHcmktIyMuSPfA4Y1A065DOEFN+",
+          "HTTPStatusCode": 200,
+          "HTTPHeaders": {
+            "x-amz-id-2": "DqMrJO0GAGA0/1gxnnQK1EtDBnlQGticq1LMGPGeHjeJlkTFcyp6PoCslaxV7RIjVvZ9aFHcmktIyMuSPfA4Y1A065DOEFN+",
+            "x-amz-request-id": "2N4TTGTB68ZEWYVS",
+            "date": "Sun, 22 Mar 2026 08:41:02 GMT",
+            "transfer-encoding": "chunked",
+            "server": "AmazonS3"
+          },
+          "RetryAttempts": 0
+        }
+      },
+      "notification_arn_mapping": {},
+      "kms_key_mapping": {},
+      "source_account_id": "027087672282",
+      "target_account_id": "198758256518",
+      "source_env": "",
+      "target_env": "roma-art",
+      "target_region": "us-east-1",
+      "manual_review": false
+    },
+    {
+      "source_bucket": "hippa-signer-artifacts-027087672282",
+      "target_bucket": "hippa-signer-artifacts-198758256518",
+      "source_region": "us-east-1",
+      "object_count_status": "unknown",
+      "mode": "copy-objects",
+      "tags": [],
+      "versioning": {
+        "ResponseMetadata": {
+          "RequestId": "B1JK7K4WNH7Y865X",
+          "HostId": "smf6ikZVgWane9ZSfqEyWg6/NAkTNPuDtKy4KZj4Zg1cLRWdXmSK+SxExvclHiH0BTU9GCMNfuM=",
+          "HTTPStatusCode": 200,
+          "HTTPHeaders": {
+            "x-amz-id-2": "smf6ikZVgWane9ZSfqEyWg6/NAkTNPuDtKy4KZj4Zg1cLRWdXmSK+SxExvclHiH0BTU9GCMNfuM=",
+            "x-amz-request-id": "B1JK7K4WNH7Y865X",
+            "date": "Sun, 22 Mar 2026 08:41:03 GMT",
+            "transfer-encoding": "chunked",
+            "server": "AmazonS3"
+          },
+          "RetryAttempts": 0
+        }
+      },
+      "bucket_encryption": {
+        "Rules": [
+          {
+            "ApplyServerSideEncryptionByDefault": {
+              "SSEAlgorithm": "AES256"
+            },
+            "BucketKeyEnabled": true
+          }
+        ]
+      },
+      "lifecycle_rules": [],
+      "cors_rules": [],
+      "policy": "",
+      "notification_configuration": {
+        "ResponseMetadata": {
+          "RequestId": "FJTHTQHYXGJD4D1C",
+          "HostId": "itqfT6N3PbYl2BHiyK/FfywwWBvLh5ExxibbK3/IOWhIoyvKQMdxFUaf7mq3oHsT0pReYU25I7E=",
+          "HTTPStatusCode": 200,
+          "HTTPHeaders": {
+            "x-amz-id-2": "itqfT6N3PbYl2BHiyK/FfywwWBvLh5ExxibbK3/IOWhIoyvKQMdxFUaf7mq3oHsT0pReYU25I7E=",
+            "x-amz-request-id": "FJTHTQHYXGJD4D1C",
+            "date": "Sun, 22 Mar 2026 08:41:04 GMT",
+            "transfer-encoding": "chunked",
+            "server": "AmazonS3"
+          },
+          "RetryAttempts": 0
+        }
+      },
+      "notification_arn_mapping": {},
+      "kms_key_mapping": {},
+      "source_account_id": "027087672282",
+      "target_account_id": "198758256518",
+      "source_env": "",
+      "target_env": "roma-art",
+      "target_region": "us-east-1",
+      "manual_review": false
+    }
+  ],
+  "execution_results": [
+    {
+      "source_bucket": "aws-dev-agent-codebuild-artifacts-027087672282-us-east-1",
+      "target_bucket": "aws-dev-agent-codebuild-artifacts-198758256518-us-east-1",
+      "bucket_status": "created",
+      "copied_objects": 2,
+      "issues": [],
+      "applied_bucket_configuration": [
+        "encryption"
+      ],
+      "source_object_count": 2,
+      "skipped_objects": 0
+    },
+    {
+      "source_bucket": "hippa-signer-artifacts-027087672282",
+      "target_bucket": "hippa-signer-artifacts-198758256518",
+      "bucket_status": "created",
+      "copied_objects": 2,
+      "issues": [],
+      "applied_bucket_configuration": [
+        "encryption"
+      ],
+      "source_object_count": 2,
+      "skipped_objects": 0
+    }
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "nodes": [
+    {
+      "id": "vpc-0576348e25cd4c9b7",
+      "type": "vpc",
+      "name": "vpc-0576348e25cd4c9b7"
+    },
+    {
+      "id": "subnet-04249638f0464b63d",
+      "type": "subnet",
+      "name": "subnet-04249638f0464b63d"
+    },
+    {
+      "id": "subnet-0e1e4a727e3d5f59f",
+      "type": "subnet",
+      "name": "subnet-0e1e4a727e3d5f59f"
+    },
+    {
+      "id": "subnet-082399129198796a4",
+      "type": "subnet",
+      "name": "subnet-082399129198796a4"
+    },
+    {
+      "id": "sg-040639b01000ff81c",
+      "type": "security-group",
+      "name": "default"
+    }
+  ],
+  "edges": [
+    {
+      "from": "subnet-04249638f0464b63d",
+      "to": "vpc-0576348e25cd4c9b7",
+      "relationship": "subnet-of-vpc"
+    },
+    {
+      "from": "subnet-0e1e4a727e3d5f59f",
+      "to": "vpc-0576348e25cd4c9b7",
+      "relationship": "subnet-of-vpc"
+    },
+    {
+      "from": "subnet-082399129198796a4",
+      "to": "vpc-0576348e25cd4c9b7",
+      "relationship": "subnet-of-vpc"
+    },
+    {
+      "from": "sg-040639b01000ff81c",
+      "to": "vpc-0576348e25cd4c9b7",
+      "relationship": "security-group-in-vpc"
+    }
+  ]
+}

@@ -1,0 +1,150 @@
+{
+  "mode": "read-only-assessment",
+  "source_env": "full-account-scan",
+  "target_env": "new-account",
+  "team": "",
+  "planned_actions": {
+    "roles": 0,
+    "sqs_queues": 5,
+    "sns_topics": 0,
+    "secrets": 1,
+    "dynamodb_tables": 7,
+    "lambda_functions": 10,
+    "lambda_event_source_mappings": 5,
+    "lambda_permissions": 2,
+    "sns_subscriptions": 0,
+    "api_gateways": 0,
+    "codebuild_projects": 1,
+    "ecs_clusters": 1,
+    "ecs_task_definitions": 1,
+    "ecs_services": 2
+  },
+  "manual_review": {
+    "cloudformation_stacks": 1,
+    "s3_buckets": 2,
+    "load_balancers": 0,
+    "rds_instances": 0,
+    "rds_clusters": 0
+  },
+  "preflight_checks": [
+    {
+      "name": "scope",
+      "status": "ok",
+      "details": {
+        "source_account_id": "027087672282",
+        "target_account_id": "",
+        "source_region": "us-east-1",
+        "target_region": "us-east-1",
+        "same_account": false,
+        "same_region": true
+      }
+    },
+    {
+      "name": "kms-remap",
+      "status": "ok",
+      "details": {
+        "unresolved_reference_count": 0,
+        "sample": []
+      }
+    },
+    {
+      "name": "ecs-network-dependencies",
+      "status": "ok",
+      "details": {
+        "service_count": 2,
+        "services": [
+          "test_def-service-vnwns50w",
+          "test_def-service-64zgxsih"
+        ],
+        "vpc_count": 1,
+        "subnet_count": 6
+      }
+    },
+    {
+      "name": "hardcoded-source-account-references",
+      "status": "warning",
+      "details": {
+        "count": 172,
+        "sample": [
+          {
+            "path": "$.account_id",
+            "value": "027087672282"
+          },
+          {
+            "path": "$.lambda_functions[0].FunctionArn",
+            "value": "arn:aws:lambda:us-east-1:027087672282:function:remediator"
+          },
+          {
+            "path": "$.lambda_functions[0].Role",
+            "value": "arn:aws:iam::027087672282:role/remediator-role"
+          },
+          {
+            "path": "$.lambda_functions[1].FunctionArn",
+            "value": "arn:aws:lambda:us-east-1:027087672282:function:task-dispatcher"
+          },
+          {
+            "path": "$.lambda_functions[1].Role",
+            "value": "arn:aws:iam::027087672282:role/task-dispatcher-role"
+          },
+          {
+            "path": "$.lambda_functions[1].Environment.Variables.FIX_QUEUE_URL",
+            "value": "https://sqs.us-east-1.amazonaws.com/027087672282/agent-fix-tasks.fifo"
+          },
+          {
+            "path": "$.lambda_functions[2].FunctionArn",
+            "value": "arn:aws:lambda:us-east-1:027087672282:function:ai-orchestrator"
+          },
+          {
+            "path": "$.lambda_functions[2].Role",
+            "value": "arn:aws:iam::027087672282:role/plan-executor-role"
+          },
+          {
+            "path": "$.lambda_functions[3].FunctionArn",
+            "value": "arn:aws:lambda:us-east-1:027087672282:function:connector-worker"
+          },
+          {
+            "path": "$.lambda_functions[3].Role",
+            "value": "arn:aws:iam::027087672282:role/setup-agent-role"
+          }
+        ]
+      },
+      "known_fixes": [
+        {
+          "summary": "kms-keys-ready: source region alias aws s3 remained in source arn during cross-region validation",
+          "resolution": "rewrite aws managed alias kms arns to the target region and target account before describe_key validation",
+          "validated_fix_count": 1,
+          "occurrences": 1,
+          "tags": [
+            "validation",
+            "kms",
+            "codebuild"
+          ]
+        },
+        {
+          "summary": "ecs-services-steady: running=0 desired=1 because awslogs region stayed in source region",
+          "resolution": "rewrite awslogs-region to target_region in ecs task definitions before register_task_definition",
+          "validated_fix_count": 1,
+          "occurrences": 1,
+          "tags": [
+            "validation",
+            "ecs",
+            "logging"
+          ]
+        },
+        {
+          "summary": "lambda-event-source-mappings-enabled: mapping appeared disabled after migration but source snapshot state was also disabled",
+          "resolution": "compare target event source mapping state with source snapshot state instead of forcing enabled as a universal success condition",
+          "validated_fix_count": 1,
+          "occurrences": 1,
+          "tags": [
+            "validation",
+            "lambda",
+            "parity"
+          ]
+        }
+      ]
+    }
+  ],
+  "source_snapshot": "state\\aws_inventory\\full-account-scan-us-east-1\\source_snapshot.json",
+  "region": "us-east-1"
+}

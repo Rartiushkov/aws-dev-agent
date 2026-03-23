@@ -1,9 +1,10 @@
 import json
-import subprocess
+
+from executor.command_runner import run_command as safe_run_command
 
 
 def run_command(cmd):
-    result = subprocess.run(cmd, shell=True, capture_output=True, text=True)
+    result = safe_run_command(cmd, capture_output=True, text=True)
     return {
         "stdout": result.stdout,
         "stderr": result.stderr,

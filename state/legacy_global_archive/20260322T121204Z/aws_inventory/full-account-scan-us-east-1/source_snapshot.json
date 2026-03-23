@@ -1,0 +1,3042 @@
+{
+  "captured_at": "2026-03-22T08:40:38.933112+00:00",
+  "account_id": "027087672282",
+  "region": "us-east-1",
+  "source_env": "",
+  "team": "",
+  "lambda_functions": [
+    {
+      "FunctionName": "remediator",
+      "FunctionArn": "arn:aws:lambda:us-east-1:027087672282:function:remediator",
+      "Runtime": "nodejs20.x",
+      "Role": "arn:aws:iam::027087672282:role/remediator-role",
+      "Handler": "index.handler",
+      "CodeSize": 3852688,
+      "Description": "",
+      "Timeout": 60,
+      "MemorySize": 512,
+      "LastModified": "2026-03-02T18:44:23.000+0000",
+      "CodeSha256": "InI3hYdguH3xFK+AC+2nyRxETzPDgwdCJwsXupNGPJM=",
+      "Version": "$LATEST",
+      "Environment": {
+        "Variables": {
+          "PLANS_TABLE": "agent_fix_plans",
+          "BEDROCK_MODEL_ID": "global.anthropic.claude-sonnet-4-20250514-v1:0",
+          "REGION": "us-east-1"
+        }
+      },
+      "TracingConfig": {
+        "Mode": "PassThrough"
+      },
+      "RevisionId": "7af5ae3e-b7b4-48df-b79e-312edff45335",
+      "PackageType": "Zip",
+      "Architectures": [
+        "x86_64"
+      ],
+      "EphemeralStorage": {
+        "Size": 512
+      },
+      "SnapStart": {
+        "ApplyOn": "None",
+        "OptimizationStatus": "Off"
+      },
+      "LoggingConfig": {
+        "LogFormat": "Text",
+        "LogGroup": "/aws/lambda/remediator"
+      }
+    },
+    {
+      "FunctionName": "task-dispatcher",
+      "FunctionArn": "arn:aws:lambda:us-east-1:027087672282:function:task-dispatcher",
+      "Runtime": "nodejs20.x",
+      "Role": "arn:aws:iam::027087672282:role/task-dispatcher-role",
+      "Handler": "index.handler",
+      "CodeSize": 2971378,
+      "Description": "",
+      "Timeout": 15,
+      "MemorySize": 256,
+      "LastModified": "2026-02-23T07:58:54.000+0000",
+      "CodeSha256": "tmPr0QaIaIP15xv+0imdMRY0baHZ83524WDu4l2tJQg=",
+      "Version": "$LATEST",
+      "Environment": {
+        "Variables": {
+          "FIX_QUEUE_URL": "https://sqs.us-east-1.amazonaws.com/027087672282/agent-fix-tasks.fifo"
+        }
+      },
+      "TracingConfig": {
+        "Mode": "PassThrough"
+      },
+      "RevisionId": "8c1f4bf0-4f08-416d-b6cc-e36cb83baae6",
+      "PackageType": "Zip",
+      "Architectures": [
+        "x86_64"
+      ],
+      "EphemeralStorage": {
+        "Size": 512
+      },
+      "SnapStart": {
+        "ApplyOn": "None",
+        "OptimizationStatus": "Off"
+      },
+      "LoggingConfig": {
+        "LogFormat": "Text",
+        "LogGroup": "/aws/lambda/task-dispatcher"
+      }
+    },
+    {
+      "FunctionName": "ai-orchestrator",
+      "FunctionArn": "arn:aws:lambda:us-east-1:027087672282:function:ai-orchestrator",
+      "Runtime": "nodejs20.x",
+      "Role": "arn:aws:iam::027087672282:role/plan-executor-role",
+      "Handler": "index.handler",
+      "CodeSize": 3863503,
+      "Description": "",
+      "Timeout": 3,
+      "MemorySize": 128,
+      "LastModified": "2026-03-02T17:34:17.000+0000",
+      "CodeSha256": "tFQlFUNRSbH0p+mRh+Whk6OEubtt6OBXyEhcI8QlXQY=",
+      "Version": "$LATEST",
+      "Environment": {
+        "Variables": {
+          "PLANS_TABLE": "agent_fix_plans"
+        }
+      },
+      "TracingConfig": {
+        "Mode": "PassThrough"
+      },
+      "RevisionId": "4a5f0a75-1dcf-4365-a380-f8309a289619",
+      "PackageType": "Zip",
+      "Architectures": [
+        "x86_64"
+      ],
+      "EphemeralStorage": {
+        "Size": 512
+      },
+      "SnapStart": {
+        "ApplyOn": "None",
+        "OptimizationStatus": "Off"
+      },
+      "LoggingConfig": {
+        "LogFormat": "Text",
+        "LogGroup": "/aws/lambda/ai-orchestrator"
+      }
+    },
+    {
+      "FunctionName": "connector-worker",
+      "FunctionArn": "arn:aws:lambda:us-east-1:027087672282:function:connector-worker",
+      "Runtime": "nodejs20.x",
+      "Role": "arn:aws:iam::027087672282:role/setup-agent-role",
+      "Handler": "index.handler",
+      "CodeSize": 1056,
+      "Description": "",
+      "Timeout": 30,
+      "MemorySize": 256,
+      "LastModified": "2026-02-28T05:52:56.000+0000",
+      "CodeSha256": "JesixLSu1fC6/zovUMNEot3oRnFhxLt2VEReSeFUffo=",
+      "Version": "$LATEST",
+      "Environment": {
+        "Variables": {
+          "OUT_QUEUE_URL": "https://sqs.us-east-1.amazonaws.com/027087672282/agent-fix-tasks.fifo",
+          "QUEUE_NAME": "connector-tasks.fifo",
+          "REGION": "us-east-1"
+        }
+      },
+      "TracingConfig": {
+        "Mode": "PassThrough"
+      },
+      "RevisionId": "38fafbb1-2822-434b-872c-3427fdd91b1c",
+      "PackageType": "Zip",
+      "Architectures": [
+        "x86_64"
+      ],
+      "EphemeralStorage": {
+        "Size": 512
+      },
+      "SnapStart": {
+        "ApplyOn": "None",
+        "OptimizationStatus": "Off"
+      },
+      "LoggingConfig": {
+        "LogFormat": "Text",
+        "LogGroup": "/aws/lambda/connector-worker"
+      }
+    },
+    {
+      "FunctionName": "agent-planner",
+      "FunctionArn": "arn:aws:lambda:us-east-1:027087672282:function:agent-planner",
+      "Runtime": "nodejs20.x",
+      "Role": "arn:aws:iam::027087672282:role/agent-planner-role",
+      "Handler": "agent-planner/index.handler",
+      "CodeSize": 4145721,
+      "Description": "",
+      "Timeout": 30,
+      "MemorySize": 256,
+      "LastModified": "2026-03-04T20:41:33.000+0000",
+      "CodeSha256": "vfHiazTLKdMfdyx6xl2IAdSV5wrd30OP0hBSGWefVtk=",
+      "Version": "$LATEST",
+      "Environment": {
+        "Variables": {
+          "EXECUTOR_QUEUE_URL": "https://sqs.us-east-1.amazonaws.com/027087672282/plan-executor-queue",
+          "PLANS_TABLE": "agent_fix_plans",
+          "BEDROCK_MODEL": "mistral.ministral-3-8b-instruct"
+        }
+      },
+      "TracingConfig": {
+        "Mode": "PassThrough"
+      },
+      "RevisionId": "a32a8e56-c2e5-433f-8315-82c2941a43bb",
+      "PackageType": "Zip",
+      "Architectures": [
+        "x86_64"
+      ],
+      "EphemeralStorage": {
+        "Size": 512
+      },
+      "SnapStart": {
+        "ApplyOn": "None",
+        "OptimizationStatus": "Off"
+      },
+      "LoggingConfig": {
+        "LogFormat": "Text",
+        "LogGroup": "/aws/lambda/agent-planner"
+      }
+    },
+    {
+      "FunctionName": "setup-agent",
+      "FunctionArn": "arn:aws:lambda:us-east-1:027087672282:function:setup-agent",
+      "Runtime": "python3.12",
+      "Role": "arn:aws:iam::027087672282:role/setup-agent-role",
+      "Handler": "lambda_function.handler",
+      "CodeSize": 2490,
+      "Description": "",
+      "Timeout": 30,
+      "MemorySize": 256,
+      "LastModified": "2026-02-22T19:01:34.000+0000",
+      "CodeSha256": "yB846DRwG30oBvG0be9gRaF1P8Hx02N1tyES83me3TM=",
+      "Version": "$LATEST",
+      "TracingConfig": {
+        "Mode": "PassThrough"
+      },
+      "RevisionId": "73e7959b-63bf-4084-98f6-0a3729d75342",
+      "PackageType": "Zip",
+      "Architectures": [
+        "x86_64"
+      ],
+      "EphemeralStorage": {
+        "Size": 512
+      },
+      "SnapStart": {
+        "ApplyOn": "None",
+        "OptimizationStatus": "Off"
+      },
+      "LoggingConfig": {
+        "LogFormat": "Text",
+        "LogGroup": "/aws/lambda/setup-agent"
+      }
+    },
+    {
+      "FunctionName": "test-lambda-integration",
+      "FunctionArn": "arn:aws:lambda:us-east-1:027087672282:function:test-lambda-integration",
+      "Runtime": "python3.11",
+      "Role": "arn:aws:iam::027087672282:role/lambda-basic-role",
+      "Handler": "lambda_function.handler",
+      "CodeSize": 1603,
+      "Description": "",
+      "Timeout": 3,
+      "MemorySize": 128,
+      "LastModified": "2026-03-19T08:39:58.000+0000",
+      "CodeSha256": "fFHt1kuwzz7A2ASkmoHNwsXL7Nh3qBqirv9qz9SppAw=",
+      "Version": "$LATEST",
+      "TracingConfig": {
+        "Mode": "PassThrough"
+      },
+      "RevisionId": "01c1688a-744d-4b0e-81b9-3e457cd7f256",
+      "PackageType": "Zip",
+      "Architectures": [
+        "x86_64"
+      ],
+      "EphemeralStorage": {
+        "Size": 512
+      },
+      "SnapStart": {
+        "ApplyOn": "None",
+        "OptimizationStatus": "Off"
+      },
+      "LoggingConfig": {
+        "LogFormat": "Text",
+        "LogGroup": "/aws/lambda/test-lambda-integration"
+      }
+    },
+    {
+      "FunctionName": "plan-executor",
+      "FunctionArn": "arn:aws:lambda:us-east-1:027087672282:function:plan-executor",
+      "Runtime": "nodejs20.x",
+      "Role": "arn:aws:iam::027087672282:role/plan-executor-role",
+      "Handler": "index.handler",
+      "CodeSize": 5817593,
+      "Description": "reload-secure-1772647748",
+      "Timeout": 30,
+      "MemorySize": 256,
+      "LastModified": "2026-03-17T16:08:45.000+0000",
+      "CodeSha256": "nX11d9Utju29efU7RD5bWdEGHID0TU4KUZzuqYpn6Tk=",
+      "Version": "$LATEST",
+      "Environment": {
+        "Variables": {
+          "GITHUB_SECRET_ID": "hippa-signer/github/pat",
+          "GITHUB_REPO": "hippa-signer",
+          "GITHUB_OWNER": "Rartiushkov",
+          "PLANS_TABLE": "agent_fix_plans",
+          "BATCH_LIMIT": "10",
+          "GITHUB_BASE_BRANCH": "main"
+        }
+      },
+      "TracingConfig": {
+        "Mode": "PassThrough"
+      },
+      "RevisionId": "14673f9f-8d66-42a3-b5ee-cfe92dc0d7c4",
+      "PackageType": "Zip",
+      "Architectures": [
+        "x86_64"
+      ],
+      "EphemeralStorage": {
+        "Size": 512
+      },
+      "SnapStart": {
+        "ApplyOn": "None",
+        "OptimizationStatus": "Off"
+      },
+      "LoggingConfig": {
+        "LogFormat": "Text",
+        "LogGroup": "/aws/lambda/plan-executor"
+      }
+    },
+    {
+      "FunctionName": "hello-world-fn",
+      "FunctionArn": "arn:aws:lambda:us-east-1:027087672282:function:hello-world-fn",
+      "Runtime": "python3.11",
+      "Role": "arn:aws:iam::027087672282:role/lambda-basic-role",
+      "Handler": "lambda_function.handler",
+      "CodeSize": 218,
+      "Description": "",
+      "Timeout": 3,
+      "MemorySize": 128,
+      "LastModified": "2026-03-19T08:33:46.000+0000",
+      "CodeSha256": "zuz4886lbcUeyn3b21aL/z/n8v2+u+zC/cTLHJK5GnI=",
+      "Version": "$LATEST",
+      "TracingConfig": {
+        "Mode": "PassThrough"
+      },
+      "RevisionId": "03d39f82-d3d6-497d-9710-60a337563007",
+      "PackageType": "Zip",
+      "Architectures": [
+        "x86_64"
+      ],
+      "EphemeralStorage": {
+        "Size": 512
+      },
+      "SnapStart": {
+        "ApplyOn": "None",
+        "OptimizationStatus": "Off"
+      },
+      "LoggingConfig": {
+        "LogFormat": "Text",
+        "LogGroup": "/aws/lambda/hello-world-fn"
+      }
+    },
+    {
+      "FunctionName": "log-collector",
+      "FunctionArn": "arn:aws:lambda:us-east-1:027087672282:function:log-collector",
+      "Runtime": "nodejs20.x",
+      "Role": "arn:aws:iam::027087672282:role/setup-agent-role",
+      "Handler": "index.handler",
+      "CodeSize": 1367,
+      "Description": "",
+      "Timeout": 30,
+      "MemorySize": 256,
+      "LastModified": "2026-02-23T06:43:05.000+0000",
+      "CodeSha256": "bTr3fEcjasdq4tjNxvNMkBleZpZysL36BviXG0jwC98=",
+      "Version": "$LATEST",
+      "Environment": {
+        "Variables": {
+          "ERRORS_TABLE": "agent_errors"
+        }
+      },
+      "TracingConfig": {
+        "Mode": "PassThrough"
+      },
+      "RevisionId": "7d16ee01-ab42-4134-886f-55be2591f1b0",
+      "PackageType": "Zip",
+      "Architectures": [
+        "x86_64"
+      ],
+      "EphemeralStorage": {
+        "Size": 512
+      },
+      "SnapStart": {
+        "ApplyOn": "None",
+        "OptimizationStatus": "Off"
+      },
+      "LoggingConfig": {
+        "LogFormat": "Text",
+        "LogGroup": "/aws/lambda/log-collector"
+      }
+    }
+  ],
+  "lambda_event_source_mappings": [
+    {
+      "UUID": "55dbb09e-8b4d-4594-8c41-8fa4181ad929",
+      "BatchSize": 1,
+      "MaximumBatchingWindowInSeconds": 0,
+      "EventSourceArn": "arn:aws:sqs:us-east-1:027087672282:agent-fix-tasks.fifo",
+      "FunctionArn": "arn:aws:lambda:us-east-1:027087672282:function:remediator",
+      "LastModified": "2026-03-19 19:54:36.100000+03:00",
+      "State": "Disabled",
+      "StateTransitionReason": "USER_INITIATED",
+      "FunctionResponseTypes": [],
+      "EventSourceMappingArn": "arn:aws:lambda:us-east-1:027087672282:event-source-mapping:55dbb09e-8b4d-4594-8c41-8fa4181ad929"
+    },
+    {
+      "UUID": "3f3bd44c-b2cb-432d-b97c-d34246296a1d",
+      "StartingPosition": "LATEST",
+      "BatchSize": 10,
+      "MaximumBatchingWindowInSeconds": 0,
+      "ParallelizationFactor": 1,
+      "EventSourceArn": "arn:aws:dynamodb:us-east-1:027087672282:table/agent_errors/stream/2026-02-23T07:46:15.921",
+      "FunctionArn": "arn:aws:lambda:us-east-1:027087672282:function:task-dispatcher",
+      "LastModified": "2026-03-20 02:55:00+03:00",
+      "LastProcessingResult": "PROBLEM: User: arn:aws:sts::027087672282:assumed-role/task-dispatcher-role/awslambda_427_20260319235532640 is not authorized to perform: dynamodb:DescribeStream on resource: arn:aws:dynamodb:us-east-1:027087672282:table/agent_errors/stream/2026-02-23T07:46:15.921 because no identity-based policy allows the dynamodb:DescribeStream action",
+      "State": "Disabled",
+      "StateTransitionReason": "Unrecoverable error",
+      "DestinationConfig": {
+        "OnFailure": {}
+      },
+      "MaximumRecordAgeInSeconds": -1,
+      "BisectBatchOnFunctionError": false,
+      "MaximumRetryAttempts": -1,
+      "TumblingWindowInSeconds": 0,
+      "FunctionResponseTypes": [],
+      "EventSourceMappingArn": "arn:aws:lambda:us-east-1:027087672282:event-source-mapping:3f3bd44c-b2cb-432d-b97c-d34246296a1d"
+    },
+    {
+      "UUID": "e1eb804b-5d2c-4c56-b1db-4aa5a8107250",
+      "BatchSize": 10,
+      "MaximumBatchingWindowInSeconds": 0,
+      "EventSourceArn": "arn:aws:sqs:us-east-1:027087672282:connector-tasks.fifo",
+      "FunctionArn": "arn:aws:lambda:us-east-1:027087672282:function:connector-worker",
+      "LastModified": "2026-03-17 22:11:05.465000+03:00",
+      "State": "Disabled",
+      "StateTransitionReason": "USER_INITIATED",
+      "FunctionResponseTypes": [],
+      "EventSourceMappingArn": "arn:aws:lambda:us-east-1:027087672282:event-source-mapping:e1eb804b-5d2c-4c56-b1db-4aa5a8107250"
+    },
+    {
+      "UUID": "715dc62f-47bf-4f1f-b8fb-9d25947dc437",
+      "BatchSize": 1,
+      "MaximumBatchingWindowInSeconds": 0,
+      "EventSourceArn": "arn:aws:sqs:us-east-1:027087672282:agent-error-queue",
+      "FunctionArn": "arn:aws:lambda:us-east-1:027087672282:function:agent-planner",
+      "LastModified": "2026-03-19 19:55:03.239000+03:00",
+      "State": "Disabled",
+      "StateTransitionReason": "USER_INITIATED",
+      "FunctionResponseTypes": [],
+      "EventSourceMappingArn": "arn:aws:lambda:us-east-1:027087672282:event-source-mapping:715dc62f-47bf-4f1f-b8fb-9d25947dc437"
+    },
+    {
+      "UUID": "4b361b04-2403-4343-aa61-32e97d094f82",
+      "BatchSize": 1,
+      "MaximumBatchingWindowInSeconds": 0,
+      "EventSourceArn": "arn:aws:sqs:us-east-1:027087672282:plan-executor-queue",
+      "FunctionArn": "arn:aws:lambda:us-east-1:027087672282:function:plan-executor",
+      "LastModified": "2026-03-19 19:54:52.841000+03:00",
+      "State": "Disabled",
+      "StateTransitionReason": "USER_INITIATED",
+      "FunctionResponseTypes": [],
+      "EventSourceMappingArn": "arn:aws:lambda:us-east-1:027087672282:event-source-mapping:4b361b04-2403-4343-aa61-32e97d094f82"
+    }
+  ],
+  "lambda_permissions": [
+    {
+      "FunctionName": "plan-executor",
+      "Policy": {
+        "Version": "2012-10-17",
+        "Id": "default",
+        "Statement": [
+          {
+            "Sid": "plan-executor-every-minute-invoke",
+            "Effect": "Allow",
+            "Principal": {
+              "Service": "events.amazonaws.com"
+            },
+            "Action": "lambda:InvokeFunction",
+            "Resource": "arn:aws:lambda:us-east-1:027087672282:function:plan-executor",
+            "Condition": {
+              "ArnLike": {
+                "AWS:SourceArn": "arn:aws:events:us-east-1:027087672282:rule/plan-executor-every-minute"
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "FunctionName": "log-collector",
+      "Policy": {
+        "Version": "2012-10-17",
+        "Id": "default",
+        "Statement": [
+          {
+            "Sid": "cwlogs-invoke-connector-worker",
+            "Effect": "Allow",
+            "Principal": {
+              "Service": "logs.amazonaws.com"
+            },
+            "Action": "lambda:InvokeFunction",
+            "Resource": "arn:aws:lambda:us-east-1:027087672282:function:log-collector",
+            "Condition": {
+              "ArnLike": {
+                "AWS:SourceArn": "arn:aws:logs:us-east-1:027087672282:log-group:/aws/lambda/connector-worker:*"
+              }
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "iam_roles": [],
+  "sqs_queues": [
+    {
+      "QueueName": "agent-error-queue",
+      "QueueUrl": "https://sqs.us-east-1.amazonaws.com/027087672282/agent-error-queue",
+      "Attributes": {
+        "QueueArn": "arn:aws:sqs:us-east-1:027087672282:agent-error-queue",
+        "ApproximateNumberOfMessages": "0",
+        "ApproximateNumberOfMessagesNotVisible": "0",
+        "ApproximateNumberOfMessagesDelayed": "0",
+        "CreatedTimestamp": "1772649935",
+        "LastModifiedTimestamp": "1772649935",
+        "VisibilityTimeout": "30",
+        "MaximumMessageSize": "1048576",
+        "MessageRetentionPeriod": "345600",
+        "DelaySeconds": "0",
+        "ReceiveMessageWaitTimeSeconds": "0",
+        "SqsManagedSseEnabled": "true"
+      },
+      "Tags": {}
+    },
+    {
+      "QueueName": "agent-fix-tasks-dlq.fifo",
+      "QueueUrl": "https://sqs.us-east-1.amazonaws.com/027087672282/agent-fix-tasks-dlq.fifo",
+      "Attributes": {
+        "QueueArn": "arn:aws:sqs:us-east-1:027087672282:agent-fix-tasks-dlq.fifo",
+        "ApproximateNumberOfMessages": "0",
+        "ApproximateNumberOfMessagesNotVisible": "0",
+        "ApproximateNumberOfMessagesDelayed": "0",
+        "CreatedTimestamp": "1771832617",
+        "LastModifiedTimestamp": "1771832617",
+        "VisibilityTimeout": "30",
+        "MaximumMessageSize": "1048576",
+        "MessageRetentionPeriod": "345600",
+        "DelaySeconds": "0",
+        "ReceiveMessageWaitTimeSeconds": "0",
+        "SqsManagedSseEnabled": "true",
+        "FifoQueue": "true",
+        "DeduplicationScope": "queue",
+        "FifoThroughputLimit": "perQueue",
+        "ContentBasedDeduplication": "true"
+      },
+      "Tags": {}
+    },
+    {
+      "QueueName": "agent-fix-tasks.fifo",
+      "QueueUrl": "https://sqs.us-east-1.amazonaws.com/027087672282/agent-fix-tasks.fifo",
+      "Attributes": {
+        "QueueArn": "arn:aws:sqs:us-east-1:027087672282:agent-fix-tasks.fifo",
+        "ApproximateNumberOfMessages": "0",
+        "ApproximateNumberOfMessagesNotVisible": "0",
+        "ApproximateNumberOfMessagesDelayed": "0",
+        "CreatedTimestamp": "1771832736",
+        "LastModifiedTimestamp": "1771832736",
+        "VisibilityTimeout": "30",
+        "MaximumMessageSize": "1048576",
+        "MessageRetentionPeriod": "345600",
+        "DelaySeconds": "0",
+        "RedrivePolicy": "{\"deadLetterTargetArn\":\"arn:aws:sqs:us-east-1:027087672282:agent-fix-tasks-dlq.fifo\",\"maxReceiveCount\":5}",
+        "ReceiveMessageWaitTimeSeconds": "0",
+        "SqsManagedSseEnabled": "true",
+        "FifoQueue": "true",
+        "DeduplicationScope": "queue",
+        "FifoThroughputLimit": "perQueue",
+        "ContentBasedDeduplication": "true"
+      },
+      "Tags": {}
+    },
+    {
+      "QueueName": "connector-tasks.fifo",
+      "QueueUrl": "https://sqs.us-east-1.amazonaws.com/027087672282/connector-tasks.fifo",
+      "Attributes": {
+        "QueueArn": "arn:aws:sqs:us-east-1:027087672282:connector-tasks.fifo",
+        "ApproximateNumberOfMessages": "0",
+        "ApproximateNumberOfMessagesNotVisible": "0",
+        "ApproximateNumberOfMessagesDelayed": "0",
+        "CreatedTimestamp": "1771773507",
+        "LastModifiedTimestamp": "1771773507",
+        "VisibilityTimeout": "60",
+        "MaximumMessageSize": "1048576",
+        "MessageRetentionPeriod": "345600",
+        "DelaySeconds": "0",
+        "ReceiveMessageWaitTimeSeconds": "0",
+        "SqsManagedSseEnabled": "true",
+        "FifoQueue": "true",
+        "DeduplicationScope": "queue",
+        "FifoThroughputLimit": "perQueue",
+        "ContentBasedDeduplication": "false"
+      },
+      "Tags": {}
+    },
+    {
+      "QueueName": "plan-executor-queue",
+      "QueueUrl": "https://sqs.us-east-1.amazonaws.com/027087672282/plan-executor-queue",
+      "Attributes": {
+        "QueueArn": "arn:aws:sqs:us-east-1:027087672282:plan-executor-queue",
+        "ApproximateNumberOfMessages": "0",
+        "ApproximateNumberOfMessagesNotVisible": "0",
+        "ApproximateNumberOfMessagesDelayed": "0",
+        "CreatedTimestamp": "1772648479",
+        "LastModifiedTimestamp": "1772648479",
+        "VisibilityTimeout": "30",
+        "MaximumMessageSize": "1048576",
+        "MessageRetentionPeriod": "345600",
+        "DelaySeconds": "0",
+        "ReceiveMessageWaitTimeSeconds": "0",
+        "SqsManagedSseEnabled": "true"
+      },
+      "Tags": {}
+    }
+  ],
+  "sns_topics": [],
+  "secrets": [
+    {
+      "ARN": "arn:aws:secretsmanager:us-east-1:027087672282:secret:hippa-signer/github/pat-XPcYpy",
+      "Name": "hippa-signer/github/pat",
+      "Description": "",
+      "KmsKeyId": null,
+      "Tags": [],
+      "HasSecretString": true,
+      "HasSecretBinary": false,
+      "VersionId": "07dc162a-3b2c-43d5-9e20-e7fe7b49d0de"
+    }
+  ],
+  "dynamodb_tables": [
+    {
+      "Table": {
+        "AttributeDefinitions": [
+          {
+            "AttributeName": "pk",
+            "AttributeType": "S"
+          },
+          {
+            "AttributeName": "sk",
+            "AttributeType": "S"
+          }
+        ],
+        "TableName": "agent_errors",
+        "KeySchema": [
+          {
+            "AttributeName": "pk",
+            "KeyType": "HASH"
+          },
+          {
+            "AttributeName": "sk",
+            "KeyType": "RANGE"
+          }
+        ],
+        "TableStatus": "ACTIVE",
+        "CreationDateTime": "2026-02-23 10:36:17.982000+03:00",
+        "ProvisionedThroughput": {
+          "NumberOfDecreasesToday": 0,
+          "ReadCapacityUnits": 0,
+          "WriteCapacityUnits": 0
+        },
+        "TableSizeBytes": 5947,
+        "ItemCount": 11,
+        "TableArn": "arn:aws:dynamodb:us-east-1:027087672282:table/agent_errors",
+        "TableId": "5910f5d8-7d14-4ed7-8c97-74f193e5c8a1",
+        "BillingModeSummary": {
+          "BillingMode": "PAY_PER_REQUEST",
+          "LastUpdateToPayPerRequestDateTime": "2026-02-23 10:36:17.982000+03:00"
+        },
+        "StreamSpecification": {
+          "StreamEnabled": true,
+          "StreamViewType": "NEW_IMAGE"
+        },
+        "LatestStreamLabel": "2026-02-23T07:46:15.921",
+        "LatestStreamArn": "arn:aws:dynamodb:us-east-1:027087672282:table/agent_errors/stream/2026-02-23T07:46:15.921",
+        "DeletionProtectionEnabled": false,
+        "WarmThroughput": {
+          "ReadUnitsPerSecond": 12000,
+          "WriteUnitsPerSecond": 4000,
+          "Status": "ACTIVE"
+        }
+      },
+      "Tags": [],
+      "TimeToLiveDescription": {
+        "TimeToLiveStatus": "DISABLED"
+      },
+      "ContinuousBackupsDescription": {
+        "ContinuousBackupsStatus": "ENABLED",
+        "PointInTimeRecoveryDescription": {
+          "PointInTimeRecoveryStatus": "DISABLED"
+        }
+      }
+    },
+    {
+      "Table": {
+        "AttributeDefinitions": [
+          {
+            "AttributeName": "createdAt",
+            "AttributeType": "N"
+          },
+          {
+            "AttributeName": "pk",
+            "AttributeType": "S"
+          },
+          {
+            "AttributeName": "sk",
+            "AttributeType": "S"
+          },
+          {
+            "AttributeName": "status",
+            "AttributeType": "S"
+          }
+        ],
+        "TableName": "agent_fix_plans",
+        "KeySchema": [
+          {
+            "AttributeName": "pk",
+            "KeyType": "HASH"
+          },
+          {
+            "AttributeName": "sk",
+            "KeyType": "RANGE"
+          }
+        ],
+        "TableStatus": "ACTIVE",
+        "CreationDateTime": "2026-02-23 11:11:34.240000+03:00",
+        "ProvisionedThroughput": {
+          "NumberOfDecreasesToday": 0,
+          "ReadCapacityUnits": 0,
+          "WriteCapacityUnits": 0
+        },
+        "TableSizeBytes": 73933,
+        "ItemCount": 105,
+        "TableArn": "arn:aws:dynamodb:us-east-1:027087672282:table/agent_fix_plans",
+        "TableId": "a5f77181-3fbe-4028-bf64-6d6cef67a4a6",
+        "BillingModeSummary": {
+          "BillingMode": "PAY_PER_REQUEST",
+          "LastUpdateToPayPerRequestDateTime": "2026-02-23 11:11:34.240000+03:00"
+        },
+        "GlobalSecondaryIndexes": [
+          {
+            "IndexName": "StatusIndex",
+            "KeySchema": [
+              {
+                "AttributeName": "status",
+                "KeyType": "HASH"
+              },
+              {
+                "AttributeName": "createdAt",
+                "KeyType": "RANGE"
+              }
+            ],
+            "Projection": {
+              "ProjectionType": "ALL"
+            },
+            "IndexStatus": "ACTIVE",
+            "ProvisionedThroughput": {
+              "NumberOfDecreasesToday": 0,
+              "ReadCapacityUnits": 0,
+              "WriteCapacityUnits": 0
+            },
+            "IndexSizeBytes": 73100,
+            "ItemCount": 98,
+            "IndexArn": "arn:aws:dynamodb:us-east-1:027087672282:table/agent_fix_plans/index/StatusIndex",
+            "WarmThroughput": {
+              "ReadUnitsPerSecond": 12000,
+              "WriteUnitsPerSecond": 4000,
+              "Status": "ACTIVE"
+            }
+          }
+        ],
+        "DeletionProtectionEnabled": false,
+        "WarmThroughput": {
+          "ReadUnitsPerSecond": 12000,
+          "WriteUnitsPerSecond": 4000,
+          "Status": "ACTIVE"
+        }
+      },
+      "Tags": [],
+      "TimeToLiveDescription": {
+        "TimeToLiveStatus": "DISABLED"
+      },
+      "ContinuousBackupsDescription": {
+        "ContinuousBackupsStatus": "ENABLED",
+        "PointInTimeRecoveryDescription": {
+          "PointInTimeRecoveryStatus": "DISABLED"
+        }
+      }
+    },
+    {
+      "Table": {
+        "AttributeDefinitions": [
+          {
+            "AttributeName": "taskId",
+            "AttributeType": "S"
+          }
+        ],
+        "TableName": "agent_tasks",
+        "KeySchema": [
+          {
+            "AttributeName": "taskId",
+            "KeyType": "HASH"
+          }
+        ],
+        "TableStatus": "ACTIVE",
+        "CreationDateTime": "2026-03-05 11:11:58.981000+03:00",
+        "ProvisionedThroughput": {
+          "NumberOfDecreasesToday": 0,
+          "ReadCapacityUnits": 0,
+          "WriteCapacityUnits": 0
+        },
+        "TableSizeBytes": 69,
+        "ItemCount": 1,
+        "TableArn": "arn:aws:dynamodb:us-east-1:027087672282:table/agent_tasks",
+        "TableId": "dcc4053b-4870-4140-9f37-d0cece1dce3e",
+        "BillingModeSummary": {
+          "BillingMode": "PAY_PER_REQUEST",
+          "LastUpdateToPayPerRequestDateTime": "2026-03-05 11:11:58.981000+03:00"
+        },
+        "DeletionProtectionEnabled": false,
+        "WarmThroughput": {
+          "ReadUnitsPerSecond": 12000,
+          "WriteUnitsPerSecond": 4000,
+          "Status": "ACTIVE"
+        }
+      },
+      "Tags": [],
+      "TimeToLiveDescription": {
+        "TimeToLiveStatus": "DISABLED"
+      },
+      "ContinuousBackupsDescription": {
+        "ContinuousBackupsStatus": "ENABLED",
+        "PointInTimeRecoveryDescription": {
+          "PointInTimeRecoveryStatus": "DISABLED"
+        }
+      }
+    },
+    {
+      "Table": {
+        "AttributeDefinitions": [
+          {
+            "AttributeName": "clinic_id",
+            "AttributeType": "S"
+          },
+          {
+            "AttributeName": "whatsapp_to",
+            "AttributeType": "S"
+          }
+        ],
+        "TableName": "clinics",
+        "KeySchema": [
+          {
+            "AttributeName": "clinic_id",
+            "KeyType": "HASH"
+          }
+        ],
+        "TableStatus": "ACTIVE",
+        "CreationDateTime": "2026-02-22 17:39:42.139000+03:00",
+        "ProvisionedThroughput": {
+          "NumberOfDecreasesToday": 0,
+          "ReadCapacityUnits": 0,
+          "WriteCapacityUnits": 0
+        },
+        "TableSizeBytes": 0,
+        "ItemCount": 0,
+        "TableArn": "arn:aws:dynamodb:us-east-1:027087672282:table/clinics",
+        "TableId": "befde293-36c9-4074-a452-9e9972ce6e0f",
+        "BillingModeSummary": {
+          "BillingMode": "PAY_PER_REQUEST",
+          "LastUpdateToPayPerRequestDateTime": "2026-02-22 17:39:42.139000+03:00"
+        },
+        "GlobalSecondaryIndexes": [
+          {
+            "IndexName": "WhatsAppToIndex",
+            "KeySchema": [
+              {
+                "AttributeName": "whatsapp_to",
+                "KeyType": "HASH"
+              },
+              {
+                "AttributeName": "clinic_id",
+                "KeyType": "RANGE"
+              }
+            ],
+            "Projection": {
+              "ProjectionType": "ALL"
+            },
+            "IndexStatus": "ACTIVE",
+            "ProvisionedThroughput": {
+              "NumberOfDecreasesToday": 0,
+              "ReadCapacityUnits": 0,
+              "WriteCapacityUnits": 0
+            },
+            "IndexSizeBytes": 0,
+            "ItemCount": 0,
+            "IndexArn": "arn:aws:dynamodb:us-east-1:027087672282:table/clinics/index/WhatsAppToIndex",
+            "WarmThroughput": {
+              "ReadUnitsPerSecond": 12000,
+              "WriteUnitsPerSecond": 4000,
+              "Status": "ACTIVE"
+            }
+          }
+        ],
+        "DeletionProtectionEnabled": false,
+        "WarmThroughput": {
+          "ReadUnitsPerSecond": 12000,
+          "WriteUnitsPerSecond": 4000,
+          "Status": "ACTIVE"
+        }
+      },
+      "Tags": [],
+      "TimeToLiveDescription": {
+        "TimeToLiveStatus": "DISABLED"
+      },
+      "ContinuousBackupsDescription": {
+        "ContinuousBackupsStatus": "ENABLED",
+        "PointInTimeRecoveryDescription": {
+          "PointInTimeRecoveryStatus": "DISABLED"
+        }
+      }
+    },
+    {
+      "Table": {
+        "AttributeDefinitions": [
+          {
+            "AttributeName": "clinic_id",
+            "AttributeType": "S"
+          },
+          {
+            "AttributeName": "event_ts",
+            "AttributeType": "S"
+          }
+        ],
+        "TableName": "consent_events",
+        "KeySchema": [
+          {
+            "AttributeName": "clinic_id",
+            "KeyType": "HASH"
+          },
+          {
+            "AttributeName": "event_ts",
+            "KeyType": "RANGE"
+          }
+        ],
+        "TableStatus": "ACTIVE",
+        "CreationDateTime": "2026-02-22 18:03:06.904000+03:00",
+        "ProvisionedThroughput": {
+          "NumberOfDecreasesToday": 0,
+          "ReadCapacityUnits": 0,
+          "WriteCapacityUnits": 0
+        },
+        "TableSizeBytes": 0,
+        "ItemCount": 0,
+        "TableArn": "arn:aws:dynamodb:us-east-1:027087672282:table/consent_events",
+        "TableId": "5d8b41b8-f7fe-45bc-9641-50ea4c12191e",
+        "BillingModeSummary": {
+          "BillingMode": "PAY_PER_REQUEST",
+          "LastUpdateToPayPerRequestDateTime": "2026-02-22 18:03:06.904000+03:00"
+        },
+        "DeletionProtectionEnabled": false,
+        "WarmThroughput": {
+          "ReadUnitsPerSecond": 12000,
+          "WriteUnitsPerSecond": 4000,
+          "Status": "ACTIVE"
+        }
+      },
+      "Tags": [],
+      "TimeToLiveDescription": {
+        "TimeToLiveStatus": "DISABLED"
+      },
+      "ContinuousBackupsDescription": {
+        "ContinuousBackupsStatus": "ENABLED",
+        "PointInTimeRecoveryDescription": {
+          "PointInTimeRecoveryStatus": "DISABLED"
+        }
+      }
+    },
+    {
+      "Table": {
+        "AttributeDefinitions": [
+          {
+            "AttributeName": "clinic_id",
+            "AttributeType": "S"
+          },
+          {
+            "AttributeName": "consent_id",
+            "AttributeType": "S"
+          },
+          {
+            "AttributeName": "dropbox_sig_id",
+            "AttributeType": "S"
+          }
+        ],
+        "TableName": "consents",
+        "KeySchema": [
+          {
+            "AttributeName": "clinic_id",
+            "KeyType": "HASH"
+          },
+          {
+            "AttributeName": "consent_id",
+            "KeyType": "RANGE"
+          }
+        ],
+        "TableStatus": "ACTIVE",
+        "CreationDateTime": "2026-02-22 17:50:16.739000+03:00",
+        "ProvisionedThroughput": {
+          "NumberOfDecreasesToday": 0,
+          "ReadCapacityUnits": 0,
+          "WriteCapacityUnits": 0
+        },
+        "TableSizeBytes": 0,
+        "ItemCount": 0,
+        "TableArn": "arn:aws:dynamodb:us-east-1:027087672282:table/consents",
+        "TableId": "6f7265c9-5b85-4f56-b4ec-3909e3ec77d2",
+        "BillingModeSummary": {
+          "BillingMode": "PAY_PER_REQUEST",
+          "LastUpdateToPayPerRequestDateTime": "2026-02-22 17:50:16.739000+03:00"
+        },
+        "GlobalSecondaryIndexes": [
+          {
+            "IndexName": "DropboxSigIndex",
+            "KeySchema": [
+              {
+                "AttributeName": "dropbox_sig_id",
+                "KeyType": "HASH"
+              }
+            ],
+            "Projection": {
+              "ProjectionType": "ALL"
+            },
+            "IndexStatus": "ACTIVE",
+            "ProvisionedThroughput": {
+              "NumberOfDecreasesToday": 0,
+              "ReadCapacityUnits": 0,
+              "WriteCapacityUnits": 0
+            },
+            "IndexSizeBytes": 0,
+            "ItemCount": 0,
+            "IndexArn": "arn:aws:dynamodb:us-east-1:027087672282:table/consents/index/DropboxSigIndex",
+            "WarmThroughput": {
+              "ReadUnitsPerSecond": 12000,
+              "WriteUnitsPerSecond": 4000,
+              "Status": "ACTIVE"
+            }
+          }
+        ],
+        "DeletionProtectionEnabled": false,
+        "WarmThroughput": {
+          "ReadUnitsPerSecond": 12000,
+          "WriteUnitsPerSecond": 4000,
+          "Status": "ACTIVE"
+        }
+      },
+      "Tags": [],
+      "TimeToLiveDescription": {
+        "TimeToLiveStatus": "DISABLED"
+      },
+      "ContinuousBackupsDescription": {
+        "ContinuousBackupsStatus": "ENABLED",
+        "PointInTimeRecoveryDescription": {
+          "PointInTimeRecoveryStatus": "DISABLED"
+        }
+      }
+    },
+    {
+      "Table": {
+        "AttributeDefinitions": [
+          {
+            "AttributeName": "pk",
+            "AttributeType": "S"
+          }
+        ],
+        "TableName": "idempotency_locks",
+        "KeySchema": [
+          {
+            "AttributeName": "pk",
+            "KeyType": "HASH"
+          }
+        ],
+        "TableStatus": "ACTIVE",
+        "CreationDateTime": "2026-02-22 18:03:27.093000+03:00",
+        "ProvisionedThroughput": {
+          "NumberOfDecreasesToday": 0,
+          "ReadCapacityUnits": 0,
+          "WriteCapacityUnits": 0
+        },
+        "TableSizeBytes": 0,
+        "ItemCount": 0,
+        "TableArn": "arn:aws:dynamodb:us-east-1:027087672282:table/idempotency_locks",
+        "TableId": "c6fdda96-d1cf-4ae2-89bb-010d38b5a479",
+        "BillingModeSummary": {
+          "BillingMode": "PAY_PER_REQUEST",
+          "LastUpdateToPayPerRequestDateTime": "2026-02-22 18:03:27.093000+03:00"
+        },
+        "DeletionProtectionEnabled": false,
+        "WarmThroughput": {
+          "ReadUnitsPerSecond": 12000,
+          "WriteUnitsPerSecond": 4000,
+          "Status": "ACTIVE"
+        }
+      },
+      "Tags": [],
+      "TimeToLiveDescription": {
+        "TimeToLiveStatus": "ENABLED",
+        "AttributeName": "ttl"
+      },
+      "ContinuousBackupsDescription": {
+        "ContinuousBackupsStatus": "ENABLED",
+        "PointInTimeRecoveryDescription": {
+          "PointInTimeRecoveryStatus": "DISABLED"
+        }
+      }
+    }
+  ],
+  "api_gateways": [],
+  "codebuild_projects": [
+    {
+      "name": "aws-dev-agent-tests",
+      "arn": "arn:aws:codebuild:us-east-1:027087672282:project/aws-dev-agent-tests",
+      "source": {
+        "type": "S3",
+        "location": "aws-dev-agent-codebuild-artifacts-027087672282-us-east-1/source/aws-dev-agent-source.zip",
+        "insecureSsl": false
+      },
+      "artifacts": {
+        "type": "S3",
+        "location": "aws-dev-agent-codebuild-artifacts-027087672282-us-east-1",
+        "namespaceType": "NONE",
+        "name": "aws-dev-agent-tests-artifacts",
+        "packaging": "ZIP",
+        "encryptionDisabled": false
+      },
+      "cache": {
+        "type": "NO_CACHE"
+      },
+      "environment": {
+        "type": "LINUX_CONTAINER",
+        "image": "aws/codebuild/standard:7.0",
+        "computeType": "BUILD_GENERAL1_SMALL",
+        "environmentVariables": [],
+        "privilegedMode": false,
+        "imagePullCredentialsType": "CODEBUILD"
+      },
+      "serviceRole": "arn:aws:iam::027087672282:role/aws-dev-agent-codebuild-role",
+      "timeoutInMinutes": 30,
+      "queuedTimeoutInMinutes": 480,
+      "encryptionKey": "arn:aws:kms:us-east-1:027087672282:alias/aws/s3",
+      "tags": [],
+      "created": "2026-03-19 12:06:35.523000+03:00",
+      "lastModified": "2026-03-19 12:07:38.599000+03:00",
+      "badge": {
+        "badgeEnabled": false
+      },
+      "projectVisibility": "PRIVATE"
+    }
+  ],
+  "s3_buckets": [
+    {
+      "Name": "aws-dev-agent-codebuild-artifacts-027087672282-us-east-1",
+      "Region": "us-east-1",
+      "CreationDate": "2026-03-19 09:06:05+00:00",
+      "Tags": [],
+      "Versioning": {
+        "ResponseMetadata": {
+          "RequestId": "2N4H5B3MRAHK6TA6",
+          "HostId": "sZ/HywHesi+LeyTXMzN+g4w8PguOUgjSTQaojg4/u5/XoZP/Yca+EjmBAefGuRscDaF4GFbu+rerDG9a/UlGREV0W381y/nT",
+          "HTTPStatusCode": 200,
+          "HTTPHeaders": {
+            "x-amz-id-2": "sZ/HywHesi+LeyTXMzN+g4w8PguOUgjSTQaojg4/u5/XoZP/Yca+EjmBAefGuRscDaF4GFbu+rerDG9a/UlGREV0W381y/nT",
+            "x-amz-request-id": "2N4H5B3MRAHK6TA6",
+            "date": "Sun, 22 Mar 2026 08:41:02 GMT",
+            "transfer-encoding": "chunked",
+            "server": "AmazonS3"
+          },
+          "RetryAttempts": 0
+        }
+      },
+      "BucketEncryption": {
+        "Rules": [
+          {
+            "ApplyServerSideEncryptionByDefault": {
+              "SSEAlgorithm": "AES256"
+            },
+            "BucketKeyEnabled": false
+          }
+        ]
+      },
+      "LifecycleRules": [],
+      "CorsRules": [],
+      "Policy": "",
+      "NotificationConfiguration": {
+        "ResponseMetadata": {
+          "RequestId": "2N4TTGTB68ZEWYVS",
+          "HostId": "DqMrJO0GAGA0/1gxnnQK1EtDBnlQGticq1LMGPGeHjeJlkTFcyp6PoCslaxV7RIjVvZ9aFHcmktIyMuSPfA4Y1A065DOEFN+",
+          "HTTPStatusCode": 200,
+          "HTTPHeaders": {
+            "x-amz-id-2": "DqMrJO0GAGA0/1gxnnQK1EtDBnlQGticq1LMGPGeHjeJlkTFcyp6PoCslaxV7RIjVvZ9aFHcmktIyMuSPfA4Y1A065DOEFN+",
+            "x-amz-request-id": "2N4TTGTB68ZEWYVS",
+            "date": "Sun, 22 Mar 2026 08:41:02 GMT",
+            "transfer-encoding": "chunked",
+            "server": "AmazonS3"
+          },
+          "RetryAttempts": 0
+        }
+      }
+    },
+    {
+      "Name": "hippa-signer-artifacts-027087672282",
+      "Region": "us-east-1",
+      "CreationDate": "2026-02-22 15:37:21+00:00",
+      "Tags": [],
+      "Versioning": {
+        "ResponseMetadata": {
+          "RequestId": "B1JK7K4WNH7Y865X",
+          "HostId": "smf6ikZVgWane9ZSfqEyWg6/NAkTNPuDtKy4KZj4Zg1cLRWdXmSK+SxExvclHiH0BTU9GCMNfuM=",
+          "HTTPStatusCode": 200,
+          "HTTPHeaders": {
+            "x-amz-id-2": "smf6ikZVgWane9ZSfqEyWg6/NAkTNPuDtKy4KZj4Zg1cLRWdXmSK+SxExvclHiH0BTU9GCMNfuM=",
+            "x-amz-request-id": "B1JK7K4WNH7Y865X",
+            "date": "Sun, 22 Mar 2026 08:41:03 GMT",
+            "transfer-encoding": "chunked",
+            "server": "AmazonS3"
+          },
+          "RetryAttempts": 0
+        }
+      },
+      "BucketEncryption": {
+        "Rules": [
+          {
+            "ApplyServerSideEncryptionByDefault": {
+              "SSEAlgorithm": "AES256"
+            },
+            "BucketKeyEnabled": true
+          }
+        ]
+      },
+      "LifecycleRules": [],
+      "CorsRules": [],
+      "Policy": "",
+      "NotificationConfiguration": {
+        "ResponseMetadata": {
+          "RequestId": "FJTHTQHYXGJD4D1C",
+          "HostId": "itqfT6N3PbYl2BHiyK/FfywwWBvLh5ExxibbK3/IOWhIoyvKQMdxFUaf7mq3oHsT0pReYU25I7E=",
+          "HTTPStatusCode": 200,
+          "HTTPHeaders": {
+            "x-amz-id-2": "itqfT6N3PbYl2BHiyK/FfywwWBvLh5ExxibbK3/IOWhIoyvKQMdxFUaf7mq3oHsT0pReYU25I7E=",
+            "x-amz-request-id": "FJTHTQHYXGJD4D1C",
+            "date": "Sun, 22 Mar 2026 08:41:04 GMT",
+            "transfer-encoding": "chunked",
+            "server": "AmazonS3"
+          },
+          "RetryAttempts": 0
+        }
+      }
+    }
+  ],
+  "cloudformation_stacks": [
+    {
+      "StackId": "arn:aws:cloudformation:us-east-1:027087672282:stack/Infra-ECS-Cluster-carefree-crocodile-bf3zi5-326d268b/2f067e50-2395-11f1-9077-0affcfc5914f",
+      "StackName": "Infra-ECS-Cluster-carefree-crocodile-bf3zi5-326d268b",
+      "TemplateDescription": "The template used to create an ECS Cluster from the ECS Console.",
+      "CreationTime": "2026-03-19 13:11:47.152000+00:00",
+      "StackStatus": "CREATE_COMPLETE",
+      "DriftInformation": {
+        "StackDriftStatus": "NOT_CHECKED"
+      },
+      "LastOperations": [
+        {
+          "OperationType": "CREATE_STACK",
+          "OperationId": "88d68997-6795-4498-81e1-a90d2183457d"
+        }
+      ]
+    }
+  ],
+  "load_balancers": [],
+  "security_groups": [
+    {
+      "GroupId": "sg-090d92bd87212a26f",
+      "IpPermissionsEgress": [
+        {
+          "IpProtocol": "-1",
+          "UserIdGroupPairs": [],
+          "IpRanges": [
+            {
+              "CidrIp": "0.0.0.0/0"
+            }
+          ],
+          "Ipv6Ranges": [],
+          "PrefixListIds": []
+        }
+      ],
+      "VpcId": "vpc-03d4bf4fd56283eb5",
+      "SecurityGroupArn": "arn:aws:ec2:us-east-1:027087672282:security-group/sg-090d92bd87212a26f",
+      "OwnerId": "027087672282",
+      "GroupName": "default",
+      "Description": "default VPC security group",
+      "IpPermissions": [
+        {
+          "IpProtocol": "-1",
+          "UserIdGroupPairs": [
+            {
+              "UserId": "027087672282",
+              "GroupId": "sg-090d92bd87212a26f"
+            }
+          ],
+          "IpRanges": [],
+          "Ipv6Ranges": [],
+          "PrefixListIds": []
+        }
+      ]
+    }
+  ],
+  "vpcs": [
+    {
+      "OwnerId": "027087672282",
+      "InstanceTenancy": "default",
+      "CidrBlockAssociationSet": [
+        {
+          "AssociationId": "vpc-cidr-assoc-0d5b917cc10fe9947",
+          "CidrBlock": "172.31.0.0/16",
+          "CidrBlockState": {
+            "State": "associated"
+          }
+        }
+      ],
+      "IsDefault": true,
+      "BlockPublicAccessStates": {
+        "InternetGatewayBlockMode": "off"
+      },
+      "VpcId": "vpc-03d4bf4fd56283eb5",
+      "State": "available",
+      "CidrBlock": "172.31.0.0/16",
+      "DhcpOptionsId": "dopt-0524a2dcc6c29acfe"
+    }
+  ],
+  "subnets": [
+    {
+      "AvailabilityZoneId": "use1-az1",
+      "MapCustomerOwnedIpOnLaunch": false,
+      "OwnerId": "027087672282",
+      "AssignIpv6AddressOnCreation": false,
+      "Ipv6CidrBlockAssociationSet": [],
+      "SubnetArn": "arn:aws:ec2:us-east-1:027087672282:subnet/subnet-0fd8f3eece23aa6b1",
+      "EnableDns64": false,
+      "Ipv6Native": false,
+      "PrivateDnsNameOptionsOnLaunch": {
+        "HostnameType": "ip-name",
+        "EnableResourceNameDnsARecord": false,
+        "EnableResourceNameDnsAAAARecord": false
+      },
+      "BlockPublicAccessStates": {
+        "InternetGatewayBlockMode": "off"
+      },
+      "SubnetId": "subnet-0fd8f3eece23aa6b1",
+      "State": "available",
+      "VpcId": "vpc-03d4bf4fd56283eb5",
+      "CidrBlock": "172.31.0.0/20",
+      "AvailableIpAddressCount": 4091,
+      "AvailabilityZone": "us-east-1a",
+      "DefaultForAz": true,
+      "MapPublicIpOnLaunch": true
+    },
+    {
+      "AvailabilityZoneId": "use1-az2",
+      "MapCustomerOwnedIpOnLaunch": false,
+      "OwnerId": "027087672282",
+      "AssignIpv6AddressOnCreation": false,
+      "Ipv6CidrBlockAssociationSet": [],
+      "SubnetArn": "arn:aws:ec2:us-east-1:027087672282:subnet/subnet-011181ad481a04d3d",
+      "EnableDns64": false,
+      "Ipv6Native": false,
+      "PrivateDnsNameOptionsOnLaunch": {
+        "HostnameType": "ip-name",
+        "EnableResourceNameDnsARecord": false,
+        "EnableResourceNameDnsAAAARecord": false
+      },
+      "BlockPublicAccessStates": {
+        "InternetGatewayBlockMode": "off"
+      },
+      "SubnetId": "subnet-011181ad481a04d3d",
+      "State": "available",
+      "VpcId": "vpc-03d4bf4fd56283eb5",
+      "CidrBlock": "172.31.80.0/20",
+      "AvailableIpAddressCount": 4091,
+      "AvailabilityZone": "us-east-1b",
+      "DefaultForAz": true,
+      "MapPublicIpOnLaunch": true
+    },
+    {
+      "AvailabilityZoneId": "use1-az6",
+      "MapCustomerOwnedIpOnLaunch": false,
+      "OwnerId": "027087672282",
+      "AssignIpv6AddressOnCreation": false,
+      "Ipv6CidrBlockAssociationSet": [],
+      "SubnetArn": "arn:aws:ec2:us-east-1:027087672282:subnet/subnet-0c81726f63be41cce",
+      "EnableDns64": false,
+      "Ipv6Native": false,
+      "PrivateDnsNameOptionsOnLaunch": {
+        "HostnameType": "ip-name",
+        "EnableResourceNameDnsARecord": false,
+        "EnableResourceNameDnsAAAARecord": false
+      },
+      "BlockPublicAccessStates": {
+        "InternetGatewayBlockMode": "off"
+      },
+      "SubnetId": "subnet-0c81726f63be41cce",
+      "State": "available",
+      "VpcId": "vpc-03d4bf4fd56283eb5",
+      "CidrBlock": "172.31.32.0/20",
+      "AvailableIpAddressCount": 4091,
+      "AvailabilityZone": "us-east-1d",
+      "DefaultForAz": true,
+      "MapPublicIpOnLaunch": true
+    },
+    {
+      "AvailabilityZoneId": "use1-az3",
+      "MapCustomerOwnedIpOnLaunch": false,
+      "OwnerId": "027087672282",
+      "AssignIpv6AddressOnCreation": false,
+      "Ipv6CidrBlockAssociationSet": [],
+      "SubnetArn": "arn:aws:ec2:us-east-1:027087672282:subnet/subnet-029a2424e7216e913",
+      "EnableDns64": false,
+      "Ipv6Native": false,
+      "PrivateDnsNameOptionsOnLaunch": {
+        "HostnameType": "ip-name",
+        "EnableResourceNameDnsARecord": false,
+        "EnableResourceNameDnsAAAARecord": false
+      },
+      "BlockPublicAccessStates": {
+        "InternetGatewayBlockMode": "off"
+      },
+      "SubnetId": "subnet-029a2424e7216e913",
+      "State": "available",
+      "VpcId": "vpc-03d4bf4fd56283eb5",
+      "CidrBlock": "172.31.48.0/20",
+      "AvailableIpAddressCount": 4091,
+      "AvailabilityZone": "us-east-1e",
+      "DefaultForAz": true,
+      "MapPublicIpOnLaunch": true
+    },
+    {
+      "AvailabilityZoneId": "use1-az4",
+      "MapCustomerOwnedIpOnLaunch": false,
+      "OwnerId": "027087672282",
+      "AssignIpv6AddressOnCreation": false,
+      "Ipv6CidrBlockAssociationSet": [],
+      "SubnetArn": "arn:aws:ec2:us-east-1:027087672282:subnet/subnet-04553ddb12f80aa24",
+      "EnableDns64": false,
+      "Ipv6Native": false,
+      "PrivateDnsNameOptionsOnLaunch": {
+        "HostnameType": "ip-name",
+        "EnableResourceNameDnsARecord": false,
+        "EnableResourceNameDnsAAAARecord": false
+      },
+      "BlockPublicAccessStates": {
+        "InternetGatewayBlockMode": "off"
+      },
+      "SubnetId": "subnet-04553ddb12f80aa24",
+      "State": "available",
+      "VpcId": "vpc-03d4bf4fd56283eb5",
+      "CidrBlock": "172.31.16.0/20",
+      "AvailableIpAddressCount": 4091,
+      "AvailabilityZone": "us-east-1c",
+      "DefaultForAz": true,
+      "MapPublicIpOnLaunch": true
+    },
+    {
+      "AvailabilityZoneId": "use1-az5",
+      "MapCustomerOwnedIpOnLaunch": false,
+      "OwnerId": "027087672282",
+      "AssignIpv6AddressOnCreation": false,
+      "Ipv6CidrBlockAssociationSet": [],
+      "SubnetArn": "arn:aws:ec2:us-east-1:027087672282:subnet/subnet-00c176177ea82ab38",
+      "EnableDns64": false,
+      "Ipv6Native": false,
+      "PrivateDnsNameOptionsOnLaunch": {
+        "HostnameType": "ip-name",
+        "EnableResourceNameDnsARecord": false,
+        "EnableResourceNameDnsAAAARecord": false
+      },
+      "BlockPublicAccessStates": {
+        "InternetGatewayBlockMode": "off"
+      },
+      "SubnetId": "subnet-00c176177ea82ab38",
+      "State": "available",
+      "VpcId": "vpc-03d4bf4fd56283eb5",
+      "CidrBlock": "172.31.64.0/20",
+      "AvailableIpAddressCount": 4091,
+      "AvailabilityZone": "us-east-1f",
+      "DefaultForAz": true,
+      "MapPublicIpOnLaunch": true
+    }
+  ],
+  "route_tables": [
+    {
+      "Associations": [
+        {
+          "Main": true,
+          "RouteTableAssociationId": "rtbassoc-0eea14808a10c72b0",
+          "RouteTableId": "rtb-003f6dd0bc997539c",
+          "AssociationState": {
+            "State": "associated"
+          }
+        }
+      ],
+      "PropagatingVgws": [],
+      "RouteTableId": "rtb-003f6dd0bc997539c",
+      "Routes": [
+        {
+          "DestinationCidrBlock": "172.31.0.0/16",
+          "GatewayId": "local",
+          "Origin": "CreateRouteTable",
+          "State": "active"
+        },
+        {
+          "DestinationCidrBlock": "0.0.0.0/0",
+          "GatewayId": "igw-06f63edcb7932b8da",
+          "Origin": "CreateRoute",
+          "State": "active"
+        }
+      ],
+      "Tags": [],
+      "VpcId": "vpc-03d4bf4fd56283eb5",
+      "OwnerId": "027087672282"
+    }
+  ],
+  "rds": {
+    "instances": [],
+    "clusters": [],
+    "subnet_groups": [],
+    "parameter_groups": []
+  },
+  "ecs": {
+    "clusters": [
+      {
+        "clusterArn": "arn:aws:ecs:us-east-1:027087672282:cluster/carefree-crocodile-bf3zi5",
+        "clusterName": "carefree-crocodile-bf3zi5",
+        "status": "ACTIVE",
+        "registeredContainerInstancesCount": 0,
+        "runningTasksCount": 0,
+        "pendingTasksCount": 0,
+        "activeServicesCount": 2,
+        "statistics": [],
+        "tags": [],
+        "settings": [],
+        "capacityProviders": [
+          "FARGATE",
+          "FARGATE_SPOT"
+        ],
+        "defaultCapacityProviderStrategy": []
+      }
+    ],
+    "services": [
+      {
+        "serviceArn": "arn:aws:ecs:us-east-1:027087672282:service/carefree-crocodile-bf3zi5/test_def-service-vnwns50w",
+        "serviceName": "test_def-service-vnwns50w",
+        "clusterArn": "arn:aws:ecs:us-east-1:027087672282:cluster/carefree-crocodile-bf3zi5",
+        "loadBalancers": [],
+        "serviceRegistries": [],
+        "status": "ACTIVE",
+        "desiredCount": 1,
+        "runningCount": 0,
+        "pendingCount": 0,
+        "capacityProviderStrategy": [
+          {
+            "capacityProvider": "FARGATE",
+            "weight": 1,
+            "base": 0
+          }
+        ],
+        "platformVersion": "LATEST",
+        "platformFamily": "Linux",
+        "taskDefinition": "arn:aws:ecs:us-east-1:027087672282:task-definition/test_def:1",
+        "deploymentConfiguration": {
+          "deploymentCircuitBreaker": {
+            "enable": true,
+            "rollback": true
+          },
+          "maximumPercent": 200,
+          "minimumHealthyPercent": 100,
+          "strategy": "ROLLING",
+          "bakeTimeInMinutes": 0
+        },
+        "deployments": [
+          {
+            "id": "ecs-svc/6744476687305940152",
+            "status": "PRIMARY",
+            "taskDefinition": "arn:aws:ecs:us-east-1:027087672282:task-definition/test_def:1",
+            "desiredCount": 1,
+            "pendingCount": 0,
+            "runningCount": 0,
+            "failedTasks": 3,
+            "createdAt": "2026-03-19 20:00:31.276000+03:00",
+            "updatedAt": "2026-03-19 20:04:35.454000+03:00",
+            "capacityProviderStrategy": [
+              {
+                "capacityProvider": "FARGATE",
+                "weight": 1,
+                "base": 0
+              }
+            ],
+            "platformVersion": "1.4.0",
+            "platformFamily": "Linux",
+            "networkConfiguration": {
+              "awsvpcConfiguration": {
+                "subnets": [
+                  "subnet-0fd8f3eece23aa6b1",
+                  "subnet-011181ad481a04d3d",
+                  "subnet-0c81726f63be41cce",
+                  "subnet-029a2424e7216e913",
+                  "subnet-04553ddb12f80aa24",
+                  "subnet-00c176177ea82ab38"
+                ],
+                "securityGroups": [
+                  "sg-090d92bd87212a26f"
+                ],
+                "assignPublicIp": "ENABLED"
+              }
+            },
+            "rolloutState": "FAILED",
+            "rolloutStateReason": "ECS deployment circuit breaker: tasks failed to start."
+          }
+        ],
+        "roleArn": "arn:aws:iam::027087672282:role/aws-service-role/ecs.amazonaws.com/AWSServiceRoleForECS",
+        "events": [
+          {
+            "id": "14c05050-9b27-46f5-91bc-87b39f65c019",
+            "createdAt": "2026-03-19 20:04:37.545000+03:00",
+            "message": "(service test_def-service-vnwns50w) was unable to place a task. Reason: CannotPullContainerError: pull image manifest has been retried 1 time(s): failed to resolve ref docker.io/library/repository:latest: pull access denied, repository does not exist or may require authorization: server message: insufficient_scope: authorization failed."
+          },
+          {
+            "id": "da30c2db-6df6-4ae6-9fdf-2e69e53a83c1",
+            "createdAt": "2026-03-19 20:04:35.464000+03:00",
+            "message": "(service test_def-service-vnwns50w) (deployment ecs-svc/6744476687305940152) deployment failed: tasks failed to start."
+          },
+          {
+            "id": "b00212a6-fc8c-4a18-9da6-359ba80b37de",
+            "createdAt": "2026-03-19 20:04:12.998000+03:00",
+            "message": "(service test_def-service-vnwns50w) has started 1 tasks: (task dcc3712920b14938ae5f8c4f7c8bbeea)."
+          },
+          {
+            "id": "86126d41-8ff7-4347-9ea5-b2b739386ca0",
+            "createdAt": "2026-03-19 20:03:37.267000+03:00",
+            "message": "(service test_def-service-vnwns50w) was unable to place a task. Reason: CannotPullContainerError: pull image manifest has been retried 1 time(s): failed to resolve ref docker.io/library/repository:latest: pull access denied, repository does not exist or may require authorization: server message: insufficient_scope: authorization failed."
+          },
+          {
+            "id": "be5266e7-0a84-4375-aa10-aa4428d499ab",
+            "createdAt": "2026-03-19 20:03:09.342000+03:00",
+            "message": "(service test_def-service-vnwns50w) has started 1 tasks: (task aff6b2bfa4254982be8c3d9419b9cd7d)."
+          },
+          {
+            "id": "d2fe4065-c363-4c4c-a766-ea537bd14669",
+            "createdAt": "2026-03-19 20:02:32.806000+03:00",
+            "message": "(service test_def-service-vnwns50w) was unable to place a task. Reason: CannotPullContainerError: pull image manifest has been retried 1 time(s): failed to resolve ref docker.io/library/repository:latest: pull access denied, repository does not exist or may require authorization: server message: insufficient_scope: authorization failed."
+          },
+          {
+            "id": "608e1443-c102-4f72-9876-f8fe206e033c",
+            "createdAt": "2026-03-19 20:02:07.124000+03:00",
+            "message": "(service test_def-service-vnwns50w) has started 1 tasks: (task 9a95d61b4a0c494799ead665df66e6ed)."
+          },
+          {
+            "id": "620a9858-0ab4-4e5b-82e1-73dd464b865c",
+            "createdAt": "2026-03-19 20:01:29.360000+03:00",
+            "message": "(service test_def-service-vnwns50w) was unable to place a task. Reason: CannotPullContainerError: pull image manifest has been retried 1 time(s): failed to resolve ref docker.io/library/repository:latest: pull access denied, repository does not exist or may require authorization: server message: insufficient_scope: authorization failed."
+          },
+          {
+            "id": "dfbe6afc-7021-48ac-888d-ae0f8dfd1996",
+            "createdAt": "2026-03-19 20:01:00.848000+03:00",
+            "message": "(service test_def-service-vnwns50w) has started 1 tasks: (task 0485414c178d4c4c913732787cb82a8d)."
+          }
+        ],
+        "createdAt": "2026-03-19 20:00:31.276000+03:00",
+        "currentServiceRevisions": [
+          {
+            "arn": "arn:aws:ecs:us-east-1:027087672282:service-revision/carefree-crocodile-bf3zi5/test_def-service-vnwns50w/6744476687305940152",
+            "requestedTaskCount": 1,
+            "runningTaskCount": 0,
+            "pendingTaskCount": 0
+          }
+        ],
+        "placementConstraints": [],
+        "placementStrategy": [],
+        "networkConfiguration": {
+          "awsvpcConfiguration": {
+            "subnets": [
+              "subnet-0fd8f3eece23aa6b1",
+              "subnet-011181ad481a04d3d",
+              "subnet-0c81726f63be41cce",
+              "subnet-029a2424e7216e913",
+              "subnet-04553ddb12f80aa24",
+              "subnet-00c176177ea82ab38"
+            ],
+            "securityGroups": [
+              "sg-090d92bd87212a26f"
+            ],
+            "assignPublicIp": "ENABLED"
+          }
+        },
+        "healthCheckGracePeriodSeconds": 0,
+        "schedulingStrategy": "REPLICA",
+        "deploymentController": {
+          "type": "ECS"
+        },
+        "createdBy": "arn:aws:iam::027087672282:root",
+        "enableECSManagedTags": true,
+        "propagateTags": "NONE",
+        "enableExecuteCommand": false,
+        "availabilityZoneRebalancing": "ENABLED",
+        "resourceManagementType": "CUSTOMER"
+      },
+      {
+        "serviceArn": "arn:aws:ecs:us-east-1:027087672282:service/carefree-crocodile-bf3zi5/test_def-service-64zgxsih",
+        "serviceName": "test_def-service-64zgxsih",
+        "clusterArn": "arn:aws:ecs:us-east-1:027087672282:cluster/carefree-crocodile-bf3zi5",
+        "loadBalancers": [],
+        "serviceRegistries": [],
+        "status": "ACTIVE",
+        "desiredCount": 1,
+        "runningCount": 0,
+        "pendingCount": 0,
+        "capacityProviderStrategy": [
+          {
+            "capacityProvider": "FARGATE",
+            "weight": 1,
+            "base": 0
+          }
+        ],
+        "platformVersion": "LATEST",
+        "platformFamily": "Linux",
+        "taskDefinition": "arn:aws:ecs:us-east-1:027087672282:task-definition/test_def:1",
+        "deploymentConfiguration": {
+          "deploymentCircuitBreaker": {
+            "enable": true,
+            "rollback": true
+          },
+          "maximumPercent": 200,
+          "minimumHealthyPercent": 100,
+          "strategy": "ROLLING",
+          "bakeTimeInMinutes": 0
+        },
+        "deployments": [
+          {
+            "id": "ecs-svc/4147464574344463707",
+            "status": "PRIMARY",
+            "taskDefinition": "arn:aws:ecs:us-east-1:027087672282:task-definition/test_def:1",
+            "desiredCount": 1,
+            "pendingCount": 0,
+            "runningCount": 0,
+            "failedTasks": 3,
+            "createdAt": "2026-03-19 20:00:53.057000+03:00",
+            "updatedAt": "2026-03-19 20:04:32.579000+03:00",
+            "capacityProviderStrategy": [
+              {
+                "capacityProvider": "FARGATE",
+                "weight": 1,
+                "base": 0
+              }
+            ],
+            "platformVersion": "1.4.0",
+            "platformFamily": "Linux",
+            "networkConfiguration": {
+              "awsvpcConfiguration": {
+                "subnets": [
+                  "subnet-0fd8f3eece23aa6b1",
+                  "subnet-011181ad481a04d3d",
+                  "subnet-0c81726f63be41cce",
+                  "subnet-029a2424e7216e913",
+                  "subnet-04553ddb12f80aa24",
+                  "subnet-00c176177ea82ab38"
+                ],
+                "securityGroups": [
+                  "sg-090d92bd87212a26f"
+                ],
+                "assignPublicIp": "ENABLED"
+              }
+            },
+            "rolloutState": "FAILED",
+            "rolloutStateReason": "ECS deployment circuit breaker: tasks failed to start."
+          }
+        ],
+        "roleArn": "arn:aws:iam::027087672282:role/aws-service-role/ecs.amazonaws.com/AWSServiceRoleForECS",
+        "events": [
+          {
+            "id": "13644307-6041-4309-8dfd-d5866b54c427",
+            "createdAt": "2026-03-19 20:04:52.829000+03:00",
+            "message": "(service test_def-service-64zgxsih) was unable to place a task. Reason: CannotPullContainerError: pull image manifest has been retried 1 time(s): failed to resolve ref docker.io/library/repository:latest: pull access denied, repository does not exist or may require authorization: server message: insufficient_scope: authorization failed."
+          },
+          {
+            "id": "b45f1c66-cd4e-4d14-b1f0-0f901bab9926",
+            "createdAt": "2026-03-19 20:04:32.588000+03:00",
+            "message": "(service test_def-service-64zgxsih) (deployment ecs-svc/4147464574344463707) deployment failed: tasks failed to start."
+          },
+          {
+            "id": "ac26adaf-b663-4087-9090-d6fd67516d99",
+            "createdAt": "2026-03-19 20:04:24.220000+03:00",
+            "message": "(service test_def-service-64zgxsih) has started 1 tasks: (task ce3a77a6670644b7883d3cb8d44d50b5)."
+          },
+          {
+            "id": "1e7d784e-49f1-4a05-8d93-4e8373af3d20",
+            "createdAt": "2026-03-19 20:03:48.083000+03:00",
+            "message": "(service test_def-service-64zgxsih) was unable to place a task. Reason: CannotPullContainerError: pull image manifest has been retried 1 time(s): failed to resolve ref docker.io/library/repository:latest: pull access denied, repository does not exist or may require authorization: server message: insufficient_scope: authorization failed."
+          },
+          {
+            "id": "a7b87bf2-b0c7-4429-b49e-40d44d259fd5",
+            "createdAt": "2026-03-19 20:03:17.177000+03:00",
+            "message": "(service test_def-service-64zgxsih) has started 1 tasks: (task bf7534a7000a43b6ac4abb1c5bb99219)."
+          },
+          {
+            "id": "d17d8c24-23a0-4091-bd4a-c59ce43d2f83",
+            "createdAt": "2026-03-19 20:02:41.871000+03:00",
+            "message": "(service test_def-service-64zgxsih) was unable to place a task. Reason: CannotPullContainerError: pull image manifest has been retried 1 time(s): failed to resolve ref docker.io/library/repository:latest: pull access denied, repository does not exist or may require authorization: server message: insufficient_scope: authorization failed."
+          },
+          {
+            "id": "b8c06271-45ae-4830-a0eb-819a3633b2d8",
+            "createdAt": "2026-03-19 20:02:11.103000+03:00",
+            "message": "(service test_def-service-64zgxsih) has started 1 tasks: (task 27a9d401a07149fab8f5302b3e2b0b18)."
+          },
+          {
+            "id": "de00c6ad-8805-4007-b258-6a8966097a43",
+            "createdAt": "2026-03-19 20:01:40.079000+03:00",
+            "message": "(service test_def-service-64zgxsih) was unable to place a task. Reason: CannotPullContainerError: pull image manifest has been retried 1 time(s): failed to resolve ref docker.io/library/repository:latest: pull access denied, repository does not exist or may require authorization: server message: insufficient_scope: authorization failed."
+          },
+          {
+            "id": "0964f3e4-aa59-439f-859a-a2eadf9e97f3",
+            "createdAt": "2026-03-19 20:01:16.371000+03:00",
+            "message": "(service test_def-service-64zgxsih) has started 1 tasks: (task dc0bfaca64484f5884ec13d041374520)."
+          }
+        ],
+        "createdAt": "2026-03-19 20:00:53.057000+03:00",
+        "currentServiceRevisions": [
+          {
+            "arn": "arn:aws:ecs:us-east-1:027087672282:service-revision/carefree-crocodile-bf3zi5/test_def-service-64zgxsih/4147464574344463707",
+            "requestedTaskCount": 1,
+            "runningTaskCount": 0,
+            "pendingTaskCount": 0
+          }
+        ],
+        "placementConstraints": [],
+        "placementStrategy": [],
+        "networkConfiguration": {
+          "awsvpcConfiguration": {
+            "subnets": [
+              "subnet-0fd8f3eece23aa6b1",
+              "subnet-011181ad481a04d3d",
+              "subnet-0c81726f63be41cce",
+              "subnet-029a2424e7216e913",
+              "subnet-04553ddb12f80aa24",
+              "subnet-00c176177ea82ab38"
+            ],
+            "securityGroups": [
+              "sg-090d92bd87212a26f"
+            ],
+            "assignPublicIp": "ENABLED"
+          }
+        },
+        "healthCheckGracePeriodSeconds": 0,
+        "schedulingStrategy": "REPLICA",
+        "deploymentController": {
+          "type": "ECS"
+        },
+        "createdBy": "arn:aws:iam::027087672282:root",
+        "enableECSManagedTags": true,
+        "propagateTags": "NONE",
+        "enableExecuteCommand": false,
+        "availabilityZoneRebalancing": "ENABLED",
+        "resourceManagementType": "CUSTOMER"
+      }
+    ],
+    "task_definitions": [
+      {
+        "taskDefinitionArn": "arn:aws:ecs:us-east-1:027087672282:task-definition/test_def:1",
+        "containerDefinitions": [
+          {
+            "name": "wordpress",
+            "image": "repository",
+            "cpu": 0,
+            "portMappings": [
+              {
+                "containerPort": 80,
+                "hostPort": 80,
+                "protocol": "tcp",
+                "name": "wordpress-80-tcp",
+                "appProtocol": "http"
+              }
+            ],
+            "essential": true,
+            "environment": [],
+            "environmentFiles": [],
+            "mountPoints": [],
+            "volumesFrom": [],
+            "ulimits": [],
+            "logConfiguration": {
+              "logDriver": "awslogs",
+              "options": {
+                "awslogs-group": "/ecs/test_def",
+                "awslogs-create-group": "true",
+                "awslogs-region": "us-east-1",
+                "awslogs-stream-prefix": "ecs"
+              },
+              "secretOptions": []
+            },
+            "systemControls": []
+          }
+        ],
+        "family": "test_def",
+        "executionRoleArn": "arn:aws:iam::027087672282:role/ecsTaskExecutionRole",
+        "networkMode": "awsvpc",
+        "revision": 1,
+        "volumes": [],
+        "status": "ACTIVE",
+        "requiresAttributes": [
+          {
+            "name": "com.amazonaws.ecs.capability.logging-driver.awslogs"
+          },
+          {
+            "name": "ecs.capability.execution-role-awslogs"
+          },
+          {
+            "name": "com.amazonaws.ecs.capability.docker-remote-api.1.19"
+          },
+          {
+            "name": "com.amazonaws.ecs.capability.docker-remote-api.1.18"
+          },
+          {
+            "name": "ecs.capability.task-eni"
+          },
+          {
+            "name": "com.amazonaws.ecs.capability.docker-remote-api.1.29"
+          }
+        ],
+        "placementConstraints": [],
+        "compatibilities": [
+          "EC2",
+          "FARGATE",
+          "MANAGED_INSTANCES"
+        ],
+        "runtimePlatform": {
+          "cpuArchitecture": "X86_64",
+          "operatingSystemFamily": "LINUX"
+        },
+        "requiresCompatibilities": [
+          "FARGATE"
+        ],
+        "cpu": "1024",
+        "memory": "3072",
+        "registeredAt": "2026-03-19 20:00:10.154000+03:00",
+        "registeredBy": "arn:aws:iam::027087672282:root",
+        "enableFaultInjection": false
+      }
+    ],
+    "tasks": []
+  },
+  "ecs_scheduled_tasks": [],
+  "ecs_metrics": {
+    "clusters": [
+      {
+        "clusterName": "carefree-crocodile-bf3zi5",
+        "cpu": {},
+        "memory": {}
+      }
+    ],
+    "services": [
+      {
+        "clusterName": "carefree-crocodile-bf3zi5",
+        "serviceName": "test_def-service-vnwns50w",
+        "cpu": {},
+        "memory": {}
+      },
+      {
+        "clusterName": "carefree-crocodile-bf3zi5",
+        "serviceName": "test_def-service-64zgxsih",
+        "cpu": {},
+        "memory": {}
+      }
+    ]
+  },
+  "ecs_event_history": [
+    {
+      "EventId": "0d5d2db2-3606-40ce-a2c0-822536c18a49",
+      "EventName": "DescribeClusters",
+      "ReadOnly": "true",
+      "AccessKeyId": "[REDACTED]",
+      "EventTime": "2026-03-22 11:09:27+03:00",
+      "EventSource": "ecs.amazonaws.com",
+      "Username": "resource-explorer-2",
+      "Resources": [],
+      "CloudTrailEvent": "[REDACTED]"
+    },
+    {
+      "EventId": "5c655da9-50f0-422b-8ddc-528af4b0fa6a",
+      "EventName": "ListClusters",
+      "ReadOnly": "true",
+      "AccessKeyId": "[REDACTED]",
+      "EventTime": "2026-03-22 11:08:22+03:00",
+      "EventSource": "ecs.amazonaws.com",
+      "Username": "resource-explorer-2",
+      "Resources": [],
+      "CloudTrailEvent": "[REDACTED]"
+    },
+    {
+      "EventId": "13749b12-b19f-4b56-9e55-df8fad5a7c82",
+      "EventName": "DescribeTaskDefinition",
+      "ReadOnly": "true",
+      "AccessKeyId": "[REDACTED]",
+      "EventTime": "2026-03-22 10:25:17+03:00",
+      "EventSource": "ecs.amazonaws.com",
+      "Username": "resource-explorer-2",
+      "Resources": [],
+      "CloudTrailEvent": "[REDACTED]"
+    },
+    {
+      "EventId": "2b3dd0c4-288a-48fb-83ba-a78d5e94bfd3",
+      "EventName": "ListTaskDefinitions",
+      "ReadOnly": "true",
+      "AccessKeyId": "[REDACTED]",
+      "EventTime": "2026-03-22 10:24:13+03:00",
+      "EventSource": "ecs.amazonaws.com",
+      "Username": "resource-explorer-2",
+      "Resources": [],
+      "CloudTrailEvent": "[REDACTED]"
+    },
+    {
+      "EventId": "d9d5a431-52c4-4d75-88b3-6d8a66a4709a",
+      "EventName": "DescribeServices",
+      "ReadOnly": "true",
+      "AccessKeyId": "[REDACTED]",
+      "EventTime": "2026-03-22 09:13:44+03:00",
+      "EventSource": "ecs.amazonaws.com",
+      "Username": "resource-explorer-2",
+      "Resources": [],
+      "CloudTrailEvent": "[REDACTED]"
+    },
+    {
+      "EventId": "e90082e1-a41c-4d70-8e6d-2ac462c87e33",
+      "EventName": "DescribeServices",
+      "ReadOnly": "true",
+      "AccessKeyId": "[REDACTED]",
+      "EventTime": "2026-03-22 09:13:44+03:00",
+      "EventSource": "ecs.amazonaws.com",
+      "Username": "resource-explorer-2",
+      "Resources": [],
+      "CloudTrailEvent": "[REDACTED]"
+    },
+    {
+      "EventId": "510442e3-2ebe-4249-92bd-3f8f78c02d4a",
+      "EventName": "ListClusters",
+      "ReadOnly": "true",
+      "AccessKeyId": "[REDACTED]",
+      "EventTime": "2026-03-22 09:12:40+03:00",
+      "EventSource": "ecs.amazonaws.com",
+      "Username": "resource-explorer-2",
+      "Resources": [],
+      "CloudTrailEvent": "[REDACTED]"
+    },
+    {
+      "EventId": "ad68b11f-f301-4d83-b5b9-6882c31e48d1",
+      "EventName": "ListServices",
+      "ReadOnly": "true",
+      "AccessKeyId": "[REDACTED]",
+      "EventTime": "2026-03-22 09:12:40+03:00",
+      "EventSource": "ecs.amazonaws.com",
+      "Username": "resource-explorer-2",
+      "Resources": [],
+      "CloudTrailEvent": "[REDACTED]"
+    },
+    {
+      "EventId": "7262c505-e19a-4445-aba3-99034d97ab99",
+      "EventName": "DescribeTaskDefinition",
+      "ReadOnly": "true",
+      "AccessKeyId": "[REDACTED]",
+      "EventTime": "2026-03-21 23:47:11+03:00",
+      "EventSource": "ecs.amazonaws.com",
+      "Username": "CodexVSCode",
+      "Resources": [],
+      "CloudTrailEvent": "[REDACTED]"
+    },
+    {
+      "EventId": "8f30e4f7-f880-455c-bb47-45c7a720af94",
+      "EventName": "DescribeTaskDefinition",
+      "ReadOnly": "true",
+      "AccessKeyId": "[REDACTED]",
+      "EventTime": "2026-03-21 23:47:11+03:00",
+      "EventSource": "ecs.amazonaws.com",
+      "Username": "CodexVSCode",
+      "Resources": [],
+      "CloudTrailEvent": "[REDACTED]"
+    },
+    {
+      "EventId": "c616af28-b0a8-448e-b9fb-383abe9bde51",
+      "EventName": "ListTasks",
+      "ReadOnly": "true",
+      "AccessKeyId": "[REDACTED]",
+      "EventTime": "2026-03-21 23:47:11+03:00",
+      "EventSource": "ecs.amazonaws.com",
+      "Username": "CodexVSCode",
+      "Resources": [],
+      "CloudTrailEvent": "[REDACTED]"
+    },
+    {
+      "EventId": "0778e220-ea93-4118-a5f3-d842511169df",
+      "EventName": "ListServices",
+      "ReadOnly": "true",
+      "AccessKeyId": "[REDACTED]",
+      "EventTime": "2026-03-21 23:47:10+03:00",
+      "EventSource": "ecs.amazonaws.com",
+      "Username": "CodexVSCode",
+      "Resources": [],
+      "CloudTrailEvent": "[REDACTED]"
+    },
+    {
+      "EventId": "14cf6db1-f61a-466c-a280-f2f9575e3ae3",
+      "EventName": "DescribeServices",
+      "ReadOnly": "true",
+      "AccessKeyId": "[REDACTED]",
+      "EventTime": "2026-03-21 23:47:10+03:00",
+      "EventSource": "ecs.amazonaws.com",
+      "Username": "CodexVSCode",
+      "Resources": [],
+      "CloudTrailEvent": "[REDACTED]"
+    },
+    {
+      "EventId": "1ee7c03e-8da2-4f90-a012-1d33fa662641",
+      "EventName": "ListTasks",
+      "ReadOnly": "true",
+      "AccessKeyId": "[REDACTED]",
+      "EventTime": "2026-03-21 23:47:10+03:00",
+      "EventSource": "ecs.amazonaws.com",
+      "Username": "CodexVSCode",
+      "Resources": [],
+      "CloudTrailEvent": "[REDACTED]"
+    },
+    {
+      "EventId": "c1291193-a71d-466b-a0a5-90b0b055b04a",
+      "EventName": "DescribeClusters",
+      "ReadOnly": "true",
+      "AccessKeyId": "[REDACTED]",
+      "EventTime": "2026-03-21 23:47:10+03:00",
+      "EventSource": "ecs.amazonaws.com",
+      "Username": "CodexVSCode",
+      "Resources": [],
+      "CloudTrailEvent": "[REDACTED]"
+    },
+    {
+      "EventId": "a7bf7792-53e9-4a84-8021-12894fcb6f30",
+      "EventName": "ListClusters",
+      "ReadOnly": "true",
+      "AccessKeyId": "[REDACTED]",
+      "EventTime": "2026-03-21 23:47:09+03:00",
+      "EventSource": "ecs.amazonaws.com",
+      "Username": "CodexVSCode",
+      "Resources": [],
+      "CloudTrailEvent": "[REDACTED]"
+    },
+    {
+      "EventId": "094920f9-6b72-4b8a-ad0e-f8063f60d3ae",
+      "EventName": "ListClusters",
+      "ReadOnly": "true",
+      "AccessKeyId": "[REDACTED]",
+      "EventTime": "2026-03-21 23:41:41+03:00",
+      "EventSource": "ecs.amazonaws.com",
+      "Username": "CodexVSCode",
+      "Resources": [],
+      "CloudTrailEvent": "[REDACTED]"
+    },
+    {
+      "EventId": "1fea9975-4927-4d33-b7a9-abdaf6691203",
+      "EventName": "DescribeClusters",
+      "ReadOnly": "true",
+      "AccessKeyId": "[REDACTED]",
+      "EventTime": "2026-03-21 23:41:41+03:00",
+      "EventSource": "ecs.amazonaws.com",
+      "Username": "CodexVSCode",
+      "Resources": [],
+      "CloudTrailEvent": "[REDACTED]"
+    },
+    {
+      "EventId": "3d63e7d8-5c9e-4463-959c-fe333e5816f5",
+      "EventName": "ListTasks",
+      "ReadOnly": "true",
+      "AccessKeyId": "[REDACTED]",
+      "EventTime": "2026-03-21 17:38:56+03:00",
+      "EventSource": "ecs.amazonaws.com",
+      "Username": "CodexVSCode",
+      "Resources": [],
+      "CloudTrailEvent": "[REDACTED]"
+    },
+    {
+      "EventId": "641c1388-a1b1-4013-8e51-975ed557c877",
+      "EventName": "DescribeTaskDefinition",
+      "ReadOnly": "true",
+      "AccessKeyId": "[REDACTED]",
+      "EventTime": "2026-03-21 17:38:56+03:00",
+      "EventSource": "ecs.amazonaws.com",
+      "Username": "CodexVSCode",
+      "Resources": [],
+      "CloudTrailEvent": "[REDACTED]"
+    },
+    {
+      "EventId": "c18c84fe-994c-47e9-bbef-e56a3ed1cb46",
+      "EventName": "DescribeTaskDefinition",
+      "ReadOnly": "true",
+      "AccessKeyId": "[REDACTED]",
+      "EventTime": "2026-03-21 17:38:56+03:00",
+      "EventSource": "ecs.amazonaws.com",
+      "Username": "CodexVSCode",
+      "Resources": [],
+      "CloudTrailEvent": "[REDACTED]"
+    },
+    {
+      "EventId": "437b47d1-34cf-452e-80cf-07517f38f9b8",
+      "EventName": "ListClusters",
+      "ReadOnly": "true",
+      "AccessKeyId": "[REDACTED]",
+      "EventTime": "2026-03-21 17:38:55+03:00",
+      "EventSource": "ecs.amazonaws.com",
+      "Username": "CodexVSCode",
+      "Resources": [],
+      "CloudTrailEvent": "[REDACTED]"
+    },
+    {
+      "EventId": "46be06b7-d5a1-43a5-9a94-27946844815a",
+      "EventName": "ListTasks",
+      "ReadOnly": "true",
+      "AccessKeyId": "[REDACTED]",
+      "EventTime": "2026-03-21 17:38:55+03:00",
+      "EventSource": "ecs.amazonaws.com",
+      "Username": "CodexVSCode",
+      "Resources": [],
+      "CloudTrailEvent": "[REDACTED]"
+    },
+    {
+      "EventId": "8858dbbc-faaf-4a94-b20d-fd2ec05206af",
+      "EventName": "ListServices",
+      "ReadOnly": "true",
+      "AccessKeyId": "[REDACTED]",
+      "EventTime": "2026-03-21 17:38:55+03:00",
+      "EventSource": "ecs.amazonaws.com",
+      "Username": "CodexVSCode",
+      "Resources": [],
+      "CloudTrailEvent": "[REDACTED]"
+    },
+    {
+      "EventId": "9a0a8011-32e3-4aa9-95bc-a68b20ac6ee1",
+      "EventName": "DescribeServices",
+      "ReadOnly": "true",
+      "AccessKeyId": "[REDACTED]",
+      "EventTime": "2026-03-21 17:38:55+03:00",
+      "EventSource": "ecs.amazonaws.com",
+      "Username": "CodexVSCode",
+      "Resources": [],
+      "CloudTrailEvent": "[REDACTED]"
+    },
+    {
+      "EventId": "e2a59c7d-ed32-4da3-be17-b1ab0551a30a",
+      "EventName": "DescribeClusters",
+      "ReadOnly": "true",
+      "AccessKeyId": "[REDACTED]",
+      "EventTime": "2026-03-21 17:38:55+03:00",
+      "EventSource": "ecs.amazonaws.com",
+      "Username": "CodexVSCode",
+      "Resources": [],
+      "CloudTrailEvent": "[REDACTED]"
+    },
+    {
+      "EventId": "45f1b6bd-fd75-4326-9b7b-7d63af4edfff",
+      "EventName": "DescribeTaskDefinition",
+      "ReadOnly": "true",
+      "AccessKeyId": "[REDACTED]",
+      "EventTime": "2026-03-21 17:36:57+03:00",
+      "EventSource": "ecs.amazonaws.com",
+      "Username": "CodexVSCode",
+      "Resources": [],
+      "CloudTrailEvent": "[REDACTED]"
+    },
+    {
+      "EventId": "575a478d-b768-404b-b005-5823c650ecb6",
+      "EventName": "DescribeTaskDefinition",
+      "ReadOnly": "true",
+      "AccessKeyId": "[REDACTED]",
+      "EventTime": "2026-03-21 17:36:57+03:00",
+      "EventSource": "ecs.amazonaws.com",
+      "Username": "CodexVSCode",
+      "Resources": [],
+      "CloudTrailEvent": "[REDACTED]"
+    },
+    {
+      "EventId": "abb1bd87-4bc3-4cb6-99e6-63aacc57119e",
+      "EventName": "ListTasks",
+      "ReadOnly": "true",
+      "AccessKeyId": "[REDACTED]",
+      "EventTime": "2026-03-21 17:36:57+03:00",
+      "EventSource": "ecs.amazonaws.com",
+      "Username": "CodexVSCode",
+      "Resources": [],
+      "CloudTrailEvent": "[REDACTED]"
+    },
+    {
+      "EventId": "e4cbbf78-03bf-427c-aa47-4786cd52c9c0",
+      "EventName": "ListTasks",
+      "ReadOnly": "true",
+      "AccessKeyId": "[REDACTED]",
+      "EventTime": "2026-03-21 17:36:57+03:00",
+      "EventSource": "ecs.amazonaws.com",
+      "Username": "CodexVSCode",
+      "Resources": [],
+      "CloudTrailEvent": "[REDACTED]"
+    },
+    {
+      "EventId": "ffe096ce-8aba-4cbb-aaea-da1a651ce875",
+      "EventName": "DescribeServices",
+      "ReadOnly": "true",
+      "AccessKeyId": "[REDACTED]",
+      "EventTime": "2026-03-21 17:36:57+03:00",
+      "EventSource": "ecs.amazonaws.com",
+      "Username": "CodexVSCode",
+      "Resources": [],
+      "CloudTrailEvent": "[REDACTED]"
+    },
+    {
+      "EventId": "8611f797-aa5b-4b78-af83-b39b43ce1184",
+      "EventName": "ListClusters",
+      "ReadOnly": "true",
+      "AccessKeyId": "[REDACTED]",
+      "EventTime": "2026-03-21 17:36:56+03:00",
+      "EventSource": "ecs.amazonaws.com",
+      "Username": "CodexVSCode",
+      "Resources": [],
+      "CloudTrailEvent": "[REDACTED]"
+    },
+    {
+      "EventId": "898d3e36-6338-40c0-bb29-3bff321205ab",
+      "EventName": "DescribeClusters",
+      "ReadOnly": "true",
+      "AccessKeyId": "[REDACTED]",
+      "EventTime": "2026-03-21 17:36:56+03:00",
+      "EventSource": "ecs.amazonaws.com",
+      "Username": "CodexVSCode",
+      "Resources": [],
+      "CloudTrailEvent": "[REDACTED]"
+    },
+    {
+      "EventId": "bc2fd33f-0ff5-4a69-ad9f-6ea7d04a0bc1",
+      "EventName": "ListServices",
+      "ReadOnly": "true",
+      "AccessKeyId": "[REDACTED]",
+      "EventTime": "2026-03-21 17:36:56+03:00",
+      "EventSource": "ecs.amazonaws.com",
+      "Username": "CodexVSCode",
+      "Resources": [],
+      "CloudTrailEvent": "[REDACTED]"
+    },
+    {
+      "EventId": "055a6a1c-4d9f-42bc-b670-bdde187476be",
+      "EventName": "ListClusters",
+      "ReadOnly": "true",
+      "AccessKeyId": "[REDACTED]",
+      "EventTime": "2026-03-20 10:51:25+03:00",
+      "EventSource": "ecs.amazonaws.com",
+      "Username": "root",
+      "Resources": [],
+      "CloudTrailEvent": "[REDACTED]"
+    },
+    {
+      "EventId": "ad2892a8-8bd2-4d17-9353-62e581d91c9b",
+      "EventName": "DescribeClusters",
+      "ReadOnly": "true",
+      "AccessKeyId": "[REDACTED]",
+      "EventTime": "2026-03-20 10:51:25+03:00",
+      "EventSource": "ecs.amazonaws.com",
+      "Username": "root",
+      "Resources": [],
+      "CloudTrailEvent": "[REDACTED]"
+    },
+    {
+      "EventId": "088ca8f9-428e-4f36-a376-7c1b58423f81",
+      "EventName": "ListClusters",
+      "ReadOnly": "true",
+      "AccessKeyId": "[REDACTED]",
+      "EventTime": "2026-03-19 21:33:30+03:00",
+      "EventSource": "ecs.amazonaws.com",
+      "Username": "root",
+      "Resources": [],
+      "CloudTrailEvent": "[REDACTED]"
+    },
+    {
+      "EventId": "83583b26-196f-4c65-b341-202c07aa1f8d",
+      "EventName": "DescribeClusters",
+      "ReadOnly": "true",
+      "AccessKeyId": "[REDACTED]",
+      "EventTime": "2026-03-19 21:33:30+03:00",
+      "EventSource": "ecs.amazonaws.com",
+      "Username": "root",
+      "Resources": [],
+      "CloudTrailEvent": "[REDACTED]"
+    },
+    {
+      "EventId": "6eed18d0-1c13-497a-b41a-0433684f7e3c",
+      "EventName": "DescribeTaskDefinition",
+      "ReadOnly": "true",
+      "AccessKeyId": "[REDACTED]",
+      "EventTime": "2026-03-19 20:46:04+03:00",
+      "EventSource": "ecs.amazonaws.com",
+      "Username": "root",
+      "Resources": [],
+      "CloudTrailEvent": "[REDACTED]"
+    },
+    {
+      "EventId": "10808725-9e7f-4556-82d6-84092f7810c4",
+      "EventName": "ListTasks",
+      "ReadOnly": "true",
+      "AccessKeyId": "[REDACTED]",
+      "EventTime": "2026-03-19 20:24:07+03:00",
+      "EventSource": "ecs.amazonaws.com",
+      "Username": "CodexVSCode",
+      "Resources": [],
+      "CloudTrailEvent": "[REDACTED]"
+    },
+    {
+      "EventId": "6c0aadcb-f845-48a9-80af-ac094c05097a",
+      "EventName": "DescribeTaskDefinition",
+      "ReadOnly": "true",
+      "AccessKeyId": "[REDACTED]",
+      "EventTime": "2026-03-19 20:24:07+03:00",
+      "EventSource": "ecs.amazonaws.com",
+      "Username": "CodexVSCode",
+      "Resources": [],
+      "CloudTrailEvent": "[REDACTED]"
+    },
+    {
+      "EventId": "8428f095-84de-429f-ab22-699ed7ab654b",
+      "EventName": "ListTasks",
+      "ReadOnly": "true",
+      "AccessKeyId": "[REDACTED]",
+      "EventTime": "2026-03-19 20:24:07+03:00",
+      "EventSource": "ecs.amazonaws.com",
+      "Username": "CodexVSCode",
+      "Resources": [],
+      "CloudTrailEvent": "[REDACTED]"
+    },
+    {
+      "EventId": "bdec7b5e-81c2-411e-8ac9-dd260ea4df0a",
+      "EventName": "DescribeTaskDefinition",
+      "ReadOnly": "true",
+      "AccessKeyId": "[REDACTED]",
+      "EventTime": "2026-03-19 20:24:07+03:00",
+      "EventSource": "ecs.amazonaws.com",
+      "Username": "CodexVSCode",
+      "Resources": [],
+      "CloudTrailEvent": "[REDACTED]"
+    },
+    {
+      "EventId": "f5cdedf4-661c-456a-9b18-5a74ca015699",
+      "EventName": "DescribeServices",
+      "ReadOnly": "true",
+      "AccessKeyId": "[REDACTED]",
+      "EventTime": "2026-03-19 20:24:07+03:00",
+      "EventSource": "ecs.amazonaws.com",
+      "Username": "CodexVSCode",
+      "Resources": [],
+      "CloudTrailEvent": "[REDACTED]"
+    },
+    {
+      "EventId": "2674273a-4e44-4513-a3e1-b6b5b06975cc",
+      "EventName": "ListServices",
+      "ReadOnly": "true",
+      "AccessKeyId": "[REDACTED]",
+      "EventTime": "2026-03-19 20:24:06+03:00",
+      "EventSource": "ecs.amazonaws.com",
+      "Username": "CodexVSCode",
+      "Resources": [],
+      "CloudTrailEvent": "[REDACTED]"
+    },
+    {
+      "EventId": "28b91e11-0e67-44a0-af60-7b1ecfdd409d",
+      "EventName": "ListClusters",
+      "ReadOnly": "true",
+      "AccessKeyId": "[REDACTED]",
+      "EventTime": "2026-03-19 20:24:06+03:00",
+      "EventSource": "ecs.amazonaws.com",
+      "Username": "CodexVSCode",
+      "Resources": [],
+      "CloudTrailEvent": "[REDACTED]"
+    },
+    {
+      "EventId": "4dafca44-de64-4b5a-8616-c8f0f5a84191",
+      "EventName": "DescribeClusters",
+      "ReadOnly": "true",
+      "AccessKeyId": "[REDACTED]",
+      "EventTime": "2026-03-19 20:24:06+03:00",
+      "EventSource": "ecs.amazonaws.com",
+      "Username": "CodexVSCode",
+      "Resources": [],
+      "CloudTrailEvent": "[REDACTED]"
+    },
+    {
+      "EventId": "66b75b8e-2c30-4dd4-bae3-629f5d79f828",
+      "EventName": "DescribeTaskDefinition",
+      "ReadOnly": "true",
+      "AccessKeyId": "[REDACTED]",
+      "EventTime": "2026-03-19 20:22:36+03:00",
+      "EventSource": "ecs.amazonaws.com",
+      "Username": "root",
+      "Resources": [],
+      "CloudTrailEvent": "[REDACTED]"
+    },
+    {
+      "EventId": "d3ab35f7-9267-401b-94e1-d5b2f389d91f",
+      "EventName": "DescribeClusters",
+      "ReadOnly": "true",
+      "AccessKeyId": "[REDACTED]",
+      "EventTime": "2026-03-19 20:22:26+03:00",
+      "EventSource": "ecs.amazonaws.com",
+      "Username": "root",
+      "Resources": [],
+      "CloudTrailEvent": "[REDACTED]"
+    },
+    {
+      "EventId": "1513bf02-bd92-4a51-97aa-65236e3e7d51",
+      "EventName": "ListContainerInstances",
+      "ReadOnly": "true",
+      "AccessKeyId": "[REDACTED]",
+      "EventTime": "2026-03-19 20:21:47+03:00",
+      "EventSource": "ecs.amazonaws.com",
+      "Username": "root",
+      "Resources": [],
+      "CloudTrailEvent": "[REDACTED]"
+    }
+  ],
+  "git_repositories": [],
+  "dependency_graph": {
+    "nodes": [
+      {
+        "id": "arn:aws:sqs:us-east-1:027087672282:agent-error-queue",
+        "type": "sqs",
+        "name": "agent-error-queue"
+      },
+      {
+        "id": "arn:aws:sqs:us-east-1:027087672282:agent-fix-tasks-dlq.fifo",
+        "type": "sqs",
+        "name": "agent-fix-tasks-dlq.fifo"
+      },
+      {
+        "id": "arn:aws:sqs:us-east-1:027087672282:agent-fix-tasks.fifo",
+        "type": "sqs",
+        "name": "agent-fix-tasks.fifo"
+      },
+      {
+        "id": "arn:aws:sqs:us-east-1:027087672282:connector-tasks.fifo",
+        "type": "sqs",
+        "name": "connector-tasks.fifo"
+      },
+      {
+        "id": "arn:aws:sqs:us-east-1:027087672282:plan-executor-queue",
+        "type": "sqs",
+        "name": "plan-executor-queue"
+      },
+      {
+        "id": "arn:aws:ecs:us-east-1:027087672282:cluster/carefree-crocodile-bf3zi5",
+        "type": "ecs-cluster",
+        "name": "carefree-crocodile-bf3zi5"
+      },
+      {
+        "id": "arn:aws:ecs:us-east-1:027087672282:service/carefree-crocodile-bf3zi5/test_def-service-vnwns50w",
+        "type": "ecs-service",
+        "name": "test_def-service-vnwns50w"
+      },
+      {
+        "id": "arn:aws:ecs:us-east-1:027087672282:service/carefree-crocodile-bf3zi5/test_def-service-64zgxsih",
+        "type": "ecs-service",
+        "name": "test_def-service-64zgxsih"
+      },
+      {
+        "id": "arn:aws:ecs:us-east-1:027087672282:task-definition/test_def:1",
+        "type": "ecs-task-definition",
+        "name": "test_def"
+      },
+      {
+        "id": "arn:aws:codebuild:us-east-1:027087672282:project/aws-dev-agent-tests",
+        "type": "codebuild-project",
+        "name": "aws-dev-agent-tests"
+      },
+      {
+        "id": "aws-dev-agent-codebuild-artifacts-027087672282-us-east-1",
+        "type": "s3-bucket",
+        "name": "aws-dev-agent-codebuild-artifacts-027087672282-us-east-1"
+      },
+      {
+        "id": "hippa-signer-artifacts-027087672282",
+        "type": "s3-bucket",
+        "name": "hippa-signer-artifacts-027087672282"
+      },
+      {
+        "id": "vpc-03d4bf4fd56283eb5",
+        "type": "vpc",
+        "name": "vpc-03d4bf4fd56283eb5"
+      },
+      {
+        "id": "subnet-0fd8f3eece23aa6b1",
+        "type": "subnet",
+        "name": "subnet-0fd8f3eece23aa6b1"
+      },
+      {
+        "id": "subnet-011181ad481a04d3d",
+        "type": "subnet",
+        "name": "subnet-011181ad481a04d3d"
+      },
+      {
+        "id": "subnet-0c81726f63be41cce",
+        "type": "subnet",
+        "name": "subnet-0c81726f63be41cce"
+      },
+      {
+        "id": "subnet-029a2424e7216e913",
+        "type": "subnet",
+        "name": "subnet-029a2424e7216e913"
+      },
+      {
+        "id": "subnet-04553ddb12f80aa24",
+        "type": "subnet",
+        "name": "subnet-04553ddb12f80aa24"
+      },
+      {
+        "id": "subnet-00c176177ea82ab38",
+        "type": "subnet",
+        "name": "subnet-00c176177ea82ab38"
+      },
+      {
+        "id": "sg-090d92bd87212a26f",
+        "type": "security-group",
+        "name": "default"
+      },
+      {
+        "id": "arn:aws:secretsmanager:us-east-1:027087672282:secret:hippa-signer/github/pat-XPcYpy",
+        "type": "secret",
+        "name": "hippa-signer/github/pat"
+      },
+      {
+        "id": "arn:aws:dynamodb:us-east-1:027087672282:table/agent_errors",
+        "type": "dynamodb",
+        "name": "agent_errors"
+      },
+      {
+        "id": "arn:aws:dynamodb:us-east-1:027087672282:table/agent_fix_plans",
+        "type": "dynamodb",
+        "name": "agent_fix_plans"
+      },
+      {
+        "id": "arn:aws:dynamodb:us-east-1:027087672282:table/agent_tasks",
+        "type": "dynamodb",
+        "name": "agent_tasks"
+      },
+      {
+        "id": "arn:aws:dynamodb:us-east-1:027087672282:table/clinics",
+        "type": "dynamodb",
+        "name": "clinics"
+      },
+      {
+        "id": "arn:aws:dynamodb:us-east-1:027087672282:table/consent_events",
+        "type": "dynamodb",
+        "name": "consent_events"
+      },
+      {
+        "id": "arn:aws:dynamodb:us-east-1:027087672282:table/consents",
+        "type": "dynamodb",
+        "name": "consents"
+      },
+      {
+        "id": "arn:aws:dynamodb:us-east-1:027087672282:table/idempotency_locks",
+        "type": "dynamodb",
+        "name": "idempotency_locks"
+      },
+      {
+        "id": "arn:aws:lambda:us-east-1:027087672282:function:remediator",
+        "type": "lambda",
+        "name": "remediator"
+      },
+      {
+        "id": "arn:aws:lambda:us-east-1:027087672282:function:task-dispatcher",
+        "type": "lambda",
+        "name": "task-dispatcher"
+      },
+      {
+        "id": "arn:aws:lambda:us-east-1:027087672282:function:ai-orchestrator",
+        "type": "lambda",
+        "name": "ai-orchestrator"
+      },
+      {
+        "id": "arn:aws:lambda:us-east-1:027087672282:function:connector-worker",
+        "type": "lambda",
+        "name": "connector-worker"
+      },
+      {
+        "id": "arn:aws:lambda:us-east-1:027087672282:function:agent-planner",
+        "type": "lambda",
+        "name": "agent-planner"
+      },
+      {
+        "id": "arn:aws:lambda:us-east-1:027087672282:function:setup-agent",
+        "type": "lambda",
+        "name": "setup-agent"
+      },
+      {
+        "id": "arn:aws:lambda:us-east-1:027087672282:function:test-lambda-integration",
+        "type": "lambda",
+        "name": "test-lambda-integration"
+      },
+      {
+        "id": "arn:aws:lambda:us-east-1:027087672282:function:plan-executor",
+        "type": "lambda",
+        "name": "plan-executor"
+      },
+      {
+        "id": "arn:aws:lambda:us-east-1:027087672282:function:hello-world-fn",
+        "type": "lambda",
+        "name": "hello-world-fn"
+      },
+      {
+        "id": "arn:aws:lambda:us-east-1:027087672282:function:log-collector",
+        "type": "lambda",
+        "name": "log-collector"
+      },
+      {
+        "id": "arn:aws:lambda:us-east-1:027087672282:event-source-mapping:55dbb09e-8b4d-4594-8c41-8fa4181ad929",
+        "type": "lambda-event-source-mapping",
+        "name": "55dbb09e-8b4d-4594-8c41-8fa4181ad929"
+      },
+      {
+        "id": "arn:aws:lambda:us-east-1:027087672282:event-source-mapping:3f3bd44c-b2cb-432d-b97c-d34246296a1d",
+        "type": "lambda-event-source-mapping",
+        "name": "3f3bd44c-b2cb-432d-b97c-d34246296a1d"
+      },
+      {
+        "id": "arn:aws:lambda:us-east-1:027087672282:event-source-mapping:e1eb804b-5d2c-4c56-b1db-4aa5a8107250",
+        "type": "lambda-event-source-mapping",
+        "name": "e1eb804b-5d2c-4c56-b1db-4aa5a8107250"
+      },
+      {
+        "id": "arn:aws:lambda:us-east-1:027087672282:event-source-mapping:715dc62f-47bf-4f1f-b8fb-9d25947dc437",
+        "type": "lambda-event-source-mapping",
+        "name": "715dc62f-47bf-4f1f-b8fb-9d25947dc437"
+      },
+      {
+        "id": "arn:aws:lambda:us-east-1:027087672282:event-source-mapping:4b361b04-2403-4343-aa61-32e97d094f82",
+        "type": "lambda-event-source-mapping",
+        "name": "4b361b04-2403-4343-aa61-32e97d094f82"
+      }
+    ],
+    "edges": [
+      {
+        "from": "arn:aws:ecs:us-east-1:027087672282:service/carefree-crocodile-bf3zi5/test_def-service-vnwns50w",
+        "to": "arn:aws:ecs:us-east-1:027087672282:cluster/carefree-crocodile-bf3zi5",
+        "relationship": "runs-in-cluster"
+      },
+      {
+        "from": "arn:aws:ecs:us-east-1:027087672282:service/carefree-crocodile-bf3zi5/test_def-service-vnwns50w",
+        "to": "arn:aws:ecs:us-east-1:027087672282:task-definition/test_def:1",
+        "relationship": "uses-task-definition"
+      },
+      {
+        "from": "arn:aws:ecs:us-east-1:027087672282:service/carefree-crocodile-bf3zi5/test_def-service-vnwns50w",
+        "to": "subnet-0fd8f3eece23aa6b1",
+        "relationship": "uses-subnet"
+      },
+      {
+        "from": "arn:aws:ecs:us-east-1:027087672282:service/carefree-crocodile-bf3zi5/test_def-service-vnwns50w",
+        "to": "subnet-011181ad481a04d3d",
+        "relationship": "uses-subnet"
+      },
+      {
+        "from": "arn:aws:ecs:us-east-1:027087672282:service/carefree-crocodile-bf3zi5/test_def-service-vnwns50w",
+        "to": "subnet-0c81726f63be41cce",
+        "relationship": "uses-subnet"
+      },
+      {
+        "from": "arn:aws:ecs:us-east-1:027087672282:service/carefree-crocodile-bf3zi5/test_def-service-vnwns50w",
+        "to": "subnet-029a2424e7216e913",
+        "relationship": "uses-subnet"
+      },
+      {
+        "from": "arn:aws:ecs:us-east-1:027087672282:service/carefree-crocodile-bf3zi5/test_def-service-vnwns50w",
+        "to": "subnet-04553ddb12f80aa24",
+        "relationship": "uses-subnet"
+      },
+      {
+        "from": "arn:aws:ecs:us-east-1:027087672282:service/carefree-crocodile-bf3zi5/test_def-service-vnwns50w",
+        "to": "subnet-00c176177ea82ab38",
+        "relationship": "uses-subnet"
+      },
+      {
+        "from": "arn:aws:ecs:us-east-1:027087672282:service/carefree-crocodile-bf3zi5/test_def-service-vnwns50w",
+        "to": "sg-090d92bd87212a26f",
+        "relationship": "uses-security-group"
+      },
+      {
+        "from": "arn:aws:ecs:us-east-1:027087672282:service/carefree-crocodile-bf3zi5/test_def-service-64zgxsih",
+        "to": "arn:aws:ecs:us-east-1:027087672282:cluster/carefree-crocodile-bf3zi5",
+        "relationship": "runs-in-cluster"
+      },
+      {
+        "from": "arn:aws:ecs:us-east-1:027087672282:service/carefree-crocodile-bf3zi5/test_def-service-64zgxsih",
+        "to": "arn:aws:ecs:us-east-1:027087672282:task-definition/test_def:1",
+        "relationship": "uses-task-definition"
+      },
+      {
+        "from": "arn:aws:ecs:us-east-1:027087672282:service/carefree-crocodile-bf3zi5/test_def-service-64zgxsih",
+        "to": "subnet-0fd8f3eece23aa6b1",
+        "relationship": "uses-subnet"
+      },
+      {
+        "from": "arn:aws:ecs:us-east-1:027087672282:service/carefree-crocodile-bf3zi5/test_def-service-64zgxsih",
+        "to": "subnet-011181ad481a04d3d",
+        "relationship": "uses-subnet"
+      },
+      {
+        "from": "arn:aws:ecs:us-east-1:027087672282:service/carefree-crocodile-bf3zi5/test_def-service-64zgxsih",
+        "to": "subnet-0c81726f63be41cce",
+        "relationship": "uses-subnet"
+      },
+      {
+        "from": "arn:aws:ecs:us-east-1:027087672282:service/carefree-crocodile-bf3zi5/test_def-service-64zgxsih",
+        "to": "subnet-029a2424e7216e913",
+        "relationship": "uses-subnet"
+      },
+      {
+        "from": "arn:aws:ecs:us-east-1:027087672282:service/carefree-crocodile-bf3zi5/test_def-service-64zgxsih",
+        "to": "subnet-04553ddb12f80aa24",
+        "relationship": "uses-subnet"
+      },
+      {
+        "from": "arn:aws:ecs:us-east-1:027087672282:service/carefree-crocodile-bf3zi5/test_def-service-64zgxsih",
+        "to": "subnet-00c176177ea82ab38",
+        "relationship": "uses-subnet"
+      },
+      {
+        "from": "arn:aws:ecs:us-east-1:027087672282:service/carefree-crocodile-bf3zi5/test_def-service-64zgxsih",
+        "to": "sg-090d92bd87212a26f",
+        "relationship": "uses-security-group"
+      },
+      {
+        "from": "arn:aws:ecs:us-east-1:027087672282:task-definition/test_def:1",
+        "to": "arn:aws:iam::027087672282:role/ecsTaskExecutionRole",
+        "relationship": "execution-role"
+      },
+      {
+        "from": "subnet-0fd8f3eece23aa6b1",
+        "to": "vpc-03d4bf4fd56283eb5",
+        "relationship": "subnet-of-vpc"
+      },
+      {
+        "from": "subnet-011181ad481a04d3d",
+        "to": "vpc-03d4bf4fd56283eb5",
+        "relationship": "subnet-of-vpc"
+      },
+      {
+        "from": "subnet-0c81726f63be41cce",
+        "to": "vpc-03d4bf4fd56283eb5",
+        "relationship": "subnet-of-vpc"
+      },
+      {
+        "from": "subnet-029a2424e7216e913",
+        "to": "vpc-03d4bf4fd56283eb5",
+        "relationship": "subnet-of-vpc"
+      },
+      {
+        "from": "subnet-04553ddb12f80aa24",
+        "to": "vpc-03d4bf4fd56283eb5",
+        "relationship": "subnet-of-vpc"
+      },
+      {
+        "from": "subnet-00c176177ea82ab38",
+        "to": "vpc-03d4bf4fd56283eb5",
+        "relationship": "subnet-of-vpc"
+      },
+      {
+        "from": "sg-090d92bd87212a26f",
+        "to": "vpc-03d4bf4fd56283eb5",
+        "relationship": "security-group-in-vpc"
+      },
+      {
+        "from": "arn:aws:lambda:us-east-1:027087672282:function:remediator",
+        "to": "arn:aws:iam::027087672282:role/remediator-role",
+        "relationship": "assumes-role"
+      },
+      {
+        "from": "arn:aws:lambda:us-east-1:027087672282:function:task-dispatcher",
+        "to": "arn:aws:iam::027087672282:role/task-dispatcher-role",
+        "relationship": "assumes-role"
+      },
+      {
+        "from": "arn:aws:lambda:us-east-1:027087672282:function:ai-orchestrator",
+        "to": "arn:aws:iam::027087672282:role/plan-executor-role",
+        "relationship": "assumes-role"
+      },
+      {
+        "from": "arn:aws:lambda:us-east-1:027087672282:function:connector-worker",
+        "to": "arn:aws:iam::027087672282:role/setup-agent-role",
+        "relationship": "assumes-role"
+      },
+      {
+        "from": "arn:aws:lambda:us-east-1:027087672282:function:agent-planner",
+        "to": "arn:aws:iam::027087672282:role/agent-planner-role",
+        "relationship": "assumes-role"
+      },
+      {
+        "from": "arn:aws:lambda:us-east-1:027087672282:function:setup-agent",
+        "to": "arn:aws:iam::027087672282:role/setup-agent-role",
+        "relationship": "assumes-role"
+      },
+      {
+        "from": "arn:aws:lambda:us-east-1:027087672282:function:test-lambda-integration",
+        "to": "arn:aws:iam::027087672282:role/lambda-basic-role",
+        "relationship": "assumes-role"
+      },
+      {
+        "from": "arn:aws:lambda:us-east-1:027087672282:function:plan-executor",
+        "to": "arn:aws:iam::027087672282:role/plan-executor-role",
+        "relationship": "assumes-role"
+      },
+      {
+        "from": "arn:aws:lambda:us-east-1:027087672282:function:hello-world-fn",
+        "to": "arn:aws:iam::027087672282:role/lambda-basic-role",
+        "relationship": "assumes-role"
+      },
+      {
+        "from": "arn:aws:lambda:us-east-1:027087672282:function:log-collector",
+        "to": "arn:aws:iam::027087672282:role/setup-agent-role",
+        "relationship": "assumes-role"
+      },
+      {
+        "from": "arn:aws:lambda:us-east-1:027087672282:event-source-mapping:55dbb09e-8b4d-4594-8c41-8fa4181ad929",
+        "to": "arn:aws:lambda:us-east-1:027087672282:function:remediator",
+        "relationship": "invokes-function"
+      },
+      {
+        "from": "arn:aws:lambda:us-east-1:027087672282:event-source-mapping:55dbb09e-8b4d-4594-8c41-8fa4181ad929",
+        "to": "arn:aws:sqs:us-east-1:027087672282:agent-fix-tasks.fifo",
+        "relationship": "reads-from"
+      },
+      {
+        "from": "arn:aws:sqs:us-east-1:027087672282:agent-fix-tasks.fifo",
+        "to": "arn:aws:lambda:us-east-1:027087672282:event-source-mapping:55dbb09e-8b4d-4594-8c41-8fa4181ad929",
+        "relationship": "feeds-mapping"
+      },
+      {
+        "from": "arn:aws:lambda:us-east-1:027087672282:function:remediator",
+        "to": "arn:aws:sqs:us-east-1:027087672282:agent-fix-tasks.fifo",
+        "relationship": "event-source-mapping"
+      },
+      {
+        "from": "arn:aws:lambda:us-east-1:027087672282:event-source-mapping:3f3bd44c-b2cb-432d-b97c-d34246296a1d",
+        "to": "arn:aws:lambda:us-east-1:027087672282:function:task-dispatcher",
+        "relationship": "invokes-function"
+      },
+      {
+        "from": "arn:aws:lambda:us-east-1:027087672282:event-source-mapping:3f3bd44c-b2cb-432d-b97c-d34246296a1d",
+        "to": "arn:aws:dynamodb:us-east-1:027087672282:table/agent_errors/stream/2026-02-23T07:46:15.921",
+        "relationship": "reads-from"
+      },
+      {
+        "from": "arn:aws:dynamodb:us-east-1:027087672282:table/agent_errors/stream/2026-02-23T07:46:15.921",
+        "to": "arn:aws:lambda:us-east-1:027087672282:event-source-mapping:3f3bd44c-b2cb-432d-b97c-d34246296a1d",
+        "relationship": "feeds-mapping"
+      },
+      {
+        "from": "arn:aws:lambda:us-east-1:027087672282:function:task-dispatcher",
+        "to": "arn:aws:dynamodb:us-east-1:027087672282:table/agent_errors/stream/2026-02-23T07:46:15.921",
+        "relationship": "event-source-mapping"
+      },
+      {
+        "from": "arn:aws:lambda:us-east-1:027087672282:event-source-mapping:e1eb804b-5d2c-4c56-b1db-4aa5a8107250",
+        "to": "arn:aws:lambda:us-east-1:027087672282:function:connector-worker",
+        "relationship": "invokes-function"
+      },
+      {
+        "from": "arn:aws:lambda:us-east-1:027087672282:event-source-mapping:e1eb804b-5d2c-4c56-b1db-4aa5a8107250",
+        "to": "arn:aws:sqs:us-east-1:027087672282:connector-tasks.fifo",
+        "relationship": "reads-from"
+      },
+      {
+        "from": "arn:aws:sqs:us-east-1:027087672282:connector-tasks.fifo",
+        "to": "arn:aws:lambda:us-east-1:027087672282:event-source-mapping:e1eb804b-5d2c-4c56-b1db-4aa5a8107250",
+        "relationship": "feeds-mapping"
+      },
+      {
+        "from": "arn:aws:lambda:us-east-1:027087672282:function:connector-worker",
+        "to": "arn:aws:sqs:us-east-1:027087672282:connector-tasks.fifo",
+        "relationship": "event-source-mapping"
+      },
+      {
+        "from": "arn:aws:lambda:us-east-1:027087672282:event-source-mapping:715dc62f-47bf-4f1f-b8fb-9d25947dc437",
+        "to": "arn:aws:lambda:us-east-1:027087672282:function:agent-planner",
+        "relationship": "invokes-function"
+      },
+      {
+        "from": "arn:aws:lambda:us-east-1:027087672282:event-source-mapping:715dc62f-47bf-4f1f-b8fb-9d25947dc437",
+        "to": "arn:aws:sqs:us-east-1:027087672282:agent-error-queue",
+        "relationship": "reads-from"
+      },
+      {
+        "from": "arn:aws:sqs:us-east-1:027087672282:agent-error-queue",
+        "to": "arn:aws:lambda:us-east-1:027087672282:event-source-mapping:715dc62f-47bf-4f1f-b8fb-9d25947dc437",
+        "relationship": "feeds-mapping"
+      },
+      {
+        "from": "arn:aws:lambda:us-east-1:027087672282:function:agent-planner",
+        "to": "arn:aws:sqs:us-east-1:027087672282:agent-error-queue",
+        "relationship": "event-source-mapping"
+      },
+      {
+        "from": "arn:aws:lambda:us-east-1:027087672282:event-source-mapping:4b361b04-2403-4343-aa61-32e97d094f82",
+        "to": "arn:aws:lambda:us-east-1:027087672282:function:plan-executor",
+        "relationship": "invokes-function"
+      },
+      {
+        "from": "arn:aws:lambda:us-east-1:027087672282:event-source-mapping:4b361b04-2403-4343-aa61-32e97d094f82",
+        "to": "arn:aws:sqs:us-east-1:027087672282:plan-executor-queue",
+        "relationship": "reads-from"
+      },
+      {
+        "from": "arn:aws:sqs:us-east-1:027087672282:plan-executor-queue",
+        "to": "arn:aws:lambda:us-east-1:027087672282:event-source-mapping:4b361b04-2403-4343-aa61-32e97d094f82",
+        "relationship": "feeds-mapping"
+      },
+      {
+        "from": "arn:aws:lambda:us-east-1:027087672282:function:plan-executor",
+        "to": "arn:aws:sqs:us-east-1:027087672282:plan-executor-queue",
+        "relationship": "event-source-mapping"
+      },
+      {
+        "from": "events.amazonaws.com",
+        "to": "arn:aws:lambda:us-east-1:027087672282:function:plan-executor",
+        "relationship": "invoke-permission",
+        "source_arn": "arn:aws:events:us-east-1:027087672282:rule/plan-executor-every-minute"
+      },
+      {
+        "from": "logs.amazonaws.com",
+        "to": "arn:aws:lambda:us-east-1:027087672282:function:log-collector",
+        "relationship": "invoke-permission",
+        "source_arn": "arn:aws:logs:us-east-1:027087672282:log-group:/aws/lambda/connector-worker:*"
+      }
+    ]
+  }
+}

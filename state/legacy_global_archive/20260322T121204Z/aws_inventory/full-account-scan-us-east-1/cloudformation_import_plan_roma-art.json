@@ -1,0 +1,38 @@
+{
+  "stacks": [
+    {
+      "source_stack": "Infra-ECS-Cluster-carefree-crocodile-bf3zi5-326d268b",
+      "target_stack": "roma-art-Infra-ECS-Cluster-carefree-crocodile-bf3zi5-326d268b",
+      "template_path": "state\\aws_inventory\\full-account-scan-us-east-1\\cloudformation_templates\\Infra-ECS-Cluster-carefree-crocodile-bf3zi5-326d268b.json",
+      "parameter_overrides": [
+        {
+          "ParameterKey": "ECSClusterName",
+          "ParameterValue": "roma-art-carefree-crocodile-bf3zi5"
+        },
+        {
+          "ParameterKey": "SecurityGroupIds",
+          "ParameterValue": "sg-047aefd11fe5f242f"
+        },
+        {
+          "ParameterKey": "VpcId",
+          "ParameterValue": "vpc-097485674e092c5af"
+        },
+        {
+          "ParameterKey": "SubnetIds",
+          "ParameterValue": "subnet-0df48f840cba46d3a,subnet-0c72210761876f0c6,subnet-0e729e0e9bf8476dd,subnet-09be768f629cfa18f,subnet-0f63bf83cff68b23f,subnet-00ee1a4345762bc13"
+        }
+      ],
+      "resources": [
+        {
+          "logical_id": "ECSCluster",
+          "resource_type": "AWS::ECS::Cluster",
+          "identifier_values": {
+            "ClusterName": "roma-art-carefree-crocodile-bf3zi5"
+          },
+          "physical_id": "arn:aws:ecs:us-east-1:198758256518:cluster/roma-art-carefree-crocodile-bf3zi5"
+        }
+      ],
+      "import_required": true
+    }
+  ]
+}

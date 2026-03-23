@@ -1,0 +1,304 @@
+{
+  "nodes": [
+    {
+      "id": "arn:aws:sqs:eu-north-1:027087672282:connector-tasks-dlq.fifo",
+      "type": "sqs",
+      "name": "connector-tasks-dlq.fifo"
+    },
+    {
+      "id": "arn:aws:sqs:eu-north-1:027087672282:connector-tasks.fifo",
+      "type": "sqs",
+      "name": "connector-tasks.fifo"
+    },
+    {
+      "id": "arn:aws:iam::027087672282:role/service-role/trial-hipaa-whatsapp-role-wi6bxn4h",
+      "type": "iam-role",
+      "name": "trial-hipaa-whatsapp-role-wi6bxn4h"
+    },
+    {
+      "id": "arn:aws:iam::027087672282:role/service-role/SalesforceWorker-role-8sch7ic9",
+      "type": "iam-role",
+      "name": "SalesforceWorker-role-8sch7ic9"
+    },
+    {
+      "id": "arn:aws:iam::027087672282:role/service-role/repo_tool-kkesh-role-6M8HZL71VI9",
+      "type": "iam-role",
+      "name": "repo_tool-kkesh-role-6M8HZL71VI9"
+    },
+    {
+      "id": "arn:aws:iam::027087672282:role/service-role/connector-worker-role-k1nbfwrr",
+      "type": "iam-role",
+      "name": "connector-worker-role-k1nbfwrr"
+    },
+    {
+      "id": "arn:aws:iam::027087672282:role/service-role/Athena-Connection-role-w1lmlvgb",
+      "type": "iam-role",
+      "name": "Athena-Connection-role-w1lmlvgb"
+    },
+    {
+      "id": "vpc-0003f6f665f2905cb",
+      "type": "vpc",
+      "name": "vpc-0003f6f665f2905cb"
+    },
+    {
+      "id": "subnet-0063e272c595421be",
+      "type": "subnet",
+      "name": "subnet-0063e272c595421be"
+    },
+    {
+      "id": "subnet-055e92d71b3530813",
+      "type": "subnet",
+      "name": "subnet-055e92d71b3530813"
+    },
+    {
+      "id": "subnet-0aed14255c93aca92",
+      "type": "subnet",
+      "name": "subnet-0aed14255c93aca92"
+    },
+    {
+      "id": "sg-09f842cbbe2f5854a",
+      "type": "security-group",
+      "name": "default"
+    },
+    {
+      "id": "https://hippsign.app,https://rartiushkov.git",
+      "type": "git-repository",
+      "name": "rartiushkov"
+    },
+    {
+      "id": "https://rartiushkov.git",
+      "type": "git-repository",
+      "name": "https://rartiushkov"
+    },
+    {
+      "id": "arn:aws:secretsmanager:eu-north-1:027087672282:secret:google-sheets-service-account-XizaRv",
+      "type": "secret",
+      "name": "google-sheets-service-account"
+    },
+    {
+      "id": "arn:aws:secretsmanager:eu-north-1:027087672282:secret:hipaa-signer/tenants/clinic_us_001/salesforce-I1EQo1",
+      "type": "secret",
+      "name": "hipaa-signer/tenants/clinic_us_001/salesforce"
+    },
+    {
+      "id": "arn:aws:secretsmanager:eu-north-1:027087672282:secret:hippa-signer/github-token-sAYrlh",
+      "type": "secret",
+      "name": "hippa-signer/github-token"
+    },
+    {
+      "id": "arn:aws:secretsmanager:eu-north-1:027087672282:secret:hippa-signer/github/pat-AiK8y7",
+      "type": "secret",
+      "name": "hippa-signer/github/pat"
+    },
+    {
+      "id": "arn:aws:dynamodb:eu-north-1:027087672282:table/clinics",
+      "type": "dynamodb",
+      "name": "clinics"
+    },
+    {
+      "id": "arn:aws:dynamodb:eu-north-1:027087672282:table/connector_tasks",
+      "type": "dynamodb",
+      "name": "connector_tasks"
+    },
+    {
+      "id": "arn:aws:dynamodb:eu-north-1:027087672282:table/consent_events",
+      "type": "dynamodb",
+      "name": "consent_events"
+    },
+    {
+      "id": "arn:aws:dynamodb:eu-north-1:027087672282:table/consents",
+      "type": "dynamodb",
+      "name": "consents"
+    },
+    {
+      "id": "arn:aws:dynamodb:eu-north-1:027087672282:table/idempotency_locks",
+      "type": "dynamodb",
+      "name": "idempotency_locks"
+    },
+    {
+      "id": "arn:aws:lambda:eu-north-1:027087672282:function:trial-hipaa-whatsapp",
+      "type": "lambda",
+      "name": "trial-hipaa-whatsapp"
+    },
+    {
+      "id": "arn:aws:lambda:eu-north-1:027087672282:function:SalesforceWorker",
+      "type": "lambda",
+      "name": "SalesforceWorker"
+    },
+    {
+      "id": "arn:aws:lambda:eu-north-1:027087672282:function:repo_tool-kkesh",
+      "type": "lambda",
+      "name": "repo_tool-kkesh"
+    },
+    {
+      "id": "arn:aws:lambda:eu-north-1:027087672282:function:connector-worker",
+      "type": "lambda",
+      "name": "connector-worker"
+    },
+    {
+      "id": "arn:aws:lambda:eu-north-1:027087672282:function:Athena-Connection",
+      "type": "lambda",
+      "name": "Athena-Connection"
+    },
+    {
+      "id": "arn:aws:lambda:eu-north-1:027087672282:event-source-mapping:57bf3dad-c475-427b-9796-6b4b905345d0",
+      "type": "lambda-event-source-mapping",
+      "name": "57bf3dad-c475-427b-9796-6b4b905345d0"
+    },
+    {
+      "id": "arn:aws:lambda:eu-north-1:027087672282:event-source-mapping:b1d22d32-5ccb-4aa0-8a0f-eb2b6adddfd6",
+      "type": "lambda-event-source-mapping",
+      "name": "b1d22d32-5ccb-4aa0-8a0f-eb2b6adddfd6"
+    }
+  ],
+  "edges": [
+    {
+      "from": "subnet-0063e272c595421be",
+      "to": "vpc-0003f6f665f2905cb",
+      "relationship": "subnet-of-vpc"
+    },
+    {
+      "from": "subnet-055e92d71b3530813",
+      "to": "vpc-0003f6f665f2905cb",
+      "relationship": "subnet-of-vpc"
+    },
+    {
+      "from": "subnet-0aed14255c93aca92",
+      "to": "vpc-0003f6f665f2905cb",
+      "relationship": "subnet-of-vpc"
+    },
+    {
+      "from": "sg-09f842cbbe2f5854a",
+      "to": "vpc-0003f6f665f2905cb",
+      "relationship": "security-group-in-vpc"
+    },
+    {
+      "from": "arn:aws:lambda:eu-north-1:027087672282:function:trial-hipaa-whatsapp",
+      "to": "arn:aws:iam::027087672282:role/service-role/trial-hipaa-whatsapp-role-wi6bxn4h",
+      "relationship": "assumes-role"
+    },
+    {
+      "from": "arn:aws:lambda:eu-north-1:027087672282:function:trial-hipaa-whatsapp",
+      "to": "https://hippsign.app,https://rartiushkov.git",
+      "relationship": "env:CORS_ALLOW_ORIGINS"
+    },
+    {
+      "from": "arn:aws:lambda:eu-north-1:027087672282:function:trial-hipaa-whatsapp",
+      "to": "https://rartiushkov.git",
+      "relationship": "env:SIGN_PAGE_BASE_URL"
+    },
+    {
+      "from": "arn:aws:lambda:eu-north-1:027087672282:function:SalesforceWorker",
+      "to": "arn:aws:iam::027087672282:role/service-role/SalesforceWorker-role-8sch7ic9",
+      "relationship": "assumes-role"
+    },
+    {
+      "from": "arn:aws:lambda:eu-north-1:027087672282:function:repo_tool-kkesh",
+      "to": "arn:aws:iam::027087672282:role/service-role/repo_tool-kkesh-role-6M8HZL71VI9",
+      "relationship": "assumes-role"
+    },
+    {
+      "from": "arn:aws:lambda:eu-north-1:027087672282:function:connector-worker",
+      "to": "arn:aws:iam::027087672282:role/service-role/connector-worker-role-k1nbfwrr",
+      "relationship": "assumes-role"
+    },
+    {
+      "from": "arn:aws:lambda:eu-north-1:027087672282:function:Athena-Connection",
+      "to": "arn:aws:iam::027087672282:role/service-role/Athena-Connection-role-w1lmlvgb",
+      "relationship": "assumes-role"
+    },
+    {
+      "from": "arn:aws:lambda:eu-north-1:027087672282:event-source-mapping:57bf3dad-c475-427b-9796-6b4b905345d0",
+      "to": "arn:aws:lambda:eu-north-1:027087672282:function:SalesforceWorker",
+      "relationship": "invokes-function"
+    },
+    {
+      "from": "arn:aws:lambda:eu-north-1:027087672282:event-source-mapping:57bf3dad-c475-427b-9796-6b4b905345d0",
+      "to": "arn:aws:sqs:eu-north-1:027087672282:connector-tasks.fifo",
+      "relationship": "reads-from"
+    },
+    {
+      "from": "arn:aws:sqs:eu-north-1:027087672282:connector-tasks.fifo",
+      "to": "arn:aws:lambda:eu-north-1:027087672282:event-source-mapping:57bf3dad-c475-427b-9796-6b4b905345d0",
+      "relationship": "feeds-mapping"
+    },
+    {
+      "from": "arn:aws:lambda:eu-north-1:027087672282:function:SalesforceWorker",
+      "to": "arn:aws:sqs:eu-north-1:027087672282:connector-tasks.fifo",
+      "relationship": "event-source-mapping"
+    },
+    {
+      "from": "arn:aws:lambda:eu-north-1:027087672282:event-source-mapping:b1d22d32-5ccb-4aa0-8a0f-eb2b6adddfd6",
+      "to": "arn:aws:lambda:eu-north-1:027087672282:function:connector-worker",
+      "relationship": "invokes-function"
+    },
+    {
+      "from": "arn:aws:lambda:eu-north-1:027087672282:event-source-mapping:b1d22d32-5ccb-4aa0-8a0f-eb2b6adddfd6",
+      "to": "arn:aws:sqs:eu-north-1:027087672282:connector-tasks.fifo",
+      "relationship": "reads-from"
+    },
+    {
+      "from": "arn:aws:sqs:eu-north-1:027087672282:connector-tasks.fifo",
+      "to": "arn:aws:lambda:eu-north-1:027087672282:event-source-mapping:b1d22d32-5ccb-4aa0-8a0f-eb2b6adddfd6",
+      "relationship": "feeds-mapping"
+    },
+    {
+      "from": "arn:aws:lambda:eu-north-1:027087672282:function:connector-worker",
+      "to": "arn:aws:sqs:eu-north-1:027087672282:connector-tasks.fifo",
+      "relationship": "event-source-mapping"
+    },
+    {
+      "from": "apigateway.amazonaws.com",
+      "to": "arn:aws:lambda:eu-north-1:027087672282:function:trial-hipaa-whatsapp",
+      "relationship": "invoke-permission",
+      "source_arn": "arn:aws:execute-api:eu-north-1:027087672282:6cxl9xwo00/*/*/webhooks/whatsapp"
+    },
+    {
+      "from": "apigateway.amazonaws.com",
+      "to": "arn:aws:lambda:eu-north-1:027087672282:function:trial-hipaa-whatsapp",
+      "relationship": "invoke-permission",
+      "source_arn": "arn:aws:execute-api:eu-north-1:027087672282:6cxl9xwo00/*/*/webhooks/dropboxsign"
+    },
+    {
+      "from": "apigateway.amazonaws.com",
+      "to": "arn:aws:lambda:eu-north-1:027087672282:function:trial-hipaa-whatsapp",
+      "relationship": "invoke-permission",
+      "source_arn": "arn:aws:execute-api:eu-north-1:027087672282:6cxl9xwo00/*/*/api/sign_url"
+    },
+    {
+      "from": "apigateway.amazonaws.com",
+      "to": "arn:aws:lambda:eu-north-1:027087672282:function:trial-hipaa-whatsapp",
+      "relationship": "invoke-permission",
+      "source_arn": "arn:aws:execute-api:eu-north-1:027087672282:6cxl9xwo00/*/*/connect/salesforce/start"
+    },
+    {
+      "from": "apigateway.amazonaws.com",
+      "to": "arn:aws:lambda:eu-north-1:027087672282:function:trial-hipaa-whatsapp",
+      "relationship": "invoke-permission",
+      "source_arn": "arn:aws:execute-api:eu-north-1:027087672282:6cxl9xwo00/*/*/connect/salesforce/callback"
+    },
+    {
+      "from": "apigateway.amazonaws.com",
+      "to": "arn:aws:lambda:eu-north-1:027087672282:function:trial-hipaa-whatsapp",
+      "relationship": "invoke-permission",
+      "source_arn": "arn:aws:execute-api:eu-north-1:027087672282:6cxl9xwo00/*/*/connect/athena/callback"
+    },
+    {
+      "from": "apigateway.amazonaws.com",
+      "to": "arn:aws:lambda:eu-north-1:027087672282:function:trial-hipaa-whatsapp",
+      "relationship": "invoke-permission",
+      "source_arn": "arn:aws:execute-api:eu-north-1:027087672282:6cxl9xwo00/*/*/connect/athena/start"
+    },
+    {
+      "from": "apigateway.amazonaws.com",
+      "to": "arn:aws:lambda:eu-north-1:027087672282:function:trial-hipaa-whatsapp",
+      "relationship": "invoke-permission",
+      "source_arn": "arn:aws:execute-api:eu-north-1:027087672282:6cxl9xwo00/*/*/connect/athena/test"
+    },
+    {
+      "from": "bedrock.amazonaws.com",
+      "to": "arn:aws:lambda:eu-north-1:027087672282:function:repo_tool-kkesh",
+      "relationship": "invoke-permission"
+    }
+  ]
+}

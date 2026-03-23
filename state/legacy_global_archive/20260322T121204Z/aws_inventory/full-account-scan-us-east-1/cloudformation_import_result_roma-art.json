@@ -1,0 +1,12 @@
+{
+  "results": [
+    {
+      "stack_name": "roma-art-Infra-ECS-Cluster-carefree-crocodile-bf3zi5-326d268b",
+      "cleanup_action": "",
+      "change_set_name": "import-2542425c",
+      "operation": "imported",
+      "status": "IMPORT_COMPLETE",
+      "resource_count": 1
+    }
+  ]
+}

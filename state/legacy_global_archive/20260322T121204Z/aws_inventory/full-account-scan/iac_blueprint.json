@@ -1,0 +1,29 @@
+{
+  "generated_at": "2026-03-19T16:25:46.714819+00:00",
+  "source_env": "",
+  "region": "us-east-1",
+  "terraform_blueprint": {
+    "aws_iam_role": 5,
+    "aws_sqs_queue": 5,
+    "aws_sns_topic": 0,
+    "aws_lambda_function": 10,
+    "aws_dynamodb_table": 7,
+    "aws_api_gateway_rest_api": 0,
+    "aws_ecs_cluster": 1,
+    "aws_ecs_service": 0
+  },
+  "cloudformation_blueprint": {
+    "AWS::IAM::Role": 5,
+    "AWS::SQS::Queue": 5,
+    "AWS::SNS::Topic": 0,
+    "AWS::Lambda::Function": 10,
+    "AWS::DynamoDB::Table": 7,
+    "AWS::ApiGateway::RestApi": 0,
+    "AWS::ECS::Cluster": 1,
+    "AWS::ECS::Service": 0
+  },
+  "notes": [
+    "This is a blueprint summary, not full importable Terraform/CloudFormation yet.",
+    "Use it as the first step toward real IaC export coverage."
+  ]
+}
