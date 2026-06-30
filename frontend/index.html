@@ -3,11 +3,15 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>AWS Dev Agent</title>
+    <title>Availabl | Clone AWS Environments Without Rebuilding by Hand</title>
+    <meta
+      name="description"
+      content="Availabl helps teams clone supported AWS environments into a new account or region with dependency remapping, selected data transfer, and validation artifacts."
+    />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=Space+Grotesk:wght@500;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="./styles.css" />
@@ -15,324 +19,317 @@
   <body>
     <div class="page-shell">
       <canvas id="particle-canvas" class="particle-canvas" aria-hidden="true"></canvas>
-      <div class="grid-overlay"></div>
-      <div class="cloud-band cloud-band-top"></div>
-      <div class="cloud-band cloud-band-bottom"></div>
-      <div class="hero-glow hero-glow-left"></div>
-      <div class="hero-glow hero-glow-right"></div>
-      <div class="ambient ambient-left"></div>
-      <div class="ambient ambient-right"></div>
-      <div class="site-network" aria-hidden="true">
-        <svg class="network-svg" viewBox="0 0 1440 2200" preserveAspectRatio="none">
-          <defs>
-            <filter id="signalGlow">
-              <feGaussianBlur stdDeviation="4" result="blur"></feGaussianBlur>
-              <feMerge>
-                <feMergeNode in="blur"></feMergeNode>
-                <feMergeNode in="SourceGraphic"></feMergeNode>
-              </feMerge>
-            </filter>
-          </defs>
-          <path id="signal-path-a" class="signal-path" data-speed="0.9" d="M 270 190 C 340 190, 384 190, 446 208 S 548 236, 620 252"></path>
-          <path id="signal-path-b" class="signal-path" data-speed="0.76" d="M 238 286 C 314 286, 332 320, 382 352 S 510 404, 612 430"></path>
-          <path id="signal-path-c" class="signal-path" data-speed="0.62" d="M 304 612 C 400 612, 454 612, 516 638 S 680 710, 860 754"></path>
-          <path id="signal-path-d" class="signal-path" data-speed="0.92" d="M 788 980 C 882 980, 958 988, 1034 992 S 1112 994, 1186 990"></path>
-          <path id="signal-path-e" class="signal-path" data-speed="0.58" d="M 276 1336 C 398 1336, 466 1366, 540 1398 S 824 1458, 1032 1490"></path>
-          <path id="signal-path-f" class="signal-path" data-speed="0.66" d="M 230 540 C 344 540, 422 554, 500 568 S 724 592, 900 618"></path>
-          <path id="signal-path-g" class="signal-path" data-speed="0.63" d="M 736 1144 C 820 1144, 890 1170, 958 1200 S 1094 1252, 1200 1298"></path>
-          <path id="signal-path-h" class="signal-path" data-speed="0.61" d="M 210 824 C 330 824, 406 842, 484 862 S 760 904, 954 934"></path>
-          <path id="signal-path-i" class="signal-path" data-speed="0.54" d="M 240 1748 C 404 1748, 500 1766, 600 1792 S 884 1838, 1128 1896"></path>
-          <g id="signal-dots-layer"></g>
-        </svg>
-        <div class="network-node node-lambda">
-          <div class="service-glyph glyph-lambda">Fn</div>
-          <div class="service-copy">
-            <span class="service-tag">AWS</span>
-            <strong>Lambda</strong>
-          </div>
-        </div>
-        <div class="network-node node-sqs">
-          <div class="service-glyph glyph-sqs">Q</div>
-          <div class="service-copy">
-            <span class="service-tag">AWS</span>
-            <strong>SQS</strong>
-          </div>
-        </div>
-        <div class="network-node node-dynamo">
-          <div class="service-glyph glyph-dynamo">DB</div>
-          <div class="service-copy">
-            <span class="service-tag">AWS</span>
-            <strong>DynamoDB</strong>
-          </div>
-        </div>
-        <div class="network-node node-sns">
-          <div class="service-glyph glyph-sns">N</div>
-          <div class="service-copy">
-            <span class="service-tag">AWS</span>
-            <strong>SNS</strong>
-          </div>
-        </div>
-        <div class="network-node node-ecs">
-          <div class="service-glyph glyph-ecs">C</div>
-          <div class="service-copy">
-            <span class="service-tag">AWS</span>
-            <strong>ECS</strong>
-          </div>
-        </div>
-        <div class="network-node node-apigw">
-          <div class="service-glyph glyph-apigw">API</div>
-          <div class="service-copy">
-            <span class="service-tag">AWS</span>
-            <strong>API</strong>
-          </div>
-        </div>
-      </div>
+      <div class="orb orb-left"></div>
+      <div class="orb orb-right"></div>
+      <div class="grid-wash"></div>
 
       <header class="topbar">
-        <div class="brand">
+        <a class="brand" href="#top" aria-label="Availabl home">
           <div class="brand-mark">A</div>
           <div>
             <strong>availabl</strong>
-            <span>AWS Migration Control Plane</span>
+            <span>Dependency-aware AWS environment cloning</span>
           </div>
-        </div>
+        </a>
+
         <nav class="topnav">
-          <a href="#product">Data Flow</a>
-          <a href="#workflow">Value Proposition</a>
-          <a href="#actions">Features</a>
-          <a href="#pricing">Pricing</a>
-          <a href="#pricing">AWS Status</a>
+          <a href="#product">Product</a>
+          <a href="#scope">Scope</a>
+          <a href="#demo">Demo</a>
+          <a href="#trust">Trust</a>
         </nav>
-        <a class="topbar-cta" href="#product">Book a Demo</a>
+
+        <a class="topbar-cta" href="#cta">Get Launch Access</a>
       </header>
 
-      <main>
+      <main id="top">
         <section class="hero" data-animate="hero">
-          <div class="hero-copy hero-copy-centered">
-            <h1 class="shimmer-title">Move Your AWS Infrastructure in 5 Minutes</h1>
-            <p class="hero-subtitle">From days of manual work to one command.</p>
+          <div class="hero-copy">
+            <div class="eyebrow">Product Hunt Launch</div>
+            <h1 class="hero-title">
+              Clone a supported AWS environment into a new account or region
+              <span>without rebuilding it by hand.</span>
+            </h1>
+            <p class="hero-subtitle">
+              Availabl discovers connected AWS resources, remaps service relationships,
+              transfers selected data, and produces validation artifacts so migration runs
+              feel controlled instead of improvised.
+            </p>
+
+            <div class="hero-actions">
+              <a class="primary-button" href="#demo">See Demo Flow</a>
+              <a class="secondary-button" href="#scope">See Current Scope</a>
+            </div>
+
+            <div class="signal-row">
+              <div class="signal-pill">
+                <strong>Read-only first</strong>
+                <span>Preview before writes</span>
+              </div>
+              <div class="signal-pill">
+                <strong>Data + infra</strong>
+                <span>Not just one database</span>
+              </div>
+              <div class="signal-pill">
+                <strong>Validation built in</strong>
+                <span>Artifacts after deploy</span>
+              </div>
+            </div>
           </div>
 
-          <div class="hero-pill-row hero-pill-row-centered">
-            <div class="mini-pill active">One-Command Migration</div>
-            <div class="mini-pill">Auto-Create Resources</div>
-            <div class="mini-pill warning">Error Logs Included</div>
-          </div>
+          <aside class="hero-console reveal-card">
+            <div class="console-chrome">
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
 
-          <div class="hero-card hero-card-centered">
-            <div class="hero-card-light"></div>
+            <div class="console-label">Migration Run Preview</div>
+            <div class="console-stack">
+              <div class="console-step">
+                <span class="step-index">01</span>
+                <div>
+                  <strong>Discover source environment</strong>
+                  <p>IAM, Lambda, DynamoDB, SQS, SNS, ECS, API Gateway, S3, network resources.</p>
+                </div>
+              </div>
 
-            <div class="console-window">
-              <div class="console-line single-line">
-                <span class="prompt">$</span>
-                <span class="command">aws-migrate --source Account-A --target Account-B</span>
+              <div class="console-step">
+                <span class="step-index">02</span>
+                <div>
+                  <strong>Remap dependencies</strong>
+                  <p>Queue URLs, ARNs, secrets, stream links, service environment references.</p>
+                </div>
+              </div>
+
+              <div class="console-step">
+                <span class="step-index">03</span>
+                <div>
+                  <strong>Transfer selected data</strong>
+                  <p>DynamoDB item copy and S3 object transfer with target-side rewrites.</p>
+                </div>
+              </div>
+
+              <div class="console-step">
+                <span class="step-index">04</span>
+                <div>
+                  <strong>Validate target environment</strong>
+                  <p>Deployment manifest, smoke checks, count parity, and follow-up review notes.</p>
+                </div>
               </div>
             </div>
 
-            <div class="hero-demo-row">
-              <div class="hero-cta-column">
-                <button class="request-button">
-                  <span class="request-icon">[]</span>
-                  <span>Book a Demo by using Calendly</span>
-                </button>
-                <p>Seamlessly migrate your AWS environment with ease.</p>
+            <div class="console-footer">
+              <div>
+                <span class="console-metric-label">Best fit today</span>
+                <strong>Cross-account or cross-region AWS clone pilots</strong>
               </div>
+              <span class="status-pill">supported scope</span>
             </div>
-          </div>
+          </aside>
+        </section>
 
-          <div class="hero-monitor-row">
-            <article class="monitor-card reveal-card">
-              <div class="monitor-card-head">
-                <span class="monitor-label">Signal Graph</span>
-                <span class="monitor-mute">Live</span>
-              </div>
-              <div class="monitor-grid">
-                <div class="monitor-node">SQS</div>
-                <div class="monitor-node">Lambda</div>
-                <div class="monitor-node">DynamoDB</div>
-                <div class="monitor-node">SNS</div>
-              </div>
-            </article>
-            <article class="monitor-card reveal-card">
-              <div class="monitor-card-head">
-                <span class="monitor-label">Incident Triage</span>
-                <span class="monitor-mute">Agent</span>
-              </div>
-              <div class="monitor-feed">
-                <div class="monitor-feed-line">
-                  <span class="feed-badge">A</span>
-                  <span>Known fix suggested</span>
-                </div>
-                <div class="monitor-feed-line">
-                  <span class="feed-badge">A</span>
-                  <span>Validation passed</span>
-                </div>
-                <div class="monitor-feed-line">
-                  <span class="feed-badge">A</span>
-                  <span>Artifacts ready</span>
-                </div>
-              </div>
-            </article>
+        <section class="proof-band reveal-card">
+          <div class="proof-stat">
+            <strong>One workflow</strong>
+            <span>Discover, remap, transfer, validate.</span>
+          </div>
+          <div class="proof-stat">
+            <strong>Trust-first</strong>
+            <span>Self-hosted model and read-only assessment path.</span>
+          </div>
+          <div class="proof-stat">
+            <strong>Artifact-driven</strong>
+            <span>Reports and manifests teams can actually review.</span>
           </div>
         </section>
 
         <section class="section" id="product" data-animate="section">
           <div class="section-heading">
-            <div class="eyebrow">What Clients Get</div>
-            <h2>A Product Surface, Not Just Scripts</h2>
+            <div class="eyebrow">What Availabl Does</div>
+            <h2>Move connected AWS workloads, not isolated pieces.</h2>
+            <p>
+              The product is strongest when teams need a supported AWS environment cloned into
+              a target account or region with less manual glue work and better validation.
+            </p>
           </div>
-          <div class="tech-panels">
-            <article class="tech-panel reveal-card">
-              <div class="tech-panel-top">
-                <span class="tech-chip">Live AWS Flow</span>
-                <span class="tech-chip muted">100+ resources</span>
-              </div>
-              <div class="tech-panel-grid">
-                <div class="mini-service">SQS</div>
-                <div class="mini-service">Lambda</div>
-                <div class="mini-service">DynamoDB</div>
-                <div class="mini-service">SNS</div>
-                <div class="mini-service">ECS</div>
-                <div class="mini-service">API</div>
-              </div>
-            </article>
-            <article class="tech-panel reveal-card">
-              <div class="tech-panel-top">
-                <span class="tech-chip">Incident Feed</span>
-                <span class="tech-chip muted">Auto-remediation</span>
-              </div>
-              <div class="incident-lines">
-                <div class="incident-line">
-                  <span class="incident-badge">A</span>
-                  <div>
-                    <strong>Deployment issue detected</strong>
-                    <p>Known fix suggested from agent memory.</p>
-                  </div>
-                </div>
-                <div class="incident-line">
-                  <span class="incident-badge">A</span>
-                  <div>
-                    <strong>Validation completed</strong>
-                    <p>Artifacts and manifest ready for review.</p>
-                  </div>
-                </div>
-              </div>
-            </article>
-          </div>
-          <div class="feature-grid">
-            <article class="feature-card reveal-card">
-              <h3>Preview / Apply</h3>
-              <p>Every action can show the exact plan first, then require approval before writes.</p>
-            </article>
-            <article class="feature-card reveal-card">
-              <h3>Status + Artifacts</h3>
-              <p>Each run exposes manifest paths, validation results, destroy reports, and export indexes.</p>
-            </article>
-            <article class="feature-card reveal-card">
-              <h3>Git-Ready Backup</h3>
-              <p>Clients can choose organization, repo, test connection, export backup, and push safely.</p>
-            </article>
-            <article class="feature-card reveal-card">
-              <h3>AI Operator Layer</h3>
-              <p>Explain failures, prepare migrations, create Lambda scaffolds, and reuse known fixes.</p>
-            </article>
-          </div>
-        </section>
 
-        <section class="section workflow" id="workflow" data-animate="section">
-          <div class="section-heading">
-            <div class="eyebrow">Client Workflow</div>
-            <h2>From Connect To Validation</h2>
-          </div>
-          <div class="workflow-grid">
-            <div class="workflow-step reveal-card">
-              <span>01</span>
-              <h3>Connect AWS + Git</h3>
-              <p>Cross-account role with ExternalId, Git org or repo target, and token env setup.</p>
-            </div>
-            <div class="workflow-step reveal-card">
-              <span>02</span>
-              <h3>Scan + Preflight</h3>
-              <p>Discovery, risk scan, KMS analysis, and known-fix hints before anything changes.</p>
-            </div>
-            <div class="workflow-step reveal-card">
-              <span>03</span>
-              <h3>Preview Plan</h3>
-              <p>Structured forms show the commands, warnings, approval gates, and expected artifacts.</p>
-            </div>
-            <div class="workflow-step reveal-card">
-              <span>04</span>
-              <h3>Apply + Validate</h3>
-              <p>Deploy, rerun validation, inspect reports, and explain issues in one operator surface.</p>
-            </div>
-          </div>
-        </section>
-
-        <section class="section actions-section" id="actions" data-animate="section">
-          <div class="section-heading">
-            <div class="eyebrow">Client Essentials</div>
-            <h2>Start With AWS And Git</h2>
-          </div>
-          <div class="actions-layout">
-            <div class="action-list" id="action-list"></div>
-            <aside class="action-preview">
-              <div class="preview-header">
-                <span class="preview-label">Selected Action</span>
-                <strong id="preview-title">Deploy Environment</strong>
-              </div>
-              <p id="preview-description">
-                Preview a deploy plan, then run deploy + validation with reports.
+          <div class="card-grid">
+            <article class="feature-card reveal-card">
+              <span class="card-kicker">Discover</span>
+              <h3>Read the source environment before touching the target.</h3>
+              <p>
+                Inventory export, dependency graph generation, sanitized snapshots, and
+                preflight checks make the migration path visible before an apply run.
               </p>
+            </article>
 
-              <div class="preview-mode-row">
-                <div class="mode-pill">Preview</div>
-                <div class="mode-pill apply">Apply</div>
-                <div class="mode-pill gated">Approval Gate</div>
-              </div>
+            <article class="feature-card reveal-card">
+              <span class="card-kicker">Rebuild</span>
+              <h3>Recreate supported resources with remapped relationships.</h3>
+              <p>
+                The engine remaps names, ARNs, queue URLs, secret references, stream links,
+                and service-to-service connections instead of treating everything as isolated.
+              </p>
+            </article>
 
-              <div class="preview-actions">
-                <button id="apply-button" class="run-button" type="button">Run Action</button>
-                <button id="status-button" class="ghost-button" type="button">Refresh Status</button>
-              </div>
-
-              <div class="run-status-block">
-                <div class="run-status-head">
-                  <span class="preview-label">Run Status</span>
-                  <strong id="run-status">idle</strong>
-                </div>
-                <pre id="run-output">No action started yet.</pre>
-              </div>
-
-              <div class="code-preview">
-                <pre id="preview-command"></pre>
-              </div>
-
-              <div class="artifact-block">
-                <h3>Artifacts</h3>
-                <ul id="artifact-list"></ul>
-              </div>
-            </aside>
+            <article class="feature-card reveal-card">
+              <span class="card-kicker">Validate</span>
+              <h3>Finish with manifests, reports, and reviewable outputs.</h3>
+              <p>
+                Post-deploy validation, audit trails, and migration artifacts give the team
+                something concrete to check, hand off, and rerun.
+              </p>
+            </article>
           </div>
         </section>
 
-        <section class="section pricing" id="pricing" data-animate="section">
+        <section class="section" id="scope" data-animate="section">
           <div class="section-heading">
-            <div class="eyebrow">Packaging</div>
-            <h2>How This Turns Into A Client Offer</h2>
+            <div class="eyebrow">Current Scope</div>
+            <h2>What the current release handles well, and what still needs review.</h2>
+            <p>
+              This launch page is intentionally honest. We highlight the supported path today
+              instead of pretending every AWS edge case is already one click.
+            </p>
           </div>
-          <div class="pricing-grid">
-            <article class="price-card reveal-card">
-              <h3>Starter</h3>
-              <p>Read-only AWS connect, discovery, preflight, risk reports, explain mode.</p>
+
+          <div class="scope-layout">
+            <article class="scope-panel reveal-card">
+              <div class="scope-header">
+                <h3>Strong today</h3>
+                <span class="scope-badge scope-badge-live">launch-ready</span>
+              </div>
+              <div class="chip-grid">
+                <span class="chip">IAM roles</span>
+                <span class="chip">SQS</span>
+                <span class="chip">SNS</span>
+                <span class="chip">Secrets Manager</span>
+                <span class="chip">DynamoDB tables</span>
+                <span class="chip">DynamoDB item copy</span>
+                <span class="chip">Lambda redeploy</span>
+                <span class="chip">API Gateway</span>
+                <span class="chip">CodeBuild</span>
+                <span class="chip">ECS clusters</span>
+                <span class="chip">ECS task definitions</span>
+                <span class="chip">ECS services</span>
+                <span class="chip">S3 object transfer</span>
+                <span class="chip">VPC and network remap</span>
+              </div>
             </article>
-            <article class="price-card featured reveal-card">
-              <h3>Growth</h3>
-              <p>Deploy, validate, destroy/redeploy, Git backup, AI-assisted fixes, Lambda builder.</p>
+
+            <article class="scope-panel reveal-card">
+              <div class="scope-header">
+                <h3>Still guided</h3>
+                <span class="scope-badge scope-badge-review">manual review</span>
+              </div>
+              <div class="chip-grid">
+                <span class="chip chip-muted">RDS snapshot-based paths</span>
+                <span class="chip chip-muted">EC2 server replication</span>
+                <span class="chip chip-muted">CloudFormation stacks</span>
+                <span class="chip chip-muted">Load balancers</span>
+                <span class="chip chip-muted">Broader low-downtime cutover</span>
+              </div>
             </article>
-            <article class="price-card reveal-card">
-              <h3>Enterprise</h3>
-              <p>Private runners, approvals, audit trail, multi-account governance, advanced agent scope.</p>
+          </div>
+        </section>
+
+        <section class="section" id="demo" data-animate="section">
+          <div class="section-heading">
+            <div class="eyebrow">Demo Flow</div>
+            <h2>How a pilot run looks from source account to validated target.</h2>
+          </div>
+
+          <div class="demo-grid">
+            <article class="demo-card reveal-card">
+              <span class="card-kicker">Step 1</span>
+              <h3>Assessment first</h3>
+              <p>Connect read-only access, scan supported services, and build the migration plan.</p>
             </article>
+
+            <article class="demo-card reveal-card">
+              <span class="card-kicker">Step 2</span>
+              <h3>Controlled clone</h3>
+              <p>Deploy supported resources into the target environment with remapped references.</p>
+            </article>
+
+            <article class="demo-card reveal-card">
+              <span class="card-kicker">Step 3</span>
+              <h3>Data and parity</h3>
+              <p>Transfer DynamoDB items and S3 objects, then run validation against the target.</p>
+            </article>
+          </div>
+
+          <div class="artifact-showcase reveal-card">
+            <div class="artifact-copy">
+              <span class="card-kicker">Outputs</span>
+              <h3>Designed to end with evidence, not guesswork.</h3>
+              <p>
+                A good migration run should leave behind a deployment manifest, validation
+                report, follow-up review notes, and target-side mappings your team can inspect.
+              </p>
+            </div>
+
+            <div class="artifact-list">
+              <div class="artifact-item">
+                <strong>deployment_manifest.json</strong>
+                <span>resource mappings, deployed assets, follow-up flags</span>
+              </div>
+              <div class="artifact-item">
+                <strong>validation_report.json</strong>
+                <span>smoke checks, parity checks, issues found</span>
+              </div>
+              <div class="artifact-item">
+                <strong>source_snapshot.json</strong>
+                <span>sanitized export used for controlled replay</span>
+              </div>
+              <div class="artifact-item">
+                <strong>s3_transfer_plan.json</strong>
+                <span>bucket rewrite and transfer results for supported copies</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="section trust-section" id="trust" data-animate="section">
+          <div class="section-heading">
+            <div class="eyebrow">Trust Model</div>
+            <h2>Built for cautious migrations, not magic tricks.</h2>
+            <p>
+              The strongest operating model stays self-hosted and customer-controlled, with a
+              read-only first path before approved write actions.
+            </p>
+          </div>
+
+          <div class="trust-grid">
+            <article class="trust-card reveal-card">
+              <h3>Self-hosted preference</h3>
+              <p>Run inside a client-controlled environment instead of pushing sensitive access into a shared SaaS by default.</p>
+            </article>
+            <article class="trust-card reveal-card">
+              <h3>Read-only before apply</h3>
+              <p>Assessment, inventory, dependency graph, and feasibility review happen before a real migration run.</p>
+            </article>
+            <article class="trust-card reveal-card">
+              <h3>Clear support boundaries</h3>
+              <p>The launch promise is intentionally narrow so teams know where automation is strong and where guided review still matters.</p>
+            </article>
+          </div>
+        </section>
+
+        <section class="cta-section reveal-card" id="cta">
+          <div class="cta-copy">
+            <div class="eyebrow">Launch Access</div>
+            <h2>Use Availabl for a clone pilot before promising broader cutovers.</h2>
+            <p>
+              Best for AWS consultancies, DevOps agencies, and platform teams that need a
+              supported environment cloned into a new account or region with less manual glue.
+            </p>
+          </div>
+
+          <div class="cta-actions">
+            <a class="primary-button" href="#top">Back To Top</a>
+            <a class="ghost-button" href="#scope">Review Supported Scope</a>
           </div>
         </section>
       </main>

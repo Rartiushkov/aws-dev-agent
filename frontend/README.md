@@ -1,6 +1,6 @@
-# Local Frontend MVP
+# Product Landing
 
-Static localhost landing page for the AWS Dev Agent product direction.
+Static launch landing page for the Availabl product direction.
 
 ## Run locally
 
@@ -16,8 +16,6 @@ Then open:
 
 ## Notes
 
-- This localhost MVP now loads its action list and previews from the local Python backend.
-- The backend reads from `bridges/ui_actions.py`.
-- It is ready to be extended later with apply/status endpoints backed by `executor/ui_action_runner.py`.
-- The visual direction intentionally mirrors the reference: blue atmospheric hero, command console,
-  migration card, and CTA-driven product framing.
+- The landing page is now fully static and does not depend on the local `/api` routes.
+- It is designed for a Product Hunt style launch and can be deployed directly to GitHub Pages or Cloudflare Pages.
+- The current message is intentionally narrow: supported AWS environment cloning into a new account or region.

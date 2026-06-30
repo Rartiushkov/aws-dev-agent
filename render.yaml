@@ -1,0 +1,19 @@
+services:
+  - type: static
+    name: availabl-landing
+    env: static
+    staticPublishPath: ./frontend
+    pullRequestPreviewsEnabled: true
+    headers:
+      - path: /*
+        name: X-Frame-Options
+        value: SAMEORIGIN
+      - path: /*
+        name: X-Content-Type-Options
+        value: nosniff
+      - path: /*
+        name: Referrer-Policy
+        value: strict-origin-when-cross-origin
+
+previews:
+  generation: automatic
