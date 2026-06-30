@@ -1,19 +1,11 @@
 services:
-  - type: static
-    name: availabl-landing
-    env: static
-    staticPublishPath: ./frontend
-    pullRequestPreviewsEnabled: true
-    headers:
-      - path: /*
-        name: X-Frame-Options
-        value: SAMEORIGIN
-      - path: /*
-        name: X-Content-Type-Options
-        value: nosniff
-      - path: /*
-        name: Referrer-Policy
-        value: strict-origin-when-cross-origin
+  - type: web
+    name: availabl-backend
+    env: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: python render_backend.py
+    healthCheckPath: /health
+    pullRequestPreviewsEnabled: false
 
 previews:
   generation: automatic
