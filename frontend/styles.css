@@ -15,6 +15,7 @@
   --radius-lg: 34px;
   --radius-md: 24px;
   --radius-sm: 16px;
+  --hero-backdrop-height: clamp(760px, 100vh, 920px);
 }
 
 * {
@@ -31,7 +32,13 @@ body {
   position: relative;
   font-family: "Inter", sans-serif;
   color: var(--text);
-  background: linear-gradient(180deg, #030303 0%, #050505 44%, #efeadf 44%, #efeadf 100%);
+  background: linear-gradient(
+    180deg,
+    #030303 0,
+    #050505 var(--hero-backdrop-height),
+    #efeadf var(--hero-backdrop-height),
+    #efeadf 100%
+  );
 }
 
 body::before {
@@ -51,7 +58,7 @@ a {
 .site-video {
   position: fixed;
   inset: 0 0 auto;
-  height: min(100vh, 920px);
+  height: var(--hero-backdrop-height);
   overflow: hidden;
   pointer-events: none;
   z-index: -4;
@@ -82,7 +89,7 @@ a {
 }
 
 .site-video__fade {
-  background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(4, 4, 4, 0.04) 62%, rgba(6, 6, 6, 0.78) 86%, #050505 100%);
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(4, 4, 4, 0.03) 66%, rgba(5, 5, 5, 0.58) 90%, #050505 100%);
 }
 
 .site-cosmos {
