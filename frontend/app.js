@@ -73,20 +73,25 @@ function initHeroTilt() {
     return;
   }
 
+  const maxRotate = 6;
+
   function reset() {
-    frame.style.transform = "";
+    frame.style.transform = "perspective(1400px) rotateX(0deg) rotateY(0deg)";
     frame.classList.remove("is-tilting");
   }
+
+  reset();
 
   frame.addEventListener("pointermove", (event) => {
     const rect = frame.getBoundingClientRect();
     const px = (event.clientX - rect.left) / rect.width;
     const py = (event.clientY - rect.top) / rect.height;
-    const rotateY = (px - 0.5) * 5.5;
-    const rotateX = (0.5 - py) * 5.5;
+    const rotateY = (px - 0.5) * maxRotate;
+    const rotateX = (0.5 - py) * maxRotate;
 
     frame.classList.add("is-tilting");
-    frame.style.transform = `perspective(1400px) rotateX(${rotateX.toFixed(2)}deg) rotateY(${rotateY.toFixed(2)}deg)`;
+    frame.style.transform =
+      `perspective(1400px) rotateX(${rotateX.toFixed(2)}deg) rotateY(${rotateY.toFixed(2)}deg)`;
   });
 
   frame.addEventListener("pointerleave", reset);
@@ -278,8 +283,26 @@ async function loadDemoState() {
   }
 }
 
+function initVideoWatchdog() {
+  const video = document.querySelector(".site-video__media");
+  if (!video) return;
+
+  const resume = () => {
+    if (video.paused) video.play().catch(() => {});
+  };
+
+  video.addEventListener("pause", () => {
+    setTimeout(resume, 80);
+  });
+
+  document.addEventListener("visibilitychange", () => {
+    if (!document.hidden) resume();
+  });
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   revealOnScroll();
   initHeroTilt();
+  initVideoWatchdog();
   loadDemoState();
 });
