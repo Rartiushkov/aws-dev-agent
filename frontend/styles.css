@@ -514,6 +514,17 @@ a {
   color: var(--ink);
 }
 
+.intro-section > .section-intro,
+.demo-section > .section-heading,
+.artifacts-section > .section-heading {
+  color: var(--text);
+}
+
+.demo-section > .section-heading p,
+.artifacts-section > .section-heading p {
+  color: var(--muted);
+}
+
 .section h2,
 .trust-banner h2 {
   margin-top: 14px;
