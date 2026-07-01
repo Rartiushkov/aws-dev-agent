@@ -312,9 +312,6 @@ a {
     #121212;
   border: 1px solid rgba(255, 255, 255, 0.08);
   box-shadow: var(--shadow);
-  transform-style: preserve-3d;
-  transition: transform 220ms ease, border-color 220ms ease, box-shadow 220ms ease;
-  will-change: transform;
 }
 
 .stage-frame::before {
@@ -338,11 +335,6 @@ a {
     linear-gradient(180deg, rgba(255, 255, 255, 0.04), transparent 35%);
   pointer-events: none;
   opacity: 0.75;
-}
-
-.stage-frame.is-tilting {
-  border-color: rgba(216, 255, 98, 0.18);
-  box-shadow: 0 35px 100px rgba(0, 0, 0, 0.42);
 }
 
 .stage-orbit {
@@ -1046,11 +1038,5 @@ a {
   .stats-grid,
   .artifact-mini-stats {
     grid-template-columns: 1fr;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .stage-frame {
-    transition: none;
   }
 }
