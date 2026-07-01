@@ -32,112 +32,128 @@
       <div class="site-video__fade"></div>
     </div>
     <div class="page-shell">
-      <header class="topbar">
-        <a class="brand" href="#top" aria-label="Availabl home">
-          <span class="brand-mark">A</span>
-          <span class="brand-text">
-            <strong>availabl</strong>
-            <span>live sandbox clone demo</span>
-          </span>
-        </a>
-
-        <nav class="topnav">
-          <a href="#demo">Demo</a>
-          <a href="#artifacts">Artifacts</a>
-          <a href="#trust">Trust</a>
-        </nav>
-      </header>
-
       <main id="top">
-        <section class="hero" data-animate="hero">
-          <div class="hero-grid">
-            <div class="hero-copy">
-              <div class="hero-label">AWS migration experience</div>
-              <h1 class="hero-title">
-                LIVE
-                <span>DEMO</span>
-                ORG
-              </h1>
-              <p class="hero-subtitle">
-                Availabl migrates supported AWS environments by reading the source
-                stack, rebuilding the target setup, remapping dependencies, and
-                surfacing validation evidence inside one controlled demo org.
-              </p>
+        <section class="hero-shell">
+          <header class="topbar">
+            <a class="brand" href="#top" aria-label="Availabl home">
+              <span class="brand-mark">A</span>
+              <span class="brand-text">
+                <strong>availabl</strong>
+                <span>live sandbox clone demo</span>
+              </span>
+            </a>
 
-              <div class="hero-signals" aria-label="Core migration steps">
-                <span>Source read</span>
-                <span>Dependency remap</span>
-                <span>Target validation</span>
+            <nav class="topnav">
+              <a href="#demo">Demo</a>
+              <a href="#artifacts">Artifacts</a>
+              <a href="#trust">Trust</a>
+            </nav>
+          </header>
+
+          <section class="hero" data-animate="hero">
+            <div class="hero-grid">
+              <div class="hero-copy">
+                <div class="hero-label">AWS migration experience</div>
+                <h1 class="hero-title">
+                  LIVE
+                  <span>DEMO</span>
+                  ORG
+                </h1>
+                <p class="hero-subtitle">
+                  Availabl migrates supported AWS environments by reading the source
+                  stack, rebuilding the target setup, remapping dependencies, and
+                  surfacing validation evidence inside one controlled demo org.
+                </p>
+
+                <div class="hero-signals" aria-label="Core migration steps">
+                  <span>Source read</span>
+                  <span>Dependency remap</span>
+                  <span>Target validation</span>
+                </div>
+
+                <div class="hero-actions">
+                  <a class="primary-link" href="#demo">Open demo state</a>
+                  <a class="secondary-link" href="#artifacts">See artifacts</a>
+                </div>
               </div>
 
-              <div class="hero-actions">
-                <a class="primary-link" href="#demo">Open demo state</a>
-                <a class="secondary-link" href="#artifacts">See artifacts</a>
+              <div class="hero-stage reveal-card">
+                <div class="stage-frame" data-tilt-frame>
+                  <div class="stage-orbit" aria-hidden="true">
+                    <span>inventory</span>
+                    <span>clone</span>
+                    <span>validate</span>
+                  </div>
+
+                  <div class="stage-header">
+                    <span>Connected now</span>
+                    <span id="hero-demo-account">Loading account</span>
+                  </div>
+
+                  <div class="stage-headline">
+                    <strong id="demo-status-title">Connecting demo org...</strong>
+                    <p id="demo-status-copy">
+                      Pulling source summary, clone manifest, and validation evidence.
+                    </p>
+                  </div>
+
+                  <div class="stage-stack">
+                    <div class="stage-card stage-card-accent">
+                      <span class="stage-kicker">Source</span>
+                      <strong id="metric-source-env">sandbox1</strong>
+                      <p id="hero-demo-region">Loading region</p>
+                    </div>
+
+                    <div class="stage-card stage-card-target">
+                      <span class="stage-kicker">Target</span>
+                      <strong id="metric-target-env">sandbox2</strong>
+                      <p>clone manifest online</p>
+                    </div>
+
+                    <div class="stage-card stage-card-dark">
+                      <span class="stage-kicker">Validation</span>
+                      <strong id="metric-validation">pending</strong>
+                      <p><span id="metric-issues">pending</span> checks flagged</p>
+                    </div>
+                  </div>
+
+                  <div class="stage-footer">
+                    <span>Live migration path</span>
+                    <span>Sandbox evidence only</span>
+                  </div>
+                </div>
               </div>
             </div>
 
-            <div class="hero-stage reveal-card">
-              <div class="stage-frame" data-tilt-frame>
-                <div class="stage-orbit" aria-hidden="true">
-                  <span>inventory</span>
-                  <span>clone</span>
-                  <span>validate</span>
+            <div class="ticker-wrap">
+              <div class="ticker-track">
+                <div class="ticker-group" aria-hidden="true">
+                  <span>REAL DEMO ORG</span>
+                  <span class="ticker-dot">·</span>
+                  <span>SANDBOX1 TO SANDBOX2</span>
+                  <span class="ticker-dot">·</span>
+                  <span>INVENTORY</span>
+                  <span class="ticker-dot">·</span>
+                  <span>REMAP</span>
+                  <span class="ticker-dot">·</span>
+                  <span>VALIDATION</span>
+                  <span class="ticker-dot">·</span>
                 </div>
-
-                <div class="stage-header">
-                  <span>Connected now</span>
-                  <span id="hero-demo-account">Loading account</span>
-                </div>
-
-                <div class="stage-headline">
-                  <strong id="demo-status-title">Connecting demo org...</strong>
-                  <p id="demo-status-copy">
-                    Pulling source summary, clone manifest, and validation evidence.
-                  </p>
-                </div>
-
-                <div class="stage-stack">
-                  <div class="stage-card stage-card-accent">
-                    <span class="stage-kicker">Source</span>
-                    <strong id="metric-source-env">sandbox1</strong>
-                    <p id="hero-demo-region">Loading region</p>
-                  </div>
-
-                  <div class="stage-card stage-card-target">
-                    <span class="stage-kicker">Target</span>
-                    <strong id="metric-target-env">sandbox2</strong>
-                    <p>clone manifest online</p>
-                  </div>
-
-                  <div class="stage-card stage-card-dark">
-                    <span class="stage-kicker">Validation</span>
-                    <strong id="metric-validation">pending</strong>
-                    <p><span id="metric-issues">pending</span> checks flagged</p>
-                  </div>
-                </div>
-
-                <div class="stage-footer">
-                  <span>Live migration path</span>
-                  <span>Sandbox evidence only</span>
+                <div class="ticker-group" aria-hidden="true">
+                  <span>REAL DEMO ORG</span>
+                  <span class="ticker-dot">·</span>
+                  <span>SANDBOX1 TO SANDBOX2</span>
+                  <span class="ticker-dot">·</span>
+                  <span>INVENTORY</span>
+                  <span class="ticker-dot">·</span>
+                  <span>REMAP</span>
+                  <span class="ticker-dot">·</span>
+                  <span>VALIDATION</span>
+                  <span class="ticker-dot">·</span>
                 </div>
               </div>
             </div>
-          </div>
-
-          <div class="ticker-wrap">
-            <div class="ticker-track">
-              <span>REAL DEMO ORG</span>
-              <span>SANDBOX1 TO SANDBOX2</span>
-              <span>INVENTORY</span>
-              <span>REMAP</span>
-              <span>VALIDATION</span>
-              <span>REAL DEMO ORG</span>
-              <span>SANDBOX1 TO SANDBOX2</span>
-              <span>INVENTORY</span>
-              <span>REMAP</span>
-              <span>VALIDATION</span>
-            </div>
-          </div>
+          </section>
         </section>
 
         <section class="section intro-section">

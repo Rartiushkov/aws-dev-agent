@@ -557,6 +557,13 @@ a {
   color: var(--paper);
 }
 
+.ticker-dot {
+  color: rgba(255, 255, 255, 0.25) !important;
+  font-size: 1.4rem !important;
+  letter-spacing: 0 !important;
+  line-height: 1;
+}
+
 @keyframes tickerMove {
   from {
     transform: translateX(0);
