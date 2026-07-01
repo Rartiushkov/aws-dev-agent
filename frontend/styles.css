@@ -488,10 +488,9 @@ a {
 .ticker-track {
   display: flex;
   gap: 28px;
-  width: 100%;
-  justify-content: space-between;
-  flex-wrap: nowrap;
+  width: max-content;
   padding: 16px 0;
+  animation: tickerMove 24s linear infinite;
 }
 
 .ticker-track span {
@@ -500,6 +499,15 @@ a {
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--paper);
+}
+
+@keyframes tickerMove {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
 }
 
 .section {
