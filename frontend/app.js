@@ -58,21 +58,8 @@ const FALLBACK_DEMO = {
 
 function revealOnScroll() {
   const targets = document.querySelectorAll("[data-animate], .reveal-card");
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (!entry.isIntersecting) {
-        return;
-      }
-      entry.target.classList.add("is-visible");
-      observer.unobserve(entry.target);
-    });
-  }, { threshold: 0.15 });
-
-  targets.forEach((target, index) => {
-    if (target.classList.contains("reveal-card")) {
-      target.style.transitionDelay = `${Math.min(index * 55, 220)}ms`;
-    }
-    observer.observe(target);
+  targets.forEach((target) => {
+    target.classList.add("is-visible");
   });
 }
 

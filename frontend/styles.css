@@ -180,16 +180,16 @@ a {
 
 [data-animate="hero"] > .hero-grid > .hero-copy,
 [data-animate="hero"] > .hero-grid > .hero-stage {
-  opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 700ms ease, transform 700ms ease;
+  opacity: 1;
+  transform: none;
+  transition: none;
 }
 
 [data-animate="hero"].is-visible > .hero-grid > .hero-copy,
 [data-animate="hero"].is-visible > .hero-grid > .hero-stage,
 .reveal-card.is-visible {
   opacity: 1;
-  transform: translateY(0);
+  transform: none;
 }
 
 .hero-label,
@@ -788,15 +788,15 @@ a {
 
 .reveal-card,
 [data-animate="section"] {
-  opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 680ms ease, transform 680ms ease;
+  opacity: 1;
+  transform: none;
+  transition: none;
 }
 
 [data-animate="section"].is-visible,
 .reveal-card.is-visible {
   opacity: 1;
-  transform: translateY(0);
+  transform: none;
 }
 
 @keyframes driftA {
@@ -1050,8 +1050,6 @@ a {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .reveal-card,
-  [data-animate="section"],
   .stage-frame {
     transition: none;
   }
