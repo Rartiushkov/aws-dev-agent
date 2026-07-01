@@ -520,15 +520,18 @@ a {
 
 .demo-section > .section-heading,
 .artifacts-section > .section-heading {
-  color: #ffffff;
-  mix-blend-mode: difference;
+  color: var(--ink);
 }
 
 .demo-section > .section-heading .section-label,
 .artifacts-section > .section-heading .section-label,
 .demo-section > .section-heading h2,
 .artifacts-section > .section-heading h2 {
-  color: inherit;
+  color: transparent;
+  background-image: linear-gradient(180deg, var(--ink) 0 54%, var(--text) 54% 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .section h2,
