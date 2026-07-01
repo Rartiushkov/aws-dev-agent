@@ -76,58 +76,6 @@ function revealOnScroll() {
   });
 }
 
-function initParallaxCards() {
-  const cards = document.querySelectorAll("[data-parallax]");
-  if (!cards.length) {
-    return;
-  }
-
-  function update() {
-    const viewportHeight = window.innerHeight || 1;
-    cards.forEach((card) => {
-      const strength = Number(card.dataset.parallax || 0);
-      const rect = card.getBoundingClientRect();
-      const centerOffset = rect.top + rect.height / 2 - viewportHeight / 2;
-      const translate = (centerOffset / viewportHeight) * strength * -1;
-      card.style.setProperty("--parallax-y", `${translate.toFixed(2)}px`);
-    });
-  }
-
-  update();
-  window.addEventListener("scroll", update, { passive: true });
-  window.addEventListener("resize", update);
-}
-
-function initHeroTilt() {
-  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-    return;
-  }
-
-  const frame = document.querySelector("[data-tilt-frame]");
-  if (!frame) {
-    return;
-  }
-
-  function reset() {
-    frame.style.transform = "";
-    frame.classList.remove("is-tilting");
-  }
-
-  frame.addEventListener("pointermove", (event) => {
-    const rect = frame.getBoundingClientRect();
-    const px = (event.clientX - rect.left) / rect.width;
-    const py = (event.clientY - rect.top) / rect.height;
-    const rotateY = (px - 0.5) * 8;
-    const rotateX = (0.5 - py) * 8;
-
-    frame.classList.add("is-tilting");
-    frame.style.transform = `perspective(1400px) rotateX(${rotateX.toFixed(2)}deg) rotateY(${rotateY.toFixed(2)}deg)`;
-  });
-
-  frame.addEventListener("pointerleave", reset);
-  frame.addEventListener("pointercancel", reset);
-}
-
 function setText(id, value) {
   const node = document.getElementById(id);
   if (node) {
@@ -315,7 +263,5 @@ async function loadDemoState() {
 
 document.addEventListener("DOMContentLoaded", () => {
   revealOnScroll();
-  initParallaxCards();
-  initHeroTilt();
   loadDemoState();
 });
