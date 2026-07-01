@@ -124,6 +124,166 @@ a {
   overflow: hidden;
 }
 
+.cosmos-transfer {
+  position: absolute;
+  inset: 0;
+  opacity: 0.95;
+}
+
+.cosmos-stars,
+.cosmos-planet,
+.transfer-node,
+.transfer-link {
+  position: absolute;
+}
+
+.cosmos-stars {
+  inset: 0;
+  background-image:
+    radial-gradient(circle at 12% 22%, rgba(255, 255, 255, 0.82) 0 1px, transparent 1.8px),
+    radial-gradient(circle at 24% 68%, rgba(255, 255, 255, 0.58) 0 1px, transparent 1.8px),
+    radial-gradient(circle at 38% 18%, rgba(216, 255, 98, 0.7) 0 1.4px, transparent 2.1px),
+    radial-gradient(circle at 52% 58%, rgba(255, 255, 255, 0.55) 0 1px, transparent 1.8px),
+    radial-gradient(circle at 67% 26%, rgba(134, 240, 255, 0.62) 0 1.4px, transparent 2px),
+    radial-gradient(circle at 78% 62%, rgba(255, 255, 255, 0.62) 0 1px, transparent 1.8px),
+    radial-gradient(circle at 88% 14%, rgba(255, 255, 255, 0.8) 0 1px, transparent 1.8px),
+    radial-gradient(circle at 92% 44%, rgba(216, 255, 98, 0.65) 0 1.2px, transparent 2px);
+  opacity: 0.7;
+  animation: starShift 16s linear infinite;
+}
+
+.cosmos-planet {
+  top: 34px;
+  right: 6%;
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 34% 30%, rgba(255, 255, 255, 0.3), transparent 18%),
+    radial-gradient(circle at 38% 38%, rgba(134, 240, 255, 0.35), rgba(134, 240, 255, 0.03) 48%, rgba(0, 0, 0, 0) 65%),
+    radial-gradient(circle at 56% 52%, rgba(216, 255, 98, 0.18), transparent 60%),
+    linear-gradient(135deg, rgba(15, 18, 35, 0.95), rgba(8, 10, 18, 0.72));
+  box-shadow:
+    inset -26px -28px 48px rgba(0, 0, 0, 0.35),
+    0 0 80px rgba(134, 240, 255, 0.08);
+  opacity: 0.82;
+}
+
+.transfer-node {
+  display: grid;
+  place-items: center;
+  width: 112px;
+  height: 112px;
+  border-radius: 28px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.09), rgba(255, 255, 255, 0.02)),
+    rgba(9, 11, 20, 0.74);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.12),
+    0 18px 50px rgba(0, 0, 0, 0.22);
+  backdrop-filter: blur(6px);
+}
+
+.transfer-node::before {
+  content: "";
+  position: absolute;
+  inset: -10px;
+  border-radius: 34px;
+  border: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.transfer-node span {
+  color: #edf2ff;
+  font-family: "Syne", sans-serif;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.transfer-node-source {
+  top: 212px;
+  left: 8%;
+  transform: rotate(-8deg);
+}
+
+.transfer-node-target {
+  top: 118px;
+  right: 20%;
+  transform: rotate(8deg);
+}
+
+.transfer-link {
+  overflow: visible;
+}
+
+.transfer-link::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 999px;
+}
+
+.transfer-link-a {
+  top: 176px;
+  left: 18%;
+  width: 48%;
+  height: 2px;
+  transform: rotate(-17deg);
+  background: linear-gradient(90deg, rgba(134, 240, 255, 0), rgba(134, 240, 255, 0.62), rgba(216, 255, 98, 0.7), rgba(216, 255, 98, 0));
+  box-shadow: 0 0 28px rgba(134, 240, 255, 0.18);
+}
+
+.transfer-link-b {
+  top: 248px;
+  left: 25%;
+  width: 38%;
+  height: 1px;
+  transform: rotate(-23deg);
+  background: linear-gradient(90deg, rgba(216, 255, 98, 0), rgba(216, 255, 98, 0.52), rgba(134, 240, 255, 0.64), rgba(134, 240, 255, 0));
+  opacity: 0.75;
+}
+
+.transfer-link i {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 10px;
+  height: 10px;
+  margin-top: -5px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.96), rgba(134, 240, 255, 0.82) 50%, rgba(134, 240, 255, 0) 72%);
+  box-shadow: 0 0 20px rgba(134, 240, 255, 0.55);
+}
+
+.transfer-link-a i:nth-child(1) {
+  animation: packetTravelA 4.8s linear infinite;
+}
+
+.transfer-link-a i:nth-child(2) {
+  animation: packetTravelA 4.8s linear infinite 1.2s;
+}
+
+.transfer-link-a i:nth-child(3) {
+  animation: packetTravelA 4.8s linear infinite 2.4s;
+}
+
+.transfer-link-b i:nth-child(1) {
+  width: 8px;
+  height: 8px;
+  margin-top: -4px;
+  animation: packetTravelB 3.6s linear infinite 0.7s;
+}
+
+.transfer-link-b i:nth-child(2) {
+  width: 8px;
+  height: 8px;
+  margin-top: -4px;
+  animation: packetTravelB 3.6s linear infinite 2s;
+}
+
 .hero-glow,
 .hero-gridlines {
   position: absolute;
@@ -717,6 +877,59 @@ a {
   }
 }
 
+@keyframes packetTravelA {
+  0% {
+    left: 0;
+    opacity: 0;
+    transform: scale(0.7);
+  }
+  10% {
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1);
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    left: calc(100% - 10px);
+    opacity: 0;
+    transform: scale(0.72);
+  }
+}
+
+@keyframes packetTravelB {
+  0% {
+    left: calc(100% - 8px);
+    opacity: 0;
+    transform: scale(0.7);
+  }
+  10% {
+    opacity: 0.9;
+  }
+  50% {
+    transform: scale(1);
+  }
+  90% {
+    opacity: 0.9;
+  }
+  100% {
+    left: 0;
+    opacity: 0;
+    transform: scale(0.72);
+  }
+}
+
+@keyframes starShift {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-18px, 10px, 0);
+  }
+}
+
 @media (max-width: 1120px) {
   .hero-grid,
   .demo-layout,
@@ -735,6 +948,10 @@ a {
 
   .stage-footer {
     flex-direction: column;
+  }
+
+  .transfer-node-target {
+    right: 14%;
   }
 }
 
@@ -768,6 +985,49 @@ a {
     inset: -20px -10px 50px -10px;
   }
 
+  .cosmos-transfer {
+    opacity: 0.56;
+  }
+
+  .cosmos-planet {
+    top: 52px;
+    right: -34px;
+    width: 150px;
+    height: 150px;
+  }
+
+  .transfer-node {
+    width: 82px;
+    height: 82px;
+    border-radius: 22px;
+  }
+
+  .transfer-node span {
+    font-size: 0.62rem;
+  }
+
+  .transfer-node-source {
+    top: 232px;
+    left: 0;
+  }
+
+  .transfer-node-target {
+    top: 130px;
+    right: 8%;
+  }
+
+  .transfer-link-a {
+    top: 192px;
+    left: 11%;
+    width: 62%;
+  }
+
+  .transfer-link-b {
+    top: 246px;
+    left: 18%;
+    width: 48%;
+  }
+
   .stage-orbit {
     justify-content: flex-start;
     flex-wrap: wrap;
@@ -782,7 +1042,10 @@ a {
 @media (prefers-reduced-motion: reduce) {
   .hero-glow-a,
   .hero-glow-b,
-  .ticker-track {
+  .ticker-track,
+  .cosmos-stars,
+  .transfer-link-a i,
+  .transfer-link-b i {
     animation: none;
   }
 
