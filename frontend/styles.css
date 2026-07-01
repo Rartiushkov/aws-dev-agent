@@ -30,10 +30,16 @@ body {
 body {
   font-family: "Inter", sans-serif;
   color: var(--text);
-  background:
-    radial-gradient(circle at 20% 0%, rgba(134, 240, 255, 0.08), transparent 28%),
-    radial-gradient(circle at 85% 12%, rgba(216, 255, 98, 0.08), transparent 24%),
-    linear-gradient(180deg, #070707 0%, #0b0b0b 44%, #efeadf 44%, #efeadf 100%);
+  background: linear-gradient(180deg, #030303 0%, #050505 44%, #efeadf 44%, #efeadf 100%);
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.12);
+  pointer-events: none;
+  z-index: -1;
 }
 
 a {
@@ -41,9 +47,160 @@ a {
   text-decoration: none;
 }
 
+.site-cosmos {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: -2;
+  background:
+    radial-gradient(circle at 50% -8%, rgba(255, 255, 255, 0.04), transparent 32%),
+    radial-gradient(circle at 15% 0%, rgba(134, 240, 255, 0.1), transparent 26%),
+    radial-gradient(circle at 88% 12%, rgba(216, 255, 98, 0.08), transparent 24%),
+    linear-gradient(180deg, #010101 0%, #050505 32%, #090909 44%, transparent 44%);
+}
+
+.site-cosmos__nebula,
+.site-cosmos__stars,
+.site-cosmos__beam,
+.site-cosmos__planet,
+.site-cosmos__ring {
+  position: absolute;
+}
+
+.site-cosmos__nebula {
+  border-radius: 50%;
+  filter: blur(44px);
+  opacity: 0.72;
+  mix-blend-mode: screen;
+}
+
+.site-cosmos__nebula-a {
+  top: -6%;
+  left: -8%;
+  width: 46vw;
+  height: 34vw;
+  background: radial-gradient(circle, rgba(134, 240, 255, 0.18), rgba(134, 240, 255, 0));
+  animation: nebulaDriftA 22s ease-in-out infinite;
+}
+
+.site-cosmos__nebula-b {
+  top: 10%;
+  right: -10%;
+  width: 36vw;
+  height: 30vw;
+  background: radial-gradient(circle, rgba(216, 255, 98, 0.14), rgba(216, 255, 98, 0));
+  animation: nebulaDriftB 28s ease-in-out infinite;
+}
+
+.site-cosmos__nebula-c {
+  top: 2%;
+  left: 26%;
+  width: 42vw;
+  height: 18vw;
+  background: radial-gradient(circle, rgba(121, 169, 255, 0.1), rgba(121, 169, 255, 0));
+  animation: nebulaDriftC 26s ease-in-out infinite;
+}
+
+.site-cosmos__stars {
+  inset: 0;
+  background-repeat: repeat;
+  opacity: 0.72;
+}
+
+.site-cosmos__stars-a {
+  background-image:
+    radial-gradient(circle at 8% 12%, rgba(255, 255, 255, 0.85) 0 1px, transparent 1.8px),
+    radial-gradient(circle at 16% 48%, rgba(255, 255, 255, 0.7) 0 1px, transparent 1.8px),
+    radial-gradient(circle at 24% 20%, rgba(216, 255, 98, 0.82) 0 1.4px, transparent 2.1px),
+    radial-gradient(circle at 33% 62%, rgba(255, 255, 255, 0.65) 0 1px, transparent 1.8px),
+    radial-gradient(circle at 46% 16%, rgba(134, 240, 255, 0.82) 0 1.4px, transparent 2px),
+    radial-gradient(circle at 59% 52%, rgba(255, 255, 255, 0.68) 0 1px, transparent 1.8px),
+    radial-gradient(circle at 72% 24%, rgba(255, 255, 255, 0.85) 0 1px, transparent 1.8px),
+    radial-gradient(circle at 86% 42%, rgba(216, 255, 98, 0.78) 0 1.2px, transparent 2px),
+    radial-gradient(circle at 93% 14%, rgba(134, 240, 255, 0.84) 0 1.4px, transparent 2px);
+  animation: starFieldA 24s linear infinite;
+}
+
+.site-cosmos__stars-b {
+  background-image:
+    radial-gradient(circle at 12% 30%, rgba(255, 255, 255, 0.55) 0 1px, transparent 1.8px),
+    radial-gradient(circle at 28% 10%, rgba(255, 255, 255, 0.62) 0 1px, transparent 1.8px),
+    radial-gradient(circle at 42% 40%, rgba(134, 240, 255, 0.48) 0 1.2px, transparent 1.9px),
+    radial-gradient(circle at 58% 18%, rgba(255, 255, 255, 0.55) 0 1px, transparent 1.8px),
+    radial-gradient(circle at 67% 60%, rgba(216, 255, 98, 0.45) 0 1.2px, transparent 2px),
+    radial-gradient(circle at 81% 28%, rgba(255, 255, 255, 0.62) 0 1px, transparent 1.8px),
+    radial-gradient(circle at 94% 54%, rgba(255, 255, 255, 0.55) 0 1px, transparent 1.8px);
+  animation: starFieldB 36s linear infinite;
+}
+
+.site-cosmos__beam {
+  top: -12%;
+  width: 18vw;
+  height: 70vh;
+  opacity: 0;
+  filter: blur(2px);
+  transform: rotate(24deg);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0), rgba(134, 240, 255, 0.24), rgba(255, 255, 255, 0));
+}
+
+.site-cosmos__beam-a {
+  left: 8%;
+  animation: beamSweepA 7.6s linear infinite;
+}
+
+.site-cosmos__beam-b {
+  left: 38%;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0), rgba(216, 255, 98, 0.18), rgba(255, 255, 255, 0));
+  animation: beamSweepB 8.8s linear infinite 1.8s;
+}
+
+.site-cosmos__beam-c {
+  right: 4%;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0), rgba(158, 205, 255, 0.2), rgba(255, 255, 255, 0));
+  animation: beamSweepC 9.2s linear infinite 0.9s;
+}
+
+.site-cosmos__planet {
+  top: 5%;
+  right: -4%;
+  width: 28vw;
+  height: 28vw;
+  max-width: 420px;
+  max-height: 420px;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 36% 30%, rgba(255, 255, 255, 0.22), transparent 16%),
+    radial-gradient(circle at 38% 38%, rgba(134, 240, 255, 0.26), rgba(134, 240, 255, 0.04) 48%, rgba(0, 0, 0, 0) 66%),
+    radial-gradient(circle at 60% 54%, rgba(216, 255, 98, 0.15), transparent 60%),
+    linear-gradient(135deg, rgba(15, 18, 35, 0.96), rgba(6, 7, 13, 0.78));
+  box-shadow:
+    inset -36px -40px 62px rgba(0, 0, 0, 0.42),
+    0 0 120px rgba(134, 240, 255, 0.07);
+  opacity: 0.8;
+}
+
+.site-cosmos__ring {
+  top: 13%;
+  right: -6%;
+  width: 34vw;
+  height: 9vw;
+  max-width: 520px;
+  max-height: 140px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  transform: rotate(-14deg);
+  box-shadow:
+    0 0 40px rgba(134, 240, 255, 0.08),
+    inset 0 0 28px rgba(255, 255, 255, 0.04);
+  opacity: 0.38;
+}
+
 .page-shell {
   padding: 20px 20px 84px;
   overflow: hidden;
+  position: relative;
+  z-index: 1;
 }
 
 .topbar,
@@ -930,6 +1087,102 @@ a {
   }
 }
 
+@keyframes nebulaDriftA {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(32px, 18px, 0) scale(1.08);
+  }
+}
+
+@keyframes nebulaDriftB {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(-36px, 22px, 0) scale(1.06);
+  }
+}
+
+@keyframes nebulaDriftC {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(18px, -12px, 0) scale(1.04);
+  }
+}
+
+@keyframes starFieldA {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-20px, 14px, 0);
+  }
+}
+
+@keyframes starFieldB {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(24px, 10px, 0);
+  }
+}
+
+@keyframes beamSweepA {
+  0% {
+    transform: translate3d(-12vw, -12vh, 0) rotate(24deg);
+    opacity: 0;
+  }
+  12%,
+  28% {
+    opacity: 0.75;
+  }
+  44%,
+  100% {
+    transform: translate3d(52vw, 34vh, 0) rotate(24deg);
+    opacity: 0;
+  }
+}
+
+@keyframes beamSweepB {
+  0% {
+    transform: translate3d(-10vw, -16vh, 0) rotate(24deg);
+    opacity: 0;
+  }
+  10%,
+  24% {
+    opacity: 0.56;
+  }
+  38%,
+  100% {
+    transform: translate3d(46vw, 30vh, 0) rotate(24deg);
+    opacity: 0;
+  }
+}
+
+@keyframes beamSweepC {
+  0% {
+    transform: translate3d(-14vw, -10vh, 0) rotate(24deg);
+    opacity: 0;
+  }
+  12%,
+  22% {
+    opacity: 0.62;
+  }
+  36%,
+  100% {
+    transform: translate3d(34vw, 28vh, 0) rotate(24deg);
+    opacity: 0;
+  }
+}
+
 @media (max-width: 1120px) {
   .hero-grid,
   .demo-layout,
@@ -983,6 +1236,24 @@ a {
 
   .hero-ambient {
     inset: -20px -10px 50px -10px;
+  }
+
+  .site-cosmos__planet {
+    top: 4%;
+    right: -16%;
+    width: 40vw;
+    height: 40vw;
+  }
+
+  .site-cosmos__ring {
+    top: 12%;
+    right: -18%;
+    width: 48vw;
+    height: 14vw;
+  }
+
+  .site-cosmos__beam {
+    width: 24vw;
   }
 
   .cosmos-transfer {
@@ -1040,6 +1311,14 @@ a {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .site-cosmos__nebula-a,
+  .site-cosmos__nebula-b,
+  .site-cosmos__nebula-c,
+  .site-cosmos__stars-a,
+  .site-cosmos__stars-b,
+  .site-cosmos__beam-a,
+  .site-cosmos__beam-b,
+  .site-cosmos__beam-c,
   .hero-glow-a,
   .hero-glow-b,
   .ticker-track,
