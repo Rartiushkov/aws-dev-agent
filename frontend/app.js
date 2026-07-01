@@ -76,6 +76,36 @@ function revealOnScroll() {
   });
 }
 
+function initHeroTilt() {
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    return;
+  }
+
+  const frame = document.querySelector("[data-tilt-frame]");
+  if (!frame) {
+    return;
+  }
+
+  function reset() {
+    frame.style.transform = "";
+    frame.classList.remove("is-tilting");
+  }
+
+  frame.addEventListener("pointermove", (event) => {
+    const rect = frame.getBoundingClientRect();
+    const px = (event.clientX - rect.left) / rect.width;
+    const py = (event.clientY - rect.top) / rect.height;
+    const rotateY = (px - 0.5) * 5.5;
+    const rotateX = (0.5 - py) * 5.5;
+
+    frame.classList.add("is-tilting");
+    frame.style.transform = `perspective(1400px) rotateX(${rotateX.toFixed(2)}deg) rotateY(${rotateY.toFixed(2)}deg)`;
+  });
+
+  frame.addEventListener("pointerleave", reset);
+  frame.addEventListener("pointercancel", reset);
+}
+
 function setText(id, value) {
   const node = document.getElementById(id);
   if (node) {
@@ -263,5 +293,6 @@ async function loadDemoState() {
 
 document.addEventListener("DOMContentLoaded", () => {
   revealOnScroll();
+  initHeroTilt();
   loadDemoState();
 });
