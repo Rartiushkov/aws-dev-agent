@@ -520,18 +520,20 @@ a {
 
 .demo-section > .section-heading,
 .artifacts-section > .section-heading {
-  color: var(--ink);
+  position: relative;
+  z-index: 2;
+  color: #ffffff;
+  mix-blend-mode: difference;
+  isolation: isolate;
 }
 
 .demo-section > .section-heading .section-label,
 .artifacts-section > .section-heading .section-label,
 .demo-section > .section-heading h2,
 .artifacts-section > .section-heading h2 {
-  color: transparent;
-  background-image: linear-gradient(180deg, var(--ink) 0 54%, var(--text) 54% 100%);
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: inherit;
+  background: none;
+  -webkit-text-fill-color: currentColor;
 }
 
 .section h2,
