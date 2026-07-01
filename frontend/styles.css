@@ -15,7 +15,7 @@
   --radius-lg: 34px;
   --radius-md: 24px;
   --radius-sm: 16px;
-  --hero-backdrop-height: clamp(760px, 100vh, 920px);
+  --hero-backdrop-height: 720px;
 }
 
 * {
@@ -98,7 +98,6 @@ a {
 
 .page-shell {
   padding: 20px 20px 84px;
-  overflow: hidden;
   position: relative;
   z-index: 1;
 }
@@ -312,9 +311,6 @@ a {
     #121212;
   border: 1px solid rgba(255, 255, 255, 0.08);
   box-shadow: var(--shadow);
-  transform-style: preserve-3d;
-  transition: transform 220ms ease, border-color 220ms ease, box-shadow 220ms ease;
-  will-change: transform;
 }
 
 .stage-frame::before {
@@ -338,11 +334,6 @@ a {
     linear-gradient(180deg, rgba(255, 255, 255, 0.04), transparent 35%);
   pointer-events: none;
   opacity: 0.75;
-}
-
-.stage-frame.is-tilting {
-  border-color: rgba(216, 255, 98, 0.18);
-  box-shadow: 0 35px 100px rgba(0, 0, 0, 0.42);
 }
 
 .stage-orbit {
@@ -517,6 +508,12 @@ a {
 
 .intro-section > .section-intro {
   color: var(--ink);
+  position: relative;
+  z-index: 2;
+}
+
+.intro-section {
+  margin-top: 120px;
 }
 
 .demo-section > .section-heading,
@@ -1021,6 +1018,10 @@ a {
 
   .hero-title {
     font-size: clamp(3.2rem, 20vw, 5.4rem);
+  }
+
+  :root {
+    --hero-backdrop-height: 680px;
   }
 
   .site-video__media {
