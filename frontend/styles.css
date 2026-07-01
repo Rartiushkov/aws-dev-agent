@@ -299,7 +299,6 @@ a {
 
 .hero-stage {
   position: relative;
-  animation: heroStageFloat 7.2s ease-in-out infinite;
 }
 
 .stage-frame {
@@ -313,6 +312,9 @@ a {
     #121212;
   border: 1px solid rgba(255, 255, 255, 0.08);
   box-shadow: var(--shadow);
+  transform-style: preserve-3d;
+  transition: transform 220ms ease, border-color 220ms ease, box-shadow 220ms ease;
+  will-change: transform;
 }
 
 .stage-frame::before {
@@ -338,8 +340,9 @@ a {
   opacity: 0.75;
 }
 
-.hero-stage:hover {
-  animation-play-state: paused;
+.stage-frame.is-tilting {
+  border-color: rgba(216, 255, 98, 0.18);
+  box-shadow: 0 35px 100px rgba(0, 0, 0, 0.42);
 }
 
 .stage-orbit {
@@ -803,16 +806,6 @@ a {
   }
   50% {
     transform: translate3d(26px, 12px, 0) scale(1.06);
-  }
-}
-
-@keyframes heroStageFloat {
-  0%,
-  100% {
-    transform: translate3d(0, 0, 0);
-  }
-  50% {
-    transform: translate3d(0, -10px, 0);
   }
 }
 
