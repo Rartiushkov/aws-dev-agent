@@ -299,6 +299,7 @@ a {
 
 .hero-stage {
   position: relative;
+  animation: heroStageFloat 7.2s ease-in-out infinite;
 }
 
 .stage-frame {
@@ -335,6 +336,10 @@ a {
     linear-gradient(180deg, rgba(255, 255, 255, 0.04), transparent 35%);
   pointer-events: none;
   opacity: 0.75;
+}
+
+.hero-stage:hover {
+  animation-play-state: paused;
 }
 
 .stage-orbit {
@@ -798,6 +803,16 @@ a {
   }
   50% {
     transform: translate3d(26px, 12px, 0) scale(1.06);
+  }
+}
+
+@keyframes heroStageFloat {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(0, -10px, 0);
   }
 }
 
