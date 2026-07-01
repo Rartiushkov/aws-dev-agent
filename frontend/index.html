@@ -3,192 +3,139 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Availabl | Demo AWS Clones With Live Migration Evidence</title>
+    <title>Availabl | Live AWS Demo Org</title>
     <meta
       name="description"
-      content="Availabl helps AWS teams discover dependencies, clone supported environments, and show live validation artifacts from a demo org without rebuilding by hand."
+      content="Availabl shows a live AWS sandbox clone story with source inventory, target mappings, and validation evidence."
     />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Sora:wght@500;600;700;800&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Syne:wght@500;600;700;800&display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="./styles.css" />
   </head>
   <body data-api-base="https://availabl-backend.onrender.com">
-    <div class="site-shell">
-      <div class="ambient ambient-left"></div>
-      <div class="ambient ambient-right"></div>
-
+    <div class="page-shell">
       <header class="topbar">
         <a class="brand" href="#top" aria-label="Availabl home">
           <span class="brand-mark">A</span>
-          <span class="brand-wording">
+          <span class="brand-text">
             <strong>availabl</strong>
-            <span>AWS migration demo workspace</span>
+            <span>live sandbox clone demo</span>
           </span>
         </a>
 
         <nav class="topnav">
-          <a href="#product">Product</a>
           <a href="#demo">Demo</a>
           <a href="#artifacts">Artifacts</a>
           <a href="#trust">Trust</a>
         </nav>
-
-        <a class="topbar-cta" href="#demo">Open Live Demo</a>
       </header>
 
       <main id="top">
-        <section class="hero">
-          <div class="hero-copy" data-animate="hero">
-            <div class="eyebrow">Live Demo Org Connected</div>
-            <h1 class="hero-title">
-              Show an AWS migration demo with
-              <span>real source, target, and validation evidence.</span>
-            </h1>
-            <p class="hero-subtitle">
-              Availabl is now wired to a live demo org so visitors can see a real
-              sandbox source environment, target clone, remapped resources, and
-              validation output instead of a fake product video.
-            </p>
+        <section class="hero" data-animate="hero">
+          <div class="hero-grid">
+            <div class="hero-copy">
+              <div class="hero-label">AWS migration experience</div>
+              <h1 class="hero-title">
+                LIVE
+                <span>DEMO</span>
+                ORG
+              </h1>
+              <p class="hero-subtitle">
+                A Product Hunt page that does not fake the product. It reads a real
+                sandbox story from source inventory to target validation.
+              </p>
 
-            <div class="hero-actions">
-              <a class="primary-button" href="#demo">See Live Demo State</a>
-              <a class="secondary-button" href="#artifacts">Review Artifacts</a>
+              <div class="hero-actions">
+                <a class="primary-link" href="#demo">Open demo state</a>
+                <a class="secondary-link" href="#artifacts">See artifacts</a>
+              </div>
             </div>
 
-            <div class="hero-proof">
-              <div class="proof-pill">
-                <strong>Demo org</strong>
-                <span id="hero-demo-account">Loading account</span>
-              </div>
-              <div class="proof-pill">
-                <strong>Region</strong>
-                <span id="hero-demo-region">Loading region</span>
-              </div>
-              <div class="proof-pill">
-                <strong>Mode</strong>
-                <span>Read-only showcase</span>
+            <div class="hero-stage reveal-card" data-parallax="18">
+              <div class="stage-frame">
+                <div class="stage-header">
+                  <span>Connected now</span>
+                  <span id="hero-demo-account">Loading account</span>
+                </div>
+
+                <div class="stage-headline">
+                  <strong id="demo-status-title">Connecting demo org...</strong>
+                  <p id="demo-status-copy">
+                    Pulling source summary, clone manifest, and validation evidence.
+                  </p>
+                </div>
+
+                <div class="stage-stack">
+                  <div class="stage-card stage-card-accent">
+                    <span class="stage-kicker">Source</span>
+                    <strong id="metric-source-env">sandbox1</strong>
+                    <p id="hero-demo-region">Loading region</p>
+                  </div>
+
+                  <div class="stage-card">
+                    <span class="stage-kicker">Target</span>
+                    <strong id="metric-target-env">sandbox2</strong>
+                    <p>clone manifest online</p>
+                  </div>
+
+                  <div class="stage-card stage-card-dark">
+                    <span class="stage-kicker">Validation</span>
+                    <strong id="metric-validation">pending</strong>
+                    <p><span id="metric-issues">pending</span> checks flagged</p>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
 
-          <aside class="hero-stack reveal-card">
-            <div class="hero-stack-card stack-status">
-              <div class="stack-header">
-                <span class="stack-kicker">Demo Connection</span>
-                <span class="stack-live">Live</span>
-              </div>
-              <h2 id="demo-status-title">Connecting demo org...</h2>
-              <p id="demo-status-copy">
-                Pulling real sandbox summary, deployment manifest, and validation report.
-              </p>
-              <div class="status-grid">
-                <div>
-                  <span class="metric-label">Source</span>
-                  <strong id="metric-source-env">sandbox1</strong>
-                </div>
-                <div>
-                  <span class="metric-label">Target</span>
-                  <strong id="metric-target-env">sandbox2</strong>
-                </div>
-                <div>
-                  <span class="metric-label">Validation</span>
-                  <strong id="metric-validation">pending</strong>
-                </div>
-                <div>
-                  <span class="metric-label">Issues</span>
-                  <strong id="metric-issues">pending</strong>
-                </div>
-              </div>
+          <div class="ticker-wrap">
+            <div class="ticker-track">
+              <span>REAL DEMO ORG</span>
+              <span>SANDBOX1 TO SANDBOX2</span>
+              <span>INVENTORY</span>
+              <span>REMAP</span>
+              <span>VALIDATION</span>
+              <span>REAL DEMO ORG</span>
+              <span>SANDBOX1 TO SANDBOX2</span>
+              <span>INVENTORY</span>
+              <span>REMAP</span>
+              <span>VALIDATION</span>
             </div>
-
-            <div class="hero-stack-card stack-console">
-              <div class="console-topline">
-                <span></span>
-                <span></span>
-                <span></span>
-              </div>
-              <div class="console-title">Migration Replay</div>
-              <div class="console-feed" id="console-feed">
-                <div class="console-row">
-                  <span>01</span>
-                  <p>Loading demo timeline...</p>
-                </div>
-              </div>
-            </div>
-          </aside>
+          </div>
         </section>
 
-        <section class="logo-band reveal-card">
-          <span>Demo-backed Product Hunt page</span>
-          <span>Sandbox source to target clone</span>
-          <span>Validation report included</span>
-          <span>No customer credentials required</span>
-        </section>
-
-        <section class="section product-section" id="product" data-animate="section">
-          <div class="section-heading">
-            <div class="eyebrow">Why This Page Works Better</div>
-            <h2>It looks like a SaaS launch page, but it behaves like a product demo.</h2>
+        <section class="section intro-section">
+          <div class="section-intro reveal-card">
+            <div class="section-label">What changed</div>
+            <h2>The page now behaves more like a studio showcase than a template hero.</h2>
             <p>
-              The page is no longer just promising migration automation. It now shows
-              a real sandbox environment, target environment, and verification trail
-              from the repo-backed demo org.
+              Instead of stacking generic SaaS pills, the page leads with one
+              visual statement and uses the backend-fed demo state as the main
+              material.
             </p>
-          </div>
-
-          <div class="feature-grid">
-            <article class="feature-card reveal-card">
-              <span class="card-kicker">Live Source</span>
-              <h3>Show a real AWS inventory snapshot.</h3>
-              <p>
-                Visitors can see the source environment name, account, region, and
-                supported resource counts from the demo org.
-              </p>
-            </article>
-
-            <article class="feature-card reveal-card">
-              <span class="card-kicker">Target Clone</span>
-              <h3>Show remapped resources, not abstract claims.</h3>
-              <p>
-                The demo surfaces created roles, queues, tables, Lambda functions,
-                and target VPC resources from an actual clone manifest.
-              </p>
-            </article>
-
-            <article class="feature-card reveal-card">
-              <span class="card-kicker">Evidence</span>
-              <h3>End with validation artifacts and issues found.</h3>
-              <p>
-                The demo includes smoke check status, copied item counts, and any
-                review flags so the page feels credible to technical buyers.
-              </p>
-            </article>
           </div>
         </section>
 
         <section class="section demo-section" id="demo" data-animate="section">
           <div class="section-heading">
-            <div class="eyebrow">Live Demo</div>
-            <h2>This is the demo org that the site is showing right now.</h2>
-            <p>
-              Safe for public visitors, but grounded in real repo state from your
-              sandbox migration runs.
-            </p>
+            <div class="section-label">Demo state</div>
+            <h2>What the visitor sees from the live sandbox run.</h2>
           </div>
 
           <div class="demo-layout">
-            <article class="demo-panel reveal-card">
+            <article class="panel panel-light reveal-card" data-parallax="10">
               <div class="panel-header">
                 <div>
-                  <span class="card-kicker">Source Inventory</span>
+                  <span class="panel-kicker">Source inventory</span>
                   <h3 id="source-title">sandbox1 inventory</h3>
                 </div>
-                <span class="panel-badge" id="source-badge">Loading</span>
+                <span class="panel-chip" id="source-badge">Loading</span>
               </div>
+
               <div class="stats-grid" id="inventory-stats">
                 <div class="stat-tile"><span>Functions</span><strong>--</strong></div>
                 <div class="stat-tile"><span>Queues</span><strong>--</strong></div>
@@ -197,33 +144,50 @@
               </div>
             </article>
 
-            <article class="demo-panel reveal-card">
+            <article class="panel panel-dark reveal-card" data-parallax="16">
               <div class="panel-header">
                 <div>
-                  <span class="card-kicker">Clone Output</span>
-                  <h3 id="target-title">sandbox2 clone</h3>
+                  <span class="panel-kicker">Migration replay</span>
+                  <h3>Console timeline</h3>
                 </div>
-                <span class="panel-badge panel-badge-dark" id="target-badge">Loading</span>
               </div>
-              <div class="mapping-list" id="mapping-list">
-                <div class="mapping-item">
-                  <strong>Loading mappings...</strong>
-                  <span>Please wait while the backend reads the demo manifest.</span>
+
+              <div class="console-feed" id="console-feed">
+                <div class="console-row">
+                  <span>01</span>
+                  <p>Loading demo timeline...</p>
                 </div>
               </div>
             </article>
+          </div>
+
+          <div class="mapping-board reveal-card">
+            <div class="mapping-copy">
+              <span class="panel-kicker">Clone output</span>
+              <h3 id="target-title">sandbox2 clone manifest</h3>
+              <p>
+                Real target resources from the demo org. No fake product copy,
+                no pretend flowchart.
+              </p>
+            </div>
+            <div class="mapping-list" id="mapping-list">
+              <div class="mapping-item">
+                <strong>Loading mappings...</strong>
+                <span>Please wait while the backend reads the deployment manifest.</span>
+              </div>
+            </div>
           </div>
         </section>
 
         <section class="section artifacts-section" id="artifacts" data-animate="section">
           <div class="section-heading">
-            <div class="eyebrow">Artifacts</div>
-            <h2>What the visitor can inspect after the clone.</h2>
+            <div class="section-label">Artifacts</div>
+            <h2>Proof, not promises.</h2>
           </div>
 
           <div class="artifact-grid">
             <article class="artifact-card reveal-card">
-              <span class="card-kicker">Validation</span>
+              <span class="panel-kicker">Validation report</span>
               <h3 id="validation-headline">Loading validation report</h3>
               <p id="validation-copy">
                 Pulling smoke checks and issue counts from the sandbox validation report.
@@ -235,7 +199,7 @@
             </article>
 
             <article class="artifact-card reveal-card">
-              <span class="card-kicker">Resource Trail</span>
+              <span class="panel-kicker">Deployment summary</span>
               <h3 id="resource-headline">Loading deployment summary</h3>
               <ul class="artifact-points" id="resource-points">
                 <li>Loading deployment summary...</li>
@@ -243,7 +207,7 @@
             </article>
 
             <article class="artifact-card reveal-card">
-              <span class="card-kicker">ECS Clone</span>
+              <span class="panel-kicker">ECS evidence</span>
               <h3 id="ecs-headline">Loading ECS demo path</h3>
               <ul class="artifact-points" id="ecs-points">
                 <li>Loading ECS clone evidence...</li>
@@ -253,44 +217,14 @@
         </section>
 
         <section class="section trust-section" id="trust" data-animate="section">
-          <div class="section-heading">
-            <div class="eyebrow">Trust Model</div>
-            <h2>Still narrow. Still careful. Now easier to believe.</h2>
+          <div class="trust-banner reveal-card">
+            <div class="section-label">Trust model</div>
+            <h2>Public-safe demo. Real repo state. No customer credentials.</h2>
             <p>
-              This demo page shows a controlled sandbox flow. It does not ask strangers
-              for AWS credentials, and it does not pretend every migration path is solved.
+              The experience reads a controlled sandbox run through the backend,
+              so people can understand the product without you exposing a buyer's
+              AWS environment.
             </p>
-          </div>
-
-          <div class="trust-grid">
-            <article class="trust-card reveal-card">
-              <h3>Public-safe demo org</h3>
-              <p>The page reads pre-existing demo artifacts through the backend instead of exposing customer infrastructure.</p>
-            </article>
-            <article class="trust-card reveal-card">
-              <h3>Real backend link</h3>
-              <p>Frontend and backend are now connected, so the page can evolve from showcase into interactive demo.</p>
-            </article>
-            <article class="trust-card reveal-card">
-              <h3>Honest support scope</h3>
-              <p>The experience highlights supported clone paths first and leaves broader edge cases in guided-review territory.</p>
-            </article>
-          </div>
-        </section>
-
-        <section class="cta-section reveal-card">
-          <div class="cta-copy">
-            <div class="eyebrow">Demo Ready</div>
-            <h2>Use the live sandbox story on the page, then move the buyer into a guided walkthrough.</h2>
-            <p>
-              You now have a Product Hunt landing page with a real backend-powered demo
-              state instead of static marketing copy alone.
-            </p>
-          </div>
-
-          <div class="cta-actions">
-            <a class="primary-button" href="#demo">Open Demo Panel</a>
-            <a class="secondary-button" href="#top">Back To Top</a>
           </div>
         </section>
       </main>

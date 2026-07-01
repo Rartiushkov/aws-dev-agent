@@ -18,6 +18,28 @@ function revealOnScroll() {
   });
 }
 
+function initParallaxCards() {
+  const cards = document.querySelectorAll("[data-parallax]");
+  if (!cards.length) {
+    return;
+  }
+
+  function update() {
+    const viewportHeight = window.innerHeight || 1;
+    cards.forEach((card) => {
+      const strength = Number(card.dataset.parallax || 0);
+      const rect = card.getBoundingClientRect();
+      const centerOffset = rect.top + rect.height / 2 - viewportHeight / 2;
+      const translate = (centerOffset / viewportHeight) * strength * -1;
+      card.style.setProperty("--parallax-y", `${translate.toFixed(2)}px`);
+    });
+  }
+
+  update();
+  window.addEventListener("scroll", update, { passive: true });
+  window.addEventListener("resize", update);
+}
+
 function setText(id, value) {
   const node = document.getElementById(id);
   if (node) {
@@ -201,5 +223,6 @@ async function loadDemoState() {
 
 document.addEventListener("DOMContentLoaded", () => {
   revealOnScroll();
+  initParallaxCards();
   loadDemoState();
 });
