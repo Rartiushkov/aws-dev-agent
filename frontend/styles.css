@@ -77,7 +77,7 @@ a {
   height: 100%;
   object-fit: cover;
   object-position: center center;
-  transform: scale(1.14);
+  transform: scale(1.32);
   transform-origin: center center;
   filter: saturate(1.04) contrast(1.06) brightness(0.56);
 }
@@ -514,15 +514,21 @@ a {
   color: var(--ink);
 }
 
-.intro-section > .section-intro,
-.demo-section > .section-heading,
-.artifacts-section > .section-heading {
-  color: var(--text);
+.intro-section > .section-intro {
+  color: var(--ink);
 }
 
-.demo-section > .section-heading p,
-.artifacts-section > .section-heading p {
-  color: var(--muted);
+.demo-section > .section-heading,
+.artifacts-section > .section-heading {
+  color: #ffffff;
+  mix-blend-mode: difference;
+}
+
+.demo-section > .section-heading .section-label,
+.artifacts-section > .section-heading .section-label,
+.demo-section > .section-heading h2,
+.artifacts-section > .section-heading h2 {
+  color: inherit;
 }
 
 .section h2,
@@ -944,7 +950,7 @@ a {
 
   .site-video__media {
     object-position: center center;
-    transform: scale(1.18);
+    transform: scale(1.4);
   }
 
   .site-video__shade {
