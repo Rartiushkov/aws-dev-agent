@@ -101,13 +101,17 @@ function sanitizeRegion(val) {
 export async function upsertUser(user) {
   const ref  = doc(db, 'users', user.uid);
 
+  const snap = await getDoc(ref);
+  const existingPlan = snap.exists() ? snap.data().plan : null;
+
   const data = {
     displayName:  sanitizeString(user.displayName || '', 128),
     email:        sanitizeString(user.email || '', 320),
     photoURL:     sanitizeString(user.photoURL  || '', 512),
     lastLoginAt:  serverTimestamp(),
-    plan:         'starter',
     createdAt:    serverTimestamp(),
+    // Preserve existing plan — only default to starter for new users
+    plan: existingPlan || 'starter',
   };
 
   await setDoc(ref, data, { merge: true });

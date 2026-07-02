@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <rect width="1200" height="630" fill="#0d0d0d"/>
+  <rect x="0" y="0" width="1200" height="4" fill="#5cdc96"/>
+  <!-- Brand mark -->
+  <rect x="80" y="220" width="56" height="56" rx="12" fill="#5cdc96"/>
+  <path d="M94 248h28M110 236l10 12-10 12" stroke="#050505" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Wordmark -->
+  <text x="154" y="261" font-family="Inter, -apple-system, sans-serif" font-size="40" font-weight="700" fill="#ffffff">availabl</text>
+  <!-- Tagline -->
+  <text x="80" y="330" font-family="Inter, -apple-system, sans-serif" font-size="52" font-weight="800" fill="#ffffff" letter-spacing="-2">AWS migrations, automated.</text>
+  <!-- Sub -->
+  <text x="80" y="390" font-family="Inter, -apple-system, sans-serif" font-size="24" fill="#a3a3a3">Discover, recreate and validate your AWS environment</text>
+  <text x="80" y="422" font-family="Inter, -apple-system, sans-serif" font-size="24" fill="#a3a3a3">across accounts and regions — in minutes.</text>
+  <!-- CTA badge -->
+  <rect x="80" y="466" width="180" height="44" rx="8" fill="#5cdc96"/>
+  <text x="170" y="493" font-family="Inter, -apple-system, sans-serif" font-size="16" font-weight="700" fill="#050505" text-anchor="middle">Get started free →</text>
+</svg>

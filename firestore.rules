@@ -1,0 +1,87 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // ── Helper functions ───────────────────────────────────────────────────
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isOwner(userId) {
+      return isSignedIn() && request.auth.uid == userId;
+    }
+
+    function validString(val, maxLen) {
+      return val is string && val.size() <= maxLen;
+    }
+
+    function validAccountId(val) {
+      return val is string && val.matches('^[0-9]{12}$');
+    }
+
+    function validArn(val) {
+      return val is string && val.size() <= 2048 &&
+        (val == '' || val.matches('^arn:aws:.*'));
+    }
+
+    function validRegion(val) {
+      return val in [
+        'us-east-1','us-east-2','us-west-1','us-west-2',
+        'eu-west-1','eu-west-2','eu-west-3','eu-central-1','eu-north-1',
+        'ap-southeast-1','ap-southeast-2','ap-northeast-1','ap-northeast-2',
+        'ap-south-1','sa-east-1','ca-central-1','me-south-1','af-south-1'
+      ];
+    }
+
+    function validConnectionData(data) {
+      return validString(data.name, 128)
+          && validAccountId(data.src_account)
+          && validRegion(data.src_region)
+          && validArn(data.src_role_arn)
+          && validAccountId(data.tgt_account)
+          && validRegion(data.tgt_region)
+          && validArn(data.tgt_role_arn)
+          && data.status in ['pending', 'active', 'error'];
+    }
+
+    // ── Users collection ───────────────────────────────────────────────────
+    // Each user can only read and write their own document.
+    // No user can read another user's data.
+    match /users/{userId} {
+      allow read, write: if isSignedIn() && request.auth.uid == userId;
+
+      // ── AWS Connections sub-collection ──────────────────────────────────
+      match /aws_connections/{connectionId} {
+        allow read:   if isOwner(userId);
+        allow create: if isOwner(userId)
+                      && validConnectionData(request.resource.data);
+        allow update: if isOwner(userId)
+                      && validConnectionData(request.resource.data);
+        allow delete: if isOwner(userId);
+      }
+
+      // ── Migrations sub-collection ────────────────────────────────────────
+      match /migrations/{migrationId} {
+        allow read:   if isOwner(userId);
+        allow create: if isOwner(userId)
+                      && validString(request.resource.data.name, 128)
+                      && request.resource.data.status == 'pending';
+        allow update: if isOwner(userId);
+        allow delete: if isOwner(userId);
+      }
+
+      // ── Billing events sub-collection ────────────────────────────────────
+      // Written by backend via Firestore REST (no client auth needed for writes)
+      // Client can only read their own billing history
+      match /billing_events/{eventId} {
+        allow read:  if isOwner(userId);
+        allow write: if false;
+      }
+    }
+
+    // ── Deny everything else ───────────────────────────────────────────────
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

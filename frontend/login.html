@@ -203,6 +203,15 @@
       }
     });
 
+    // Add back link dynamically
+    const backLink = document.createElement('a');
+    backLink.href = '/index.html';
+    backLink.textContent = '← Back to home';
+    backLink.style.cssText = 'display:block;text-align:center;margin-top:20px;font-size:13px;color:#a3a3a3;text-decoration:none;';
+    backLink.onmouseover = () => backLink.style.color = '#fff';
+    backLink.onmouseout  = () => backLink.style.color = '#a3a3a3';
+    document.querySelector('.login-card')?.after(backLink);
+
     const btn   = document.getElementById('btn-google');
     const error = document.getElementById('login-error');
 
