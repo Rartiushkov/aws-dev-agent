@@ -79,13 +79,14 @@ def _create_checkout_session(uid, email, price_id):
     return _stripe_request("POST", "/checkout/sessions", data)
 
 
-def _update_firestore_plan(uid, plan):
-    """Update user plan in Firestore via REST API."""
+def _firestore_patch(path, fields):
+    """PATCH a Firestore document with given fields dict."""
+    field_names = "&".join(f"updateMask.fieldPaths={k}" for k in fields)
     url = (
         f"https://firestore.googleapis.com/v1/projects/{FIREBASE_PROJECT_ID}"
-        f"/databases/(default)/documents/users/{uid}?updateMask.fieldPaths=plan"
+        f"/databases/(default)/documents/{path}?{field_names}"
     )
-    body = json.dumps({"fields": {"plan": {"stringValue": plan}}}).encode("utf-8")
+    body = json.dumps({"fields": fields}).encode("utf-8")
     req = urllib.request.Request(url, data=body, method="PATCH")
     req.add_header("Content-Type", "application/json")
     try:
@@ -93,6 +94,67 @@ def _update_firestore_plan(uid, plan):
             return resp.status == 200
     except Exception:
         return False
+
+
+def _firestore_add(collection_path, fields):
+    """POST a new document to a Firestore collection."""
+    url = (
+        f"https://firestore.googleapis.com/v1/projects/{FIREBASE_PROJECT_ID}"
+        f"/databases/(default)/documents/{collection_path}"
+    )
+    body = json.dumps({"fields": fields}).encode("utf-8")
+    req = urllib.request.Request(url, data=body, method="POST")
+    req.add_header("Content-Type", "application/json")
+    try:
+        with urllib.request.urlopen(req, timeout=10):
+            return True
+    except Exception:
+        return False
+
+
+def _ts_value(iso_str):
+    return {"timestampValue": iso_str}
+
+
+def _str_value(s):
+    return {"stringValue": str(s)}
+
+
+def _bool_value(b):
+    return {"booleanValue": bool(b)}
+
+
+def _int_value(n):
+    return {"integerValue": str(int(n))}
+
+
+def _update_firestore_plan(uid, plan, extra=None):
+    """Update user plan + billing fields in Firestore."""
+    import datetime
+    now = datetime.datetime.utcnow().isoformat() + "Z"
+    fields = {
+        "plan":          _str_value(plan),
+        "planStatus":    _str_value("active" if plan != "starter" else "canceled"),
+        "planUpdatedAt": _ts_value(now),
+    }
+    if extra:
+        fields.update(extra)
+    return _firestore_patch(f"users/{uid}", fields)
+
+
+def _add_billing_event(uid, event_type, amount=0, currency="usd", invoice_id="", subscription_id=""):
+    """Write a billing event to users/{uid}/billing_events."""
+    import datetime
+    now = datetime.datetime.utcnow().isoformat() + "Z"
+    fields = {
+        "type":           _str_value(event_type),
+        "amount":         _int_value(amount),
+        "currency":       _str_value(currency),
+        "invoiceId":      _str_value(invoice_id),
+        "subscriptionId": _str_value(subscription_id),
+        "createdAt":      _ts_value(now),
+    }
+    return _firestore_add(f"users/{uid}/billing_events", fields)
 
 
 ROOT_DIR = Path(__file__).resolve().parent
@@ -270,17 +332,68 @@ class RenderBackendHandler(BaseHTTPRequestHandler):
                 event = json.loads(raw_body.decode("utf-8"))
             except Exception:
                 return self._send_json(400, {"error": "Invalid JSON"})
+            import datetime
             event_type = event.get("type", "")
             if event_type == "checkout.session.completed":
                 session = event.get("data", {}).get("object", {})
                 uid = session.get("metadata", {}).get("uid")
+                sub_id = session.get("subscription", "")
+                customer_id = session.get("customer", "")
                 if uid:
-                    _update_firestore_plan(uid, "pro")
+                    extra = {
+                        "stripeCustomerId":     _str_value(customer_id),
+                        "stripeSubscriptionId": _str_value(sub_id),
+                        "cancelAtPeriodEnd":    _bool_value(False),
+                        "trialEnd":             _str_value(""),
+                    }
+                    _update_firestore_plan(uid, "pro", extra=extra)
+                    _add_billing_event(uid, "subscription_created",
+                                       amount=session.get("amount_total", 29900),
+                                       currency=session.get("currency", "usd"),
+                                       subscription_id=sub_id)
+            elif event_type == "customer.subscription.updated":
+                sub = event.get("data", {}).get("object", {})
+                uid = sub.get("metadata", {}).get("uid")
+                if uid:
+                    period_end = sub.get("current_period_end", 0)
+                    period_end_iso = datetime.datetime.utcfromtimestamp(period_end).isoformat() + "Z" if period_end else ""
+                    cancel_at_end = sub.get("cancel_at_period_end", False)
+                    extra = {
+                        "currentPeriodEnd":     _ts_value(period_end_iso) if period_end_iso else _str_value(""),
+                        "cancelAtPeriodEnd":    _bool_value(cancel_at_end),
+                        "stripeSubscriptionId": _str_value(sub.get("id", "")),
+                    }
+                    plan = "pro" if sub.get("status") == "active" else "starter"
+                    _update_firestore_plan(uid, plan, extra=extra)
             elif event_type in ("customer.subscription.deleted", "customer.subscription.paused"):
                 sub = event.get("data", {}).get("object", {})
                 uid = sub.get("metadata", {}).get("uid")
                 if uid:
-                    _update_firestore_plan(uid, "starter")
+                    _update_firestore_plan(uid, "starter", extra={
+                        "stripeSubscriptionId": _str_value(""),
+                        "cancelAtPeriodEnd":    _bool_value(False),
+                    })
+                    _add_billing_event(uid, event_type.split(".")[-1],
+                                       subscription_id=sub.get("id", ""))
+            elif event_type == "invoice.payment_succeeded":
+                invoice = event.get("data", {}).get("object", {})
+                customer_id = invoice.get("customer", "")
+                uid = invoice.get("subscription_details", {}).get("metadata", {}).get("uid", "")
+                if uid:
+                    _add_billing_event(uid, "payment_succeeded",
+                                       amount=invoice.get("amount_paid", 0),
+                                       currency=invoice.get("currency", "usd"),
+                                       invoice_id=invoice.get("id", ""),
+                                       subscription_id=invoice.get("subscription", ""))
+            elif event_type == "invoice.payment_failed":
+                invoice = event.get("data", {}).get("object", {})
+                uid = invoice.get("subscription_details", {}).get("metadata", {}).get("uid", "")
+                if uid:
+                    _update_firestore_plan(uid, "pro", extra={"planStatus": _str_value("past_due")})
+                    _add_billing_event(uid, "payment_failed",
+                                       amount=invoice.get("amount_due", 0),
+                                       currency=invoice.get("currency", "usd"),
+                                       invoice_id=invoice.get("id", ""))
             return self._send_json(200, {"received": True})
         if self.path != "/api/cloudflare":
             return self._send_json(404, {"error": "Not found"})

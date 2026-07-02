@@ -242,27 +242,39 @@
             <div class="settings-card-body">
               <div class="settings-row">
                 <div>
-                  <div class="settings-row-label">Starter</div>
-                  <div class="settings-row-sub">1 sandbox migration included</div>
+                  <div class="settings-row-label" id="billing-plan-name">Loading…</div>
+                  <div class="settings-row-sub" id="billing-plan-sub">—</div>
                 </div>
-                <span class="badge-plan">Free</span>
+                <span class="badge-plan" id="billing-plan-badge">—</span>
               </div>
-              <div style="display:flex;gap:10px;flex-wrap:wrap;">
+              <div style="display:flex;gap:10px;flex-wrap:wrap;" id="billing-actions">
                 <a href="pricing.html" class="btn-save" style="text-decoration:none;display:inline-block;">Upgrade to Pro →</a>
               </div>
             </div>
           </div>
 
           <div class="settings-card">
-            <div class="settings-card-head">Usage this month</div>
+            <div class="settings-card-head">Subscription details</div>
             <div class="settings-card-body">
               <div class="settings-row">
-                <div>
-                  <div class="settings-row-label">Migrations run</div>
-                  <div class="settings-row-sub">Sandbox only</div>
-                </div>
-                <strong style="color:var(--card-text);">1 / 1</strong>
+                <div class="settings-row-label">Status</div>
+                <span id="billing-status" style="font-size:13px;font-weight:600;">—</span>
               </div>
+              <div class="settings-row">
+                <div class="settings-row-label">Next billing date</div>
+                <span id="billing-next-date" style="font-size:13px;color:var(--card-muted);">—</span>
+              </div>
+              <div class="settings-row">
+                <div class="settings-row-label">Subscription ID</div>
+                <span id="billing-sub-id" style="font-size:11px;font-family:monospace;color:var(--card-muted);">—</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="settings-card">
+            <div class="settings-card-head">Payment history</div>
+            <div class="settings-card-body" id="billing-events-list">
+              <div style="font-size:13px;color:var(--card-muted);text-align:center;padding:8px 0;">No payment history yet.</div>
             </div>
           </div>
         </div>
@@ -345,7 +357,8 @@
 
   <script type="module">
     import { requireAuth, signOutUser } from './auth.js';
-    import { getAwsConnections, deleteAwsConnection, updateUserName } from './db.js';
+    import { getAwsConnections, deleteAwsConnection, updateUserName, getBillingInfo, getBillingEvents } from './db.js';
+    import { startCheckout } from './stripe.js';
 
     requireAuth().then(async (user) => {
       // Sidebar
@@ -383,6 +396,68 @@
       } else if (pInitLg) {
         pInitLg.textContent = (user.displayName || user.email || '?')[0].toUpperCase();
       }
+
+      // Billing info from Firestore
+      try {
+        const billing = await getBillingInfo();
+        if (billing) {
+          const isPro = billing.plan === 'pro';
+          const el = (id) => document.getElementById(id);
+
+          if (el('billing-plan-name')) el('billing-plan-name').textContent = isPro ? 'Pro' : 'Starter';
+          if (el('billing-plan-badge')) {
+            el('billing-plan-badge').textContent = isPro ? '$299/mo' : 'Free';
+            el('billing-plan-badge').style.color = isPro ? '#5cdc96' : '';
+          }
+          if (el('billing-plan-sub')) {
+            el('billing-plan-sub').textContent = isPro
+              ? 'Unlimited scans, production accounts, priority support'
+              : '1 sandbox scan included';
+          }
+          if (el('billing-actions')) {
+            el('billing-actions').innerHTML = isPro
+              ? `<button class="btn-save" id="btn-cancel-sub" style="background:#fee2e2;color:#b91c1c;border-color:#fca5a5;">Cancel subscription</button>`
+              : `<button class="btn-save" id="btn-upgrade">Upgrade to Pro →</button>`;
+            document.getElementById('btn-upgrade')?.addEventListener('click', () => startCheckout('pro'));
+            document.getElementById('btn-cancel-sub')?.addEventListener('click', () => {
+              if (confirm('Cancel your Pro subscription? You will keep access until the end of the billing period.')) {
+                alert('To cancel, please contact support@availabl.io or manage via Stripe portal.');
+              }
+            });
+          }
+
+          const statusMap = { active: '✓ Active', canceled: 'Canceled', past_due: '⚠ Past due', trialing: 'Trial' };
+          if (el('billing-status')) el('billing-status').textContent = statusMap[billing.planStatus] || billing.planStatus || '—';
+
+          if (el('billing-next-date') && billing.currentPeriodEnd) {
+            const d = billing.currentPeriodEnd.toDate ? billing.currentPeriodEnd.toDate() : new Date(billing.currentPeriodEnd);
+            el('billing-next-date').textContent = d.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+          } else if (el('billing-next-date')) {
+            el('billing-next-date').textContent = isPro ? '—' : 'N/A (free plan)';
+          }
+
+          if (el('billing-sub-id')) el('billing-sub-id').textContent = billing.stripeSubscriptionId || '—';
+        }
+
+        const events = await getBillingEvents();
+        const evList = document.getElementById('billing-events-list');
+        if (evList && events.length > 0) {
+          const typeLabel = { subscription_created: 'Subscription started', payment_succeeded: 'Payment succeeded', payment_failed: 'Payment failed', deleted: 'Subscription canceled', paused: 'Subscription paused' };
+          evList.innerHTML = events.map(e => {
+            const d = e.createdAt?.toDate ? e.createdAt.toDate() : new Date(e.createdAt);
+            const dateStr = d.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
+            const amt = e.amount ? `$${(e.amount / 100).toFixed(2)}` : '';
+            const color = e.type === 'payment_failed' ? '#b91c1c' : '#16a34a';
+            return `<div class="settings-row">
+              <div>
+                <div class="settings-row-label">${typeLabel[e.type] || e.type}</div>
+                <div class="settings-row-sub">${dateStr}${e.invoiceId ? ' · ' + e.invoiceId : ''}</div>
+              </div>
+              <strong style="color:${color};font-size:13px;">${amt}</strong>
+            </div>`;
+          }).join('');
+        }
+      } catch(e) {}
 
       // AWS connections from Firestore
       try {

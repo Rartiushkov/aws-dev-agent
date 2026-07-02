@@ -187,3 +187,30 @@ export async function getMigrations() {
   const snap = await getDocs(q);
   return snap.docs.map(d => ({ id: d.id, ...d.data() }));
 }
+
+// ─── Billing ─────────────────────────────────────────────────────────────────
+
+export async function getBillingInfo() {
+  const snap = await getDoc(doc(db, 'users', uid()));
+  if (!snap.exists()) return null;
+  const d = snap.data();
+  return {
+    plan:                 d.plan || 'starter',
+    planStatus:           d.planStatus || 'active',
+    planUpdatedAt:        d.planUpdatedAt || null,
+    stripeCustomerId:     d.stripeCustomerId || null,
+    stripeSubscriptionId: d.stripeSubscriptionId || null,
+    currentPeriodEnd:     d.currentPeriodEnd || null,
+    cancelAtPeriodEnd:    d.cancelAtPeriodEnd || false,
+    trialEnd:             d.trialEnd || null,
+  };
+}
+
+export async function getBillingEvents() {
+  const q = query(
+    collection(db, 'users', uid(), 'billing_events'),
+    orderBy('createdAt', 'desc'),
+  );
+  const snap = await getDocs(q);
+  return snap.docs.map(d => ({ id: d.id, ...d.data() }));
+}
