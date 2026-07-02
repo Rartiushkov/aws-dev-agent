@@ -1,0 +1,113 @@
+{
+  "manifest_path": "state\\clients\\sandbox-demo\\deployments\\sandbox2\\deployment_manifest.json",
+  "target_env": "sandbox2",
+  "deployment_key": "sandbox2",
+  "region": "us-east-1",
+  "functions": [
+    {
+      "function_name": "sandbox1-worker",
+      "state": "Active",
+      "last_update_status": "Successful",
+      "issues": []
+    }
+  ],
+  "secrets": [],
+  "dynamodb_tables": [
+    {
+      "source_table": "sandbox1-orders",
+      "target_table": "sandbox1-orders",
+      "present": true,
+      "expected_item_count": 1,
+      "actual_item_count": 1,
+      "source_item_count": 1,
+      "issues": []
+    }
+  ],
+  "smoke_checks": [
+    {
+      "name": "lambda-functions-active",
+      "status": "ok",
+      "issues": []
+    },
+    {
+      "name": "lambda-dry-run-invoke",
+      "status": "ok",
+      "issues": []
+    },
+    {
+      "name": "lambda-event-source-mapping-count",
+      "status": "ok",
+      "expected": 1,
+      "actual": 1
+    },
+    {
+      "name": "lambda-event-source-mappings-enabled",
+      "status": "ok",
+      "issues": []
+    },
+    {
+      "name": "sqs-queues-present",
+      "status": "ok",
+      "issues": []
+    },
+    {
+      "name": "ecs-clusters-present",
+      "status": "ok",
+      "issues": []
+    },
+    {
+      "name": "ecs-services-steady",
+      "status": "ok",
+      "issues": []
+    },
+    {
+      "name": "api-gateways-present",
+      "status": "ok",
+      "issues": []
+    },
+    {
+      "name": "api-gateway-stages-present",
+      "status": "ok",
+      "issues": []
+    },
+    {
+      "name": "network-resources-present",
+      "status": "issue",
+      "issues": [
+        {
+          "resource": "vpcs",
+          "error": "An error occurred (InvalidVpcID.NotFound) when calling the DescribeVpcs operation: The vpc ID 'vpc-01209ca70655a3a1f' does not exist"
+        },
+        {
+          "resource": "subnets",
+          "error": "An error occurred (InvalidSubnetID.NotFound) when calling the DescribeSubnets operation: The subnet ID 'subnet-0aa42b2acf7dc27e5' does not exist"
+        },
+        {
+          "resource": "route_tables",
+          "error": "An error occurred (InvalidRouteTableID.NotFound) when calling the DescribeRouteTables operation: The routeTable ID 'rtb-0695045602c9759f4' does not exist"
+        }
+      ]
+    },
+    {
+      "name": "codebuild-projects-present",
+      "status": "ok",
+      "issues": []
+    },
+    {
+      "name": "kms-keys-ready",
+      "status": "ok",
+      "issues": []
+    },
+    {
+      "name": "api-gateway-extras-parity",
+      "status": "ok",
+      "issues": []
+    },
+    {
+      "name": "s3-bucket-parity",
+      "status": "ok",
+      "issues": []
+    }
+  ],
+  "issues_found": true
+}

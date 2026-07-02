@@ -1,5 +1,6 @@
 import argparse
 import json
+import shutil
 import subprocess
 import sys
 from datetime import datetime, timezone
@@ -25,6 +26,7 @@ from executor.scripts.transfer_common import (
 def parse_args():
     parser = argparse.ArgumentParser(description="Export discovered AWS artifacts into a Git-friendly backup folder.")
     parser.add_argument("--source-env", default="")
+    parser.add_argument("--inventory-key", default="")
     parser.add_argument("--config", default="")
     parser.add_argument("--output-dir", default="")
     parser.add_argument("--init-git", action="store_true")
@@ -43,9 +45,9 @@ def parse_args():
     return parser.parse_args()
 
 
-def default_output_dir(source_env, git_config, client_slug=""):
+def default_output_dir(source_env, git_config, client_slug="", export_name=""):
     org = git_config.get("organization", "") or "local"
-    return state_root(resolve_client_slug(client_slug, source_env=source_env)) / "client_git_exports" / org / source_env
+    return state_root(resolve_client_slug(client_slug, source_env=source_env)) / "client_git_exports" / org / (export_name or source_env)
 
 
 def destination_export_repo_name(source_env, git_config, explicit_repo_name=""):
@@ -82,6 +84,7 @@ def build_index(snapshot, risk_report, summary):
             "dependency_graph": "snapshots/dependency_graph.json",
             "risk_report": "reports/risk_report.json",
             "deployment_manifest": "reports/deployment_manifest.json",
+            "lambda_code": "lambda_code/",
         },
     }
 
@@ -172,7 +175,7 @@ def main():
     })
     git_config = git_backup_config(config)
 
-    inventory_dir = inventory_dir_path(source_env, client_slug=client_slug)
+    inventory_dir = inventory_dir_path(source_env, args.inventory_key, client_slug=client_slug)
     deployment_dir = deployment_dir_path(source_env, client_slug=client_slug)
 
     snapshot = json.loads((inventory_dir / "source_snapshot.json").read_text(encoding="utf-8"))
@@ -183,7 +186,7 @@ def main():
     export_snapshot = sanitize_for_export(snapshot)
     export_dependency_graph = sanitize_for_export(dependency_graph)
 
-    output_dir = Path(args.output_dir) if args.output_dir else default_output_dir(source_env, git_config, client_slug)
+    output_dir = Path(args.output_dir) if args.output_dir else default_output_dir(source_env, git_config, client_slug, args.inventory_key)
     snapshots_dir = output_dir / "snapshots"
     reports_dir = output_dir / "reports"
     snapshots_dir.mkdir(parents=True, exist_ok=True)
@@ -200,6 +203,13 @@ def main():
             deployment_manifest_path.read_text(encoding="utf-8"),
             encoding="utf-8",
         )
+
+    lambda_code_dir = inventory_dir / "lambda_code"
+    if lambda_code_dir.exists():
+        target_lambda_code_dir = output_dir / "lambda_code"
+        if target_lambda_code_dir.exists():
+            shutil.rmtree(target_lambda_code_dir)
+        shutil.copytree(lambda_code_dir, target_lambda_code_dir)
 
     index = build_index(export_snapshot, risk_report, summary)
     (output_dir / "README.json").write_text(json.dumps(index, indent=2, default=str), encoding="utf-8")

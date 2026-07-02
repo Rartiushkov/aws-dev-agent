@@ -1,0 +1,131 @@
+{
+  "generated_at": "2026-05-14T11:43:43.550333+00:00",
+  "source_env": "",
+  "account_id": "027087672282",
+  "region": "us-east-1",
+  "exported": [
+    {
+      "function_name": "remediator",
+      "function_arn": "arn:aws:lambda:us-east-1:027087672282:function:remediator",
+      "package_type": "Zip",
+      "artifact_dir": "state\\clients\\rartiushkov\\aws_inventory\\full-account-scan-us-east-1\\lambda_code\\remediator",
+      "zip_path": "state\\clients\\rartiushkov\\aws_inventory\\full-account-scan-us-east-1\\lambda_code\\remediator\\function.zip",
+      "configuration_path": "state\\clients\\rartiushkov\\aws_inventory\\full-account-scan-us-east-1\\lambda_code\\remediator\\configuration.redacted.json",
+      "code_metadata_path": "state\\clients\\rartiushkov\\aws_inventory\\full-account-scan-us-east-1\\lambda_code\\remediator\\code.json",
+      "status": "ok"
+    },
+    {
+      "function_name": "task-dispatcher",
+      "function_arn": "arn:aws:lambda:us-east-1:027087672282:function:task-dispatcher",
+      "package_type": "Zip",
+      "artifact_dir": "state\\clients\\rartiushkov\\aws_inventory\\full-account-scan-us-east-1\\lambda_code\\task-dispatcher",
+      "zip_path": "state\\clients\\rartiushkov\\aws_inventory\\full-account-scan-us-east-1\\lambda_code\\task-dispatcher\\function.zip",
+      "configuration_path": "state\\clients\\rartiushkov\\aws_inventory\\full-account-scan-us-east-1\\lambda_code\\task-dispatcher\\configuration.redacted.json",
+      "code_metadata_path": "state\\clients\\rartiushkov\\aws_inventory\\full-account-scan-us-east-1\\lambda_code\\task-dispatcher\\code.json",
+      "status": "ok"
+    },
+    {
+      "function_name": "ai-orchestrator",
+      "function_arn": "arn:aws:lambda:us-east-1:027087672282:function:ai-orchestrator",
+      "package_type": "Zip",
+      "artifact_dir": "state\\clients\\rartiushkov\\aws_inventory\\full-account-scan-us-east-1\\lambda_code\\ai-orchestrator",
+      "zip_path": "state\\clients\\rartiushkov\\aws_inventory\\full-account-scan-us-east-1\\lambda_code\\ai-orchestrator\\function.zip",
+      "configuration_path": "state\\clients\\rartiushkov\\aws_inventory\\full-account-scan-us-east-1\\lambda_code\\ai-orchestrator\\configuration.redacted.json",
+      "code_metadata_path": "state\\clients\\rartiushkov\\aws_inventory\\full-account-scan-us-east-1\\lambda_code\\ai-orchestrator\\code.json",
+      "status": "ok"
+    },
+    {
+      "function_name": "sandbox1-worker",
+      "function_arn": "arn:aws:lambda:us-east-1:027087672282:function:sandbox1-worker",
+      "package_type": "Zip",
+      "artifact_dir": "state\\clients\\rartiushkov\\aws_inventory\\full-account-scan-us-east-1\\lambda_code\\sandbox1-worker",
+      "zip_path": "state\\clients\\rartiushkov\\aws_inventory\\full-account-scan-us-east-1\\lambda_code\\sandbox1-worker\\function.zip",
+      "configuration_path": "state\\clients\\rartiushkov\\aws_inventory\\full-account-scan-us-east-1\\lambda_code\\sandbox1-worker\\configuration.redacted.json",
+      "code_metadata_path": "state\\clients\\rartiushkov\\aws_inventory\\full-account-scan-us-east-1\\lambda_code\\sandbox1-worker\\code.json",
+      "status": "ok"
+    },
+    {
+      "function_name": "sandbox2-worker",
+      "function_arn": "arn:aws:lambda:us-east-1:027087672282:function:sandbox2-worker",
+      "package_type": "Zip",
+      "artifact_dir": "state\\clients\\rartiushkov\\aws_inventory\\full-account-scan-us-east-1\\lambda_code\\sandbox2-worker",
+      "zip_path": "state\\clients\\rartiushkov\\aws_inventory\\full-account-scan-us-east-1\\lambda_code\\sandbox2-worker\\function.zip",
+      "configuration_path": "state\\clients\\rartiushkov\\aws_inventory\\full-account-scan-us-east-1\\lambda_code\\sandbox2-worker\\configuration.redacted.json",
+      "code_metadata_path": "state\\clients\\rartiushkov\\aws_inventory\\full-account-scan-us-east-1\\lambda_code\\sandbox2-worker\\code.json",
+      "status": "ok"
+    },
+    {
+      "function_name": "connector-worker",
+      "function_arn": "arn:aws:lambda:us-east-1:027087672282:function:connector-worker",
+      "package_type": "Zip",
+      "artifact_dir": "state\\clients\\rartiushkov\\aws_inventory\\full-account-scan-us-east-1\\lambda_code\\connector-worker",
+      "zip_path": "state\\clients\\rartiushkov\\aws_inventory\\full-account-scan-us-east-1\\lambda_code\\connector-worker\\function.zip",
+      "configuration_path": "state\\clients\\rartiushkov\\aws_inventory\\full-account-scan-us-east-1\\lambda_code\\connector-worker\\configuration.redacted.json",
+      "code_metadata_path": "state\\clients\\rartiushkov\\aws_inventory\\full-account-scan-us-east-1\\lambda_code\\connector-worker\\code.json",
+      "status": "ok"
+    },
+    {
+      "function_name": "agent-planner",
+      "function_arn": "arn:aws:lambda:us-east-1:027087672282:function:agent-planner",
+      "package_type": "Zip",
+      "artifact_dir": "state\\clients\\rartiushkov\\aws_inventory\\full-account-scan-us-east-1\\lambda_code\\agent-planner",
+      "zip_path": "state\\clients\\rartiushkov\\aws_inventory\\full-account-scan-us-east-1\\lambda_code\\agent-planner\\function.zip",
+      "configuration_path": "state\\clients\\rartiushkov\\aws_inventory\\full-account-scan-us-east-1\\lambda_code\\agent-planner\\configuration.redacted.json",
+      "code_metadata_path": "state\\clients\\rartiushkov\\aws_inventory\\full-account-scan-us-east-1\\lambda_code\\agent-planner\\code.json",
+      "status": "ok"
+    },
+    {
+      "function_name": "setup-agent",
+      "function_arn": "arn:aws:lambda:us-east-1:027087672282:function:setup-agent",
+      "package_type": "Zip",
+      "artifact_dir": "state\\clients\\rartiushkov\\aws_inventory\\full-account-scan-us-east-1\\lambda_code\\setup-agent",
+      "zip_path": "state\\clients\\rartiushkov\\aws_inventory\\full-account-scan-us-east-1\\lambda_code\\setup-agent\\function.zip",
+      "configuration_path": "state\\clients\\rartiushkov\\aws_inventory\\full-account-scan-us-east-1\\lambda_code\\setup-agent\\configuration.redacted.json",
+      "code_metadata_path": "state\\clients\\rartiushkov\\aws_inventory\\full-account-scan-us-east-1\\lambda_code\\setup-agent\\code.json",
+      "status": "ok"
+    },
+    {
+      "function_name": "test-lambda-integration",
+      "function_arn": "arn:aws:lambda:us-east-1:027087672282:function:test-lambda-integration",
+      "package_type": "Zip",
+      "artifact_dir": "state\\clients\\rartiushkov\\aws_inventory\\full-account-scan-us-east-1\\lambda_code\\test-lambda-integration",
+      "zip_path": "state\\clients\\rartiushkov\\aws_inventory\\full-account-scan-us-east-1\\lambda_code\\test-lambda-integration\\function.zip",
+      "configuration_path": "state\\clients\\rartiushkov\\aws_inventory\\full-account-scan-us-east-1\\lambda_code\\test-lambda-integration\\configuration.redacted.json",
+      "code_metadata_path": "state\\clients\\rartiushkov\\aws_inventory\\full-account-scan-us-east-1\\lambda_code\\test-lambda-integration\\code.json",
+      "status": "ok"
+    },
+    {
+      "function_name": "plan-executor",
+      "function_arn": "arn:aws:lambda:us-east-1:027087672282:function:plan-executor",
+      "package_type": "Zip",
+      "artifact_dir": "state\\clients\\rartiushkov\\aws_inventory\\full-account-scan-us-east-1\\lambda_code\\plan-executor",
+      "zip_path": "state\\clients\\rartiushkov\\aws_inventory\\full-account-scan-us-east-1\\lambda_code\\plan-executor\\function.zip",
+      "configuration_path": "state\\clients\\rartiushkov\\aws_inventory\\full-account-scan-us-east-1\\lambda_code\\plan-executor\\configuration.redacted.json",
+      "code_metadata_path": "state\\clients\\rartiushkov\\aws_inventory\\full-account-scan-us-east-1\\lambda_code\\plan-executor\\code.json",
+      "status": "ok"
+    },
+    {
+      "function_name": "hello-world-fn",
+      "function_arn": "arn:aws:lambda:us-east-1:027087672282:function:hello-world-fn",
+      "package_type": "Zip",
+      "artifact_dir": "state\\clients\\rartiushkov\\aws_inventory\\full-account-scan-us-east-1\\lambda_code\\hello-world-fn",
+      "zip_path": "state\\clients\\rartiushkov\\aws_inventory\\full-account-scan-us-east-1\\lambda_code\\hello-world-fn\\function.zip",
+      "configuration_path": "state\\clients\\rartiushkov\\aws_inventory\\full-account-scan-us-east-1\\lambda_code\\hello-world-fn\\configuration.redacted.json",
+      "code_metadata_path": "state\\clients\\rartiushkov\\aws_inventory\\full-account-scan-us-east-1\\lambda_code\\hello-world-fn\\code.json",
+      "status": "ok"
+    },
+    {
+      "function_name": "log-collector",
+      "function_arn": "arn:aws:lambda:us-east-1:027087672282:function:log-collector",
+      "package_type": "Zip",
+      "artifact_dir": "state\\clients\\rartiushkov\\aws_inventory\\full-account-scan-us-east-1\\lambda_code\\log-collector",
+      "zip_path": "state\\clients\\rartiushkov\\aws_inventory\\full-account-scan-us-east-1\\lambda_code\\log-collector\\function.zip",
+      "configuration_path": "state\\clients\\rartiushkov\\aws_inventory\\full-account-scan-us-east-1\\lambda_code\\log-collector\\configuration.redacted.json",
+      "code_metadata_path": "state\\clients\\rartiushkov\\aws_inventory\\full-account-scan-us-east-1\\lambda_code\\log-collector\\code.json",
+      "status": "ok"
+    }
+  ],
+  "failed": [],
+  "exported_count": 12,
+  "failed_count": 0
+}

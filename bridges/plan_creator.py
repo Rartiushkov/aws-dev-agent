@@ -13,7 +13,7 @@ FEATURE_TEST_PATTERNS = {
 }
 
 CODEBUILD_PROJECT_NAME = "aws-dev-agent-tests"
-DEFAULT_LAMBDA_ROLE_ARN = "arn:aws:iam::027087672282:role/lambda-basic-role"
+DEFAULT_LAMBDA_ROLE_ARN = "arn:aws:iam::978184426928:role/lambda-basic-role"
 LAMBDA_ROLE_SCOPES = {
     "basic": DEFAULT_LAMBDA_ROLE_ARN,
 }

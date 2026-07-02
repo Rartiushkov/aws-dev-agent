@@ -1,0 +1,38 @@
+{
+  "FunctionName": "sandbox1-worker",
+  "FunctionArn": "arn:aws:lambda:us-east-1:027087672282:function:sandbox1-worker",
+  "Runtime": "python3.11",
+  "Role": "arn:aws:iam::027087672282:role/sandbox1-lambda-role",
+  "Handler": "tmp_sandbox1_lambda.handler",
+  "CodeSize": 222,
+  "Description": "",
+  "Timeout": 3,
+  "MemorySize": 128,
+  "LastModified": "2026-03-28T12:21:15.049+0000",
+  "CodeSha256": "BRxInxjmG7ucZKW/Lk1Mx9L58XH32P4Ph1DXSC+nozc=",
+  "Version": "$LATEST",
+  "TracingConfig": {
+    "Mode": "PassThrough"
+  },
+  "RevisionId": "fd57a0ae-bdfe-4a88-b396-de93f8605ba8",
+  "State": "Active",
+  "LastUpdateStatus": "Successful",
+  "PackageType": "Zip",
+  "Architectures": [
+    "x86_64"
+  ],
+  "EphemeralStorage": {
+    "Size": 512
+  },
+  "SnapStart": {
+    "ApplyOn": "None",
+    "OptimizationStatus": "Off"
+  },
+  "RuntimeVersionConfig": {
+    "RuntimeVersionArn": "arn:aws:lambda:us-east-1::runtime:a0dd170e909c9230a7e18f978320f0053271b75d0b703c836ab4f98f2e3f6a5a"
+  },
+  "LoggingConfig": {
+    "LogFormat": "Text",
+    "LogGroup": "/aws/lambda/sandbox1-worker"
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "FunctionName": "ai-orchestrator",
+  "FunctionArn": "arn:aws:lambda:us-east-1:027087672282:function:ai-orchestrator",
+  "Runtime": "nodejs20.x",
+  "Role": "arn:aws:iam::027087672282:role/plan-executor-role",
+  "Handler": "index.handler",
+  "CodeSize": 3863503,
+  "Description": "",
+  "Timeout": 3,
+  "MemorySize": 128,
+  "LastModified": "2026-03-02T17:34:17.000+0000",
+  "CodeSha256": "tFQlFUNRSbH0p+mRh+Whk6OEubtt6OBXyEhcI8QlXQY=",
+  "Version": "$LATEST",
+  "Environment": {
+    "Variables": {
+      "PLANS_TABLE": "agent_fix_plans"
+    }
+  },
+  "TracingConfig": {
+    "Mode": "PassThrough"
+  },
+  "RevisionId": "4a5f0a75-1dcf-4365-a380-f8309a289619",
+  "State": "Active",
+  "LastUpdateStatus": "Successful",
+  "PackageType": "Zip",
+  "Architectures": [
+    "x86_64"
+  ],
+  "EphemeralStorage": {
+    "Size": 512
+  },
+  "SnapStart": {
+    "ApplyOn": "None",
+    "OptimizationStatus": "Off"
+  },
+  "RuntimeVersionConfig": {
+    "RuntimeVersionArn": "arn:aws:lambda:us-east-1::runtime:2d788b26ac416854c5eb831c9f46cb2e0a0ddcee84b1a9b114acbdfdb644c8c1"
+  },
+  "LoggingConfig": {
+    "LogFormat": "Text",
+    "LogGroup": "/aws/lambda/ai-orchestrator"
+  }
+}

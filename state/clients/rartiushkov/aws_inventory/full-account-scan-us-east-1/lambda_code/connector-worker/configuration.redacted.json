@@ -1,0 +1,45 @@
+{
+  "FunctionName": "connector-worker",
+  "FunctionArn": "arn:aws:lambda:us-east-1:027087672282:function:connector-worker",
+  "Runtime": "nodejs20.x",
+  "Role": "arn:aws:iam::027087672282:role/setup-agent-role",
+  "Handler": "index.handler",
+  "CodeSize": 1056,
+  "Description": "",
+  "Timeout": 30,
+  "MemorySize": 256,
+  "LastModified": "2026-02-28T05:52:56.000+0000",
+  "CodeSha256": "JesixLSu1fC6/zovUMNEot3oRnFhxLt2VEReSeFUffo=",
+  "Version": "$LATEST",
+  "Environment": {
+    "Variables": {
+      "OUT_QUEUE_URL": "https://sqs.us-east-1.amazonaws.com/027087672282/agent-fix-tasks.fifo",
+      "QUEUE_NAME": "connector-tasks.fifo",
+      "REGION": "us-east-1"
+    }
+  },
+  "TracingConfig": {
+    "Mode": "PassThrough"
+  },
+  "RevisionId": "38fafbb1-2822-434b-872c-3427fdd91b1c",
+  "State": "Active",
+  "LastUpdateStatus": "Successful",
+  "PackageType": "Zip",
+  "Architectures": [
+    "x86_64"
+  ],
+  "EphemeralStorage": {
+    "Size": 512
+  },
+  "SnapStart": {
+    "ApplyOn": "None",
+    "OptimizationStatus": "Off"
+  },
+  "RuntimeVersionConfig": {
+    "RuntimeVersionArn": "arn:aws:lambda:us-east-1::runtime:2d788b26ac416854c5eb831c9f46cb2e0a0ddcee84b1a9b114acbdfdb644c8c1"
+  },
+  "LoggingConfig": {
+    "LogFormat": "Text",
+    "LogGroup": "/aws/lambda/connector-worker"
+  }
+}

@@ -1,0 +1,122 @@
+{
+  "mode": "read-only-assessment",
+  "source_env": "full-account-scan",
+  "target_env": "rartiushkov-us-east-2",
+  "team": "",
+  "planned_actions": {
+    "roles": 2,
+    "sqs_queues": 7,
+    "sns_topics": 0,
+    "secrets": 1,
+    "dynamodb_tables": 9,
+    "lambda_functions": 12,
+    "lambda_event_source_mappings": 7,
+    "lambda_permissions": 2,
+    "sns_subscriptions": 0,
+    "api_gateways": 0,
+    "codebuild_projects": 1,
+    "ecs_clusters": 5,
+    "ecs_task_definitions": 4,
+    "ecs_services": 5
+  },
+  "manual_review": {
+    "cloudformation_stacks": 1,
+    "s3_buckets": 2,
+    "load_balancers": 0,
+    "rds_instances": 0,
+    "rds_clusters": 0
+  },
+  "preflight_checks": [
+    {
+      "name": "scope",
+      "status": "ok",
+      "details": {
+        "source_account_id": "027087672282",
+        "target_account_id": "",
+        "source_region": "us-east-1",
+        "target_region": "us-east-2",
+        "same_account": false,
+        "same_region": false
+      }
+    },
+    {
+      "name": "kms-remap",
+      "status": "warning",
+      "details": {
+        "unresolved_reference_count": 1,
+        "sample": [
+          "arn:aws:kms:us-east-1:027087672282:alias/aws/s3"
+        ]
+      },
+      "known_fixes": []
+    },
+    {
+      "name": "ecs-network-dependencies",
+      "status": "ok",
+      "details": {
+        "service_count": 5,
+        "services": [
+          "test_def-service-vnwns50w",
+          "test_def-service-64zgxsih",
+          "dragonball-2000-service",
+          "cluster1-demo-service",
+          "cluster2b-demo-service"
+        ],
+        "vpc_count": 2,
+        "subnet_count": 12
+      }
+    },
+    {
+      "name": "hardcoded-source-account-references",
+      "status": "warning",
+      "details": {
+        "count": 372,
+        "sample": [
+          {
+            "path": "$.account_id",
+            "value": "027087672282"
+          },
+          {
+            "path": "$.lambda_functions[0].FunctionArn",
+            "value": "arn:aws:lambda:us-east-1:027087672282:function:remediator"
+          },
+          {
+            "path": "$.lambda_functions[0].Role",
+            "value": "arn:aws:iam::027087672282:role/remediator-role"
+          },
+          {
+            "path": "$.lambda_functions[1].FunctionArn",
+            "value": "arn:aws:lambda:us-east-1:027087672282:function:task-dispatcher"
+          },
+          {
+            "path": "$.lambda_functions[1].Role",
+            "value": "arn:aws:iam::027087672282:role/task-dispatcher-role"
+          },
+          {
+            "path": "$.lambda_functions[1].Environment.Variables.FIX_QUEUE_URL",
+            "value": "https://sqs.us-east-1.amazonaws.com/027087672282/agent-fix-tasks.fifo"
+          },
+          {
+            "path": "$.lambda_functions[2].FunctionArn",
+            "value": "arn:aws:lambda:us-east-1:027087672282:function:ai-orchestrator"
+          },
+          {
+            "path": "$.lambda_functions[2].Role",
+            "value": "arn:aws:iam::027087672282:role/plan-executor-role"
+          },
+          {
+            "path": "$.lambda_functions[3].FunctionArn",
+            "value": "arn:aws:lambda:us-east-1:027087672282:function:sandbox1-worker"
+          },
+          {
+            "path": "$.lambda_functions[3].Role",
+            "value": "arn:aws:iam::027087672282:role/sandbox1-lambda-role"
+          }
+        ]
+      },
+      "known_fixes": []
+    }
+  ],
+  "source_snapshot": "state\\clients\\rartiushkov\\aws_inventory\\full-account-scan-us-east-1\\source_snapshot.json",
+  "region": "us-east-2"
+}

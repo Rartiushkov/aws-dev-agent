@@ -1,0 +1,39 @@
+{
+  "overrides": {
+    "client_slug": "rartiushkov",
+    "source_region": "us-east-1",
+    "target_region": "us-east-2",
+    "source_regions": ["us-east-1"],
+    "preserve_names": true,
+    "allow_same_scope": false
+  },
+  "source_role_arn": "",
+  "target_role_arn": "",
+  "git_backup": {
+    "provider": "github",
+    "host": "github.com",
+    "protocol": "https",
+    "organization": "rartiushkov",
+    "repo_prefix": "backup",
+    "create_repos": false,
+    "username": "rartiushkov",
+    "token_env": "CLIENT_GIT_TOKEN",
+    "test_repo_url": "https://github.com/Rartiushkov/aws-dev-agent-backup-test.git"
+  },
+  "exclusions": {
+    "lambda_functions": [],
+    "lambda_event_source_mappings": [],
+    "iam_roles": [],
+    "sqs_queues": [],
+    "sns_topics": [],
+    "secrets": [],
+    "dynamodb_tables": [],
+    "s3_buckets": [],
+    "api_gateways": [],
+    "cloudformation_stacks": [],
+    "load_balancers": [],
+    "security_groups": [],
+    "ecs_clusters": [],
+    "ecs_services": []
+  }
+}

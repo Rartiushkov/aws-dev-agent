@@ -1,0 +1,38 @@
+{
+  "FunctionName": "hello-world-fn",
+  "FunctionArn": "arn:aws:lambda:us-east-1:027087672282:function:hello-world-fn",
+  "Runtime": "python3.11",
+  "Role": "arn:aws:iam::027087672282:role/lambda-basic-role",
+  "Handler": "lambda_function.handler",
+  "CodeSize": 218,
+  "Description": "",
+  "Timeout": 3,
+  "MemorySize": 128,
+  "LastModified": "2026-03-19T08:33:46.000+0000",
+  "CodeSha256": "zuz4886lbcUeyn3b21aL/z/n8v2+u+zC/cTLHJK5GnI=",
+  "Version": "$LATEST",
+  "TracingConfig": {
+    "Mode": "PassThrough"
+  },
+  "RevisionId": "03d39f82-d3d6-497d-9710-60a337563007",
+  "State": "Active",
+  "LastUpdateStatus": "Successful",
+  "PackageType": "Zip",
+  "Architectures": [
+    "x86_64"
+  ],
+  "EphemeralStorage": {
+    "Size": 512
+  },
+  "SnapStart": {
+    "ApplyOn": "None",
+    "OptimizationStatus": "Off"
+  },
+  "RuntimeVersionConfig": {
+    "RuntimeVersionArn": "arn:aws:lambda:us-east-1::runtime:a0dd170e909c9230a7e18f978320f0053271b75d0b703c836ab4f98f2e3f6a5a"
+  },
+  "LoggingConfig": {
+    "LogFormat": "Text",
+    "LogGroup": "/aws/lambda/hello-world-fn"
+  }
+}

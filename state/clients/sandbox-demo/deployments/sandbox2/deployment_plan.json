@@ -1,0 +1,113 @@
+{
+  "mode": "read-only-assessment",
+  "source_env": "sandbox1",
+  "target_env": "sandbox2",
+  "team": "",
+  "planned_actions": {
+    "roles": 1,
+    "sqs_queues": 1,
+    "sns_topics": 0,
+    "secrets": 0,
+    "dynamodb_tables": 1,
+    "lambda_functions": 1,
+    "lambda_event_source_mappings": 1,
+    "lambda_permissions": 0,
+    "sns_subscriptions": 0,
+    "api_gateways": 0,
+    "codebuild_projects": 0,
+    "ecs_clusters": 0,
+    "ecs_task_definitions": 0,
+    "ecs_services": 0
+  },
+  "manual_review": {
+    "cloudformation_stacks": 0,
+    "s3_buckets": 0,
+    "load_balancers": 0,
+    "rds_instances": 0,
+    "rds_clusters": 0
+  },
+  "preflight_checks": [
+    {
+      "name": "scope",
+      "status": "ok",
+      "details": {
+        "source_account_id": "027087672282",
+        "target_account_id": "",
+        "source_region": "us-east-1",
+        "target_region": "us-east-1",
+        "same_account": false,
+        "same_region": true
+      }
+    },
+    {
+      "name": "kms-remap",
+      "status": "ok",
+      "details": {
+        "unresolved_reference_count": 0,
+        "sample": []
+      }
+    },
+    {
+      "name": "ecs-network-dependencies",
+      "status": "ok",
+      "details": {
+        "service_count": 0,
+        "services": [],
+        "vpc_count": 1,
+        "subnet_count": 6
+      }
+    },
+    {
+      "name": "hardcoded-source-account-references",
+      "status": "warning",
+      "details": {
+        "count": 39,
+        "sample": [
+          {
+            "path": "$.account_id",
+            "value": "027087672282"
+          },
+          {
+            "path": "$.lambda_functions[0].FunctionArn",
+            "value": "arn:aws:lambda:us-east-1:027087672282:function:sandbox1-worker"
+          },
+          {
+            "path": "$.lambda_functions[0].Role",
+            "value": "arn:aws:iam::027087672282:role/sandbox1-lambda-role"
+          },
+          {
+            "path": "$.lambda_event_source_mappings[0].EventSourceArn",
+            "value": "arn:aws:sqs:us-east-1:027087672282:sandbox1-events"
+          },
+          {
+            "path": "$.lambda_event_source_mappings[0].FunctionArn",
+            "value": "arn:aws:lambda:us-east-1:027087672282:function:sandbox1-worker"
+          },
+          {
+            "path": "$.lambda_event_source_mappings[0].EventSourceMappingArn",
+            "value": "arn:aws:lambda:us-east-1:027087672282:event-source-mapping:2c7dea58-3a36-4c97-afd5-8c51eca20997"
+          },
+          {
+            "path": "$.iam_roles[0].Arn",
+            "value": "arn:aws:iam::027087672282:role/sandbox1-lambda-role"
+          },
+          {
+            "path": "$.sqs_queues[0].QueueUrl",
+            "value": "https://sqs.us-east-1.amazonaws.com/027087672282/sandbox1-events"
+          },
+          {
+            "path": "$.sqs_queues[0].Attributes.QueueArn",
+            "value": "arn:aws:sqs:us-east-1:027087672282:sandbox1-events"
+          },
+          {
+            "path": "$.dynamodb_tables[0].Table.TableArn",
+            "value": "arn:aws:dynamodb:us-east-1:027087672282:table/sandbox1-orders"
+          }
+        ]
+      },
+      "known_fixes": []
+    }
+  ],
+  "source_snapshot": "state\\clients\\sandbox-demo\\aws_inventory\\sandbox1\\source_snapshot.json",
+  "region": "us-east-1"
+}

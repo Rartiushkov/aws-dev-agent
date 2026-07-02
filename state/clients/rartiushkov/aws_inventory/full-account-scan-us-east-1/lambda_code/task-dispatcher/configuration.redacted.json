@@ -1,0 +1,43 @@
+{
+  "FunctionName": "task-dispatcher",
+  "FunctionArn": "arn:aws:lambda:us-east-1:027087672282:function:task-dispatcher",
+  "Runtime": "nodejs20.x",
+  "Role": "arn:aws:iam::027087672282:role/task-dispatcher-role",
+  "Handler": "index.handler",
+  "CodeSize": 2971378,
+  "Description": "",
+  "Timeout": 15,
+  "MemorySize": 256,
+  "LastModified": "2026-02-23T07:58:54.000+0000",
+  "CodeSha256": "tmPr0QaIaIP15xv+0imdMRY0baHZ83524WDu4l2tJQg=",
+  "Version": "$LATEST",
+  "Environment": {
+    "Variables": {
+      "FIX_QUEUE_URL": "https://sqs.us-east-1.amazonaws.com/027087672282/agent-fix-tasks.fifo"
+    }
+  },
+  "TracingConfig": {
+    "Mode": "PassThrough"
+  },
+  "RevisionId": "8c1f4bf0-4f08-416d-b6cc-e36cb83baae6",
+  "State": "Active",
+  "LastUpdateStatus": "Successful",
+  "PackageType": "Zip",
+  "Architectures": [
+    "x86_64"
+  ],
+  "EphemeralStorage": {
+    "Size": 512
+  },
+  "SnapStart": {
+    "ApplyOn": "None",
+    "OptimizationStatus": "Off"
+  },
+  "RuntimeVersionConfig": {
+    "RuntimeVersionArn": "arn:aws:lambda:us-east-1::runtime:2d788b26ac416854c5eb831c9f46cb2e0a0ddcee84b1a9b114acbdfdb644c8c1"
+  },
+  "LoggingConfig": {
+    "LogFormat": "Text",
+    "LogGroup": "/aws/lambda/task-dispatcher"
+  }
+}

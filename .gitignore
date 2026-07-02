@@ -1,13 +1,27 @@
 __pycache__/
 *.pyc
 .env
+*.env.local
 venv/
+.venv/
 agent_state.json
 response.json
 reports/
 *.zip
 function.zip
 invoke_payload.json
+
+# Wrangler / Cloudflare
+.wrangler/
+
+# Local AWS configs (contain account IDs)
+configs/rartiushkov.aws-migration.local.json
+
+# State data (large, runtime-generated)
 state/client_git_exports/
 state/git_backups/
 state/test_export_layout/
+
+# OS
+.DS_Store
+Thumbs.db

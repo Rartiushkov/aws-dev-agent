@@ -1,0 +1,50 @@
+{
+  "generated_at": "2026-05-14T11:43:27.611830+00:00",
+  "source_env": "",
+  "account_id": "027087672282",
+  "region": "us-east-1",
+  "summary_counts": {
+    "lambda_functions": 12,
+    "lambda_event_source_mappings": 7,
+    "lambda_permissions": 2,
+    "iam_roles": 2,
+    "sqs_queues": 7,
+    "sns_topics": 0,
+    "secrets": 1,
+    "dynamodb_tables": 9,
+    "api_gateways": 0,
+    "codebuild_projects": 1,
+    "s3_buckets": 2,
+    "cloudformation_stacks": 1,
+    "load_balancers": 0,
+    "ec2_instances": 0,
+    "security_groups": 2,
+    "vpcs": 2,
+    "subnets": 12,
+    "route_tables": 3,
+    "rds_instances": 0,
+    "rds_clusters": 0,
+    "git_repositories": 0,
+    "ecs_clusters": 5,
+    "ecs_services": 5,
+    "ecs_task_definitions": 4,
+    "ecs_tasks": 0,
+    "ecs_scheduled_tasks": 0,
+    "ecs_event_history": 50,
+    "dependency_nodes": 71,
+    "dependency_edges": 93
+  },
+  "risk_summary": {
+    "high": 0,
+    "medium": 14,
+    "low": 1
+  },
+  "files": {
+    "snapshot": "snapshots/source_snapshot.json",
+    "summary": "snapshots/summary.json",
+    "dependency_graph": "snapshots/dependency_graph.json",
+    "risk_report": "reports/risk_report.json",
+    "deployment_manifest": "reports/deployment_manifest.json",
+    "lambda_code": "lambda_code/"
+  }
+}

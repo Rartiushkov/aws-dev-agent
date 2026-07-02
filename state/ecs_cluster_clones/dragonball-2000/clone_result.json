@@ -1,0 +1,27 @@
+{
+  "status": "ok",
+  "deployed_clusters": [
+    {
+      "source_cluster": "cluster1-demo",
+      "target_cluster": "dragonball-2000",
+      "target_cluster_arn": "arn:aws:ecs:us-east-1:027087672282:cluster/dragonball-2000",
+      "operation": "created"
+    }
+  ],
+  "deployed_task_definitions": [
+    {
+      "source_task_definition": "arn:aws:ecs:us-east-1:027087672282:task-definition/cluster1-demo-task:1",
+      "target_task_definition": "arn:aws:ecs:us-east-1:027087672282:task-definition/dragonball-2000-task:1",
+      "operation": "registered"
+    }
+  ],
+  "deployed_services": [
+    {
+      "source_service": "cluster1-demo-service",
+      "target_service": "dragonball-2000-service",
+      "target_cluster_arn": "arn:aws:ecs:us-east-1:027087672282:cluster/dragonball-2000",
+      "target_service_arn": "arn:aws:ecs:us-east-1:027087672282:service/dragonball-2000/dragonball-2000-service",
+      "operation": "created"
+    }
+  ]
+}

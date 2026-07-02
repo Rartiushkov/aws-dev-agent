@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Availabl — Connect AWS</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./dashboard.css" />
+</head>
+<body>
+
+  <aside class="sidebar">
+    <div class="sidebar-brand">
+      <div class="sidebar-brand-mark">A</div>
+      <span class="sidebar-brand-name">availabl</span>
+    </div>
+
+    <div class="sidebar-org">
+      <div class="sidebar-org-info">
+        <div class="sidebar-org-avatar"></div>
+        <span class="sidebar-org-name">sandbox-org</span>
+      </div>
+      <span class="sidebar-org-chevron">⌄</span>
+    </div>
+
+    <nav class="sidebar-nav">
+      <span class="nav-section-label">Overview</span>
+      <a href="dashboard.html" class="nav-item">
+        <span class="nav-item-icon"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1" y="1" width="6" height="6" rx="1"/><rect x="9" y="1" width="6" height="6" rx="1"/><rect x="1" y="9" width="6" height="6" rx="1"/><rect x="9" y="9" width="6" height="6" rx="1"/></svg></span>
+        Dashboard
+      </a>
+      <a href="migrations.html" class="nav-item">
+        <span class="nav-item-icon"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 8h12M10 4l4 4-4 4"/></svg></span>
+        Migrations
+        <span class="nav-item-badge">3</span>
+      </a>
+      <a href="#" class="nav-item">
+        <span class="nav-item-icon"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1" y="3" width="14" height="10" rx="1.5"/></svg></span>
+        Inventory
+      </a>
+      <span class="nav-section-label">Settings</span>
+      <a href="connect.html" class="nav-item active">
+        <span class="nav-item-icon"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 3H3a1 1 0 00-1 1v8a1 1 0 001 1h3M10 3h3a1 1 0 011 1v8a1 1 0 01-1 1h-3M6 8h4"/></svg></span>
+        Connect AWS
+      </a>
+    </nav>
+
+    <div class="sidebar-footer">
+      <div class="sidebar-user">
+        <div class="user-avatar">R</div>
+        <div class="user-info">
+          <div class="user-name">Roman Artyushkov</div>
+          <div class="user-role">Admin</div>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <div class="dashboard-main">
+    <div class="dashboard-topbar">
+      <div class="topbar-breadcrumb">
+        <span>sandbox-org</span>
+        <span class="sep">/</span>
+        <strong>Connect AWS</strong>
+      </div>
+    </div>
+
+    <div class="page-content">
+      <div class="page-header">
+        <div>
+          <div class="page-title">Connect your AWS organization</div>
+          <div class="page-subtitle">Grant read-only access so Availabl can scan your source environment and plan the migration.</div>
+        </div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr 380px;gap:24px;align-items:start;">
+
+        <div class="connect-card">
+          <div style="margin-bottom:24px;">
+            <div style="font-size:13px;font-weight:600;color:var(--card-text);margin-bottom:6px;">3 steps · ~5 minutes</div>
+            <div style="font-size:12px;color:var(--card-muted);">Availabl only requires read-only IAM permissions. No write access is needed to scan your source environment.</div>
+          </div>
+
+          <div class="connect-step">
+            <div class="step-num">1</div>
+            <div class="step-body">
+              <div class="step-title">Create an IAM role in your AWS account</div>
+              <div class="step-desc">Go to IAM → Roles → Create role. Select "Another AWS account" and enter the Availabl account ID below.</div>
+              <div class="code-block">Account ID: 027087672282</div>
+            </div>
+          </div>
+
+          <div class="connect-step">
+            <div class="step-num">2</div>
+            <div class="step-body">
+              <div class="step-title">Attach the read-only policy</div>
+              <div class="step-desc">Attach the following managed policies to the role. This covers Lambda, SQS, DynamoDB, ECS, and S3 read access.</div>
+              <div class="code-block">ReadOnlyAccess<br/>AmazonDynamoDBReadOnlyAccess<br/>AWSLambdaReadOnlyAccess</div>
+            </div>
+          </div>
+
+          <div class="connect-step">
+            <div class="step-num">3</div>
+            <div class="step-body">
+              <div class="step-title">Paste your Role ARN</div>
+              <div class="step-desc">Copy the Role ARN from the IAM console and paste it here. Availabl will verify access and begin the inventory scan.</div>
+              <input class="input-field" type="text" placeholder="arn:aws:iam::123456789012:role/availabl-readonly" id="role-arn-input" />
+              <div style="display:flex;gap:8px;margin-top:12px;">
+                <button class="btn btn-primary" onclick="connectAWS()">Verify &amp; connect</button>
+                <button class="btn btn-outline" onclick="window.location='dashboard.html'">Cancel</button>
+              </div>
+              <div id="connect-status" style="margin-top:10px;font-size:12px;display:none;"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Info sidebar -->
+        <div style="display:flex;flex-direction:column;gap:14px;">
+          <div class="section-card">
+            <div class="section-card-header">
+              <span class="section-card-title">What we scan</span>
+            </div>
+            <div class="section-card-body" style="padding:14px 20px;">
+              <div style="display:flex;flex-direction:column;gap:8px;">
+                <div style="display:flex;align-items:center;gap:8px;font-size:12px;">
+                  <span style="width:6px;height:6px;background:#16a34a;border-radius:50%;flex-shrink:0;"></span>
+                  Lambda Functions
+                </div>
+                <div style="display:flex;align-items:center;gap:8px;font-size:12px;">
+                  <span style="width:6px;height:6px;background:#16a34a;border-radius:50%;flex-shrink:0;"></span>
+                  SQS Queues
+                </div>
+                <div style="display:flex;align-items:center;gap:8px;font-size:12px;">
+                  <span style="width:6px;height:6px;background:#16a34a;border-radius:50%;flex-shrink:0;"></span>
+                  DynamoDB Tables
+                </div>
+                <div style="display:flex;align-items:center;gap:8px;font-size:12px;">
+                  <span style="width:6px;height:6px;background:#16a34a;border-radius:50%;flex-shrink:0;"></span>
+                  ECS Clusters &amp; Services
+                </div>
+                <div style="display:flex;align-items:center;gap:8px;font-size:12px;">
+                  <span style="width:6px;height:6px;background:#16a34a;border-radius:50%;flex-shrink:0;"></span>
+                  IAM Role dependencies
+                </div>
+                <div style="display:flex;align-items:center;gap:8px;font-size:12px;">
+                  <span style="width:6px;height:6px;background:#2563eb;border-radius:50%;flex-shrink:0;"></span>
+                  EC2 / VPC (coming soon)
+                </div>
+                <div style="display:flex;align-items:center;gap:8px;font-size:12px;">
+                  <span style="width:6px;height:6px;background:#2563eb;border-radius:50%;flex-shrink:0;"></span>
+                  RDS (coming soon)
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="section-card">
+            <div class="section-card-header">
+              <span class="section-card-title">Security</span>
+            </div>
+            <div class="section-card-body" style="padding:14px 20px;font-size:12px;color:var(--card-muted);line-height:1.7;">
+              Availabl never stores your AWS credentials. The IAM role uses cross-account trust — revocable at any time from your AWS console. All scan data is encrypted in transit.
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function connectAWS() {
+      const arn = document.getElementById('role-arn-input').value.trim();
+      const status = document.getElementById('connect-status');
+      if (!arn.startsWith('arn:aws:iam::')) {
+        status.style.display = 'block';
+        status.style.color = '#dc2626';
+        status.textContent = 'Invalid ARN format. Expected: arn:aws:iam::ACCOUNT_ID:role/ROLE_NAME';
+        return;
+      }
+      status.style.display = 'block';
+      status.style.color = '#2563eb';
+      status.textContent = 'Verifying access...';
+      setTimeout(() => {
+        status.style.color = '#16a34a';
+        status.textContent = '✓ Connected. Redirecting to dashboard...';
+        setTimeout(() => window.location = 'dashboard.html', 1200);
+      }, 1800);
+    }
+  </script>
+</body>
+</html>

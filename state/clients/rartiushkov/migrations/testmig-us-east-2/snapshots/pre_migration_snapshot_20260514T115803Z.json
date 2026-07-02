@@ -1,0 +1,16 @@
+{
+  "captured_at": "2026-05-14T11:58:03.405501+00:00",
+  "client_slug": "rartiushkov",
+  "source_env": "testmig",
+  "inventory_key": "testmig-us-east-1",
+  "target_env": "testmig-us-east-2",
+  "inventory_dir": "state\\clients\\rartiushkov\\aws_inventory\\testmig-us-east-1",
+  "source_snapshot_present": true,
+  "summary_present": true,
+  "git_repository_count": 0,
+  "snapshot_files": {
+    "source_snapshot": "state\\clients\\rartiushkov\\aws_inventory\\testmig-us-east-1\\source_snapshot.json",
+    "summary": "state\\clients\\rartiushkov\\aws_inventory\\testmig-us-east-1\\summary.json",
+    "git_backup_manifest": "state\\clients\\rartiushkov\\migrations\\testmig-us-east-2\\snapshots\\git_backup_manifest_20260514T115803Z.json"
+  }
+}

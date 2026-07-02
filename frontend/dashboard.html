@@ -1,0 +1,270 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Availabl — Dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./dashboard.css" />
+</head>
+<body>
+
+  <!-- ─── SIDEBAR ─────────────────────────────────── -->
+  <aside class="sidebar">
+    <div class="sidebar-brand">
+      <div class="sidebar-brand-mark">A</div>
+      <span class="sidebar-brand-name">availabl</span>
+    </div>
+
+    <div class="sidebar-org">
+      <div class="sidebar-org-info">
+        <div class="sidebar-org-avatar"></div>
+        <span class="sidebar-org-name">sandbox-org</span>
+      </div>
+      <span class="sidebar-org-chevron">⌄</span>
+    </div>
+
+    <nav class="sidebar-nav">
+      <span class="nav-section-label">Overview</span>
+
+      <a href="dashboard.html" class="nav-item active">
+        <span class="nav-item-icon">
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1" y="1" width="6" height="6" rx="1"/><rect x="9" y="1" width="6" height="6" rx="1"/><rect x="1" y="9" width="6" height="6" rx="1"/><rect x="9" y="9" width="6" height="6" rx="1"/></svg>
+        </span>
+        Dashboard
+      </a>
+
+      <a href="migrations.html" class="nav-item">
+        <span class="nav-item-icon">
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 8h12M10 4l4 4-4 4"/></svg>
+        </span>
+        Migrations
+        <span class="nav-item-badge">3</span>
+      </a>
+
+      <a href="#" class="nav-item">
+        <span class="nav-item-icon">
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1" y="3" width="14" height="10" rx="1.5"/><path d="M5 3V2M11 3V2"/></svg>
+        </span>
+        Inventory
+      </a>
+
+      <a href="#" class="nav-item">
+        <span class="nav-item-icon">
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 1v14M1 8h14"/></svg>
+        </span>
+        Artifacts
+      </a>
+
+      <span class="nav-section-label">Settings</span>
+
+      <a href="connect.html" class="nav-item">
+        <span class="nav-item-icon">
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 3H3a1 1 0 00-1 1v8a1 1 0 001 1h3M10 3h3a1 1 0 011 1v8a1 1 0 01-1 1h-3M6 8h4"/></svg>
+        </span>
+        Connect AWS
+      </a>
+
+      <a href="#" class="nav-item">
+        <span class="nav-item-icon">
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="8" r="3"/><path d="M8 1v2M8 13v2M1 8h2M13 8h2"/></svg>
+        </span>
+        Settings
+      </a>
+    </nav>
+
+    <div class="sidebar-footer">
+      <div class="sidebar-user">
+        <div class="user-avatar">R</div>
+        <div class="user-info">
+          <div class="user-name">Roman Artyushkov</div>
+          <div class="user-role">Admin</div>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- ─── MAIN ─────────────────────────────────────── -->
+  <div class="dashboard-main">
+
+    <div class="dashboard-topbar">
+      <div class="topbar-breadcrumb">
+        <span>sandbox-org</span>
+        <span class="sep">/</span>
+        <strong>Dashboard</strong>
+      </div>
+      <div class="topbar-actions">
+        <a href="connect.html" class="btn btn-outline">+ Connect AWS</a>
+        <a href="migrations.html" class="btn btn-primary">New migration</a>
+      </div>
+    </div>
+
+    <div class="page-content">
+
+      <div class="page-header">
+        <div>
+          <div class="page-title">Overview</div>
+          <div class="page-subtitle">sandbox-org · us-east-1 · Last sync 2 min ago</div>
+        </div>
+        <button class="btn btn-ghost">↻ Refresh</button>
+      </div>
+
+      <!-- Stats -->
+      <div class="stats-row">
+        <div class="stat-card">
+          <div class="stat-label">Migrations</div>
+          <div class="stat-value" id="stat-migrations">3</div>
+          <div class="stat-delta up">↑ 1 this week</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Resources migrated</div>
+          <div class="stat-value" id="stat-resources">--</div>
+          <div class="stat-delta" id="stat-resources-delta">Loading...</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Validation checks</div>
+          <div class="stat-value" id="stat-checks">--</div>
+          <div class="stat-delta" id="stat-checks-delta">Loading...</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Issues flagged</div>
+          <div class="stat-value" id="stat-issues">--</div>
+          <div class="stat-delta" id="stat-issues-delta">Loading...</div>
+        </div>
+      </div>
+
+      <!-- Migrations table -->
+      <div class="section-card">
+        <div class="section-card-header">
+          <span class="section-card-title">Recent migrations</span>
+          <a href="migrations.html" class="btn btn-ghost" style="font-size:12px;">View all →</a>
+        </div>
+        <div class="section-card-body">
+          <div class="migration-row-header">
+            <span class="row-header-label">Name</span>
+            <span class="row-header-label">Source</span>
+            <span class="row-header-label">Target</span>
+            <span class="row-header-label">Status</span>
+            <span class="row-header-label">Date</span>
+          </div>
+
+          <div class="migration-row" onclick="window.location='migrations.html'">
+            <div class="migration-name">
+              <div class="migration-icon">⚡</div>
+              <div>
+                <div class="migration-title">sandbox1 → sandbox2</div>
+                <div class="migration-id" id="mig-id-1">mig-loading</div>
+              </div>
+            </div>
+            <div class="migration-meta" id="mig-source-1">sandbox1</div>
+            <div class="migration-meta" id="mig-target-1">sandbox2</div>
+            <div><span class="badge badge-success" id="mig-status-1">Success</span></div>
+            <div class="migration-meta" id="mig-date-1">2025-06</div>
+          </div>
+
+          <div class="migration-row">
+            <div class="migration-name">
+              <div class="migration-icon">🔬</div>
+              <div>
+                <div class="migration-title">ECS cluster clone</div>
+                <div class="migration-id">mig-ecs-001</div>
+              </div>
+            </div>
+            <div class="migration-meta">prod-ecs</div>
+            <div class="migration-meta">staging-ecs</div>
+            <div><span class="badge badge-success">Success</span></div>
+            <div class="migration-meta">2025-05</div>
+          </div>
+
+          <div class="migration-row">
+            <div class="migration-name">
+              <div class="migration-icon">🗄️</div>
+              <div>
+                <div class="migration-title">DynamoDB + Lambda</div>
+                <div class="migration-id">mig-dynamo-002</div>
+              </div>
+            </div>
+            <div class="migration-meta">us-east-1</div>
+            <div class="migration-meta">eu-west-1</div>
+            <div><span class="badge badge-pending">Pending</span></div>
+            <div class="migration-meta">—</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bottom row -->
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;">
+
+        <!-- Activity -->
+        <div class="section-card">
+          <div class="section-card-header">
+            <span class="section-card-title">Activity</span>
+          </div>
+          <div class="section-card-body">
+            <div class="activity-item">
+              <div class="activity-dot green"></div>
+              <div class="activity-body">
+                <div class="activity-text">Migration <strong>sandbox1→sandbox2</strong> completed successfully</div>
+                <div class="activity-time" id="act-time-1">—</div>
+              </div>
+            </div>
+            <div class="activity-item">
+              <div class="activity-dot blue"></div>
+              <div class="activity-body">
+                <div class="activity-text">Validation report generated — <span id="act-smoke">--</span> smoke checks passed</div>
+                <div class="activity-time">Today</div>
+              </div>
+            </div>
+            <div class="activity-item">
+              <div class="activity-dot green"></div>
+              <div class="activity-body">
+                <div class="activity-text">ECS cluster cloned to staging environment</div>
+                <div class="activity-time">Yesterday</div>
+              </div>
+            </div>
+            <div class="activity-item">
+              <div class="activity-dot yellow"></div>
+              <div class="activity-body">
+                <div class="activity-text">DynamoDB migration queued — awaiting confirmation</div>
+                <div class="activity-time">2 days ago</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Source inventory snapshot -->
+        <div class="section-card">
+          <div class="section-card-header">
+            <span class="section-card-title">Source inventory</span>
+            <span class="badge badge-success" id="inv-badge">Live</span>
+          </div>
+          <div class="section-card-body" style="padding:16px 20px;display:flex;flex-direction:column;gap:10px;">
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid #f4f4f5;">
+              <span style="font-size:12px;color:var(--card-muted);">Lambda Functions</span>
+              <strong style="font-size:13px;" id="inv-lambda">--</strong>
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid #f4f4f5;">
+              <span style="font-size:12px;color:var(--card-muted);">SQS Queues</span>
+              <strong style="font-size:13px;" id="inv-sqs">--</strong>
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid #f4f4f5;">
+              <span style="font-size:12px;color:var(--card-muted);">DynamoDB Tables</span>
+              <strong style="font-size:13px;" id="inv-dynamo">--</strong>
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 0;">
+              <span style="font-size:12px;color:var(--card-muted);">Dependency nodes</span>
+              <strong style="font-size:13px;" id="inv-deps">--</strong>
+            </div>
+            <a href="index.html#demo" class="btn btn-outline" style="width:100%;justify-content:center;margin-top:4px;">View full inventory →</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <script src="./dashboard.js"></script>
+</body>
+</html>

@@ -15,6 +15,7 @@ from executor.scripts.transfer_common import inventory_dir_path, resolve_client_
 def parse_args():
     parser = argparse.ArgumentParser(description="Export an IaC blueprint summary from a discovered snapshot.")
     parser.add_argument("--source-env", default="")
+    parser.add_argument("--inventory-key", default="")
     parser.add_argument("--client-slug", default="")
     return parser.parse_args()
 
@@ -122,7 +123,7 @@ def main():
     args = parse_args()
     source_env = args.source_env or "full-account-scan"
     client_slug = resolve_client_slug(args.client_slug, source_env=source_env)
-    inventory_dir = inventory_dir_path(source_env, client_slug=client_slug)
+    inventory_dir = inventory_dir_path(source_env, args.inventory_key, client_slug=client_slug)
     snapshot = json.loads((inventory_dir / "source_snapshot.json").read_text(encoding="utf-8"))
     blueprint = build_iac_blueprint(snapshot)
     blueprint_path = inventory_dir / "iac_blueprint.json"

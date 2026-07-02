@@ -1,0 +1,93 @@
+{
+  "mode": "apply",
+  "client_slug": "rartiushkov",
+  "source_env": "testmig",
+  "target_env": "testmig-us-east-2",
+  "team": "",
+  "regions_considered": [
+    "us-east-1"
+  ],
+  "regions_migrated": [
+    "us-east-1"
+  ],
+  "results": [
+    {
+      "source_region": "us-east-1",
+      "target_region": "us-east-2",
+      "inventory_key": "testmig-us-east-1",
+      "deployment_key": "testmig-us-east-2-us-east-1-to-us-east-2",
+      "discovery": {
+        "region": "us-east-1",
+        "inventory_key": "testmig-us-east-1",
+        "snapshot_path": "state\\clients\\rartiushkov\\aws_inventory\\testmig-us-east-1\\source_snapshot.json",
+        "summary_path": "state\\clients\\rartiushkov\\aws_inventory\\testmig-us-east-1\\summary.json",
+        "summary": {
+          "source_env": "testmig",
+          "inventory_key": "testmig-us-east-1",
+          "team": "",
+          "region": "us-east-1",
+          "account_id": "027087672282",
+          "counts": {
+            "lambda_functions": 2,
+            "lambda_event_source_mappings": 2,
+            "lambda_permissions": 0,
+            "iam_roles": 1,
+            "sqs_queues": 2,
+            "sns_topics": 0,
+            "secrets": 0,
+            "dynamodb_tables": 0,
+            "api_gateways": 0,
+            "codebuild_projects": 0,
+            "s3_buckets": 0,
+            "cloudformation_stacks": 0,
+            "load_balancers": 0,
+            "ec2_instances": 0,
+            "security_groups": 0,
+            "vpcs": 2,
+            "subnets": 12,
+            "route_tables": 3,
+            "rds_instances": 0,
+            "rds_clusters": 0,
+            "git_repositories": 0,
+            "ecs_clusters": 0,
+            "ecs_services": 0,
+            "ecs_task_definitions": 0,
+            "ecs_tasks": 0,
+            "ecs_scheduled_tasks": 0,
+            "ecs_event_history": 0,
+            "dependency_nodes": 21,
+            "dependency_edges": 24
+          },
+          "signal_resource_count": 7,
+          "has_signal_resources": true
+        }
+      },
+      "deployment": {
+        "status": "ok",
+        "manifest_path": "state\\clients\\rartiushkov\\deployments\\testmig-us-east-2-us-east-1-to-us-east-2\\deployment_manifest.json",
+        "deployed_role_count": 1,
+        "deployed_queue_count": 2,
+        "deployed_topic_count": 0,
+        "deployed_secret_count": 0,
+        "deployed_dynamodb_count": 0,
+        "copied_dynamodb_item_total": 0,
+        "deployed_lambda_count": 2,
+        "deployed_mapping_count": 2,
+        "deployed_permission_count": 0,
+        "deployed_subscription_count": 0,
+        "deployed_api_count": 0,
+        "deployed_codebuild_project_count": 0,
+        "deployed_ecs_cluster_count": 0,
+        "deployed_ecs_task_definition_count": 0,
+        "deployed_ecs_service_count": 0,
+        "failed_resource_count": 0
+      },
+      "s3_transfer": null,
+      "validation": {
+        "status": "ok",
+        "report_path": "state\\clients\\rartiushkov\\deployments\\testmig-us-east-2-us-east-1-to-us-east-2\\validation_report.json",
+        "issues_found": true
+      }
+    }
+  ]
+}

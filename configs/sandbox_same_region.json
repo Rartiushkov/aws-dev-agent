@@ -1,0 +1,6 @@
+{
+  "overrides": {
+    "allow_same_scope": true,
+    "client_slug": "sandbox-demo"
+  }
+}

@@ -1,0 +1,339 @@
+{
+  "source_snapshot": "state\\clients\\sandbox-demo\\aws_inventory\\sandbox1\\source_snapshot.json",
+  "inventory_key": "sandbox1",
+  "source_env": "sandbox1",
+  "deployment_key": "sandbox2",
+  "target_env": "sandbox2",
+  "team": "",
+  "source_account_id": "027087672282",
+  "target_account_id": "027087672282",
+  "source_region": "us-east-1",
+  "region": "us-east-1",
+  "config_path": "configs/sandbox_same_region.json",
+  "source_role_arn": "",
+  "target_role_arn": "",
+  "roles": [
+    {
+      "source_role": "sandbox1-lambda-role",
+      "target_role": "sandbox2-lambda-role",
+      "target_role_arn": "arn:aws:iam::027087672282:role/sandbox2-lambda-role",
+      "operation": "created"
+    }
+  ],
+  "sqs_queues": [
+    {
+      "source_queue": "sandbox1-events",
+      "target_queue": "sandbox2-events",
+      "target_queue_url": "https://sqs.us-east-1.amazonaws.com/027087672282/sandbox2-events",
+      "target_queue_arn": "arn:aws:sqs:us-east-1:027087672282:sandbox2-events",
+      "operation": "created"
+    }
+  ],
+  "sns_topics": [],
+  "secrets": [],
+  "dynamodb_tables": [
+    {
+      "source_table": "sandbox1-orders",
+      "target_table": "sandbox2-orders",
+      "target_table_arn": "arn:aws:dynamodb:us-east-1:027087672282:table/sandbox2-orders",
+      "target_stream_arn": null,
+      "operation": "created"
+    }
+  ],
+  "dynamodb_table_items": [
+    {
+      "source_table": "sandbox1-orders",
+      "target_table": "sandbox2-orders",
+      "copied_item_count": 1
+    }
+  ],
+  "lambda_functions": [
+    {
+      "source_function": "sandbox1-worker",
+      "target_function": "sandbox2-worker",
+      "target_function_arn": "arn:aws:lambda:us-east-1:027087672282:function:sandbox2-worker",
+      "operation": "created",
+      "execution_role": "arn:aws:iam::027087672282:role/sandbox2-lambda-role",
+      "fallback_role_used": true
+    }
+  ],
+  "lambda_event_source_mappings": [
+    {
+      "source_uuid": "2c7dea58-3a36-4c97-afd5-8c51eca20997",
+      "target_uuid": "6a1b97cc-3a98-4738-af64-3eea701f7d85",
+      "target_function": "sandbox2-worker",
+      "target_event_source_arn": "arn:aws:sqs:us-east-1:027087672282:sandbox2-events",
+      "operation": "created"
+    }
+  ],
+  "lambda_permissions": [],
+  "sns_subscriptions": [],
+  "api_gateways": [],
+  "codebuild_projects": [],
+  "vpcs": [
+    {
+      "source_vpc": "vpc-03d4bf4fd56283eb5",
+      "target_vpc": "vpc-051d05bc241f5fb5e",
+      "target_name": "sandbox2-vpc-03d4bf4fd56283eb5",
+      "operation": "created"
+    }
+  ],
+  "subnets": [
+    {
+      "source_subnet": "subnet-0fd8f3eece23aa6b1",
+      "target_subnet": "subnet-0e406b4cc51540ccb",
+      "target_name": "sandbox2-subnet-0fd8f3eece23aa6b1",
+      "operation": "created"
+    },
+    {
+      "source_subnet": "subnet-011181ad481a04d3d",
+      "target_subnet": "subnet-028dc1a33c9e75756",
+      "target_name": "sandbox2-subnet-011181ad481a04d3d",
+      "operation": "created"
+    },
+    {
+      "source_subnet": "subnet-0c81726f63be41cce",
+      "target_subnet": "subnet-0e6e7c4fcec123129",
+      "target_name": "sandbox2-subnet-0c81726f63be41cce",
+      "operation": "created"
+    },
+    {
+      "source_subnet": "subnet-029a2424e7216e913",
+      "target_subnet": "subnet-00a67abbc0587ce5d",
+      "target_name": "sandbox2-subnet-029a2424e7216e913",
+      "operation": "created"
+    },
+    {
+      "source_subnet": "subnet-04553ddb12f80aa24",
+      "target_subnet": "subnet-04af6780841c8a45d",
+      "target_name": "sandbox2-subnet-04553ddb12f80aa24",
+      "operation": "created"
+    },
+    {
+      "source_subnet": "subnet-00c176177ea82ab38",
+      "target_subnet": "subnet-03029e08c833c4f94",
+      "target_name": "sandbox2-subnet-00c176177ea82ab38",
+      "operation": "created"
+    }
+  ],
+  "route_tables": [
+    {
+      "source_route_table": "rtb-003f6dd0bc997539c",
+      "target_route_table": "rtb-0a14848a2d5a2a90b",
+      "target_name": "sandbox2-rtb-003f6dd0bc997539c",
+      "operation": "created"
+    }
+  ],
+  "security_groups": [],
+  "ecs_clusters": [],
+  "ecs_task_definitions": [],
+  "ecs_services": [],
+  "queue_visibility_adjustments": [],
+  "resource_mappings": {
+    "role_arns": {
+      "arn:aws:iam::027087672282:role/sandbox1-lambda-role": "arn:aws:iam::027087672282:role/sandbox2-lambda-role"
+    },
+    "role_names": {
+      "sandbox1-lambda-role": "sandbox2-lambda-role"
+    },
+    "queue_urls": {
+      "https://sqs.us-east-1.amazonaws.com/027087672282/sandbox1-events": "https://sqs.us-east-1.amazonaws.com/027087672282/sandbox2-events"
+    },
+    "queue_arns": {
+      "arn:aws:sqs:us-east-1:027087672282:sandbox1-events": "arn:aws:sqs:us-east-1:027087672282:sandbox2-events"
+    },
+    "queue_names": {
+      "sandbox1-events": "sandbox2-events"
+    },
+    "topic_arns": {},
+    "topic_names": {},
+    "secret_arns": {},
+    "secret_names": {},
+    "dynamodb_table_names": {
+      "sandbox1-orders": "sandbox2-orders"
+    },
+    "dynamodb_table_arns": {
+      "arn:aws:dynamodb:us-east-1:027087672282:table/sandbox1-orders": "arn:aws:dynamodb:us-east-1:027087672282:table/sandbox2-orders"
+    },
+    "dynamodb_stream_arns": {},
+    "function_arns": {
+      "arn:aws:lambda:us-east-1:027087672282:function:sandbox1-worker": "arn:aws:lambda:us-east-1:027087672282:function:sandbox2-worker"
+    },
+    "function_names": {
+      "sandbox1-worker": "sandbox2-worker"
+    },
+    "api_ids": {},
+    "vpc_ids": {
+      "vpc-03d4bf4fd56283eb5": "vpc-051d05bc241f5fb5e"
+    },
+    "subnet_ids": {
+      "subnet-0fd8f3eece23aa6b1": "subnet-0e406b4cc51540ccb",
+      "subnet-011181ad481a04d3d": "subnet-028dc1a33c9e75756",
+      "subnet-0c81726f63be41cce": "subnet-0e6e7c4fcec123129",
+      "subnet-029a2424e7216e913": "subnet-00a67abbc0587ce5d",
+      "subnet-04553ddb12f80aa24": "subnet-04af6780841c8a45d",
+      "subnet-00c176177ea82ab38": "subnet-03029e08c833c4f94"
+    },
+    "route_table_ids": {
+      "rtb-003f6dd0bc997539c": "rtb-0a14848a2d5a2a90b"
+    },
+    "security_group_ids": {},
+    "kms_key_ids": {},
+    "kms_aliases": {},
+    "s3_bucket_names": {},
+    "s3_bucket_arns": {},
+    "codebuild_project_arns": {},
+    "codebuild_project_names": {},
+    "ecs_cluster_arns": {},
+    "ecs_cluster_names": {},
+    "ecs_task_definition_arns": {},
+    "ecs_task_definition_families": {},
+    "source_account_id": "027087672282",
+    "target_account_id": "027087672282",
+    "target_env": "sandbox2",
+    "team": "",
+    "target_region": "us-east-1"
+  },
+  "preserve_names": false,
+  "preflight_checks": [
+    {
+      "name": "scope",
+      "status": "warning",
+      "details": {
+        "source_account_id": "027087672282",
+        "target_account_id": "027087672282",
+        "source_region": "us-east-1",
+        "target_region": "us-east-1",
+        "same_account": true,
+        "same_region": true
+      },
+      "known_fixes": [
+        {
+          "summary": "network-resources-present: an error occurred (invalidroutetableid.notfound) when calling the describeroutetables operation: the routetable id '<rtb-id>' does not exist",
+          "resolution": "",
+          "validated_fix_count": 0,
+          "occurrences": 1,
+          "tags": [
+            "network-resources-present",
+            "validation"
+          ]
+        },
+        {
+          "summary": "network-resources-present: an error occurred (invalidsubnetid.notfound) when calling the describesubnets operation: the subnet id '<subnet-id>' does not exist",
+          "resolution": "",
+          "validated_fix_count": 0,
+          "occurrences": 1,
+          "tags": [
+            "network-resources-present",
+            "validation"
+          ]
+        },
+        {
+          "summary": "network-resources-present: an error occurred (invalidvpcid.notfound) when calling the describevpcs operation: the vpc id '<vpc-id>' does not exist",
+          "resolution": "",
+          "validated_fix_count": 0,
+          "occurrences": 1,
+          "tags": [
+            "network-resources-present",
+            "validation"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "kms-remap",
+      "status": "ok",
+      "details": {
+        "unresolved_reference_count": 0,
+        "sample": []
+      }
+    },
+    {
+      "name": "ecs-network-dependencies",
+      "status": "ok",
+      "details": {
+        "service_count": 0,
+        "services": [],
+        "vpc_count": 1,
+        "subnet_count": 6
+      }
+    },
+    {
+      "name": "hardcoded-source-account-references",
+      "status": "ok",
+      "details": {
+        "count": 39,
+        "sample": [
+          {
+            "path": "$.account_id",
+            "value": "027087672282"
+          },
+          {
+            "path": "$.lambda_functions[0].FunctionArn",
+            "value": "arn:aws:lambda:us-east-1:027087672282:function:sandbox1-worker"
+          },
+          {
+            "path": "$.lambda_functions[0].Role",
+            "value": "arn:aws:iam::027087672282:role/sandbox1-lambda-role"
+          },
+          {
+            "path": "$.lambda_event_source_mappings[0].EventSourceArn",
+            "value": "arn:aws:sqs:us-east-1:027087672282:sandbox1-events"
+          },
+          {
+            "path": "$.lambda_event_source_mappings[0].FunctionArn",
+            "value": "arn:aws:lambda:us-east-1:027087672282:function:sandbox1-worker"
+          },
+          {
+            "path": "$.lambda_event_source_mappings[0].EventSourceMappingArn",
+            "value": "arn:aws:lambda:us-east-1:027087672282:event-source-mapping:2c7dea58-3a36-4c97-afd5-8c51eca20997"
+          },
+          {
+            "path": "$.iam_roles[0].Arn",
+            "value": "arn:aws:iam::027087672282:role/sandbox1-lambda-role"
+          },
+          {
+            "path": "$.sqs_queues[0].QueueUrl",
+            "value": "https://sqs.us-east-1.amazonaws.com/027087672282/sandbox1-events"
+          },
+          {
+            "path": "$.sqs_queues[0].Attributes.QueueArn",
+            "value": "arn:aws:sqs:us-east-1:027087672282:sandbox1-events"
+          },
+          {
+            "path": "$.dynamodb_tables[0].Table.TableArn",
+            "value": "arn:aws:dynamodb:us-east-1:027087672282:table/sandbox1-orders"
+          }
+        ]
+      }
+    }
+  ],
+  "failures": {
+    "roles": [],
+    "queues": [],
+    "topics": [],
+    "secrets": [],
+    "dynamodb_tables": [],
+    "dynamodb_table_items": [],
+    "lambda_functions": [],
+    "event_source_mappings": [],
+    "lambda_permissions": [],
+    "sns_subscriptions": [],
+    "api_gateways": [],
+    "codebuild_projects": [],
+    "vpcs": [],
+    "subnets": [],
+    "route_tables": [],
+    "security_groups": [],
+    "ecs_clusters": [],
+    "ecs_task_definitions": [],
+    "ecs_services": []
+  },
+  "follow_up": {
+    "manual_review_required": false,
+    "cloudformation_stacks_review_required": false,
+    "load_balancer_review_required": false,
+    "s3_review_required": false,
+    "ecs_review_required": false
+  }
+}

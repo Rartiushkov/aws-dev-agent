@@ -1,0 +1,65 @@
+[
+  {
+    "signature": "validation-smoke-check-issue:26dbdde44b5c75ee",
+    "kind": "validation-smoke-check-issue",
+    "scope": "global",
+    "summary": "network-resources-present: an error occurred (invalidroutetableid.notfound) when calling the describeroutetables operation: the routetable id '<rtb-id>' does not exist",
+    "tags": [
+      "network-resources-present",
+      "validation"
+    ],
+    "source_env": "",
+    "target_env": "sandbox2",
+    "occurrences": 1,
+    "validated_fix_count": 0,
+    "first_seen": "2026-03-28T12:29:17.752208+00:00",
+    "last_seen": "2026-03-28T12:29:17.752208+00:00",
+    "last_validated_at": "",
+    "last_resolution": "",
+    "sample_details": {
+      "resource": "route_tables"
+    }
+  },
+  {
+    "signature": "validation-smoke-check-issue:f9cf6842f7ebe866",
+    "kind": "validation-smoke-check-issue",
+    "scope": "global",
+    "summary": "network-resources-present: an error occurred (invalidsubnetid.notfound) when calling the describesubnets operation: the subnet id '<subnet-id>' does not exist",
+    "tags": [
+      "network-resources-present",
+      "validation"
+    ],
+    "source_env": "",
+    "target_env": "sandbox2",
+    "occurrences": 1,
+    "validated_fix_count": 0,
+    "first_seen": "2026-03-28T12:29:17.737864+00:00",
+    "last_seen": "2026-03-28T12:29:17.737864+00:00",
+    "last_validated_at": "",
+    "last_resolution": "",
+    "sample_details": {
+      "resource": "subnets"
+    }
+  },
+  {
+    "signature": "validation-smoke-check-issue:e93ac13fdefb0321",
+    "kind": "validation-smoke-check-issue",
+    "scope": "global",
+    "summary": "network-resources-present: an error occurred (invalidvpcid.notfound) when calling the describevpcs operation: the vpc id '<vpc-id>' does not exist",
+    "tags": [
+      "network-resources-present",
+      "validation"
+    ],
+    "source_env": "",
+    "target_env": "sandbox2",
+    "occurrences": 1,
+    "validated_fix_count": 0,
+    "first_seen": "2026-03-28T12:29:17.719602+00:00",
+    "last_seen": "2026-03-28T12:29:17.719602+00:00",
+    "last_validated_at": "",
+    "last_resolution": "",
+    "sample_details": {
+      "resource": "vpcs"
+    }
+  }
+]

@@ -1,0 +1,121 @@
+{
+  "nodes": [
+    {
+      "id": "arn:aws:sqs:us-east-1:027087672282:sandbox1-events",
+      "type": "sqs",
+      "name": "sandbox1-events"
+    },
+    {
+      "id": "arn:aws:iam::027087672282:role/sandbox1-lambda-role",
+      "type": "iam-role",
+      "name": "sandbox1-lambda-role"
+    },
+    {
+      "id": "vpc-03d4bf4fd56283eb5",
+      "type": "vpc",
+      "name": "vpc-03d4bf4fd56283eb5"
+    },
+    {
+      "id": "subnet-0fd8f3eece23aa6b1",
+      "type": "subnet",
+      "name": "subnet-0fd8f3eece23aa6b1"
+    },
+    {
+      "id": "subnet-011181ad481a04d3d",
+      "type": "subnet",
+      "name": "subnet-011181ad481a04d3d"
+    },
+    {
+      "id": "subnet-0c81726f63be41cce",
+      "type": "subnet",
+      "name": "subnet-0c81726f63be41cce"
+    },
+    {
+      "id": "subnet-029a2424e7216e913",
+      "type": "subnet",
+      "name": "subnet-029a2424e7216e913"
+    },
+    {
+      "id": "subnet-04553ddb12f80aa24",
+      "type": "subnet",
+      "name": "subnet-04553ddb12f80aa24"
+    },
+    {
+      "id": "subnet-00c176177ea82ab38",
+      "type": "subnet",
+      "name": "subnet-00c176177ea82ab38"
+    },
+    {
+      "id": "arn:aws:dynamodb:us-east-1:027087672282:table/sandbox1-orders",
+      "type": "dynamodb",
+      "name": "sandbox1-orders"
+    },
+    {
+      "id": "arn:aws:lambda:us-east-1:027087672282:function:sandbox1-worker",
+      "type": "lambda",
+      "name": "sandbox1-worker"
+    },
+    {
+      "id": "arn:aws:lambda:us-east-1:027087672282:event-source-mapping:2c7dea58-3a36-4c97-afd5-8c51eca20997",
+      "type": "lambda-event-source-mapping",
+      "name": "2c7dea58-3a36-4c97-afd5-8c51eca20997"
+    }
+  ],
+  "edges": [
+    {
+      "from": "subnet-0fd8f3eece23aa6b1",
+      "to": "vpc-03d4bf4fd56283eb5",
+      "relationship": "subnet-of-vpc"
+    },
+    {
+      "from": "subnet-011181ad481a04d3d",
+      "to": "vpc-03d4bf4fd56283eb5",
+      "relationship": "subnet-of-vpc"
+    },
+    {
+      "from": "subnet-0c81726f63be41cce",
+      "to": "vpc-03d4bf4fd56283eb5",
+      "relationship": "subnet-of-vpc"
+    },
+    {
+      "from": "subnet-029a2424e7216e913",
+      "to": "vpc-03d4bf4fd56283eb5",
+      "relationship": "subnet-of-vpc"
+    },
+    {
+      "from": "subnet-04553ddb12f80aa24",
+      "to": "vpc-03d4bf4fd56283eb5",
+      "relationship": "subnet-of-vpc"
+    },
+    {
+      "from": "subnet-00c176177ea82ab38",
+      "to": "vpc-03d4bf4fd56283eb5",
+      "relationship": "subnet-of-vpc"
+    },
+    {
+      "from": "arn:aws:lambda:us-east-1:027087672282:function:sandbox1-worker",
+      "to": "arn:aws:iam::027087672282:role/sandbox1-lambda-role",
+      "relationship": "assumes-role"
+    },
+    {
+      "from": "arn:aws:lambda:us-east-1:027087672282:event-source-mapping:2c7dea58-3a36-4c97-afd5-8c51eca20997",
+      "to": "arn:aws:lambda:us-east-1:027087672282:function:sandbox1-worker",
+      "relationship": "invokes-function"
+    },
+    {
+      "from": "arn:aws:lambda:us-east-1:027087672282:event-source-mapping:2c7dea58-3a36-4c97-afd5-8c51eca20997",
+      "to": "arn:aws:sqs:us-east-1:027087672282:sandbox1-events",
+      "relationship": "reads-from"
+    },
+    {
+      "from": "arn:aws:sqs:us-east-1:027087672282:sandbox1-events",
+      "to": "arn:aws:lambda:us-east-1:027087672282:event-source-mapping:2c7dea58-3a36-4c97-afd5-8c51eca20997",
+      "relationship": "feeds-mapping"
+    },
+    {
+      "from": "arn:aws:lambda:us-east-1:027087672282:function:sandbox1-worker",
+      "to": "arn:aws:sqs:us-east-1:027087672282:sandbox1-events",
+      "relationship": "event-source-mapping"
+    }
+  ]
+}

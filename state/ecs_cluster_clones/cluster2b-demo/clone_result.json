@@ -1,0 +1,27 @@
+{
+  "status": "ok",
+  "deployed_clusters": [
+    {
+      "source_cluster": "cluster1-demo",
+      "target_cluster": "cluster2b-demo",
+      "target_cluster_arn": "arn:aws:ecs:us-east-1:027087672282:cluster/cluster2b-demo",
+      "operation": "created"
+    }
+  ],
+  "deployed_task_definitions": [
+    {
+      "source_task_definition": "arn:aws:ecs:us-east-1:027087672282:task-definition/cluster1-demo-task:1",
+      "target_task_definition": "arn:aws:ecs:us-east-1:027087672282:task-definition/cluster2b-demo-task:1",
+      "operation": "registered"
+    }
+  ],
+  "deployed_services": [
+    {
+      "source_service": "cluster1-demo-service",
+      "target_service": "cluster2b-demo-service",
+      "target_cluster_arn": "arn:aws:ecs:us-east-1:027087672282:cluster/cluster2b-demo",
+      "target_service_arn": "arn:aws:ecs:us-east-1:027087672282:service/cluster2b-demo/cluster2b-demo-service",
+      "operation": "created"
+    }
+  ]
+}

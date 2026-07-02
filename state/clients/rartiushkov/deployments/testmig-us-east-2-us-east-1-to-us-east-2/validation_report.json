@@ -1,0 +1,102 @@
+{
+  "manifest_path": "state\\clients\\rartiushkov\\deployments\\testmig-us-east-2-us-east-1-to-us-east-2\\deployment_manifest.json",
+  "target_env": "testmig-us-east-2",
+  "deployment_key": "testmig-us-east-2-us-east-1-to-us-east-2",
+  "region": "us-east-2",
+  "functions": [
+    {
+      "function_name": "testmig-fn1",
+      "state": "Active",
+      "last_update_status": "Successful",
+      "issues": []
+    },
+    {
+      "function_name": "testmig-fn2",
+      "state": "Active",
+      "last_update_status": "Successful",
+      "issues": []
+    }
+  ],
+  "secrets": [],
+  "dynamodb_tables": [],
+  "smoke_checks": [
+    {
+      "name": "lambda-functions-active",
+      "status": "ok",
+      "issues": []
+    },
+    {
+      "name": "lambda-dry-run-invoke",
+      "status": "ok",
+      "issues": []
+    },
+    {
+      "name": "lambda-event-source-mapping-count",
+      "status": "ok",
+      "expected": 2,
+      "actual": 2
+    },
+    {
+      "name": "lambda-event-source-mappings-enabled",
+      "status": "issue",
+      "issues": [
+        {
+          "function": "testmig-fn2",
+          "uuid": "3248f5e4-68d0-48d0-8f0f-fc5d89e1121a",
+          "error": "state=Creating (USER_INITIATED)"
+        }
+      ]
+    },
+    {
+      "name": "sqs-queues-present",
+      "status": "ok",
+      "issues": []
+    },
+    {
+      "name": "ecs-clusters-present",
+      "status": "ok",
+      "issues": []
+    },
+    {
+      "name": "ecs-services-steady",
+      "status": "ok",
+      "issues": []
+    },
+    {
+      "name": "api-gateways-present",
+      "status": "ok",
+      "issues": []
+    },
+    {
+      "name": "api-gateway-stages-present",
+      "status": "ok",
+      "issues": []
+    },
+    {
+      "name": "network-resources-present",
+      "status": "ok",
+      "issues": []
+    },
+    {
+      "name": "codebuild-projects-present",
+      "status": "ok",
+      "issues": []
+    },
+    {
+      "name": "kms-keys-ready",
+      "status": "ok",
+      "issues": []
+    },
+    {
+      "name": "api-gateway-extras-parity",
+      "status": "ok",
+      "issues": []
+    },
+    {
+      "name": "s3-bucket-parity",
+      "status": "ok",
+      "issues": []
+    }
+  ],
+  "issues_found": true
+}

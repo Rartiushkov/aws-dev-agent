@@ -10,11 +10,11 @@
     ],
     "source_env": "",
     "target_env": "",
-    "occurrences": 4,
-    "validated_fix_count": 4,
+    "occurrences": 8,
+    "validated_fix_count": 8,
     "first_seen": "2026-03-22T12:12:46.024971+00:00",
-    "last_seen": "2026-03-22T13:13:25.570856+00:00",
-    "last_validated_at": "2026-03-22T13:13:25.570856+00:00",
+    "last_seen": "2026-06-22T07:06:42.982998+00:00",
+    "last_validated_at": "2026-06-22T07:06:42.982998+00:00",
     "last_resolution": "rewrite awslogs-region to target region",
     "sample_details": {}
   }

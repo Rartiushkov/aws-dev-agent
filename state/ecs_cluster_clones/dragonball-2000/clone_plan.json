@@ -1,0 +1,31 @@
+{
+  "mode": "read-only-assessment",
+  "source_cluster": "cluster1-demo",
+  "target_cluster": "DragonBall-2000",
+  "region": "us-east-1",
+  "planned_actions": {
+    "cluster": 1,
+    "services": 1,
+    "task_definitions": 1
+  },
+  "source_summary": {
+    "cluster_arn": "arn:aws:ecs:us-east-1:027087672282:cluster/cluster1-demo",
+    "service_names": [
+      "cluster1-demo-service"
+    ],
+    "task_definition_families": [
+      "cluster1-demo-task"
+    ]
+  },
+  "target_summary": {
+    "cluster_name": "DragonBall-2000",
+    "service_names": [
+      "DragonBall-2000-service"
+    ],
+    "task_definition_families": [
+      "DragonBall-2000-task"
+    ]
+  },
+  "preflight_issues": [],
+  "ready_to_apply": true
+}

@@ -1,0 +1,43 @@
+{
+  "FunctionName": "log-collector",
+  "FunctionArn": "arn:aws:lambda:us-east-1:027087672282:function:log-collector",
+  "Runtime": "nodejs20.x",
+  "Role": "arn:aws:iam::027087672282:role/setup-agent-role",
+  "Handler": "index.handler",
+  "CodeSize": 1367,
+  "Description": "",
+  "Timeout": 30,
+  "MemorySize": 256,
+  "LastModified": "2026-02-23T06:43:05.000+0000",
+  "CodeSha256": "bTr3fEcjasdq4tjNxvNMkBleZpZysL36BviXG0jwC98=",
+  "Version": "$LATEST",
+  "Environment": {
+    "Variables": {
+      "ERRORS_TABLE": "agent_errors"
+    }
+  },
+  "TracingConfig": {
+    "Mode": "PassThrough"
+  },
+  "RevisionId": "7d16ee01-ab42-4134-886f-55be2591f1b0",
+  "State": "Active",
+  "LastUpdateStatus": "Successful",
+  "PackageType": "Zip",
+  "Architectures": [
+    "x86_64"
+  ],
+  "EphemeralStorage": {
+    "Size": 512
+  },
+  "SnapStart": {
+    "ApplyOn": "None",
+    "OptimizationStatus": "Off"
+  },
+  "RuntimeVersionConfig": {
+    "RuntimeVersionArn": "arn:aws:lambda:us-east-1::runtime:2d788b26ac416854c5eb831c9f46cb2e0a0ddcee84b1a9b114acbdfdb644c8c1"
+  },
+  "LoggingConfig": {
+    "LogFormat": "Text",
+    "LogGroup": "/aws/lambda/log-collector"
+  }
+}

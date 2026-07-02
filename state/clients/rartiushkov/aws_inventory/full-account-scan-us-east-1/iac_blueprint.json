@@ -1,0 +1,72 @@
+{
+  "generated_at": "2026-05-14T11:43:27.507627+00:00",
+  "source_env": "",
+  "region": "us-east-1",
+  "terraform_blueprint": {
+    "aws_iam_role": 2,
+    "aws_sqs_queue": 7,
+    "aws_sns_topic": 0,
+    "aws_lambda_function": 12,
+    "aws_dynamodb_table": 9,
+    "aws_api_gateway_rest_api": 0,
+    "aws_ecs_cluster": 5,
+    "aws_ecs_service": 5,
+    "aws_db_instance": 0,
+    "aws_rds_cluster": 0,
+    "aws_instance": 0
+  },
+  "cloudformation_blueprint": {
+    "AWS::IAM::Role": 2,
+    "AWS::SQS::Queue": 7,
+    "AWS::SNS::Topic": 0,
+    "AWS::Lambda::Function": 12,
+    "AWS::DynamoDB::Table": 9,
+    "AWS::ApiGateway::RestApi": 0,
+    "AWS::ECS::Cluster": 5,
+    "AWS::ECS::Service": 5,
+    "AWS::RDS::DBInstance": 0,
+    "AWS::RDS::DBCluster": 0,
+    "AWS::EC2::Instance": 0,
+    "AWS::CloudFormation::Stack": 1
+  },
+  "terraform_stub_resources": [
+    {
+      "type": "aws_s3_bucket",
+      "name": "aws_dev_agent_codebuild_artifacts_027087672282_us_east_1",
+      "bucket": "aws-dev-agent-codebuild-artifacts-027087672282-us-east-1"
+    },
+    {
+      "type": "aws_s3_bucket",
+      "name": "hippa_signer_artifacts_027087672282",
+      "bucket": "hippa-signer-artifacts-027087672282"
+    },
+    {
+      "type": "aws_vpc",
+      "name": "vpc_03d4bf4fd56283eb5",
+      "cidr_block": "172.31.0.0/16"
+    },
+    {
+      "type": "aws_vpc",
+      "name": "vpc_051d05bc241f5fb5e",
+      "cidr_block": "172.31.0.0/16"
+    }
+  ],
+  "cloudformation_stub_resources": {
+    "aws-dev-agent-codebuild-artifacts-027087672282-us-east-1": {
+      "Type": "AWS::S3::Bucket",
+      "Properties": {
+        "BucketName": "aws-dev-agent-codebuild-artifacts-027087672282-us-east-1"
+      }
+    },
+    "hippa-signer-artifacts-027087672282": {
+      "Type": "AWS::S3::Bucket",
+      "Properties": {
+        "BucketName": "hippa-signer-artifacts-027087672282"
+      }
+    }
+  },
+  "notes": [
+    "This export now includes starter resource stubs for S3, VPC, RDS, and EC2 resources.",
+    "Use it as the first step toward real importable Terraform/CloudFormation coverage."
+  ]
+}

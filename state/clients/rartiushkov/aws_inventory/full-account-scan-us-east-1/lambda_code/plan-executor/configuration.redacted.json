@@ -1,0 +1,48 @@
+{
+  "FunctionName": "plan-executor",
+  "FunctionArn": "arn:aws:lambda:us-east-1:027087672282:function:plan-executor",
+  "Runtime": "nodejs20.x",
+  "Role": "arn:aws:iam::027087672282:role/plan-executor-role",
+  "Handler": "index.handler",
+  "CodeSize": 5817593,
+  "Description": "reload-secure-1772647748",
+  "Timeout": 30,
+  "MemorySize": 256,
+  "LastModified": "2026-03-17T16:08:45.000+0000",
+  "CodeSha256": "nX11d9Utju29efU7RD5bWdEGHID0TU4KUZzuqYpn6Tk=",
+  "Version": "$LATEST",
+  "Environment": {
+    "Variables": {
+      "GITHUB_SECRET_ID": "[REDACTED]",
+      "GITHUB_REPO": "hippa-signer",
+      "GITHUB_OWNER": "Rartiushkov",
+      "PLANS_TABLE": "agent_fix_plans",
+      "BATCH_LIMIT": "10",
+      "GITHUB_BASE_BRANCH": "main"
+    }
+  },
+  "TracingConfig": {
+    "Mode": "PassThrough"
+  },
+  "RevisionId": "14673f9f-8d66-42a3-b5ee-cfe92dc0d7c4",
+  "State": "Active",
+  "LastUpdateStatus": "Successful",
+  "PackageType": "Zip",
+  "Architectures": [
+    "x86_64"
+  ],
+  "EphemeralStorage": {
+    "Size": 512
+  },
+  "SnapStart": {
+    "ApplyOn": "None",
+    "OptimizationStatus": "Off"
+  },
+  "RuntimeVersionConfig": {
+    "RuntimeVersionArn": "arn:aws:lambda:us-east-1::runtime:2d788b26ac416854c5eb831c9f46cb2e0a0ddcee84b1a9b114acbdfdb644c8c1"
+  },
+  "LoggingConfig": {
+    "LogFormat": "Text",
+    "LogGroup": "/aws/lambda/plan-executor"
+  }
+}

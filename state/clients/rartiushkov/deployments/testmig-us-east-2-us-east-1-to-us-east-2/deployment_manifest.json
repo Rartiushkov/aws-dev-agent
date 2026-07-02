@@ -1,0 +1,379 @@
+{
+  "source_snapshot": "state\\clients\\rartiushkov\\aws_inventory\\testmig-us-east-1\\source_snapshot.json",
+  "inventory_key": "testmig-us-east-1",
+  "source_env": "testmig",
+  "deployment_key": "testmig-us-east-2-us-east-1-to-us-east-2",
+  "target_env": "testmig-us-east-2",
+  "team": "",
+  "source_account_id": "027087672282",
+  "target_account_id": "027087672282",
+  "source_region": "us-east-1",
+  "region": "us-east-2",
+  "config_path": "C:\\Users\\R106C~1.ART\\AppData\\Local\\Temp\\aws-dev-agent-migrate-vwa3pw96\\config-us-east-1.json",
+  "source_role_arn": "",
+  "target_role_arn": "",
+  "roles": [
+    {
+      "source_role": "testmig-lambda-role",
+      "target_role": "testmig-lambda-role",
+      "target_role_arn": "arn:aws:iam::027087672282:role/testmig-lambda-role",
+      "operation": "updated"
+    }
+  ],
+  "sqs_queues": [
+    {
+      "source_queue": "testmig-q1",
+      "target_queue": "testmig-q1",
+      "target_queue_url": "https://sqs.us-east-2.amazonaws.com/027087672282/testmig-q1",
+      "target_queue_arn": "arn:aws:sqs:us-east-2:027087672282:testmig-q1",
+      "operation": "created"
+    },
+    {
+      "source_queue": "testmig-q2",
+      "target_queue": "testmig-q2",
+      "target_queue_url": "https://sqs.us-east-2.amazonaws.com/027087672282/testmig-q2",
+      "target_queue_arn": "arn:aws:sqs:us-east-2:027087672282:testmig-q2",
+      "operation": "created"
+    }
+  ],
+  "sns_topics": [],
+  "secrets": [],
+  "dynamodb_tables": [],
+  "dynamodb_table_items": [],
+  "lambda_functions": [
+    {
+      "source_function": "testmig-fn1",
+      "target_function": "testmig-fn1",
+      "target_function_arn": "arn:aws:lambda:us-east-2:027087672282:function:testmig-fn1",
+      "operation": "created",
+      "execution_role": "arn:aws:iam::027087672282:role/testmig-lambda-role",
+      "fallback_role_used": false
+    },
+    {
+      "source_function": "testmig-fn2",
+      "target_function": "testmig-fn2",
+      "target_function_arn": "arn:aws:lambda:us-east-2:027087672282:function:testmig-fn2",
+      "operation": "created",
+      "execution_role": "arn:aws:iam::027087672282:role/testmig-lambda-role",
+      "fallback_role_used": false
+    }
+  ],
+  "lambda_event_source_mappings": [
+    {
+      "source_uuid": "8e6be932-6589-404e-a9c6-34d6e20150db",
+      "target_uuid": "9e248ba7-a3ef-4042-8096-b45b2150101e",
+      "target_function": "testmig-fn1",
+      "target_event_source_arn": "arn:aws:sqs:us-east-2:027087672282:testmig-q1",
+      "operation": "created"
+    },
+    {
+      "source_uuid": "48b522ed-a9e5-4073-936a-c280d8f1f966",
+      "target_uuid": "3248f5e4-68d0-48d0-8f0f-fc5d89e1121a",
+      "target_function": "testmig-fn2",
+      "target_event_source_arn": "arn:aws:sqs:us-east-2:027087672282:testmig-q2",
+      "operation": "created"
+    }
+  ],
+  "lambda_permissions": [],
+  "sns_subscriptions": [],
+  "api_gateways": [],
+  "codebuild_projects": [],
+  "vpcs": [
+    {
+      "source_vpc": "vpc-03d4bf4fd56283eb5",
+      "target_vpc": "vpc-01209ca70655a3a1f",
+      "target_name": "vpc-03d4bf4fd56283eb5",
+      "operation": "adopted-existing"
+    },
+    {
+      "source_vpc": "vpc-051d05bc241f5fb5e",
+      "target_vpc": "vpc-01209ca70655a3a1f",
+      "target_name": "sandbox2-vpc-03d4bf4fd56283eb5",
+      "operation": "adopted-existing"
+    }
+  ],
+  "subnets": [
+    {
+      "source_subnet": "subnet-00a67abbc0587ce5d",
+      "target_subnet": "subnet-0aa42b2acf7dc27e5",
+      "target_name": "sandbox2-subnet-029a2424e7216e913",
+      "operation": "adopted-existing"
+    },
+    {
+      "source_subnet": "subnet-04af6780841c8a45d",
+      "target_subnet": "subnet-0b421c1677fcec6fd",
+      "target_name": "sandbox2-subnet-04553ddb12f80aa24",
+      "operation": "adopted-existing"
+    },
+    {
+      "source_subnet": "subnet-0e406b4cc51540ccb",
+      "target_subnet": "subnet-06ff2d45e9757db71",
+      "target_name": "sandbox2-subnet-0fd8f3eece23aa6b1",
+      "operation": "adopted-existing"
+    },
+    {
+      "source_subnet": "subnet-0fd8f3eece23aa6b1",
+      "target_subnet": "subnet-06ff2d45e9757db71",
+      "target_name": "subnet-0fd8f3eece23aa6b1",
+      "operation": "adopted-existing"
+    },
+    {
+      "source_subnet": "subnet-011181ad481a04d3d",
+      "target_subnet": "subnet-074c79625057ac73a",
+      "target_name": "subnet-011181ad481a04d3d",
+      "operation": "adopted-existing"
+    },
+    {
+      "source_subnet": "subnet-0c81726f63be41cce",
+      "target_subnet": "subnet-028804c2be33078a5",
+      "target_name": "subnet-0c81726f63be41cce",
+      "operation": "adopted-existing"
+    },
+    {
+      "source_subnet": "subnet-03029e08c833c4f94",
+      "target_subnet": "subnet-0bcee60eca400460c",
+      "target_name": "sandbox2-subnet-00c176177ea82ab38",
+      "operation": "adopted-existing"
+    },
+    {
+      "source_subnet": "subnet-029a2424e7216e913",
+      "target_subnet": "subnet-0aa42b2acf7dc27e5",
+      "target_name": "subnet-029a2424e7216e913",
+      "operation": "adopted-existing"
+    },
+    {
+      "source_subnet": "subnet-04553ddb12f80aa24",
+      "target_subnet": "subnet-0b421c1677fcec6fd",
+      "target_name": "subnet-04553ddb12f80aa24",
+      "operation": "adopted-existing"
+    },
+    {
+      "source_subnet": "subnet-028dc1a33c9e75756",
+      "target_subnet": "subnet-074c79625057ac73a",
+      "target_name": "sandbox2-subnet-011181ad481a04d3d",
+      "operation": "adopted-existing"
+    },
+    {
+      "source_subnet": "subnet-0e6e7c4fcec123129",
+      "target_subnet": "subnet-028804c2be33078a5",
+      "target_name": "sandbox2-subnet-0c81726f63be41cce",
+      "operation": "adopted-existing"
+    },
+    {
+      "source_subnet": "subnet-00c176177ea82ab38",
+      "target_subnet": "subnet-0bcee60eca400460c",
+      "target_name": "subnet-00c176177ea82ab38",
+      "operation": "adopted-existing"
+    }
+  ],
+  "route_tables": [
+    {
+      "source_route_table": "rtb-0ab148287ccd69076",
+      "target_route_table": "rtb-0989bb440f20e279d",
+      "target_name": "rtb-0ab148287ccd69076",
+      "operation": "created"
+    },
+    {
+      "source_route_table": "rtb-003f6dd0bc997539c",
+      "target_route_table": "rtb-00ee6dc048f2ecab3",
+      "target_name": "rtb-003f6dd0bc997539c",
+      "operation": "created"
+    },
+    {
+      "source_route_table": "rtb-0a14848a2d5a2a90b",
+      "target_route_table": "rtb-0d657cdb88e9486b6",
+      "target_name": "sandbox2-rtb-003f6dd0bc997539c",
+      "operation": "created"
+    }
+  ],
+  "security_groups": [],
+  "ecs_clusters": [],
+  "ecs_task_definitions": [],
+  "ecs_services": [],
+  "queue_visibility_adjustments": [],
+  "resource_mappings": {
+    "role_arns": {
+      "arn:aws:iam::027087672282:role/testmig-lambda-role": "arn:aws:iam::027087672282:role/testmig-lambda-role"
+    },
+    "role_names": {
+      "testmig-lambda-role": "testmig-lambda-role"
+    },
+    "queue_urls": {
+      "https://sqs.us-east-1.amazonaws.com/027087672282/testmig-q1": "https://sqs.us-east-2.amazonaws.com/027087672282/testmig-q1",
+      "https://sqs.us-east-1.amazonaws.com/027087672282/testmig-q2": "https://sqs.us-east-2.amazonaws.com/027087672282/testmig-q2"
+    },
+    "queue_arns": {
+      "arn:aws:sqs:us-east-1:027087672282:testmig-q1": "arn:aws:sqs:us-east-2:027087672282:testmig-q1",
+      "arn:aws:sqs:us-east-1:027087672282:testmig-q2": "arn:aws:sqs:us-east-2:027087672282:testmig-q2"
+    },
+    "queue_names": {
+      "testmig-q1": "testmig-q1",
+      "testmig-q2": "testmig-q2"
+    },
+    "topic_arns": {},
+    "topic_names": {},
+    "secret_arns": {},
+    "secret_names": {},
+    "dynamodb_table_names": {},
+    "dynamodb_table_arns": {},
+    "dynamodb_stream_arns": {},
+    "function_arns": {
+      "arn:aws:lambda:us-east-1:027087672282:function:testmig-fn1": "arn:aws:lambda:us-east-2:027087672282:function:testmig-fn1",
+      "arn:aws:lambda:us-east-1:027087672282:function:testmig-fn2": "arn:aws:lambda:us-east-2:027087672282:function:testmig-fn2"
+    },
+    "function_names": {
+      "testmig-fn1": "testmig-fn1",
+      "testmig-fn2": "testmig-fn2"
+    },
+    "api_ids": {},
+    "vpc_ids": {
+      "vpc-03d4bf4fd56283eb5": "vpc-01209ca70655a3a1f",
+      "vpc-051d05bc241f5fb5e": "vpc-01209ca70655a3a1f"
+    },
+    "subnet_ids": {
+      "subnet-00a67abbc0587ce5d": "subnet-0aa42b2acf7dc27e5",
+      "subnet-04af6780841c8a45d": "subnet-0b421c1677fcec6fd",
+      "subnet-0e406b4cc51540ccb": "subnet-06ff2d45e9757db71",
+      "subnet-0fd8f3eece23aa6b1": "subnet-06ff2d45e9757db71",
+      "subnet-011181ad481a04d3d": "subnet-074c79625057ac73a",
+      "subnet-0c81726f63be41cce": "subnet-028804c2be33078a5",
+      "subnet-03029e08c833c4f94": "subnet-0bcee60eca400460c",
+      "subnet-029a2424e7216e913": "subnet-0aa42b2acf7dc27e5",
+      "subnet-04553ddb12f80aa24": "subnet-0b421c1677fcec6fd",
+      "subnet-028dc1a33c9e75756": "subnet-074c79625057ac73a",
+      "subnet-0e6e7c4fcec123129": "subnet-028804c2be33078a5",
+      "subnet-00c176177ea82ab38": "subnet-0bcee60eca400460c"
+    },
+    "route_table_ids": {
+      "rtb-0ab148287ccd69076": "rtb-0989bb440f20e279d",
+      "rtb-003f6dd0bc997539c": "rtb-00ee6dc048f2ecab3",
+      "rtb-0a14848a2d5a2a90b": "rtb-0d657cdb88e9486b6"
+    },
+    "security_group_ids": {},
+    "kms_key_ids": {},
+    "kms_aliases": {},
+    "s3_bucket_names": {},
+    "s3_bucket_arns": {},
+    "codebuild_project_arns": {},
+    "codebuild_project_names": {},
+    "ecs_cluster_arns": {},
+    "ecs_cluster_names": {},
+    "ecs_task_definition_arns": {},
+    "ecs_task_definition_families": {},
+    "source_account_id": "027087672282",
+    "target_account_id": "027087672282",
+    "target_env": "testmig-us-east-2",
+    "team": "",
+    "target_region": "us-east-2"
+  },
+  "preserve_names": true,
+  "preflight_checks": [
+    {
+      "name": "scope",
+      "status": "ok",
+      "details": {
+        "source_account_id": "027087672282",
+        "target_account_id": "027087672282",
+        "source_region": "us-east-1",
+        "target_region": "us-east-2",
+        "same_account": true,
+        "same_region": false
+      }
+    },
+    {
+      "name": "kms-remap",
+      "status": "ok",
+      "details": {
+        "unresolved_reference_count": 0,
+        "sample": []
+      }
+    },
+    {
+      "name": "ecs-network-dependencies",
+      "status": "ok",
+      "details": {
+        "service_count": 0,
+        "services": [],
+        "vpc_count": 2,
+        "subnet_count": 12
+      }
+    },
+    {
+      "name": "hardcoded-source-account-references",
+      "status": "ok",
+      "details": {
+        "count": 78,
+        "sample": [
+          {
+            "path": "$.account_id",
+            "value": "027087672282"
+          },
+          {
+            "path": "$.lambda_functions[0].FunctionArn",
+            "value": "arn:aws:lambda:us-east-1:027087672282:function:testmig-fn1"
+          },
+          {
+            "path": "$.lambda_functions[0].Role",
+            "value": "arn:aws:iam::027087672282:role/testmig-lambda-role"
+          },
+          {
+            "path": "$.lambda_functions[0].Environment.Variables.QUEUE_ARN",
+            "value": "arn:aws:sqs:us-east-1:027087672282:testmig-q1"
+          },
+          {
+            "path": "$.lambda_functions[1].FunctionArn",
+            "value": "arn:aws:lambda:us-east-1:027087672282:function:testmig-fn2"
+          },
+          {
+            "path": "$.lambda_functions[1].Role",
+            "value": "arn:aws:iam::027087672282:role/testmig-lambda-role"
+          },
+          {
+            "path": "$.lambda_functions[1].Environment.Variables.QUEUE_ARN",
+            "value": "arn:aws:sqs:us-east-1:027087672282:testmig-q2"
+          },
+          {
+            "path": "$.lambda_event_source_mappings[0].EventSourceArn",
+            "value": "arn:aws:sqs:us-east-1:027087672282:testmig-q1"
+          },
+          {
+            "path": "$.lambda_event_source_mappings[0].FunctionArn",
+            "value": "arn:aws:lambda:us-east-1:027087672282:function:testmig-fn1"
+          },
+          {
+            "path": "$.lambda_event_source_mappings[0].EventSourceMappingArn",
+            "value": "arn:aws:lambda:us-east-1:027087672282:event-source-mapping:8e6be932-6589-404e-a9c6-34d6e20150db"
+          }
+        ]
+      }
+    }
+  ],
+  "failures": {
+    "roles": [],
+    "queues": [],
+    "topics": [],
+    "secrets": [],
+    "dynamodb_tables": [],
+    "dynamodb_table_items": [],
+    "lambda_functions": [],
+    "event_source_mappings": [],
+    "lambda_permissions": [],
+    "sns_subscriptions": [],
+    "api_gateways": [],
+    "codebuild_projects": [],
+    "vpcs": [],
+    "subnets": [],
+    "route_tables": [],
+    "security_groups": [],
+    "ecs_clusters": [],
+    "ecs_task_definitions": [],
+    "ecs_services": []
+  },
+  "follow_up": {
+    "manual_review_required": false,
+    "cloudformation_stacks_review_required": false,
+    "load_balancer_review_required": false,
+    "s3_review_required": false,
+    "ecs_review_required": false
+  }
+}

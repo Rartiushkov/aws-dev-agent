@@ -1,0 +1,113 @@
+{
+  "mode": "read-only-assessment",
+  "source_env": "testmig",
+  "target_env": "testmig-us-east-2",
+  "team": "",
+  "planned_actions": {
+    "roles": 1,
+    "sqs_queues": 2,
+    "sns_topics": 0,
+    "secrets": 0,
+    "dynamodb_tables": 0,
+    "lambda_functions": 2,
+    "lambda_event_source_mappings": 2,
+    "lambda_permissions": 0,
+    "sns_subscriptions": 0,
+    "api_gateways": 0,
+    "codebuild_projects": 0,
+    "ecs_clusters": 0,
+    "ecs_task_definitions": 0,
+    "ecs_services": 0
+  },
+  "manual_review": {
+    "cloudformation_stacks": 0,
+    "s3_buckets": 0,
+    "load_balancers": 0,
+    "rds_instances": 0,
+    "rds_clusters": 0
+  },
+  "preflight_checks": [
+    {
+      "name": "scope",
+      "status": "ok",
+      "details": {
+        "source_account_id": "027087672282",
+        "target_account_id": "",
+        "source_region": "us-east-1",
+        "target_region": "us-east-2",
+        "same_account": false,
+        "same_region": false
+      }
+    },
+    {
+      "name": "kms-remap",
+      "status": "ok",
+      "details": {
+        "unresolved_reference_count": 0,
+        "sample": []
+      }
+    },
+    {
+      "name": "ecs-network-dependencies",
+      "status": "ok",
+      "details": {
+        "service_count": 0,
+        "services": [],
+        "vpc_count": 2,
+        "subnet_count": 12
+      }
+    },
+    {
+      "name": "hardcoded-source-account-references",
+      "status": "warning",
+      "details": {
+        "count": 78,
+        "sample": [
+          {
+            "path": "$.account_id",
+            "value": "027087672282"
+          },
+          {
+            "path": "$.lambda_functions[0].FunctionArn",
+            "value": "arn:aws:lambda:us-east-1:027087672282:function:testmig-fn1"
+          },
+          {
+            "path": "$.lambda_functions[0].Role",
+            "value": "arn:aws:iam::027087672282:role/testmig-lambda-role"
+          },
+          {
+            "path": "$.lambda_functions[0].Environment.Variables.QUEUE_ARN",
+            "value": "arn:aws:sqs:us-east-1:027087672282:testmig-q1"
+          },
+          {
+            "path": "$.lambda_functions[1].FunctionArn",
+            "value": "arn:aws:lambda:us-east-1:027087672282:function:testmig-fn2"
+          },
+          {
+            "path": "$.lambda_functions[1].Role",
+            "value": "arn:aws:iam::027087672282:role/testmig-lambda-role"
+          },
+          {
+            "path": "$.lambda_functions[1].Environment.Variables.QUEUE_ARN",
+            "value": "arn:aws:sqs:us-east-1:027087672282:testmig-q2"
+          },
+          {
+            "path": "$.lambda_event_source_mappings[0].EventSourceArn",
+            "value": "arn:aws:sqs:us-east-1:027087672282:testmig-q1"
+          },
+          {
+            "path": "$.lambda_event_source_mappings[0].FunctionArn",
+            "value": "arn:aws:lambda:us-east-1:027087672282:function:testmig-fn1"
+          },
+          {
+            "path": "$.lambda_event_source_mappings[0].EventSourceMappingArn",
+            "value": "arn:aws:lambda:us-east-1:027087672282:event-source-mapping:8e6be932-6589-404e-a9c6-34d6e20150db"
+          }
+        ]
+      },
+      "known_fixes": []
+    }
+  ],
+  "source_snapshot": "state\\clients\\rartiushkov\\aws_inventory\\testmig-us-east-1\\source_snapshot.json",
+  "region": "us-east-2"
+}

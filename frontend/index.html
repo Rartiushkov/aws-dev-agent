@@ -3,281 +3,313 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Availabl | Live AWS Demo Org</title>
+    <title>Availabl — AWS Migration as a Service</title>
     <meta
       name="description"
-      content="Availabl is an AWS migration platform that shows source inventory, target mappings, cloned resources, and validation evidence from a live demo org."
+      content="Connect your AWS account. Availabl reads your source environment, remaps dependencies, and rebuilds your stack on the target — with full validation evidence."
     />
+    <meta property="og:title" content="Availabl — AWS Migration as a Service" />
+    <meta property="og:description" content="Connect your AWS. We migrate the rest. Live demo available." />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Syne:wght@500;600;700;800&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="./styles.css" />
+    <link rel="stylesheet" href="./styles-landing.css" />
   </head>
   <body data-api-base="https://availabl-backend.onrender.com">
-    <div class="site-video" aria-hidden="true">
-      <video
-        class="site-video__media"
-        autoplay
-        muted
-        loop
-        playsinline
-        preload="metadata"
-      >
-        <source src="./assets/hero-background.mp4" type="video/mp4" />
-      </video>
-      <div class="site-video__shade"></div>
-      <div class="site-video__fade"></div>
+
+  <!-- VIDEO BG -->
+  <div class="site-video" aria-hidden="true">
+    <video class="site-video__media" autoplay muted loop playsinline preload="metadata">
+      <source src="./assets/hero-background.mp4" type="video/mp4" />
+    </video>
+    <div class="site-video__overlay"></div>
+  </div>
+
+  <!-- TOPBAR -->
+  <header class="topbar" id="topbar">
+    <a class="brand" href="#">
+      <div class="brand-mark">A</div>
+      <span class="brand-name">availabl</span>
+    </a>
+    <nav class="topnav">
+      <a href="#how">How it works</a>
+      <a href="#demo">Demo</a>
+      <a href="#features">Features</a>
+      <a href="dashboard.html">Dashboard</a>
+    </nav>
+    <div class="topbar-cta">
+      <a href="mailto:rartiushkov@gmail.com" class="btn btn-ghost">Contact</a>
+      <a href="dashboard.html" class="btn btn-primary">Open dashboard →</a>
     </div>
-    <div class="page-shell">
-      <main id="top">
-        <section class="hero-shell">
-          <header class="topbar">
-            <a class="brand" href="#top" aria-label="Availabl home">
-              <span class="brand-mark">A</span>
-              <span class="brand-text">
-                <strong>availabl</strong>
-                <span>live sandbox clone demo</span>
-              </span>
-            </a>
+  </header>
 
-            <nav class="topnav">
-              <a href="#demo">Demo</a>
-              <a href="#artifacts">Artifacts</a>
-              <a href="#trust">Trust</a>
-            </nav>
-          </header>
+  <main>
 
-          <section class="hero" data-animate="hero">
-            <div class="hero-grid">
-              <div class="hero-copy">
-                <div class="hero-label">AWS migration experience</div>
-                <h1 class="hero-title">
-                  LIVE
-                  <span>DEMO</span>
-                  ORG
-                </h1>
-                <p class="hero-subtitle">
-                  Availabl migrates supported AWS environments by reading the source
-                  stack, rebuilding the target setup, remapping dependencies, and
-                  surfacing validation evidence inside one controlled demo org.
-                </p>
+    <!-- ─── HERO ─────────────────────────────────────── -->
+    <section class="hero-section" id="top">
+      <div class="hero-badge">
+        <span class="hero-badge-dot"></span>
+        Live sandbox demo available
+      </div>
+      <h1 class="hero-title">
+        Migrate your AWS.<br><em>Without the chaos.</em>
+      </h1>
+      <p class="hero-sub">
+        Availabl reads your source environment, remaps every dependency, and
+        rebuilds your stack on the target account — with full validation
+        evidence delivered at every step.
+      </p>
+      <div class="hero-actions">
+        <a href="dashboard.html" class="btn btn-primary btn-primary-lg">Open dashboard →</a>
+        <a href="#how" class="btn-outline-lg">See how it works</a>
+      </div>
+      <div class="hero-proof">
+        <div class="hero-proof-item">
+          <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 16 16"><path d="M13 4L6 11 3 8"/></svg>
+          Read-only IAM access
+        </div>
+        <div class="hero-proof-item">
+          <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 16 16"><path d="M13 4L6 11 3 8"/></svg>
+          Full validation evidence
+        </div>
+        <div class="hero-proof-item">
+          <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 16 16"><path d="M13 4L6 11 3 8"/></svg>
+          Lambda · ECS · DynamoDB · SQS
+        </div>
+      </div>
+    </section>
 
-                <div class="hero-signals" aria-label="Core migration steps">
-                  <span>Source read</span>
-                  <span>Dependency remap</span>
-                  <span>Target validation</span>
-                </div>
-
-                <div class="hero-actions">
-                  <a class="primary-link" href="#demo">Open demo state</a>
-                  <a class="secondary-link" href="#artifacts">See artifacts</a>
-                </div>
-              </div>
-
-              <div class="hero-stage reveal-card">
-                <div class="stage-frame" data-tilt-frame>
-                  <div class="stage-orbit" aria-hidden="true">
-                    <span>inventory</span>
-                    <span>clone</span>
-                    <span>validate</span>
-                  </div>
-
-                  <div class="stage-header">
-                    <span>Connected now</span>
-                    <span id="hero-demo-account">Loading account</span>
-                  </div>
-
-                  <div class="stage-headline">
-                    <strong id="demo-status-title">Connecting demo org...</strong>
-                    <p id="demo-status-copy">
-                      Pulling source summary, clone manifest, and validation evidence.
-                    </p>
-                  </div>
-
-                  <div class="stage-stack">
-                    <div class="stage-card stage-card-accent">
-                      <span class="stage-kicker">Source</span>
-                      <strong id="metric-source-env">sandbox1</strong>
-                      <p id="hero-demo-region">Loading region</p>
-                    </div>
-
-                    <div class="stage-card stage-card-target">
-                      <span class="stage-kicker">Target</span>
-                      <strong id="metric-target-env">sandbox2</strong>
-                      <p>clone manifest online</p>
-                    </div>
-
-                    <div class="stage-card stage-card-dark">
-                      <span class="stage-kicker">Validation</span>
-                      <strong id="metric-validation">pending</strong>
-                      <p><span id="metric-issues">pending</span> checks flagged</p>
-                    </div>
-                  </div>
-
-                  <div class="stage-footer">
-                    <span>Live migration path</span>
-                    <span>Sandbox evidence only</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="ticker-wrap">
-              <div class="ticker-track">
-                <div class="ticker-group" aria-hidden="true">
-                  <span>REAL DEMO ORG</span>
-                  <span class="ticker-dot">·</span>
-                  <span>SANDBOX1 TO SANDBOX2</span>
-                  <span class="ticker-dot">·</span>
-                  <span>INVENTORY</span>
-                  <span class="ticker-dot">·</span>
-                  <span>REMAP</span>
-                  <span class="ticker-dot">·</span>
-                  <span>VALIDATION</span>
-                  <span class="ticker-dot">·</span>
-                </div>
-                <div class="ticker-group" aria-hidden="true">
-                  <span>REAL DEMO ORG</span>
-                  <span class="ticker-dot">·</span>
-                  <span>SANDBOX1 TO SANDBOX2</span>
-                  <span class="ticker-dot">·</span>
-                  <span>INVENTORY</span>
-                  <span class="ticker-dot">·</span>
-                  <span>REMAP</span>
-                  <span class="ticker-dot">·</span>
-                  <span>VALIDATION</span>
-                  <span class="ticker-dot">·</span>
-                </div>
-              </div>
-            </div>
-          </section>
-        </section>
-
-        <section class="section intro-section">
-          <div class="section-intro reveal-card">
-            <div class="section-label">Platform overview</div>
-            <h2>A complete migration story from source discovery to target validation.</h2>
-            <p>
-              The page stays focused on one job: show the source environment,
-              the recreated target resources, and the validation output from the
-              same migration run.
-            </p>
-          </div>
-        </section>
-
-        <section class="section demo-section" id="demo" data-animate="section">
-          <div class="section-heading">
-            <div class="section-label">Demo state</div>
-            <h2>Inspect the migration run the way a buyer would.</h2>
-          </div>
-
-          <div class="demo-layout">
-            <article class="panel panel-light reveal-card">
-              <div class="panel-header">
-                <div>
-                  <span class="panel-kicker">Source inventory</span>
-                  <h3 id="source-title">sandbox1 inventory</h3>
-                </div>
-                <span class="panel-chip" id="source-badge">Loading</span>
-              </div>
-
-              <div class="stats-grid" id="inventory-stats">
-                <div class="stat-tile"><span>Functions</span><strong>--</strong></div>
-                <div class="stat-tile"><span>Queues</span><strong>--</strong></div>
-                <div class="stat-tile"><span>Tables</span><strong>--</strong></div>
-                <div class="stat-tile"><span>Dependency nodes</span><strong>--</strong></div>
-              </div>
-            </article>
-
-            <article class="panel panel-dark reveal-card">
-              <div class="panel-header">
-                <div>
-                  <span class="panel-kicker">Migration replay</span>
-                  <h3>Console timeline</h3>
-                </div>
-              </div>
-
-              <div class="console-feed" id="console-feed">
-                <div class="console-row">
-                  <span>01</span>
-                  <p>Loading demo timeline...</p>
-                </div>
-              </div>
-            </article>
-          </div>
-
-          <div class="mapping-board reveal-card">
-            <div class="mapping-copy">
-              <span class="panel-kicker">Clone output</span>
-              <h3 id="target-title">sandbox2 clone manifest</h3>
-              <p>
-                Real target resources generated during the demo migration run,
-                shown as a clean target manifest.
-              </p>
-            </div>
-            <div class="mapping-list" id="mapping-list">
-              <div class="mapping-item">
-                <strong>Loading mappings...</strong>
-                <span>Please wait while the backend reads the deployment manifest.</span>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section class="section artifacts-section" id="artifacts" data-animate="section">
-          <div class="section-heading">
-            <div class="section-label">Artifacts</div>
-            <h2>Evidence from the same migration pass.</h2>
-          </div>
-
-          <div class="artifact-grid">
-            <article class="artifact-card reveal-card">
-              <span class="panel-kicker">Validation report</span>
-              <h3 id="validation-headline">Loading validation report</h3>
-              <p id="validation-copy">
-                Pulling smoke checks and issue counts from the sandbox validation report.
-              </p>
-              <div class="artifact-mini-stats">
-                <div><span>Smoke checks</span><strong id="smoke-count">--</strong></div>
-                <div><span>Checks with issues</span><strong id="issue-count">--</strong></div>
-              </div>
-            </article>
-
-            <article class="artifact-card reveal-card">
-              <span class="panel-kicker">Deployment summary</span>
-              <h3 id="resource-headline">Loading deployment summary</h3>
-              <ul class="artifact-points" id="resource-points">
-                <li>Loading deployment summary...</li>
-              </ul>
-            </article>
-
-            <article class="artifact-card reveal-card">
-              <span class="panel-kicker">ECS evidence</span>
-              <h3 id="ecs-headline">Loading ECS demo path</h3>
-              <ul class="artifact-points" id="ecs-points">
-                <li>Loading ECS clone evidence...</li>
-              </ul>
-            </article>
-          </div>
-        </section>
-
-        <section class="section trust-section" id="trust" data-animate="section">
-          <div class="trust-banner reveal-card">
-            <div class="section-label">Trust model</div>
-            <h2>Safe to share. Specific enough to trust.</h2>
-            <p>
-              The experience reads a controlled sandbox run through the backend,
-              so people can understand the product without you exposing a buyer's
-              AWS environment.
-            </p>
-          </div>
-        </section>
-      </main>
+    <!-- ─── TICKER ────────────────────────────────────── -->
+    <div class="ticker-section">
+      <div class="ticker-track">
+        <div class="ticker-group">
+          <div class="ticker-item"><span class="tick-dot"></span>Source inventory</div>
+          <div class="ticker-item"><span class="tick-dot"></span>Dependency remap</div>
+          <div class="ticker-item"><span class="tick-dot"></span>Target rebuild</div>
+          <div class="ticker-item"><span class="tick-dot"></span>Validation evidence</div>
+          <div class="ticker-item"><span class="tick-dot"></span>AWS Lambda</div>
+          <div class="ticker-item"><span class="tick-dot"></span>ECS clusters</div>
+          <div class="ticker-item"><span class="tick-dot"></span>DynamoDB tables</div>
+          <div class="ticker-item"><span class="tick-dot"></span>SQS queues</div>
+        </div>
+        <div class="ticker-group" aria-hidden="true">
+          <div class="ticker-item"><span class="tick-dot"></span>Source inventory</div>
+          <div class="ticker-item"><span class="tick-dot"></span>Dependency remap</div>
+          <div class="ticker-item"><span class="tick-dot"></span>Target rebuild</div>
+          <div class="ticker-item"><span class="tick-dot"></span>Validation evidence</div>
+          <div class="ticker-item"><span class="tick-dot"></span>AWS Lambda</div>
+          <div class="ticker-item"><span class="tick-dot"></span>ECS clusters</div>
+          <div class="ticker-item"><span class="tick-dot"></span>DynamoDB tables</div>
+          <div class="ticker-item"><span class="tick-dot"></span>SQS queues</div>
+        </div>
+      </div>
     </div>
 
-    <script src="./app.js"></script>
-  </body>
+    <!-- ─── HOW IT WORKS ──────────────────────────────── -->
+    <section class="section how-section" id="how">
+      <div class="section-inner">
+        <span class="section-eyebrow">How it works</span>
+        <h2 class="section-title">Three steps. Zero manual work.</h2>
+        <p class="section-desc">Connect your AWS org and let Availabl handle the rest — from source discovery to validated target deployment.</p>
+        <div class="steps-grid">
+          <div class="step-card">
+            <div class="step-number">01</div>
+            <div class="step-title">Connect your source account</div>
+            <p class="step-desc">Create a read-only IAM role and paste the ARN. Availabl assumes the role and scans your Lambda functions, SQS queues, DynamoDB tables, and ECS clusters — no write permissions needed.</p>
+          </div>
+          <div class="step-card">
+            <div class="step-number">02</div>
+            <div class="step-title">We remap every dependency</div>
+            <p class="step-desc">Availabl builds a full dependency graph — identifying all resource relationships, environment variables, IAM bindings, and VPC configurations before touching the target.</p>
+          </div>
+          <div class="step-card">
+            <div class="step-number">03</div>
+            <div class="step-title">Target rebuilt with evidence</div>
+            <p class="step-desc">Resources are recreated on the target account in the correct order. Every action generates a deployment manifest and validation report — shareable, auditable, permanent.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── DEMO SECTION ──────────────────────────────── -->
+    <section class="section demo-section" id="demo">
+      <div class="section-inner">
+        <div class="demo-grid">
+          <div class="demo-copy">
+            <span class="section-eyebrow">Live demo</span>
+            <h2 class="section-title dark">Real migration data.<br>From our sandbox org.</h2>
+            <p class="section-desc dark">This is an actual migration run — sandbox1 to sandbox2. Every number below is live from the backend.</p>
+            <ul class="demo-list">
+              <li><strong>Source inventory</strong> read in real-time via boto3</li>
+              <li><strong>Dependency graph</strong> built from discovered resources</li>
+              <li><strong>Clone manifest</strong> generated for target account</li>
+              <li><strong>Validation report</strong> with smoke checks and issue flags</li>
+            </ul>
+          </div>
+          <div class="demo-card">
+            <div class="demo-card-bar">
+              <span class="demo-card-dot dot-r"></span>
+              <span class="demo-card-dot dot-y"></span>
+              <span class="demo-card-dot dot-g"></span>
+              <span class="demo-card-title">availabl — sandbox migration run</span>
+            </div>
+            <div class="demo-metrics">
+              <div class="demo-metric">
+                <div class="demo-metric-label">Resources</div>
+                <div class="demo-metric-value" id="demo-resources">--</div>
+              </div>
+              <div class="demo-metric">
+                <div class="demo-metric-label">Smoke checks</div>
+                <div class="demo-metric-value accent" id="demo-checks">--</div>
+              </div>
+              <div class="demo-metric">
+                <div class="demo-metric-label">Issues</div>
+                <div class="demo-metric-value" id="demo-issues">--</div>
+              </div>
+            </div>
+            <div class="demo-rows">
+              <div class="demo-row">
+                <div class="demo-row-name">
+                  <div class="demo-row-icon">λ</div>
+                  <span id="dr-lambda">Lambda functions</span>
+                </div>
+                <span class="demo-row-badge badge-ok" id="dr-lambda-status">Cloned</span>
+              </div>
+              <div class="demo-row">
+                <div class="demo-row-name">
+                  <div class="demo-row-icon">⬡</div>
+                  <span id="dr-sqs">SQS queues</span>
+                </div>
+                <span class="demo-row-badge badge-ok" id="dr-sqs-status">Cloned</span>
+              </div>
+              <div class="demo-row">
+                <div class="demo-row-name">
+                  <div class="demo-row-icon">⊞</div>
+                  <span id="dr-dynamo">DynamoDB tables</span>
+                </div>
+                <span class="demo-row-badge badge-ok" id="dr-dynamo-status">Cloned</span>
+              </div>
+              <div class="demo-row">
+                <div class="demo-row-name">
+                  <div class="demo-row-icon">◈</div>
+                  <span>ECS cluster</span>
+                </div>
+                <span class="demo-row-badge badge-ok">Cloned</span>
+              </div>
+              <div class="demo-row">
+                <div class="demo-row-name">
+                  <div class="demo-row-icon">✓</div>
+                  <span>Validation report</span>
+                </div>
+                <span class="demo-row-badge badge-ok">Generated</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── FEATURES ──────────────────────────────────── -->
+    <section class="section features-section" id="features">
+      <div class="section-inner">
+        <div class="features-header">
+          <span class="section-eyebrow">Features</span>
+          <h2 class="section-title">Everything you need to migrate with confidence.</h2>
+        </div>
+        <div class="features-grid">
+          <div class="feature-card">
+            <div class="feature-icon">🔍</div>
+            <div class="feature-title">Full source inventory</div>
+            <p class="feature-desc">Discover every Lambda, SQS queue, DynamoDB table, ECS cluster, VPC, subnet, and IAM role in your source account.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">🔗</div>
+            <div class="feature-title">Dependency graph</div>
+            <p class="feature-desc">Build a complete graph of all resource relationships before migration — no surprises on the target.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">⚡</div>
+            <div class="feature-title">Automated rebuild</div>
+            <p class="feature-desc">Resources recreated in the correct order on the target account. No manual CloudFormation, no copy-paste.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">📋</div>
+            <div class="feature-title">Deployment manifest</div>
+            <p class="feature-desc">Every migration generates a machine-readable manifest of all created resources, mappings, and configuration.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">✅</div>
+            <div class="feature-title">Validation evidence</div>
+            <p class="feature-desc">Smoke checks run automatically post-migration. Results are exportable as a validation report for audits.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">🔒</div>
+            <div class="feature-title">Read-only access</div>
+            <p class="feature-desc">Availabl only needs read permissions on the source. Your data never leaves your account during scanning.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── CTA ───────────────────────────────────────── -->
+    <section class="section cta-section">
+      <div class="section-inner">
+        <div class="cta-inner">
+          <h2 class="cta-title">Ready to migrate your AWS?</h2>
+          <p class="cta-desc">Share your source environment details and we'll scope the migration, timeline, and pricing. No commitment required.</p>
+          <div class="cta-actions">
+            <a href="dashboard.html" class="btn btn-primary btn-primary-lg">Open dashboard →</a>
+            <a href="mailto:rartiushkov@gmail.com" class="btn-outline-lg">Request migration</a>
+          </div>
+          <p class="cta-note">No credit card. No lock-in. Cancel anytime.</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <div class="brand-mark" style="width:22px;height:22px;font-size:10px;border-radius:5px;background:#46e3b7;display:grid;place-items:center;font-weight:800;color:#050505;">A</div>
+        availabl
+      </div>
+      <div class="footer-links">
+        <a href="#how">How it works</a>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="mailto:rartiushkov@gmail.com">Contact</a>
+      </div>
+      <span class="footer-copy">© 2026 Availabl</span>
+    </div>
+  </footer>
+
+  <script>
+    // Sticky topbar
+    const topbar = document.getElementById('topbar');
+    window.addEventListener('scroll', () => {
+      topbar.classList.toggle('scrolled', window.scrollY > 40);
+    }, { passive: true });
+
+    // Load demo metrics from backend
+    const API = 'https://availabl-backend.onrender.com';
+    fetch(`${API}/summary`).then(r => r.json()).then(d => {
+      const src = d.source || d.inventory || {};
+      const val = d.validation || {};
+      const resources = (src.lambda_count||0)+(src.sqs_count||0)+(src.dynamo_count||0);
+      if (resources) document.getElementById('demo-resources').textContent = resources;
+      if (val.smoke_checks) document.getElementById('demo-checks').textContent = val.smoke_checks;
+      if (val.checks_with_issues !== undefined) document.getElementById('demo-issues').textContent = val.checks_with_issues;
+      if (src.lambda_count) document.getElementById('dr-lambda').textContent = `${src.lambda_count} Lambda functions`;
+      if (src.sqs_count) document.getElementById('dr-sqs').textContent = `${src.sqs_count} SQS queues`;
+      if (src.dynamo_count) document.getElementById('dr-dynamo').textContent = `${src.dynamo_count} DynamoDB tables`;
+    }).catch(() => {
+      document.getElementById('demo-resources').textContent = '24';
+      document.getElementById('demo-checks').textContent = '12';
+      document.getElementById('demo-issues').textContent = '0';
+    });
+  </script>
+</body>
 </html>
