@@ -18,16 +18,24 @@ FRONTEND_URL        = os.environ.get("FRONTEND_URL", "https://availabl.pages.dev
 
 
 def _verify_firebase_token(token):
-    """Verify Firebase ID token via Google tokeninfo endpoint. Returns uid or raises."""
-    url = f"https://oauth2.googleapis.com/tokeninfo?id_token={token}"
+    """Verify Firebase ID token via Firebase Auth REST API. Returns uid or raises."""
+    url = (
+        f"https://identitytoolkit.googleapis.com/v1/accounts:lookup"
+        f"?key=AIzaSyC2s8vy7THhcs9YO5Ro5lwenICXZpzmgD8"
+    )
+    body = json.dumps({"idToken": token}).encode("utf-8")
+    req = urllib.request.Request(url, data=body, method="POST")
+    req.add_header("Content-Type", "application/json")
     try:
-        with urllib.request.urlopen(url, timeout=5) as resp:
+        with urllib.request.urlopen(req, timeout=5) as resp:
             data = json.loads(resp.read().decode())
-        if data.get("aud") != FIREBASE_PROJECT_ID:
-            raise ValueError("Token audience mismatch")
-        return data.get("sub")  # uid
+        users = data.get("users", [])
+        if not users:
+            raise ValueError("Token invalid: no user found")
+        return users[0].get("localId")  # uid
     except urllib.error.HTTPError as e:
-        raise ValueError(f"Invalid token: {e.code}")
+        body = e.read().decode()
+        raise ValueError(f"Invalid token: {e.code} {body}")
 
 
 def _get_uid(headers):
