@@ -110,7 +110,7 @@ class RenderBackendHandler(BaseHTTPRequestHandler):
                 {
                     "ok": True,
                     "service": "availabl-backend",
-                    "routes": ["/health", "/api/cloudflare", "/api/demo"],
+                    "routes": ["/health", "/api/demo", "/api/cloudflare"],
                 },
             )
         if self.path == "/api/demo":
