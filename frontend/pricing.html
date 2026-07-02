@@ -1,0 +1,405 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Availabl – Pricing</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%235cdc96'/><path d='M6 16h20M18 9l7 7-7 7' stroke='%23050505' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'/></svg>" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Syne:wght@700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./styles-landing.css" />
+  <style>
+    .pricing-hero {
+      padding: 120px 32px 64px;
+      text-align: center;
+      position: relative;
+      z-index: 2;
+    }
+    .pricing-hero-title {
+      font-family: var(--font-display);
+      font-size: clamp(2.2rem, 5vw, 3.8rem);
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      line-height: 1.05;
+      color: var(--text);
+      margin-bottom: 16px;
+    }
+    .pricing-hero-sub {
+      font-size: 15px;
+      color: var(--muted);
+      max-width: 44ch;
+      margin: 0 auto 48px;
+      line-height: 1.7;
+    }
+
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      max-width: 960px;
+      margin: 0 auto;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      overflow: hidden;
+    }
+
+    .plan-card {
+      background: var(--surface, #111);
+      padding: 36px 32px 40px;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      position: relative;
+    }
+    .plan-card.featured {
+      background: #0f1f17;
+    }
+    .plan-badge {
+      display: inline-block;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      background: rgba(92,220,150,0.1);
+      border: 1px solid rgba(92,220,150,0.25);
+      border-radius: 20px;
+      padding: 3px 10px;
+      margin-bottom: 20px;
+      width: fit-content;
+    }
+    .plan-name {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--muted);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+    .plan-price {
+      display: flex;
+      align-items: baseline;
+      gap: 4px;
+      margin-bottom: 6px;
+    }
+    .plan-price-num {
+      font-family: var(--font-display);
+      font-size: 3rem;
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      color: var(--text);
+      line-height: 1;
+    }
+    .plan-price-unit {
+      font-size: 13px;
+      color: var(--muted);
+    }
+    .plan-desc {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.6;
+      margin-bottom: 28px;
+      min-height: 42px;
+    }
+    .plan-divider {
+      height: 1px;
+      background: var(--border);
+      margin-bottom: 24px;
+    }
+    .plan-features {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 11px;
+      margin-bottom: 32px;
+      flex: 1;
+    }
+    .plan-features li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+    .plan-features li svg {
+      flex-shrink: 0;
+      margin-top: 1px;
+      stroke: var(--accent);
+    }
+    .plan-features li.dim svg { stroke: #444; }
+    .plan-features li.dim { color: #444; }
+
+    .plan-cta {
+      display: block;
+      width: 100%;
+      padding: 12px 20px;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 600;
+      text-align: center;
+      text-decoration: none;
+      cursor: pointer;
+      transition: all 140ms;
+    }
+    .plan-cta-primary {
+      background: var(--accent);
+      color: #050505;
+      border: none;
+    }
+    .plan-cta-primary:hover { background: #4bc97f; }
+    .plan-cta-outline {
+      background: transparent;
+      color: var(--text);
+      border: 1px solid var(--border-md);
+    }
+    .plan-cta-outline:hover { border-color: rgba(255,255,255,0.3); background: rgba(255,255,255,0.04); }
+
+    .pricing-faq {
+      max-width: 680px;
+      margin: 80px auto 0;
+      padding: 0 32px 96px;
+    }
+    .faq-title {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      color: var(--text);
+      margin-bottom: 32px;
+      text-align: center;
+    }
+    .faq-item {
+      border-top: 1px solid var(--border);
+      padding: 20px 0;
+    }
+    .faq-item:last-child { border-bottom: 1px solid var(--border); }
+    .faq-q {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+    .faq-a {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    .pricing-section {
+      background: var(--bg);
+      min-height: 100vh;
+      position: relative;
+      z-index: 2;
+    }
+
+    @media (max-width: 768px) {
+      .pricing-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- TOPBAR -->
+  <header class="topbar" id="topbar">
+    <a href="./index.html" class="brand-link">
+      <div class="brand-mark">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+          <path d="M1 7h12M8 2l5 5-5 5" stroke="#050505" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <span class="brand-name">availabl</span>
+    </a>
+    <nav class="topnav">
+      <a href="./index.html#how">How it works</a>
+      <a href="./index.html#demo">Demo</a>
+      <a href="./pricing.html" style="color:var(--text);">Pricing</a>
+      <a href="./dashboard.html">Dashboard</a>
+    </nav>
+    <div class="topbar-cta">
+      <a href="mailto:rartiushkov@gmail.com" class="btn btn-ghost">Contact</a>
+      <a href="./login.html" class="btn btn-primary">Sign in</a>
+    </div>
+  </header>
+
+  <div class="pricing-section">
+    <div class="pricing-hero">
+      <h1 class="pricing-hero-title">Simple, predictable pricing.</h1>
+      <p class="pricing-hero-sub">Pay for migrations, not for seat licenses. Every plan includes full validation evidence and audit logs.</p>
+
+      <div class="pricing-grid">
+
+        <!-- STARTER -->
+        <div class="plan-card">
+          <div class="plan-name">Starter</div>
+          <div class="plan-price">
+            <span class="plan-price-num">$0</span>
+            <span class="plan-price-unit">/ month</span>
+          </div>
+          <p class="plan-desc">Explore the platform with a sandbox environment. No credit card required.</p>
+          <div class="plan-divider"></div>
+          <ul class="plan-features">
+            <li>
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 8 6 11 13 4"/></svg>
+              1 sandbox migration
+            </li>
+            <li>
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 8 6 11 13 4"/></svg>
+              Up to 25 resources
+            </li>
+            <li>
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 8 6 11 13 4"/></svg>
+              Deployment manifest
+            </li>
+            <li>
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 8 6 11 13 4"/></svg>
+              Validation report
+            </li>
+            <li class="dim">
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="3" x2="13" y2="13"/><line x1="13" y1="3" x2="3" y2="13"/></svg>
+              Production accounts
+            </li>
+            <li class="dim">
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="3" x2="13" y2="13"/><line x1="13" y1="3" x2="3" y2="13"/></svg>
+              Priority support
+            </li>
+          </ul>
+          <a href="./login.html" class="plan-cta plan-cta-outline">Get started free</a>
+        </div>
+
+        <!-- PRO (FEATURED) -->
+        <div class="plan-card featured">
+          <div class="plan-badge">Most popular</div>
+          <div class="plan-name">Pro</div>
+          <div class="plan-price">
+            <span class="plan-price-num">$299</span>
+            <span class="plan-price-unit">/ migration</span>
+          </div>
+          <p class="plan-desc">One full migration from source to validated target. Ideal for single-account moves.</p>
+          <div class="plan-divider"></div>
+          <ul class="plan-features">
+            <li>
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 8 6 11 13 4"/></svg>
+              Unlimited resources
+            </li>
+            <li>
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 8 6 11 13 4"/></svg>
+              Production accounts
+            </li>
+            <li>
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 8 6 11 13 4"/></svg>
+              Full dependency graph
+            </li>
+            <li>
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 8 6 11 13 4"/></svg>
+              Deployment manifest + audit log
+            </li>
+            <li>
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 8 6 11 13 4"/></svg>
+              Smoke checks + validation report
+            </li>
+            <li>
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 8 6 11 13 4"/></svg>
+              Email support
+            </li>
+          </ul>
+          <button class="plan-cta plan-cta-primary" id="btn-pro-checkout">Start migration</button>
+        </div>
+
+        <!-- ENTERPRISE -->
+        <div class="plan-card">
+          <div class="plan-name">Enterprise</div>
+          <div class="plan-price">
+            <span class="plan-price-num">Custom</span>
+          </div>
+          <p class="plan-desc">Multi-account migrations, custom SLA, dedicated support engineer.</p>
+          <div class="plan-divider"></div>
+          <ul class="plan-features">
+            <li>
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 8 6 11 13 4"/></svg>
+              Everything in Pro
+            </li>
+            <li>
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 8 6 11 13 4"/></svg>
+              Multi-account + multi-region
+            </li>
+            <li>
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 8 6 11 13 4"/></svg>
+              Dedicated migration engineer
+            </li>
+            <li>
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 8 6 11 13 4"/></svg>
+              Custom SLA + rollback plan
+            </li>
+            <li>
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 8 6 11 13 4"/></svg>
+              SSO + audit export
+            </li>
+            <li>
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 8 6 11 13 4"/></svg>
+              Slack + priority support
+            </li>
+          </ul>
+          <a href="mailto:rartiushkov@gmail.com" class="plan-cta plan-cta-outline">Talk to us</a>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- FAQ -->
+    <div class="pricing-faq">
+      <h2 class="faq-title">Common questions</h2>
+
+      <div class="faq-item">
+        <div class="faq-q">What counts as one migration?</div>
+        <div class="faq-a">One migration is a full source-to-target run: inventory scan, dependency graph, deployment manifest, and validated rebuild on the target account.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Do you need write access to my AWS account?</div>
+        <div class="faq-a">No. The source account only requires read-only IAM access. Write permissions are only needed on the target account to create resources.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">What if the migration fails validation?</div>
+        <div class="faq-a">You get a full validation report with every issue flagged. We fix issues and re-run at no extra charge until it passes — or we refund.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Can I migrate between regions, not just accounts?</div>
+        <div class="faq-a">Yes. Pro supports cross-account and cross-region. Enterprise adds multi-account orchestration with a dedicated engineer.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Is there a free trial for Pro?</div>
+        <div class="faq-a">The Starter plan is free and runs a full migration on sandbox accounts. For production, contact us — we offer a scoping call with a sample report before you pay.</div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2 8h12M9 3l5 5-5 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Availabl Technologies
+      </div>
+      <div class="footer-links">
+        <a href="./index.html#how">How it works</a>
+        <a href="./pricing.html">Pricing</a>
+        <a href="./dashboard.html">Dashboard</a>
+        <a href="mailto:rartiushkov@gmail.com">Contact</a>
+      </div>
+      <span class="footer-copy">© 2026 Availabl Technologies, Inc.</span>
+    </div>
+  </footer>
+
+  <script>
+    const topbar = document.getElementById('topbar');
+    window.addEventListener('scroll', () => {
+      topbar.classList.toggle('scrolled', window.scrollY > 40);
+    }, { passive: true });
+  </script>
+  <script type="module">
+    import { startCheckout } from './stripe.js';
+    document.getElementById('btn-pro-checkout')?.addEventListener('click', () => startCheckout('pro'));
+  </script>
+</body>
+</html>

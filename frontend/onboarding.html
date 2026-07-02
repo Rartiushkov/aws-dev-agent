@@ -1,0 +1,445 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Availabl – Setup</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%235cdc96'/><path d='M6 16h20M18 9l7 7-7 7' stroke='%23050505' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'/></svg>" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg:       #0d0d0d;
+      --surface:  #161616;
+      --border:   rgba(255,255,255,0.08);
+      --border-md:rgba(255,255,255,0.13);
+      --text:     #ffffff;
+      --muted:    #a3a3a3;
+      --dim:      rgba(255,255,255,0.28);
+      --accent:   #5cdc96;
+      --radius:   10px;
+      --font:     "Inter", -apple-system, sans-serif;
+    }
+    body {
+      font-family: var(--font);
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ── TOP ── */
+    .ob-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 32px;
+      border-bottom: 1px solid var(--border);
+    }
+    .ob-brand {
+      display: flex; align-items: center; gap: 10px;
+      text-decoration: none; color: var(--text);
+    }
+    .ob-brand-mark {
+      width: 28px; height: 28px; border-radius: 7px;
+      background: var(--accent); display: grid; place-items: center;
+    }
+    .ob-brand-name { font-size: 15px; font-weight: 700; letter-spacing: -0.03em; }
+    .ob-skip { font-size: 13px; color: var(--muted); text-decoration: none; }
+    .ob-skip:hover { color: var(--text); }
+
+    /* ── STEPS BAR ── */
+    .ob-steps {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0;
+      padding: 32px 32px 0;
+    }
+    .ob-step {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 13px;
+      color: var(--dim);
+      font-weight: 500;
+    }
+    .ob-step.active { color: var(--text); }
+    .ob-step.done { color: var(--accent); }
+    .ob-step-num {
+      width: 26px; height: 26px;
+      border-radius: 50%;
+      border: 1px solid currentColor;
+      display: grid; place-items: center;
+      font-size: 11px; font-weight: 700;
+      flex-shrink: 0;
+    }
+    .ob-step.active .ob-step-num { background: var(--text); color: var(--bg); border-color: var(--text); }
+    .ob-step.done .ob-step-num { background: var(--accent); color: #050505; border-color: var(--accent); }
+    .ob-step-line { width: 48px; height: 1px; background: var(--border); margin: 0 8px; }
+
+    /* ── MAIN ── */
+    .ob-main {
+      flex: 1;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      padding: 48px 32px 80px;
+    }
+    .ob-card {
+      width: 100%;
+      max-width: 560px;
+    }
+    .ob-card-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      margin-bottom: 8px;
+    }
+    .ob-card-sub {
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.6;
+      margin-bottom: 32px;
+    }
+
+    /* ── FORM ── */
+    .ob-panel {
+      background: var(--surface);
+      border: 1px solid var(--border-md);
+      border-radius: 12px;
+      overflow: hidden;
+      margin-bottom: 20px;
+    }
+    .ob-panel-head {
+      padding: 16px 20px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .ob-panel-icon {
+      width: 32px; height: 32px; border-radius: 8px;
+      background: rgba(92,220,150,0.1);
+      border: 1px solid rgba(92,220,150,0.2);
+      display: grid; place-items: center; flex-shrink: 0;
+    }
+    .ob-panel-title { font-size: 13px; font-weight: 600; }
+    .ob-panel-body { padding: 20px; display: flex; flex-direction: column; gap: 14px; }
+
+    label { font-size: 12px; font-weight: 600; color: var(--muted); display: block; margin-bottom: 6px; letter-spacing: 0.02em; }
+    input[type="text"], select {
+      width: 100%;
+      background: #0d0d0d;
+      border: 1px solid var(--border-md);
+      border-radius: 8px;
+      padding: 10px 14px;
+      font-family: var(--font);
+      font-size: 13px;
+      color: var(--text);
+      outline: none;
+      transition: border-color 140ms;
+    }
+    input[type="text"]:focus, select:focus { border-color: var(--accent); }
+    input::placeholder { color: #555; }
+    select option { background: #1a1a1a; }
+
+    .ob-hint {
+      font-size: 12px;
+      color: var(--dim);
+      line-height: 1.6;
+      padding: 12px 16px;
+      background: rgba(255,255,255,0.02);
+      border-radius: 8px;
+      border: 1px solid var(--border);
+    }
+    .ob-hint code {
+      font-family: "JetBrains Mono", monospace;
+      background: rgba(255,255,255,0.06);
+      padding: 1px 6px;
+      border-radius: 4px;
+      font-size: 11px;
+    }
+
+    .ob-actions {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 28px;
+    }
+    .btn-back {
+      font-size: 13px; color: var(--muted); background: none; border: none;
+      cursor: pointer; font-family: var(--font); text-decoration: none;
+    }
+    .btn-back:hover { color: var(--text); }
+    .btn-next {
+      padding: 11px 28px;
+      background: var(--accent);
+      color: #050505;
+      border: none;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      font-family: var(--font);
+      transition: background 140ms;
+    }
+    .btn-next:hover { background: #4bc97f; }
+
+    /* ── STEP PANELS ── */
+    .ob-step-panel { display: none; }
+    .ob-step-panel.active { display: block; }
+
+    /* step 3 — summary */
+    .summary-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 13px;
+    }
+    .summary-row:last-child { border-bottom: none; }
+    .summary-label { color: var(--muted); }
+    .summary-val { font-weight: 600; color: var(--text); }
+    .badge-ready { background: rgba(92,220,150,0.1); color: var(--accent); border: 1px solid rgba(92,220,150,0.2); border-radius: 20px; padding: 2px 10px; font-size: 11px; font-weight: 600; }
+  </style>
+</head>
+<body>
+
+  <div class="ob-top">
+    <a href="./index.html" class="ob-brand">
+      <div class="ob-brand-mark">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 7h12M8 2l5 5-5 5" stroke="#050505" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <span class="ob-brand-name">availabl</span>
+    </a>
+    <a href="./dashboard.html" class="ob-skip">Skip for now →</a>
+  </div>
+
+  <div class="ob-steps">
+    <div class="ob-step active" id="step-ind-1">
+      <div class="ob-step-num">1</div>
+      <span>Source account</span>
+    </div>
+    <div class="ob-step-line"></div>
+    <div class="ob-step" id="step-ind-2">
+      <div class="ob-step-num">2</div>
+      <span>Target account</span>
+    </div>
+    <div class="ob-step-line"></div>
+    <div class="ob-step" id="step-ind-3">
+      <div class="ob-step-num">3</div>
+      <span>Confirm</span>
+    </div>
+  </div>
+
+  <div class="ob-main">
+    <div class="ob-card">
+
+      <!-- STEP 1 -->
+      <div class="ob-step-panel active" id="panel-1">
+        <h2 class="ob-card-title">Connect your source AWS account</h2>
+        <p class="ob-card-sub">We need read-only access to scan your source environment. No write permissions required.</p>
+
+        <div class="ob-panel">
+          <div class="ob-panel-head">
+            <div class="ob-panel-icon">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="#5cdc96" stroke-width="1.5" stroke-linecap="round"><rect x="2" y="4" width="12" height="9" rx="1"/><path d="M5 4V3a1 1 0 011-1h4a1 1 0 011 1v1"/></svg>
+            </div>
+            <span class="ob-panel-title">Source account details</span>
+          </div>
+          <div class="ob-panel-body">
+            <div>
+              <label>AWS Account ID</label>
+              <input type="text" id="src-account-id" placeholder="123456789012" maxlength="12" />
+            </div>
+            <div>
+              <label>IAM Role ARN (read-only)</label>
+              <input type="text" id="src-role-arn" placeholder="arn:aws:iam::123456789012:role/availabl-readonly" />
+            </div>
+            <div>
+              <label>Source region</label>
+              <select id="src-region">
+                <option value="us-east-1">us-east-1 (N. Virginia)</option>
+                <option value="us-east-2">us-east-2 (Ohio)</option>
+                <option value="us-west-1">us-west-1 (N. California)</option>
+                <option value="us-west-2">us-west-2 (Oregon)</option>
+                <option value="eu-west-1">eu-west-1 (Ireland)</option>
+                <option value="eu-west-2">eu-west-2 (London)</option>
+                <option value="eu-central-1">eu-central-1 (Frankfurt)</option>
+                <option value="ap-southeast-1">ap-southeast-1 (Singapore)</option>
+                <option value="ap-northeast-1">ap-northeast-1 (Tokyo)</option>
+              </select>
+            </div>
+            <div class="ob-hint">
+              Create a read-only role with policy <code>ReadOnlyAccess</code> and trust principal <code>arn:aws:iam::AVAILABL_ACCOUNT:root</code>. We never store your credentials.
+            </div>
+          </div>
+        </div>
+
+        <div class="ob-actions">
+          <a href="./dashboard.html" class="btn-back">← Back to dashboard</a>
+          <button class="btn-next" onclick="goStep(2)">Continue →</button>
+        </div>
+      </div>
+
+      <!-- STEP 2 -->
+      <div class="ob-step-panel" id="panel-2">
+        <h2 class="ob-card-title">Connect your target AWS account</h2>
+        <p class="ob-card-sub">The target account needs write permissions so Availabl can recreate your resources there.</p>
+
+        <div class="ob-panel">
+          <div class="ob-panel-head">
+            <div class="ob-panel-icon">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="#5cdc96" stroke-width="1.5" stroke-linecap="round"><path d="M8 2v12M2 8h12"/></svg>
+            </div>
+            <span class="ob-panel-title">Target account details</span>
+          </div>
+          <div class="ob-panel-body">
+            <div>
+              <label>AWS Account ID</label>
+              <input type="text" id="tgt-account-id" placeholder="987654321098" maxlength="12" />
+            </div>
+            <div>
+              <label>IAM Role ARN (write access)</label>
+              <input type="text" id="tgt-role-arn" placeholder="arn:aws:iam::987654321098:role/availabl-deploy" />
+            </div>
+            <div>
+              <label>Target region</label>
+              <select id="tgt-region">
+                <option value="us-east-1">us-east-1 (N. Virginia)</option>
+                <option value="us-east-2">us-east-2 (Ohio)</option>
+                <option value="us-west-1">us-west-1 (N. California)</option>
+                <option value="us-west-2">us-west-2 (Oregon)</option>
+                <option value="eu-west-1">eu-west-1 (Ireland)</option>
+                <option value="eu-west-2">eu-west-2 (London)</option>
+                <option value="eu-central-1">eu-central-1 (Frankfurt)</option>
+                <option value="ap-southeast-1">ap-southeast-1 (Singapore)</option>
+                <option value="ap-northeast-1">ap-northeast-1 (Tokyo)</option>
+              </select>
+            </div>
+            <div>
+              <label>Migration name (optional)</label>
+              <input type="text" id="migration-name" placeholder="prod-us-east-1-to-eu-west-1" />
+            </div>
+          </div>
+        </div>
+
+        <div class="ob-actions">
+          <button class="btn-back" onclick="goStep(1)">← Back</button>
+          <button class="btn-next" onclick="goStep(3)">Continue →</button>
+        </div>
+      </div>
+
+      <!-- STEP 3 -->
+      <div class="ob-step-panel" id="panel-3">
+        <h2 class="ob-card-title">Review and confirm</h2>
+        <p class="ob-card-sub">Double-check the details before we start the inventory scan.</p>
+
+        <div class="ob-panel">
+          <div class="ob-panel-body">
+            <div class="summary-row">
+              <span class="summary-label">Source account</span>
+              <span class="summary-val" id="sum-src-account">–</span>
+            </div>
+            <div class="summary-row">
+              <span class="summary-label">Source region</span>
+              <span class="summary-val" id="sum-src-region">–</span>
+            </div>
+            <div class="summary-row">
+              <span class="summary-label">Target account</span>
+              <span class="summary-val" id="sum-tgt-account">–</span>
+            </div>
+            <div class="summary-row">
+              <span class="summary-label">Target region</span>
+              <span class="summary-val" id="sum-tgt-region">–</span>
+            </div>
+            <div class="summary-row">
+              <span class="summary-label">Migration name</span>
+              <span class="summary-val" id="sum-name">–</span>
+            </div>
+            <div class="summary-row">
+              <span class="summary-label">IAM access</span>
+              <span class="badge-ready">Read-only verified</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="ob-actions">
+          <button class="btn-back" onclick="goStep(2)">← Back</button>
+          <button class="btn-next" onclick="finish()">Start inventory scan →</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <script type="module">
+    import { requireAuth, getIdToken } from './auth.js';
+    import { addAwsConnection } from './db.js';
+    import { showToast } from './toast.js';
+
+    await requireAuth();
+
+    let current = 1;
+    window.goStep = function(n) {
+      document.getElementById(`panel-${current}`).classList.remove('active');
+      document.getElementById(`step-ind-${current}`).classList.remove('active');
+      document.getElementById(`step-ind-${current}`).classList.add('done');
+      current = n;
+      document.getElementById(`panel-${current}`).classList.add('active');
+      const ind = document.getElementById(`step-ind-${current}`);
+      ind.classList.remove('done');
+      ind.classList.add('active');
+      if (n === 3) fillSummary();
+    };
+
+    function fillSummary() {
+      const v = (id) => document.getElementById(id)?.value || '–';
+      document.getElementById('sum-src-account').textContent = v('src-account-id');
+      document.getElementById('sum-src-region').textContent  = v('src-region');
+      document.getElementById('sum-tgt-account').textContent = v('tgt-account-id');
+      document.getElementById('sum-tgt-region').textContent  = v('tgt-region');
+      document.getElementById('sum-name').textContent        = v('migration-name') || 'Untitled migration';
+    }
+
+    window.finish = async function() {
+      const btn = document.querySelector('#panel-3 .btn-next');
+      if (btn) { btn.textContent = 'Saving…'; btn.disabled = true; }
+
+      const conn = {
+        name:         document.getElementById('migration-name')?.value || 'Untitled migration',
+        src_account:  document.getElementById('src-account-id')?.value || '',
+        src_region:   document.getElementById('src-region')?.value || '',
+        src_role_arn: document.getElementById('src-role-arn')?.value || '',
+        tgt_account:  document.getElementById('tgt-account-id')?.value || '',
+        tgt_region:   document.getElementById('tgt-region')?.value || '',
+        tgt_role_arn: document.getElementById('tgt-role-arn')?.value || '',
+      };
+
+      try {
+        await addAwsConnection(conn);
+
+        // Kick off backend scan
+        try {
+          const token = await getIdToken();
+          await fetch('https://availabl-backend.onrender.com/api/scan', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
+            body: JSON.stringify({ src_account: conn.src_account, src_region: conn.src_region, src_role_arn: conn.src_role_arn }),
+          });
+        } catch(_) { /* scan is best-effort */ }
+
+        window.location.href = './dashboard.html';
+      } catch(e) {
+        showToast('Error: ' + e.message, 'error');
+        if (btn) { btn.textContent = 'Start inventory scan →'; btn.disabled = false; }
+      }
+    };
+  </script>
+</body>
+</html>

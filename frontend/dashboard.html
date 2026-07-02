@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Availabl — Dashboard</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%235cdc96'/><path d='M6 16h20M18 9l7 7-7 7' stroke='%23050505' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'/></svg>" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
@@ -13,14 +14,16 @@
 
   <!-- ─── SIDEBAR ─────────────────────────────────── -->
   <aside class="sidebar">
-    <div class="sidebar-brand">
-      <div class="sidebar-brand-mark">A</div>
+    <a href="/index.html" class="sidebar-brand" style="text-decoration:none;">
+      <div class="sidebar-brand-mark">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 7h12M8 2l5 5-5 5" stroke="#050505" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
       <span class="sidebar-brand-name">availabl</span>
-    </div>
+    </a>
 
     <div class="sidebar-org">
       <div class="sidebar-org-info">
-        <div class="sidebar-org-avatar"></div>
+        <div class="sidebar-org-avatar">S</div>
         <span class="sidebar-org-name">sandbox-org</span>
       </div>
       <span class="sidebar-org-chevron">⌄</span>
@@ -41,21 +44,14 @@
           <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 8h12M10 4l4 4-4 4"/></svg>
         </span>
         Migrations
-        <span class="nav-item-badge">3</span>
+        <span class="nav-item-badge" id="mig-badge"></span>
       </a>
 
-      <a href="#" class="nav-item">
+      <a href="onboarding.html" class="nav-item">
         <span class="nav-item-icon">
           <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1" y="3" width="14" height="10" rx="1.5"/><path d="M5 3V2M11 3V2"/></svg>
         </span>
-        Inventory
-      </a>
-
-      <a href="#" class="nav-item">
-        <span class="nav-item-icon">
-          <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 1v14M1 8h14"/></svg>
-        </span>
-        Artifacts
+        New scan
       </a>
 
       <span class="nav-section-label">Settings</span>
@@ -67,7 +63,7 @@
         Connect AWS
       </a>
 
-      <a href="#" class="nav-item">
+      <a href="settings.html" class="nav-item">
         <span class="nav-item-icon">
           <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="8" r="3"/><path d="M8 1v2M8 13v2M1 8h2M13 8h2"/></svg>
         </span>
@@ -77,11 +73,15 @@
 
     <div class="sidebar-footer">
       <div class="sidebar-user">
-        <div class="user-avatar">R</div>
+        <img class="user-avatar-img" id="user-photo" src="" alt="" style="display:none;width:28px;height:28px;border-radius:50%;object-fit:cover;">
+        <div class="user-avatar" id="user-initials">?</div>
         <div class="user-info">
-          <div class="user-name">Roman Artyushkov</div>
-          <div class="user-role">Admin</div>
+          <div class="user-name" id="user-name">Loading…</div>
+          <div class="user-role" id="user-email" style="font-size:10px;color:#737373;"></div>
         </div>
+        <button id="btn-signout" title="Sign out" style="margin-left:auto;background:none;border:none;cursor:pointer;color:#737373;padding:4px;display:flex;align-items:center;">
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M6 3H3a1 1 0 00-1 1v8a1 1 0 001 1h3M10 5l4 3-4 3M6 8h8"/></svg>
+        </button>
       </div>
     </div>
   </aside>
@@ -96,7 +96,7 @@
         <strong>Dashboard</strong>
       </div>
       <div class="topbar-actions">
-        <a href="connect.html" class="btn btn-outline">+ Connect AWS</a>
+        <a href="onboarding.html" class="btn btn-outline">+ Connect AWS</a>
         <a href="migrations.html" class="btn btn-primary">New migration</a>
       </div>
     </div>
@@ -152,7 +152,7 @@
 
           <div class="migration-row" onclick="window.location='migrations.html'">
             <div class="migration-name">
-              <div class="migration-icon">⚡</div>
+              <div class="migration-icon"><svg viewBox="0 0 16 16"><path d="M2 8h12M10 4l4 4-4 4"/></svg></div>
               <div>
                 <div class="migration-title">sandbox1 → sandbox2</div>
                 <div class="migration-id" id="mig-id-1">mig-loading</div>
@@ -166,7 +166,7 @@
 
           <div class="migration-row">
             <div class="migration-name">
-              <div class="migration-icon">🔬</div>
+              <div class="migration-icon"><svg viewBox="0 0 16 16"><rect x="2" y="2" width="5" height="5" rx="1"/><rect x="9" y="2" width="5" height="5" rx="1"/><rect x="2" y="9" width="5" height="5" rx="1"/><rect x="9" y="9" width="5" height="5" rx="1"/></svg></div>
               <div>
                 <div class="migration-title">ECS cluster clone</div>
                 <div class="migration-id">mig-ecs-001</div>
@@ -180,7 +180,7 @@
 
           <div class="migration-row">
             <div class="migration-name">
-              <div class="migration-icon">🗄️</div>
+              <div class="migration-icon"><svg viewBox="0 0 16 16"><ellipse cx="8" cy="4" rx="6" ry="2"/><path d="M2 4v4c0 1.1 2.686 2 6 2s6-.9 6-2V4"/><path d="M2 8v4c0 1.1 2.686 2 6 2s6-.9 6-2V8"/></svg></div>
               <div>
                 <div class="migration-title">DynamoDB + Lambda</div>
                 <div class="migration-id">mig-dynamo-002</div>
@@ -195,7 +195,7 @@
       </div>
 
       <!-- Bottom row -->
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;">
+      <div class="bottom-grid">
 
         <!-- Activity -->
         <div class="section-card">
@@ -240,24 +240,12 @@
             <span class="section-card-title">Source inventory</span>
             <span class="badge badge-success" id="inv-badge">Live</span>
           </div>
-          <div class="section-card-body" style="padding:16px 20px;display:flex;flex-direction:column;gap:10px;">
-            <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid #f4f4f5;">
-              <span style="font-size:12px;color:var(--card-muted);">Lambda Functions</span>
-              <strong style="font-size:13px;" id="inv-lambda">--</strong>
-            </div>
-            <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid #f4f4f5;">
-              <span style="font-size:12px;color:var(--card-muted);">SQS Queues</span>
-              <strong style="font-size:13px;" id="inv-sqs">--</strong>
-            </div>
-            <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid #f4f4f5;">
-              <span style="font-size:12px;color:var(--card-muted);">DynamoDB Tables</span>
-              <strong style="font-size:13px;" id="inv-dynamo">--</strong>
-            </div>
-            <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 0;">
-              <span style="font-size:12px;color:var(--card-muted);">Dependency nodes</span>
-              <strong style="font-size:13px;" id="inv-deps">--</strong>
-            </div>
-            <a href="index.html#demo" class="btn btn-outline" style="width:100%;justify-content:center;margin-top:4px;">View full inventory →</a>
+          <div class="section-card-body inventory-body">
+            <div class="inv-row"><span class="inv-label">Lambda Functions</span><strong class="inv-val" id="inv-lambda">--</strong></div>
+            <div class="inv-row"><span class="inv-label">SQS Queues</span><strong class="inv-val" id="inv-sqs">--</strong></div>
+            <div class="inv-row"><span class="inv-label">DynamoDB Tables</span><strong class="inv-val" id="inv-dynamo">--</strong></div>
+            <div class="inv-row inv-row-last"><span class="inv-label">Dependency nodes</span><strong class="inv-val" id="inv-deps">--</strong></div>
+            <a href="index.html#demo" class="btn btn-outline inv-cta">View full inventory →</a>
           </div>
         </div>
 
@@ -265,6 +253,84 @@
     </div>
   </div>
 
+
+  <script type="module">
+    import { requireAuth, signOutUser } from './auth.js';
+    import { getAwsConnections, getMigrations } from './db.js';
+    import { showToast } from './toast.js';
+
+    requireAuth().then(async (user) => {
+      const nameEl  = document.getElementById('user-name');
+      const emailEl = document.getElementById('user-email');
+      const initEl  = document.getElementById('user-initials');
+      const photoEl = document.getElementById('user-photo');
+
+      if (nameEl)  nameEl.textContent  = user.displayName || user.email;
+      if (emailEl) emailEl.textContent = user.email;
+      if (user.photoURL && photoEl) {
+        photoEl.src = user.photoURL;
+        photoEl.style.display = 'block';
+        if (initEl) initEl.style.display = 'none';
+      } else if (initEl) {
+        initEl.textContent = (user.displayName || user.email || '?')[0].toUpperCase();
+      }
+
+      // Load real data from Firestore
+      try {
+        const [conns, migs] = await Promise.all([getAwsConnections(), getMigrations()]);
+
+        // Stat card — migrations count
+        const migEl = document.getElementById('stat-migrations');
+        if (migEl) migEl.textContent = migs.length || 0;
+        const badge = document.getElementById('mig-badge');
+        if (badge) badge.textContent = migs.length || '';
+
+        // If user has connections, update subtitle
+        if (conns.length > 0) {
+          const c = conns[0];
+          const sub = document.querySelector('.page-subtitle');
+          if (sub) sub.textContent = `${c.name} · ${c.src_region} → ${c.tgt_region}`;
+        }
+
+        // Migrations table — show real data if exists
+        if (migs.length > 0) {
+          const tbody = document.querySelector('.section-card-body');
+          if (tbody) {
+            const header = tbody.querySelector('.migration-row-header');
+            const realRows = migs.slice(0, 3).map(m => {
+              const conn = conns.find(c => c.id === m.connection_id) || {};
+              const date = m.createdAt?.toDate ? m.createdAt.toDate().toLocaleDateString('en-US', {month:'short', year:'numeric'}) : '—';
+              const badgeClass = m.status === 'completed' ? 'badge-success' : m.status === 'running' ? 'badge-pending' : 'badge-pending';
+              return `<div class="migration-row" onclick="window.location='migrations.html'">
+                <div class="migration-name">
+                  <div class="migration-icon"><svg viewBox="0 0 16 16"><path d="M2 8h12M10 4l4 4-4 4"/></svg></div>
+                  <div>
+                    <div class="migration-title">${m.name}</div>
+                    <div class="migration-id">${m.id.slice(0,12)}</div>
+                  </div>
+                </div>
+                <div class="migration-meta">${conn.src_account || '—'}</div>
+                <div class="migration-meta">${conn.tgt_account || '—'}</div>
+                <div><span class="badge ${badgeClass}">${m.status}</span></div>
+                <div class="migration-meta">${date}</div>
+              </div>`;
+            }).join('');
+            tbody.innerHTML = (header ? header.outerHTML : '') + realRows;
+          }
+        }
+      } catch(e) {
+        showToast('Could not load your data. Showing demo.', 'error');
+      }
+
+      // Show success toast if redirected from Stripe
+      if (new URLSearchParams(window.location.search).get('upgraded') === '1') {
+        showToast('🎉 Upgraded to Pro! Welcome aboard.', 'success');
+        history.replaceState(null, '', window.location.pathname);
+      }
+    });
+
+    document.getElementById('btn-signout')?.addEventListener('click', signOutUser);
+  </script>
   <script src="./dashboard.js"></script>
 </body>
 </html>

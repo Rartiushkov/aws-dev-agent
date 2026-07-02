@@ -1,0 +1,448 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Availabl – Settings</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%235cdc96'/><path d='M6 16h20M18 9l7 7-7 7' stroke='%23050505' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'/></svg>" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./dashboard.css" />
+  <style>
+    /* Settings uses the light content system from dashboard.css */
+    .settings-layout { display: flex; gap: 40px; padding: 32px; max-width: 860px; }
+    .settings-nav { width: 160px; flex-shrink: 0; padding-top: 2px; }
+    .settings-nav-item {
+      display: block; padding: 7px 10px; border-radius: 6px;
+      font-size: 13px; font-weight: 500; color: var(--card-muted);
+      text-decoration: none; cursor: pointer; margin-bottom: 1px;
+      transition: background 100ms, color 100ms;
+    }
+    .settings-nav-item:hover { background: #f0f0f2; color: var(--card-text); }
+    .settings-nav-item.active { background: #ebebed; color: var(--card-text); font-weight: 600; }
+    .settings-nav-label {
+      font-size: 10px; font-weight: 700; letter-spacing: 0.1em;
+      text-transform: uppercase; color: #aaa; padding: 12px 10px 4px;
+    }
+
+    .settings-content { flex: 1; min-width: 0; }
+    .settings-section { display: none; }
+    .settings-section.active { display: block; }
+
+    .settings-title {
+      font-size: 15px; font-weight: 700; letter-spacing: -0.02em;
+      color: var(--card-text); margin-bottom: 3px;
+    }
+    .settings-sub { font-size: 12px; color: var(--card-muted); margin-bottom: 20px; }
+
+    .settings-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      margin-bottom: 12px;
+      box-shadow: var(--shadow-sm);
+    }
+    .settings-card-head {
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--card-border);
+      font-size: 11px; font-weight: 600;
+      letter-spacing: 0.04em;
+      color: var(--card-muted);
+      text-transform: uppercase;
+      background: #fafafa;
+    }
+    .settings-card-body { padding: 16px; display: flex; flex-direction: column; gap: 14px; }
+    .settings-row {
+      display: flex; align-items: center; justify-content: space-between; gap: 16px;
+    }
+    .settings-row-label { font-size: 13px; color: var(--card-text); font-weight: 500; }
+    .settings-row-sub { font-size: 12px; color: var(--card-muted); margin-top: 2px; }
+
+    .profile-avatar-row { display: flex; align-items: center; gap: 14px; }
+    .profile-avatar-lg {
+      width: 48px; height: 48px; border-radius: 50%;
+      background: #5cdc96; display: grid; place-items: center;
+      font-size: 20px; font-weight: 700; color: #050505; flex-shrink: 0;
+      overflow: hidden;
+    }
+    .profile-avatar-lg img { width: 100%; height: 100%; object-fit: cover; }
+
+    input[type="text"], input[type="email"] {
+      background: #fff; border: 1px solid var(--card-border);
+      border-radius: 6px; padding: 8px 11px;
+      font-family: var(--font); font-size: 13px; color: var(--card-text);
+      outline: none; width: 100%; transition: border-color 140ms;
+      box-shadow: var(--shadow-sm);
+    }
+    input:focus { border-color: #5cdc96; box-shadow: 0 0 0 3px rgba(92,220,150,0.12); }
+    input:read-only { color: var(--card-muted); background: #f7f7f8; cursor: default; }
+
+    .toggle {
+      width: 36px; height: 20px; border-radius: 10px;
+      background: #d4d4d8; border: none; cursor: pointer;
+      position: relative; transition: background 200ms; flex-shrink: 0;
+    }
+    .toggle::after {
+      content: ''; position: absolute; top: 2px; left: 2px;
+      width: 16px; height: 16px; border-radius: 50%;
+      background: #fff; transition: left 200ms;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+    }
+    .toggle.on { background: #5cdc96; }
+    .toggle.on::after { left: 18px; }
+
+    .btn-save {
+      padding: 7px 18px; background: #5cdc96; color: #050505;
+      border: none; border-radius: 6px; font-size: 13px; font-weight: 600;
+      cursor: pointer; font-family: var(--font); transition: background 140ms;
+    }
+    .btn-save:hover { background: #4bc97f; }
+    .btn-danger {
+      padding: 7px 18px; background: transparent; color: #dc2626;
+      border: 1px solid #fca5a5; border-radius: 6px;
+      font-size: 13px; font-weight: 600; cursor: pointer;
+      font-family: var(--font); transition: all 140ms;
+    }
+    .btn-danger:hover { background: #fef2f2; border-color: #dc2626; }
+
+    .badge-plan {
+      font-size: 11px; font-weight: 600; padding: 2px 9px; border-radius: 20px;
+      background: rgba(92,220,150,0.1); color: #16a34a;
+      border: 1px solid rgba(92,220,150,0.3);
+    }
+  </style>
+</head>
+<body>
+  <!-- ─── SIDEBAR ─────────────────────────────────── -->
+  <aside class="sidebar">
+    <a href="/index.html" class="sidebar-brand" style="text-decoration:none;">
+      <div class="sidebar-brand-mark">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 7h12M8 2l5 5-5 5" stroke="#050505" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <span class="sidebar-brand-name">availabl</span>
+    </a>
+
+    <div class="sidebar-org">
+      <div class="sidebar-org-info">
+        <div class="sidebar-org-avatar">S</div>
+        <span class="sidebar-org-name">sandbox-org</span>
+      </div>
+      <span class="sidebar-org-chevron">⌄</span>
+    </div>
+
+    <nav class="sidebar-nav">
+      <span class="nav-section-label">Overview</span>
+      <a href="dashboard.html" class="nav-item">
+        <span class="nav-item-icon"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="5" height="5" rx="1"/><rect x="9" y="2" width="5" height="5" rx="1"/><rect x="2" y="9" width="5" height="5" rx="1"/><rect x="9" y="9" width="5" height="5" rx="1"/></svg></span>
+        Dashboard
+      </a>
+      <a href="migrations.html" class="nav-item">
+        <span class="nav-item-icon"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 8h12M10 4l4 4-4 4"/></svg></span>
+        Migrations
+      </a>
+      <span class="nav-section-label">Account</span>
+      <a href="settings.html" class="nav-item active">
+        <span class="nav-item-icon"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="8" r="3"/><path d="M8 1v2M8 13v2M1 8h2M13 8h2"/></svg></span>
+        Settings
+      </a>
+    </nav>
+
+    <div class="sidebar-footer">
+      <div class="sidebar-user">
+        <img class="user-avatar-img" id="user-photo" src="" alt="" style="display:none;width:28px;height:28px;border-radius:50%;object-fit:cover;">
+        <div class="user-avatar" id="user-initials">?</div>
+        <div class="user-info">
+          <div class="user-name" id="user-name">Loading…</div>
+          <div class="user-role" id="user-email"></div>
+        </div>
+        <button id="btn-signout" title="Sign out" style="margin-left:auto;background:none;border:none;cursor:pointer;color:#737373;padding:4px;display:flex;align-items:center;">
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M6 3H3a1 1 0 00-1 1v8a1 1 0 001 1h3M10 5l4 3-4 3M6 8h8"/></svg>
+        </button>
+      </div>
+    </div>
+  </aside>
+
+  <!-- ─── MAIN ─────────────────────────────────────── -->
+  <div class="dashboard-main">
+    <div class="dashboard-topbar">
+      <div class="topbar-breadcrumb">
+        <span>sandbox-org</span>
+        <span class="sep">/</span>
+        <strong>Settings</strong>
+      </div>
+      <div class="topbar-actions">
+        <a href="onboarding.html" class="btn btn-primary">+ Connect AWS</a>
+      </div>
+    </div>
+
+    <div class="settings-layout">
+      <!-- NAV -->
+      <div class="settings-nav">
+        <div class="settings-nav-label">Account</div>
+        <a class="settings-nav-item active" onclick="showSection('profile')">Profile</a>
+        <a class="settings-nav-item" onclick="showSection('billing')">Billing & plan</a>
+        <a class="settings-nav-item" onclick="showSection('aws')">AWS connections</a>
+        <div class="settings-nav-label">App</div>
+        <a class="settings-nav-item" onclick="showSection('notifications')">Notifications</a>
+        <a class="settings-nav-item" onclick="showSection('danger')">Danger zone</a>
+      </div>
+
+      <!-- CONTENT -->
+      <div class="settings-content">
+
+        <!-- PROFILE -->
+        <div class="settings-section active" id="sec-profile">
+          <div class="settings-title">Profile</div>
+          <div class="settings-sub">Your personal account information.</div>
+
+          <div class="settings-card">
+            <div class="settings-card-head">Photo</div>
+            <div class="settings-card-body">
+              <div class="profile-avatar-row">
+                <div class="profile-avatar-lg" id="profile-avatar-lg">
+                  <img id="profile-photo-lg" src="" alt="" style="display:none;">
+                  <span id="profile-initial-lg">?</span>
+                </div>
+                <div>
+                  <div style="font-size:13px;color:var(--card-text);font-weight:600;" id="profile-name-display">—</div>
+                  <div style="font-size:12px;color:var(--card-muted);margin-top:2px;" id="profile-email-display">—</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="settings-card">
+            <div class="settings-card-head">Display name</div>
+            <div class="settings-card-body">
+              <input type="text" id="field-name" placeholder="Your name" />
+              <div style="display:flex;justify-content:flex-end;">
+                <button class="btn-save" onclick="saveNameFirestore()">Save</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="settings-card">
+            <div class="settings-card-head">Email</div>
+            <div class="settings-card-body">
+              <input type="email" id="field-email" readonly />
+              <div style="font-size:12px;color:var(--card-muted);">Email is managed by Google and cannot be changed here.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- BILLING -->
+        <div class="settings-section" id="sec-billing">
+          <div class="settings-title">Billing & plan</div>
+          <div class="settings-sub">Manage your subscription and payment method.</div>
+
+          <div class="settings-card">
+            <div class="settings-card-head">Current plan</div>
+            <div class="settings-card-body">
+              <div class="settings-row">
+                <div>
+                  <div class="settings-row-label">Starter</div>
+                  <div class="settings-row-sub">1 sandbox migration included</div>
+                </div>
+                <span class="badge-plan">Free</span>
+              </div>
+              <div style="display:flex;gap:10px;flex-wrap:wrap;">
+                <a href="pricing.html" class="btn-save" style="text-decoration:none;display:inline-block;">Upgrade to Pro →</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="settings-card">
+            <div class="settings-card-head">Usage this month</div>
+            <div class="settings-card-body">
+              <div class="settings-row">
+                <div>
+                  <div class="settings-row-label">Migrations run</div>
+                  <div class="settings-row-sub">Sandbox only</div>
+                </div>
+                <strong style="color:var(--card-text);">1 / 1</strong>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- AWS -->
+        <div class="settings-section" id="sec-aws">
+          <div class="settings-title">AWS connections</div>
+          <div class="settings-sub">Source and target accounts linked to your workspace.</div>
+
+          <div class="settings-card" id="aws-card">
+            <div class="settings-card-head">Connected accounts</div>
+            <div class="settings-card-body" id="aws-list">
+              <div style="font-size:13px;color:var(--card-muted);text-align:center;padding:16px 0;">No accounts connected yet.</div>
+            </div>
+          </div>
+          <a href="onboarding.html" class="btn-save" style="text-decoration:none;display:inline-block;margin-top:4px;">+ Connect AWS account</a>
+        </div>
+
+        <!-- NOTIFICATIONS -->
+        <div class="settings-section" id="sec-notifications">
+          <div class="settings-title">Notifications</div>
+          <div class="settings-sub">Choose what events you want to be notified about.</div>
+
+          <div class="settings-card">
+            <div class="settings-card-head">Email notifications</div>
+            <div class="settings-card-body">
+              <div class="settings-row">
+                <div>
+                  <div class="settings-row-label">Migration completed</div>
+                  <div class="settings-row-sub">When a full migration run finishes</div>
+                </div>
+                <button class="toggle on" onclick="this.classList.toggle('on')"></button>
+              </div>
+              <div class="settings-row">
+                <div>
+                  <div class="settings-row-label">Validation issues found</div>
+                  <div class="settings-row-sub">When smoke checks flag a problem</div>
+                </div>
+                <button class="toggle on" onclick="this.classList.toggle('on')"></button>
+              </div>
+              <div class="settings-row">
+                <div>
+                  <div class="settings-row-label">Weekly summary</div>
+                  <div class="settings-row-sub">Activity digest every Monday</div>
+                </div>
+                <button class="toggle" onclick="this.classList.toggle('on')"></button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- DANGER -->
+        <div class="settings-section" id="sec-danger">
+          <div class="settings-title">Danger zone</div>
+          <div class="settings-sub">Irreversible actions. Proceed with caution.</div>
+
+          <div class="settings-card">
+            <div class="settings-card-body">
+              <div class="settings-row">
+                <div>
+                  <div class="settings-row-label">Delete all migration data</div>
+                  <div class="settings-row-sub">Removes all migration history, manifests, and reports</div>
+                </div>
+                <button class="btn-danger" onclick="confirmDelete('data')">Delete data</button>
+              </div>
+              <div class="settings-row">
+                <div>
+                  <div class="settings-row-label">Delete account</div>
+                  <div class="settings-row-sub">Permanently removes your account and all associated data</div>
+                </div>
+                <button class="btn-danger" onclick="confirmDelete('account')">Delete account</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <script type="module">
+    import { requireAuth, signOutUser } from './auth.js';
+    import { getAwsConnections, deleteAwsConnection, updateUserName } from './db.js';
+
+    requireAuth().then(async (user) => {
+      // Sidebar
+      const nameEl  = document.getElementById('user-name');
+      const emailEl = document.getElementById('user-email');
+      const initEl  = document.getElementById('user-initials');
+      const photoEl = document.getElementById('user-photo');
+      if (nameEl)  nameEl.textContent  = user.displayName || user.email;
+      if (emailEl) emailEl.textContent = user.email;
+      if (user.photoURL && photoEl) {
+        photoEl.src = user.photoURL;
+        photoEl.style.display = 'block';
+        if (initEl) initEl.style.display = 'none';
+      } else if (initEl) {
+        initEl.textContent = (user.displayName || user.email || '?')[0].toUpperCase();
+      }
+
+      // Profile section
+      const pName    = document.getElementById('profile-name-display');
+      const pEmail   = document.getElementById('profile-email-display');
+      const pPhotoLg = document.getElementById('profile-photo-lg');
+      const pInitLg  = document.getElementById('profile-initial-lg');
+      const fName    = document.getElementById('field-name');
+      const fEmail   = document.getElementById('field-email');
+
+      if (pName)  pName.textContent  = user.displayName || user.email;
+      if (pEmail) pEmail.textContent = user.email;
+      if (fName)  fName.value        = user.displayName || '';
+      if (fEmail) fEmail.value       = user.email;
+
+      if (user.photoURL && pPhotoLg) {
+        pPhotoLg.src = user.photoURL;
+        pPhotoLg.style.display = 'block';
+        if (pInitLg) pInitLg.style.display = 'none';
+      } else if (pInitLg) {
+        pInitLg.textContent = (user.displayName || user.email || '?')[0].toUpperCase();
+      }
+
+      // AWS connections from Firestore
+      try {
+        const conns = await getAwsConnections();
+        const list  = document.getElementById('aws-list');
+        if (list) {
+          if (conns.length === 0) {
+            list.innerHTML = '<div style="font-size:13px;color:var(--card-muted);text-align:center;padding:16px 0;">No accounts connected yet.</div>';
+          } else {
+            list.innerHTML = conns.map(c => `
+              <div class="settings-row" data-id="${c.id}">
+                <div>
+                  <div class="settings-row-label">${c.src_account} &rarr; ${c.tgt_account}</div>
+                  <div class="settings-row-sub">${c.src_region} &rarr; ${c.tgt_region} &middot; ${c.name}</div>
+                </div>
+                <div style="display:flex;align-items:center;gap:10px;">
+                  <span style="font-size:11px;color:#16a34a;font-weight:600;">${c.status}</span>
+                  <button onclick="removeConn('${c.id}')" style="background:none;border:none;cursor:pointer;color:#aaa;font-size:11px;">Remove</button>
+                </div>
+              </div>`).join('');
+          }
+        }
+      } catch(e) {}
+
+      // saveName uses Firestore
+      window.saveNameFirestore = async () => {
+        const v = document.getElementById('field-name')?.value;
+        if (!v) return;
+        try {
+          await updateUserName(v);
+          document.getElementById('profile-name-display').textContent = v;
+          document.getElementById('user-name').textContent = v;
+        } catch(e) { alert(e.message); }
+      };
+
+      window.removeConn = async (id) => {
+        if (!confirm('Remove this AWS connection?')) return;
+        try {
+          await deleteAwsConnection(id);
+          document.querySelector(`[data-id="${id}"]`)?.remove();
+        } catch(e) { alert(e.message); }
+      };
+    });
+
+    document.getElementById('btn-signout')?.addEventListener('click', signOutUser);
+  </script>
+  <script>
+    function showSection(id) {
+      document.querySelectorAll('.settings-section').forEach(s => s.classList.remove('active'));
+      document.querySelectorAll('.settings-nav-item').forEach(a => a.classList.remove('active'));
+      document.getElementById('sec-' + id)?.classList.add('active');
+      event.target.classList.add('active');
+    }
+    function confirmDelete(type) {
+      if (confirm(type === 'account'
+        ? 'Delete your account permanently? This cannot be undone.'
+        : 'Delete all migration data? This cannot be undone.')) {
+        alert('Done.');
+      }
+    }
+  </script>
+</body>
+</html>

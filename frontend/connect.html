@@ -12,10 +12,12 @@
 <body>
 
   <aside class="sidebar">
-    <div class="sidebar-brand">
-      <div class="sidebar-brand-mark">A</div>
+    <a href="/index.html" class="sidebar-brand" style="text-decoration:none;">
+      <div class="sidebar-brand-mark">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 7h12M8 2l5 5-5 5" stroke="#050505" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
       <span class="sidebar-brand-name">availabl</span>
-    </div>
+    </a>
 
     <div class="sidebar-org">
       <div class="sidebar-org-info">
@@ -49,11 +51,14 @@
 
     <div class="sidebar-footer">
       <div class="sidebar-user">
-        <div class="user-avatar">R</div>
+        <div class="user-avatar" id="user-initials">?</div>
         <div class="user-info">
-          <div class="user-name">Roman Artyushkov</div>
-          <div class="user-role">Admin</div>
+          <div class="user-name" id="user-name">Loading…</div>
+          <div class="user-role" id="user-email" style="font-size:10px;color:#737373;"></div>
         </div>
+        <button id="btn-signout" title="Sign out" style="margin-left:auto;background:none;border:none;cursor:pointer;color:#737373;padding:4px;display:flex;align-items:center;">
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M6 3H3a1 1 0 00-1 1v8a1 1 0 001 1h3M10 5l4 3-4 3M6 8h8"/></svg>
+        </button>
       </div>
     </div>
   </aside>
@@ -170,6 +175,18 @@
     </div>
   </div>
 
+  <script type="module">
+    import { requireAuth, signOutUser } from './auth.js';
+    requireAuth().then((user) => {
+      const nameEl = document.getElementById('user-name');
+      const emailEl = document.getElementById('user-email');
+      const initEl = document.getElementById('user-initials');
+      if (nameEl) nameEl.textContent = user.displayName || user.email;
+      if (emailEl) emailEl.textContent = user.email;
+      if (initEl) initEl.textContent = (user.displayName || user.email || '?')[0].toUpperCase();
+    });
+    document.getElementById('btn-signout')?.addEventListener('click', signOutUser);
+  </script>
   <script>
     function connectAWS() {
       const arn = document.getElementById('role-arn-input').value.trim();

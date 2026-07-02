@@ -14,8 +14,8 @@
   --muted: #a1a1aa;
   --dim: #52525b;
 
-  --accent: #46e3b7;
-  --accent-2: #6ee7ff;
+  --accent: #5cdc96;
+  --accent-2: #86efac;
   --accent-red: #f87171;
   --accent-yellow: #fbbf24;
   --accent-green: #4ade80;
@@ -118,6 +118,12 @@ button { font-family: inherit; cursor: pointer; }
   background: linear-gradient(135deg, var(--accent) 0%, var(--accent-2) 100%);
   border-radius: 5px;
   flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  font-weight: 700;
+  color: #050505;
 }
 
 .sidebar-org-name {
@@ -425,12 +431,22 @@ button { font-family: inherit; cursor: pointer; }
   width: 30px;
   height: 30px;
   background: #f4f4f5;
+  border: 1px solid #e8e8e8;
   border-radius: 6px;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  font-size: 14px;
+  color: #52525b;
+}
+.migration-icon svg {
+  width: 14px;
+  height: 14px;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
 }
 
 .migration-title { font-size: 13px; font-weight: 500; color: var(--card-text); }
@@ -573,6 +589,98 @@ button { font-family: inherit; cursor: pointer; }
 .activity-text { font-size: 12px; color: var(--card-text); line-height: 1.5; }
 .activity-time { font-size: 11px; color: var(--card-muted); margin-top: 2px; }
 
+/* ─── MIGRATION DETAIL ───────────────────────────── */
+.mig-detail-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: var(--card-border);
+  border-top: 1px solid var(--card-border);
+  border-bottom: 1px solid var(--card-border);
+}
+.mig-stat {
+  background: var(--card-bg);
+  padding: 16px 20px;
+}
+.mig-stat-label {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--card-muted);
+  margin-bottom: 6px;
+}
+.mig-stat-value {
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  color: var(--card-text);
+  line-height: 1;
+}
+.mig-stat-value.accent { color: #16a34a; }
+
+.mig-timeline {
+  padding: 16px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+.mig-timeline-loading {
+  font-size: 12px;
+  color: var(--card-muted);
+  padding: 8px 0;
+}
+.tl-item {
+  display: flex;
+  gap: 14px;
+  padding: 10px 0;
+  border-bottom: 1px solid #f4f4f5;
+  align-items: flex-start;
+}
+.tl-item:last-child { border-bottom: none; }
+.tl-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #d4d4d8;
+  flex-shrink: 0;
+  margin-top: 4px;
+}
+.tl-dot-last { background: #16a34a; }
+.tl-text {
+  font-size: 12px;
+  color: var(--card-text);
+  line-height: 1.55;
+}
+
+/* ─── BOTTOM GRID ────────────────────────────────── */
+.bottom-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+/* ─── INVENTORY CARD ─────────────────────────────── */
+.inventory-body {
+  padding: 8px 0 16px;
+  display: flex;
+  flex-direction: column;
+}
+.inv-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 9px 20px;
+  border-bottom: 1px solid #f4f4f5;
+}
+.inv-row-last { border-bottom: none; }
+.inv-label { font-size: 12px; color: var(--card-muted); }
+.inv-val { font-size: 13px; color: var(--card-text); }
+.inv-cta {
+  margin: 12px 20px 0;
+  justify-content: center;
+}
+
 /* ─── RESPONSIVE ──────────────────────────────────── */
 @media (max-width: 1024px) {
   .stats-row { grid-template-columns: repeat(2, 1fr); }
@@ -583,4 +691,38 @@ button { font-family: inherit; cursor: pointer; }
   .sidebar.open { transform: none; }
   .dashboard-main { margin-left: 0; }
   .stats-row { grid-template-columns: 1fr 1fr; }
+}
+
+/* ── Toast notifications ───────────────────────────────────────────────────── */
+.toast-container {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  z-index: 9999;
+  pointer-events: none;
+}
+.toast {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 16px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 500;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  color: var(--text);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+  pointer-events: all;
+  animation: toast-in 200ms ease forwards;
+  max-width: 320px;
+}
+.toast.toast-error  { border-color: rgba(248,113,113,0.3); color: #f87171; }
+.toast.toast-success { border-color: rgba(92,220,150,0.3); color: #5cdc96; }
+@keyframes toast-in {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
 }

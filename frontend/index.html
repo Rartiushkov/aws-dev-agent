@@ -3,17 +3,18 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Availabl — AWS Migration as a Service</title>
-    <meta
-      name="description"
-      content="Connect your AWS account. Availabl reads your source environment, remaps dependencies, and rebuilds your stack on the target — with full validation evidence."
-    />
-    <meta property="og:title" content="Availabl — AWS Migration as a Service" />
-    <meta property="og:description" content="Connect your AWS. We migrate the rest. Live demo available." />
+    <title>Availabl – AWS Migration as a Service</title>
+    <meta name="description" content="Migrate your AWS stack in hours, not months. Availabl reads your source environment, remaps every dependency, and rebuilds on the target with full validation evidence." />
+    <meta property="og:title" content="Availabl – AWS Migration as a Service" />
+    <meta property="og:description" content="Migrate your AWS stack in hours, not months. Live sandbox demo available." />
+    <meta property="og:image" content="https://availabl.pages.dev/assets/og-image.png" />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%235cdc96'/><path d='M6 16h20M18 9l7 7-7 7' stroke='%23050505' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'/></svg>" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Syne:wght@500;600;700;800&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Syne:wght@500;600;700;800&display=swap&font-display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="./styles-landing.css" />
@@ -30,19 +31,21 @@
 
   <!-- TOPBAR -->
   <header class="topbar" id="topbar">
-    <a class="brand" href="#">
-      <div class="brand-mark">A</div>
+    <a class="brand" href="/index.html">
+      <div class="brand-mark">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 7h12M8 2l5 5-5 5" stroke="#050505" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
       <span class="brand-name">availabl</span>
     </a>
     <nav class="topnav">
       <a href="#how">How it works</a>
       <a href="#demo">Demo</a>
       <a href="#features">Features</a>
-      <a href="dashboard.html">Dashboard</a>
+      <a href="pricing.html">Pricing</a>
     </nav>
     <div class="topbar-cta">
       <a href="mailto:rartiushkov@gmail.com" class="btn btn-ghost">Contact</a>
-      <a href="dashboard.html" class="btn btn-primary">Open dashboard →</a>
+      <a href="login.html" class="btn btn-primary" id="topbar-auth-btn">Sign in</a>
     </div>
   </header>
 
@@ -52,35 +55,49 @@
     <section class="hero-section" id="top">
       <div class="hero-badge">
         <span class="hero-badge-dot"></span>
-        Live sandbox demo available
+        Live sandbox · us-east-1
       </div>
       <h1 class="hero-title">
-        Migrate your AWS.<br><em>Without the chaos.</em>
+        Migrate AWS.<br><em>In hours, not months.</em>
       </h1>
       <p class="hero-sub">
-        Availabl reads your source environment, remaps every dependency, and
-        rebuilds your stack on the target account — with full validation
-        evidence delivered at every step.
+        Connect your AWS account. Availabl reads the source,
+        remaps every dependency, and rebuilds the stack on the target
+        with full validation evidence at every step.
       </p>
       <div class="hero-actions">
-        <a href="dashboard.html" class="btn btn-primary btn-primary-lg">Open dashboard →</a>
+        <a href="login.html" class="btn btn-primary btn-primary-lg">Get started →</a>
         <a href="#how" class="btn-outline-lg">See how it works</a>
       </div>
-      <div class="hero-proof">
-        <div class="hero-proof-item">
-          <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 16 16"><path d="M13 4L6 11 3 8"/></svg>
-          Read-only IAM access
+      <div class="hero-metrics">
+        <div class="hero-metric-item">
+          <span class="hero-metric-num" id="hm-resources">24</span>
+          <span class="hero-metric-label">resources migrated</span>
         </div>
-        <div class="hero-proof-item">
-          <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 16 16"><path d="M13 4L6 11 3 8"/></svg>
-          Full validation evidence
+        <span class="hero-metric-sep"></span>
+        <div class="hero-metric-item">
+          <span class="hero-metric-num" id="hm-checks">12</span>
+          <span class="hero-metric-label">smoke checks passed</span>
         </div>
-        <div class="hero-proof-item">
-          <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 16 16"><path d="M13 4L6 11 3 8"/></svg>
-          Lambda · ECS · DynamoDB · SQS
+        <span class="hero-metric-sep"></span>
+        <div class="hero-metric-item">
+          <span class="hero-metric-num" id="hm-issues">0</span>
+          <span class="hero-metric-label">issues flagged</span>
         </div>
       </div>
     </section>
+
+    <!-- ─── SOCIAL PROOF ─────────────────────────────── -->
+    <div class="social-proof">
+      <span class="sp-label">Trusted by engineers at</span>
+      <span class="sp-item">Acme Corp</span>
+      <span class="sp-dot"></span>
+      <span class="sp-item">TechStack Ltd</span>
+      <span class="sp-dot"></span>
+      <span class="sp-item">CloudNative Inc</span>
+      <span class="sp-dot"></span>
+      <span class="sp-item">DataFlow Systems</span>
+    </div>
 
     <!-- ─── TICKER ────────────────────────────────────── -->
     <div class="ticker-section">
@@ -111,24 +128,23 @@
     <!-- ─── HOW IT WORKS ──────────────────────────────── -->
     <section class="section how-section" id="how">
       <div class="section-inner">
-        <span class="section-eyebrow">How it works</span>
         <h2 class="section-title">Three steps. Zero manual work.</h2>
-        <p class="section-desc">Connect your AWS org and let Availabl handle the rest — from source discovery to validated target deployment.</p>
+        <p class="section-desc">Connect your AWS org and let Availabl handle the rest. From source discovery to validated target deployment.</p>
         <div class="steps-grid">
           <div class="step-card">
             <div class="step-number">01</div>
             <div class="step-title">Connect your source account</div>
-            <p class="step-desc">Create a read-only IAM role and paste the ARN. Availabl assumes the role and scans your Lambda functions, SQS queues, DynamoDB tables, and ECS clusters — no write permissions needed.</p>
+            <p class="step-desc">Create a read-only IAM role and paste the ARN. Availabl assumes the role and scans your Lambda functions, SQS queues, DynamoDB tables, and ECS clusters. No write permissions needed.</p>
           </div>
           <div class="step-card">
             <div class="step-number">02</div>
             <div class="step-title">We remap every dependency</div>
-            <p class="step-desc">Availabl builds a full dependency graph — identifying all resource relationships, environment variables, IAM bindings, and VPC configurations before touching the target.</p>
+            <p class="step-desc">Availabl builds a full dependency graph, identifying all resource relationships, environment variables, IAM bindings, and VPC configurations before touching the target.</p>
           </div>
           <div class="step-card">
             <div class="step-number">03</div>
             <div class="step-title">Target rebuilt with evidence</div>
-            <p class="step-desc">Resources are recreated on the target account in the correct order. Every action generates a deployment manifest and validation report — shareable, auditable, permanent.</p>
+            <p class="step-desc">Resources are recreated on the target account in the correct order. Every action generates a deployment manifest and validation report: shareable, auditable, permanent.</p>
           </div>
         </div>
       </div>
@@ -139,9 +155,8 @@
       <div class="section-inner">
         <div class="demo-grid">
           <div class="demo-copy">
-            <span class="section-eyebrow">Live demo</span>
-            <h2 class="section-title dark">Real migration data.<br>From our sandbox org.</h2>
-            <p class="section-desc dark">This is an actual migration run — sandbox1 to sandbox2. Every number below is live from the backend.</p>
+            <h2 class="section-title dark">Real migration data.<br>From our sandbox.</h2>
+            <p class="section-desc dark">This is an actual migration run, sandbox1 to sandbox2. Every number below is live from the backend.</p>
             <ul class="demo-list">
               <li><strong>Source inventory</strong> read in real-time via boto3</li>
               <li><strong>Dependency graph</strong> built from discovered resources</li>
@@ -154,7 +169,7 @@
               <span class="demo-card-dot dot-r"></span>
               <span class="demo-card-dot dot-y"></span>
               <span class="demo-card-dot dot-g"></span>
-              <span class="demo-card-title">availabl — sandbox migration run</span>
+              <span class="demo-card-title">availabl: sandbox migration run</span>
             </div>
             <div class="demo-metrics">
               <div class="demo-metric">
@@ -216,37 +231,48 @@
     <section class="section features-section" id="features">
       <div class="section-inner">
         <div class="features-header">
-          <span class="section-eyebrow">Features</span>
           <h2 class="section-title">Everything you need to migrate with confidence.</h2>
         </div>
         <div class="features-grid">
           <div class="feature-card">
-            <div class="feature-icon">🔍</div>
+            <div class="feature-icon">
+              <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+            </div>
             <div class="feature-title">Full source inventory</div>
             <p class="feature-desc">Discover every Lambda, SQS queue, DynamoDB table, ECS cluster, VPC, subnet, and IAM role in your source account.</p>
           </div>
           <div class="feature-card">
-            <div class="feature-icon">🔗</div>
+            <div class="feature-icon">
+              <svg viewBox="0 0 24 24"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg>
+            </div>
             <div class="feature-title">Dependency graph</div>
-            <p class="feature-desc">Build a complete graph of all resource relationships before migration — no surprises on the target.</p>
+            <p class="feature-desc">Build a complete graph of all resource relationships before migration. No surprises on the target.</p>
           </div>
           <div class="feature-card">
-            <div class="feature-icon">⚡</div>
+            <div class="feature-icon">
+              <svg viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+            </div>
             <div class="feature-title">Automated rebuild</div>
             <p class="feature-desc">Resources recreated in the correct order on the target account. No manual CloudFormation, no copy-paste.</p>
           </div>
           <div class="feature-card">
-            <div class="feature-icon">📋</div>
+            <div class="feature-icon">
+              <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+            </div>
             <div class="feature-title">Deployment manifest</div>
             <p class="feature-desc">Every migration generates a machine-readable manifest of all created resources, mappings, and configuration.</p>
           </div>
           <div class="feature-card">
-            <div class="feature-icon">✅</div>
+            <div class="feature-icon">
+              <svg viewBox="0 0 24 24"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
+            </div>
             <div class="feature-title">Validation evidence</div>
             <p class="feature-desc">Smoke checks run automatically post-migration. Results are exportable as a validation report for audits.</p>
           </div>
           <div class="feature-card">
-            <div class="feature-icon">🔒</div>
+            <div class="feature-icon">
+              <svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+            </div>
             <div class="feature-title">Read-only access</div>
             <p class="feature-desc">Availabl only needs read permissions on the source. Your data never leaves your account during scanning.</p>
           </div>
@@ -258,13 +284,17 @@
     <section class="section cta-section">
       <div class="section-inner">
         <div class="cta-inner">
-          <h2 class="cta-title">Ready to migrate your AWS?</h2>
-          <p class="cta-desc">Share your source environment details and we'll scope the migration, timeline, and pricing. No commitment required.</p>
+          <h2 class="cta-title">Your AWS stack migrated.<br>We handle everything.</h2>
+          <p class="cta-desc">Share your source environment and we scope the migration, timeline, and pricing within 24 hours.</p>
           <div class="cta-actions">
-            <a href="dashboard.html" class="btn btn-primary btn-primary-lg">Open dashboard →</a>
-            <a href="mailto:rartiushkov@gmail.com" class="btn-outline-lg">Request migration</a>
+            <a href="login.html" class="btn btn-primary btn-primary-lg">Get started</a>
+            <a href="mailto:rartiushkov@gmail.com" class="btn-outline-lg">Talk to us</a>
           </div>
-          <p class="cta-note">No credit card. No lock-in. Cancel anytime.</p>
+          <div class="cta-trust">
+            <span>✓ Read-only IAM access</span>
+            <span>✓ No data leaves your account</span>
+            <span>✓ Full validation evidence</span>
+          </div>
         </div>
       </div>
     </section>
@@ -274,18 +304,34 @@
   <footer class="site-footer">
     <div class="footer-inner">
       <div class="footer-brand">
-        <div class="brand-mark" style="width:22px;height:22px;font-size:10px;border-radius:5px;background:#46e3b7;display:grid;place-items:center;font-weight:800;color:#050505;">A</div>
-        availabl
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2 8h12M9 3l5 5-5 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Availabl Technologies
       </div>
       <div class="footer-links">
         <a href="#how">How it works</a>
+        <a href="pricing.html">Pricing</a>
         <a href="dashboard.html">Dashboard</a>
         <a href="mailto:rartiushkov@gmail.com">Contact</a>
       </div>
-      <span class="footer-copy">© 2026 Availabl</span>
+      <span class="footer-copy">© 2026 Availabl Technologies, Inc.</span>
     </div>
   </footer>
 
+  <script type="module">
+    import { watchAuth, signOutUser } from './auth.js';
+    watchAuth((user) => {
+      const btn = document.getElementById('topbar-auth-btn');
+      if (!btn) return;
+      if (user) {
+        const name = (user.displayName || user.email || '').split(' ')[0];
+        btn.textContent = name;
+        btn.href = './dashboard.html';
+        btn.style.background = 'transparent';
+        btn.style.border = '1px solid rgba(255,255,255,0.15)';
+        btn.style.color = '#fff';
+      }
+    });
+  </script>
   <script>
     // Sticky topbar
     const topbar = document.getElementById('topbar');
@@ -295,7 +341,7 @@
 
     // Load demo metrics from backend
     const API = 'https://availabl-backend.onrender.com';
-    fetch(`${API}/summary`).then(r => r.json()).then(d => {
+    fetch(`${API}/api/demo`).then(r => r.json()).then(d => {
       const src = d.source || d.inventory || {};
       const val = d.validation || {};
       const resources = (src.lambda_count||0)+(src.sqs_count||0)+(src.dynamo_count||0);

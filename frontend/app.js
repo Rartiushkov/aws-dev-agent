@@ -57,10 +57,27 @@ const FALLBACK_DEMO = {
 };
 
 function revealOnScroll() {
-  const targets = document.querySelectorAll("[data-animate], .reveal-card");
-  targets.forEach((target) => {
-    target.classList.add("is-visible");
-  });
+  const all = document.querySelectorAll('.fade-up');
+  if (!all.length) return;
+
+  if (!('IntersectionObserver' in window)) {
+    all.forEach(el => el.classList.add('visible'));
+    return;
+  }
+
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+
+  all.forEach(el => io.observe(el));
+
+  // Safety net — show everything after 1.2s no matter what
+  setTimeout(() => all.forEach(el => el.classList.add('visible')), 1200);
 }
 
 function initHeroTilt() {
@@ -276,7 +293,25 @@ async function loadDemoState() {
     }
 
     const demo = await response.json();
-    renderDemoState(demo);
+      renderDemoState(demo);
+
+    // Update hero metrics from live data
+    const s = demo.summary || {};
+    const n = document.getElementById('hm-resources');
+    const c = document.getElementById('hm-checks');
+    const i = document.getElementById('hm-issues');
+    if (n && s.created_resources != null) n.textContent = s.created_resources;
+    if (c && s.ok_smoke_checks   != null) c.textContent = s.ok_smoke_checks;
+    if (i && s.validation_issue_checks != null) i.textContent = s.validation_issue_checks;
+
+    // Demo card rows
+    const dr = document.getElementById('demo-resources');
+    const dc = document.getElementById('demo-checks');
+    const di = document.getElementById('demo-issues');
+    if (dr) dr.textContent = s.created_resources ?? '--';
+    if (dc) dc.textContent = s.ok_smoke_checks   ?? '--';
+    if (di) di.textContent = s.validation_issue_checks ?? '--';
+
   } catch (error) {
     renderDemoState(FALLBACK_DEMO, { usingFallback: true });
     console.warn("Using fallback demo snapshot:", error);

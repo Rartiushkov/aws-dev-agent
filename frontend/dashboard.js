@@ -1,45 +1,60 @@
 const API = 'https://availabl-backend.onrender.com';
 
+function set(id, val) {
+  const el = document.getElementById(id);
+  if (el && val !== undefined && val !== null) el.textContent = val;
+}
+
 async function loadDashboard() {
   try {
-    const res = await fetch(`${API}/summary`);
+    const res = await fetch(`${API}/api/demo`);
+    if (!res.ok) throw new Error(res.status);
     const d = await res.json();
 
-    // Stats
-    const resources = (d.source?.lambda_count || 0) + (d.source?.sqs_count || 0) + (d.source?.dynamo_count || 0);
-    document.getElementById('stat-resources').textContent = resources || '--';
-    document.getElementById('stat-resources-delta').textContent = `${d.source?.lambda_count || 0} Lambda · ${d.source?.sqs_count || 0} SQS · ${d.source?.dynamo_count || 0} DDB`;
+    const inv   = d.inventory   || {};
+    const summ  = d.summary     || {};
+    const manif = d.deployment_manifest || {};
+    const val   = d.validation_report  || {};
 
-    const smoke = d.validation?.smoke_checks || 0;
-    const issues = d.validation?.checks_with_issues || 0;
-    document.getElementById('stat-checks').textContent = smoke || '--';
-    document.getElementById('stat-checks-delta').textContent = smoke ? `${smoke - issues} passed` : 'Loading...';
-    document.getElementById('stat-issues').textContent = issues !== undefined ? issues : '--';
-    document.getElementById('stat-issues-delta').textContent = issues === 0 ? '✓ No critical issues' : `${issues} flagged`;
+    const counts = inv.counts || {};
+    const lambda = counts.lambda_functions ?? 0;
+    const sqs    = counts.sqs_queues       ?? 0;
+    const dynamo = counts.dynamodb_tables  ?? 0;
+    const deps   = counts.dependency_nodes ?? 0;
+
+    const created  = summ.created_resources         ?? '--';
+    const okChecks = summ.ok_smoke_checks            ?? '--';
+    const issues   = summ.validation_issue_checks    ?? '--';
+
+    // Stat cards
+    set('stat-resources',       created);
+    set('stat-resources-delta', `${lambda} Lambda · ${sqs} SQS · ${dynamo} DDB`);
+    set('stat-checks',          okChecks);
+    set('stat-checks-delta',    okChecks !== '--' ? `${okChecks} passed` : '');
+    set('stat-issues',          issues);
+    set('stat-issues-delta',    issues === 0 ? 'No issues' : `${issues} flagged`);
 
     // Migration row
-    if (d.source?.account_id) {
-      document.getElementById('mig-id-1').textContent = `mig-${d.source.account_id.slice(-6)}`;
-    }
-    if (d.source?.region) {
-      document.getElementById('mig-source-1').textContent = d.source.region;
-    }
-    if (d.target?.account_id) {
-      document.getElementById('mig-target-1').textContent = `acct-${d.target.account_id.slice(-6)}`;
-    }
+    const srcEnv = inv.source_env || '';
+    const tgtEnv = manif.target_env || '';
+    const region = inv.region || '';
+    set('mig-id-1',      srcEnv ? `mig-${srcEnv}` : 'mig-sandbox1');
+    set('mig-source-1',  srcEnv || 'sandbox1');
+    set('mig-target-1',  tgtEnv || 'sandbox2');
+    set('mig-date-1',    region || 'us-east-1');
 
     // Activity
-    document.getElementById('act-smoke').textContent = smoke || '--';
-    document.getElementById('act-time-1').textContent = d.source?.region ? `Region: ${d.source.region}` : 'Today';
+    set('act-smoke',  okChecks);
+    set('act-time-1', region ? `${region}` : 'us-east-1');
 
-    // Inventory
-    document.getElementById('inv-lambda').textContent = d.source?.lambda_count ?? '--';
-    document.getElementById('inv-sqs').textContent = d.source?.sqs_count ?? '--';
-    document.getElementById('inv-dynamo').textContent = d.source?.dynamo_count ?? '--';
-    document.getElementById('inv-deps').textContent = d.source?.dependency_node_count ?? '--';
+    // Inventory card
+    set('inv-lambda', lambda);
+    set('inv-sqs',    sqs);
+    set('inv-dynamo', dynamo);
+    set('inv-deps',   deps);
 
   } catch (e) {
-    console.warn('Backend unavailable, showing static data');
+    console.warn('Backend unavailable:', e.message);
   }
 }
 

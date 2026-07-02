@@ -1,0 +1,287 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Availabl – Migrations</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%235cdc96'/><path d='M6 16h20M18 9l7 7-7 7' stroke='%23050505' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'/></svg>" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./dashboard.css" />
+</head>
+<body>
+
+  <aside class="sidebar">
+    <a href="/index.html" class="sidebar-brand" style="text-decoration:none;">
+      <div class="sidebar-brand-mark">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2 8h12M9 3l5 5-5 5" stroke="#050505" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <span class="sidebar-brand-name">availabl</span>
+    </a>
+
+    <div class="sidebar-org">
+      <div class="sidebar-org-info">
+        <div class="sidebar-org-avatar">S</div>
+        <span class="sidebar-org-name">sandbox-org</span>
+      </div>
+      <span class="sidebar-org-chevron">⌄</span>
+    </div>
+
+    <nav class="sidebar-nav">
+      <span class="nav-section-label">Overview</span>
+      <a href="dashboard.html" class="nav-item">
+        <span class="nav-item-icon">
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1" y="1" width="6" height="6" rx="1"/><rect x="9" y="1" width="6" height="6" rx="1"/><rect x="1" y="9" width="6" height="6" rx="1"/><rect x="9" y="9" width="6" height="6" rx="1"/></svg>
+        </span>
+        Dashboard
+      </a>
+      <a href="migrations.html" class="nav-item active">
+        <span class="nav-item-icon">
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 8h12M10 4l4 4-4 4"/></svg>
+        </span>
+        Migrations
+        <span class="nav-item-badge" id="mig-badge"></span>
+      </a>
+      <a href="onboarding.html" class="nav-item">
+        <span class="nav-item-icon">
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1" y="3" width="14" height="10" rx="1.5"/><path d="M5 3V2M11 3V2"/></svg>
+        </span>
+        New scan
+      </a>
+      <span class="nav-section-label">Settings</span>
+      <a href="connect.html" class="nav-item">
+        <span class="nav-item-icon">
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 3H3a1 1 0 00-1 1v8a1 1 0 001 1h3M10 3h3a1 1 0 011 1v8a1 1 0 01-1 1h-3M6 8h4"/></svg>
+        </span>
+        Connect AWS
+      </a>
+      <a href="settings.html" class="nav-item">
+        <span class="nav-item-icon">
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="8" r="3"/><path d="M8 1v2M8 13v2M1 8h2M13 8h2"/></svg>
+        </span>
+        Settings
+      </a>
+    </nav>
+
+    <div class="sidebar-footer">
+      <div class="sidebar-user">
+        <img class="user-avatar-img" id="user-photo" src="" alt="" style="display:none;width:28px;height:28px;border-radius:50%;object-fit:cover;">
+        <div class="user-avatar" id="user-initials">?</div>
+        <div class="user-info">
+          <div class="user-name" id="user-name">Loading…</div>
+          <div class="user-role" id="user-email" style="font-size:10px;color:#737373;"></div>
+        </div>
+        <button id="btn-signout" title="Sign out" style="margin-left:auto;background:none;border:none;cursor:pointer;color:#737373;padding:4px;display:flex;align-items:center;">
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M6 3H3a1 1 0 00-1 1v8a1 1 0 001 1h3M10 5l4 3-4 3M6 8h8"/></svg>
+        </button>
+      </div>
+    </div>
+  </aside>
+
+  <div class="dashboard-main">
+    <div class="dashboard-topbar">
+      <div class="topbar-breadcrumb">
+        <span>sandbox-org</span>
+        <span class="sep">/</span>
+        <strong>Migrations</strong>
+      </div>
+      <div class="topbar-actions">
+        <a href="connect.html" class="btn btn-outline">+ Connect AWS</a>
+        <a href="connect.html" class="btn btn-primary">New migration</a>
+      </div>
+    </div>
+
+    <div class="page-content">
+
+      <div class="page-header">
+        <div>
+          <div class="page-title">Migrations</div>
+          <div class="page-subtitle" id="mig-subtitle">Loading…</div>
+        </div>
+      </div>
+
+      <!-- Detail card: sandbox1 → sandbox2 -->
+      <div class="section-card" style="margin-bottom:20px;">
+        <div class="section-card-header">
+          <div style="display:flex;align-items:center;gap:10px;">
+            <div class="migration-icon">
+              <svg viewBox="0 0 16 16"><path d="M2 8h12M10 4l4 4-4 4"/></svg>
+            </div>
+            <div>
+              <div class="migration-title">sandbox1 → sandbox2</div>
+              <div class="migration-id" id="detail-id">mig-sandbox1</div>
+            </div>
+          </div>
+          <span class="badge badge-success">Completed</span>
+        </div>
+        <div class="mig-detail-grid">
+          <div class="mig-stat">
+            <div class="mig-stat-label">Resources created</div>
+            <div class="mig-stat-value" id="detail-resources">–</div>
+          </div>
+          <div class="mig-stat">
+            <div class="mig-stat-label">Smoke checks passed</div>
+            <div class="mig-stat-value accent" id="detail-checks">–</div>
+          </div>
+          <div class="mig-stat">
+            <div class="mig-stat-label">Issues flagged</div>
+            <div class="mig-stat-value" id="detail-issues">–</div>
+          </div>
+          <div class="mig-stat">
+            <div class="mig-stat-label">Region</div>
+            <div class="mig-stat-value" id="detail-region">–</div>
+          </div>
+        </div>
+        <!-- Timeline -->
+        <div class="mig-timeline" id="mig-timeline">
+          <div class="mig-timeline-loading">Loading migration data…</div>
+        </div>
+      </div>
+
+      <!-- All migrations table -->
+      <div class="section-card">
+        <div class="section-card-header">
+          <span class="section-card-title">All migrations</span>
+        </div>
+        <div class="section-card-body">
+          <div class="migration-row-header">
+            <span class="row-header-label">Name</span>
+            <span class="row-header-label">Source</span>
+            <span class="row-header-label">Target</span>
+            <span class="row-header-label">Status</span>
+            <span class="row-header-label">Date</span>
+          </div>
+
+          <div class="migration-row">
+            <div class="migration-name">
+              <div class="migration-icon"><svg viewBox="0 0 16 16"><path d="M2 8h12M10 4l4 4-4 4"/></svg></div>
+              <div>
+                <div class="migration-title">sandbox1 → sandbox2</div>
+                <div class="migration-id" id="tbl-id-1">mig-sandbox1</div>
+              </div>
+            </div>
+            <div class="migration-meta" id="tbl-src-1">sandbox1</div>
+            <div class="migration-meta" id="tbl-tgt-1">sandbox2</div>
+            <div><span class="badge badge-success">Completed</span></div>
+            <div class="migration-meta" id="tbl-region-1">us-east-1</div>
+          </div>
+
+          <div class="migration-row">
+            <div class="migration-name">
+              <div class="migration-icon"><svg viewBox="0 0 16 16"><rect x="2" y="2" width="5" height="5" rx="1"/><rect x="9" y="2" width="5" height="5" rx="1"/><rect x="2" y="9" width="5" height="5" rx="1"/><rect x="9" y="9" width="5" height="5" rx="1"/></svg></div>
+              <div>
+                <div class="migration-title">ECS cluster clone</div>
+                <div class="migration-id">mig-ecs-001</div>
+              </div>
+            </div>
+            <div class="migration-meta">prod-ecs</div>
+            <div class="migration-meta">staging-ecs</div>
+            <div><span class="badge badge-success">Completed</span></div>
+            <div class="migration-meta">us-east-1</div>
+          </div>
+
+          <div class="migration-row">
+            <div class="migration-name">
+              <div class="migration-icon"><svg viewBox="0 0 16 16"><ellipse cx="8" cy="4" rx="6" ry="2"/><path d="M2 4v4c0 1.1 2.686 2 6 2s6-.9 6-2V4"/><path d="M2 8v4c0 1.1 2.686 2 6 2s6-.9 6-2V8"/></svg></div>
+              <div>
+                <div class="migration-title">DynamoDB + Lambda</div>
+                <div class="migration-id">mig-dynamo-002</div>
+              </div>
+            </div>
+            <div class="migration-meta">us-east-1</div>
+            <div class="migration-meta">eu-west-1</div>
+            <div><span class="badge badge-pending">Pending</span></div>
+            <div class="migration-meta">–</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <script type="module">
+    import { requireAuth, signOutUser } from './auth.js';
+    import { getMigrations } from './db.js';
+    requireAuth().then(async (user) => {
+      const nameEl  = document.getElementById('user-name');
+      const emailEl = document.getElementById('user-email');
+      const initEl  = document.getElementById('user-initials');
+      const photoEl = document.getElementById('user-photo');
+      if (nameEl)  nameEl.textContent  = user.displayName || user.email;
+      if (emailEl) emailEl.textContent = user.email;
+      if (user.photoURL && photoEl) {
+        photoEl.src = user.photoURL;
+        photoEl.style.display = 'block';
+        if (initEl) initEl.style.display = 'none';
+      } else if (initEl) {
+        initEl.textContent = (user.displayName || user.email || '?')[0].toUpperCase();
+      }
+
+      try {
+        const migs = await getMigrations();
+        const badge = document.getElementById('mig-badge');
+        const subtitle = document.getElementById('mig-subtitle');
+        if (badge) badge.textContent = migs.length || '';
+        if (subtitle) {
+          const completed = migs.filter(m => m.status === 'completed').length;
+          const pending   = migs.filter(m => m.status === 'pending').length;
+          subtitle.textContent = migs.length
+            ? `${migs.length} total · ${completed} completed · ${pending} pending`
+            : 'No migrations yet — connect AWS to get started';
+        }
+      } catch(_) {}
+    });
+    document.getElementById('btn-signout')?.addEventListener('click', signOutUser);
+  </script>
+  <script type="module">
+    const API = 'https://availabl-backend.onrender.com';
+    function set(id, val) {
+      const el = document.getElementById(id);
+      if (el && val !== undefined && val !== null) el.textContent = val;
+    }
+    async function loadMigrations() {
+      try {
+        const res = await fetch(`${API}/api/demo`);
+        if (!res.ok) throw new Error(res.status);
+        const d = await res.json();
+        const inv  = d.inventory || {};
+        const summ = d.summary   || {};
+        const manif = d.deployment_manifest || {};
+
+        const srcEnv = inv.source_env || 'sandbox1';
+        const tgtEnv = manif.target_env || 'sandbox2';
+        const region = inv.region || 'us-east-1';
+
+        set('detail-id',       `mig-${srcEnv}`);
+        set('detail-resources', summ.created_resources ?? '–');
+        set('detail-checks',    summ.ok_smoke_checks   ?? '–');
+        set('detail-issues',    summ.validation_issue_checks ?? '–');
+        set('detail-region',    region);
+        set('tbl-id-1',   `mig-${srcEnv}`);
+        set('tbl-src-1',  srcEnv);
+        set('tbl-tgt-1',  tgtEnv);
+        set('tbl-region-1', region);
+
+        const timeline = d.timeline || [];
+        const tl = document.getElementById('mig-timeline');
+        if (timeline.length) {
+          tl.innerHTML = timeline.map((line, i) =>
+            `<div class="tl-item">
+              <div class="tl-dot ${i === timeline.length - 1 ? 'tl-dot-last' : ''}"></div>
+              <div class="tl-text">${line}</div>
+            </div>`
+          ).join('');
+        } else {
+          tl.innerHTML = '<div class="mig-timeline-loading">No timeline data.</div>';
+        }
+      } catch (e) {
+        console.warn('Backend unavailable:', e.message);
+        document.getElementById('mig-timeline').innerHTML =
+          '<div class="mig-timeline-loading">Could not load migration data.</div>';
+      }
+    }
+    loadMigrations();
+  </script>
+</body>
+</html>
