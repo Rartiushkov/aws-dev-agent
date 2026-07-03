@@ -204,9 +204,22 @@ export async function getBillingInfo() {
     planUpdatedAt:        d.planUpdatedAt || null,
     stripeCustomerId:     d.stripeCustomerId || null,
     stripeSubscriptionId: d.stripeSubscriptionId || null,
+    stripePriceId:        d.stripePriceId || null,
+    currentPeriodStart:   d.currentPeriodStart || null,
     currentPeriodEnd:     d.currentPeriodEnd || null,
     cancelAtPeriodEnd:    d.cancelAtPeriodEnd || false,
+    canceledAt:           d.canceledAt || null,
     trialEnd:             d.trialEnd || null,
+    planInterval:         d.planInterval || 'month',
+    planPrice:            d.planPrice || 0,
+    planCurrency:         d.planCurrency || 'usd',
+    lastPaymentAt:        d.lastPaymentAt || null,
+    lastPaymentAmount:    d.lastPaymentAmount || 0,
+    lastPaymentCurrency:  d.lastPaymentCurrency || 'usd',
+    lastInvoiceId:        d.lastInvoiceId || null,
+    lastFailedPaymentAt:  d.lastFailedPaymentAt || null,
+    lastFailedAmount:     d.lastFailedAmount || 0,
+    lastFailedInvoiceId:  d.lastFailedInvoiceId || null,
   };
 }
 

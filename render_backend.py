@@ -333,67 +333,139 @@ class RenderBackendHandler(BaseHTTPRequestHandler):
             except Exception:
                 return self._send_json(400, {"error": "Invalid JSON"})
             import datetime
+
+            def _iso(ts):
+                if not ts:
+                    return ""
+                try:
+                    return datetime.datetime.utcfromtimestamp(int(ts)).isoformat() + "Z"
+                except Exception:
+                    return ""
+
             event_type = event.get("type", "")
+
             if event_type == "checkout.session.completed":
                 session = event.get("data", {}).get("object", {})
                 uid = session.get("metadata", {}).get("uid")
                 sub_id = session.get("subscription", "")
                 customer_id = session.get("customer", "")
+                amount = session.get("amount_total", 0)
+                currency = session.get("currency", "usd")
                 if uid:
                     extra = {
                         "stripeCustomerId":     _str_value(customer_id),
                         "stripeSubscriptionId": _str_value(sub_id),
                         "cancelAtPeriodEnd":    _bool_value(False),
                         "trialEnd":             _str_value(""),
+                        "lastPaymentAmount":    _int_value(amount),
+                        "lastPaymentCurrency":  _str_value(currency),
+                        "lastPaymentAt":        _ts_value(_iso(None) or datetime.datetime.utcnow().isoformat() + "Z"),
                     }
                     _update_firestore_plan(uid, "pro", extra=extra)
                     _add_billing_event(uid, "subscription_created",
-                                       amount=session.get("amount_total", 29900),
-                                       currency=session.get("currency", "usd"),
+                                       amount=amount, currency=currency,
                                        subscription_id=sub_id)
+
+            elif event_type == "customer.subscription.created":
+                sub = event.get("data", {}).get("object", {})
+                uid = sub.get("metadata", {}).get("uid")
+                if uid:
+                    period_start_iso = _iso(sub.get("current_period_start"))
+                    period_end_iso   = _iso(sub.get("current_period_end"))
+                    trial_end_iso    = _iso(sub.get("trial_end"))
+                    item = (sub.get("items", {}).get("data") or [{}])[0]
+                    price = item.get("price", {})
+                    extra = {
+                        "stripeSubscriptionId": _str_value(sub.get("id", "")),
+                        "stripeCustomerId":     _str_value(sub.get("customer", "")),
+                        "planStatus":           _str_value(sub.get("status", "active")),
+                        "currentPeriodStart":   _ts_value(period_start_iso) if period_start_iso else _str_value(""),
+                        "currentPeriodEnd":     _ts_value(period_end_iso)   if period_end_iso   else _str_value(""),
+                        "cancelAtPeriodEnd":    _bool_value(sub.get("cancel_at_period_end", False)),
+                        "trialEnd":             _ts_value(trial_end_iso) if trial_end_iso else _str_value(""),
+                        "planInterval":         _str_value(price.get("recurring", {}).get("interval", "month")),
+                        "planPrice":            _int_value(price.get("unit_amount", 0)),
+                        "planCurrency":         _str_value(price.get("currency", "usd")),
+                        "stripePriceId":        _str_value(price.get("id", "")),
+                    }
+                    _update_firestore_plan(uid, "pro", extra=extra)
+
             elif event_type == "customer.subscription.updated":
                 sub = event.get("data", {}).get("object", {})
                 uid = sub.get("metadata", {}).get("uid")
                 if uid:
-                    period_end = sub.get("current_period_end", 0)
-                    period_end_iso = datetime.datetime.utcfromtimestamp(period_end).isoformat() + "Z" if period_end else ""
-                    cancel_at_end = sub.get("cancel_at_period_end", False)
+                    period_start_iso = _iso(sub.get("current_period_start"))
+                    period_end_iso   = _iso(sub.get("current_period_end"))
+                    trial_end_iso    = _iso(sub.get("trial_end"))
+                    item = (sub.get("items", {}).get("data") or [{}])[0]
+                    price = item.get("price", {})
                     extra = {
-                        "currentPeriodEnd":     _ts_value(period_end_iso) if period_end_iso else _str_value(""),
-                        "cancelAtPeriodEnd":    _bool_value(cancel_at_end),
                         "stripeSubscriptionId": _str_value(sub.get("id", "")),
+                        "planStatus":           _str_value(sub.get("status", "active")),
+                        "currentPeriodStart":   _ts_value(period_start_iso) if period_start_iso else _str_value(""),
+                        "currentPeriodEnd":     _ts_value(period_end_iso)   if period_end_iso   else _str_value(""),
+                        "cancelAtPeriodEnd":    _bool_value(sub.get("cancel_at_period_end", False)),
+                        "trialEnd":             _ts_value(trial_end_iso) if trial_end_iso else _str_value(""),
+                        "planInterval":         _str_value(price.get("recurring", {}).get("interval", "month")),
+                        "planPrice":            _int_value(price.get("unit_amount", 0)),
+                        "planCurrency":         _str_value(price.get("currency", "usd")),
+                        "stripePriceId":        _str_value(price.get("id", "")),
                     }
-                    plan = "pro" if sub.get("status") == "active" else "starter"
+                    plan = "pro" if sub.get("status") in ("active", "trialing") else "starter"
                     _update_firestore_plan(uid, plan, extra=extra)
+
             elif event_type in ("customer.subscription.deleted", "customer.subscription.paused"):
                 sub = event.get("data", {}).get("object", {})
                 uid = sub.get("metadata", {}).get("uid")
                 if uid:
-                    _update_firestore_plan(uid, "starter", extra={
+                    canceled_at_iso = _iso(sub.get("canceled_at"))
+                    extra = {
                         "stripeSubscriptionId": _str_value(""),
                         "cancelAtPeriodEnd":    _bool_value(False),
-                    })
+                        "canceledAt":           _ts_value(canceled_at_iso) if canceled_at_iso else _str_value(""),
+                        "currentPeriodEnd":     _str_value(""),
+                    }
+                    _update_firestore_plan(uid, "starter", extra=extra)
                     _add_billing_event(uid, event_type.split(".")[-1],
                                        subscription_id=sub.get("id", ""))
+
             elif event_type == "invoice.payment_succeeded":
                 invoice = event.get("data", {}).get("object", {})
-                customer_id = invoice.get("customer", "")
                 uid = invoice.get("subscription_details", {}).get("metadata", {}).get("uid", "")
+                paid_at_iso = _iso(invoice.get("status_transitions", {}).get("paid_at"))
+                period_end_iso = _iso(invoice.get("period_end"))
+                amount_paid = invoice.get("amount_paid", 0)
+                currency = invoice.get("currency", "usd")
                 if uid:
+                    # Update user doc with latest payment info + next billing date
+                    _firestore_patch(f"users/{uid}", {
+                        "lastPaymentAt":       _ts_value(paid_at_iso) if paid_at_iso else _ts_value(datetime.datetime.utcnow().isoformat() + "Z"),
+                        "lastPaymentAmount":   _int_value(amount_paid),
+                        "lastPaymentCurrency": _str_value(currency),
+                        "lastInvoiceId":       _str_value(invoice.get("id", "")),
+                        "currentPeriodEnd":    _ts_value(period_end_iso) if period_end_iso else _str_value(""),
+                        "planStatus":          _str_value("active"),
+                    })
                     _add_billing_event(uid, "payment_succeeded",
-                                       amount=invoice.get("amount_paid", 0),
-                                       currency=invoice.get("currency", "usd"),
+                                       amount=amount_paid, currency=currency,
                                        invoice_id=invoice.get("id", ""),
                                        subscription_id=invoice.get("subscription", ""))
+
             elif event_type == "invoice.payment_failed":
                 invoice = event.get("data", {}).get("object", {})
                 uid = invoice.get("subscription_details", {}).get("metadata", {}).get("uid", "")
                 if uid:
-                    _update_firestore_plan(uid, "pro", extra={"planStatus": _str_value("past_due")})
+                    _firestore_patch(f"users/{uid}", {
+                        "planStatus":          _str_value("past_due"),
+                        "lastFailedPaymentAt": _ts_value(datetime.datetime.utcnow().isoformat() + "Z"),
+                        "lastFailedAmount":    _int_value(invoice.get("amount_due", 0)),
+                        "lastFailedInvoiceId": _str_value(invoice.get("id", "")),
+                    })
                     _add_billing_event(uid, "payment_failed",
                                        amount=invoice.get("amount_due", 0),
                                        currency=invoice.get("currency", "usd"),
                                        invoice_id=invoice.get("id", ""))
+
             return self._send_json(200, {"received": True})
         if self.path != "/api/cloudflare":
             return self._send_json(404, {"error": "Not found"})

@@ -261,8 +261,16 @@
                 <span id="billing-status" style="font-size:13px;font-weight:600;">—</span>
               </div>
               <div class="settings-row">
+                <div class="settings-row-label">Current period</div>
+                <span id="billing-period" style="font-size:13px;color:var(--card-muted);">—</span>
+              </div>
+              <div class="settings-row">
                 <div class="settings-row-label">Next billing date</div>
                 <span id="billing-next-date" style="font-size:13px;color:var(--card-muted);">—</span>
+              </div>
+              <div class="settings-row">
+                <div class="settings-row-label">Last payment</div>
+                <span id="billing-last-payment" style="font-size:13px;color:var(--card-muted);">—</span>
               </div>
               <div class="settings-row">
                 <div class="settings-row-label">Subscription ID</div>
@@ -429,11 +437,28 @@
           const statusMap = { active: '✓ Active', canceled: 'Canceled', past_due: '⚠ Past due', trialing: 'Trial' };
           if (el('billing-status')) el('billing-status').textContent = statusMap[billing.planStatus] || billing.planStatus || '—';
 
-          if (el('billing-next-date') && billing.currentPeriodEnd) {
-            const d = billing.currentPeriodEnd.toDate ? billing.currentPeriodEnd.toDate() : new Date(billing.currentPeriodEnd);
-            el('billing-next-date').textContent = d.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
-          } else if (el('billing-next-date')) {
-            el('billing-next-date').textContent = isPro ? '—' : 'N/A (free plan)';
+          const fmtDate = (val) => {
+            if (!val) return null;
+            const d = val.toDate ? val.toDate() : new Date(val);
+            return d.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
+          };
+
+          if (el('billing-period')) {
+            const start = fmtDate(billing.currentPeriodStart);
+            const end   = fmtDate(billing.currentPeriodEnd);
+            el('billing-period').textContent = (start && end) ? `${start} → ${end}` : (isPro ? '—' : 'N/A');
+          }
+
+          if (el('billing-next-date')) {
+            el('billing-next-date').textContent = fmtDate(billing.currentPeriodEnd) || (isPro ? '—' : 'N/A (free plan)');
+          }
+
+          if (el('billing-last-payment') && billing.lastPaymentAt) {
+            const amt = billing.lastPaymentAmount ? `$${(billing.lastPaymentAmount / 100).toFixed(2)}` : '';
+            const date = fmtDate(billing.lastPaymentAt);
+            el('billing-last-payment').textContent = `${amt} on ${date}`;
+          } else if (el('billing-last-payment')) {
+            el('billing-last-payment').textContent = isPro ? '—' : 'N/A';
           }
 
           if (el('billing-sub-id')) el('billing-sub-id').textContent = billing.stripeSubscriptionId || '—';
