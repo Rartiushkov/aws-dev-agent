@@ -5,7 +5,7 @@
   <rect x="80" y="220" width="56" height="56" rx="12" fill="#5cdc96"/>
   <path d="M94 248h28M110 236l10 12-10 12" stroke="#050505" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
   <!-- Wordmark -->
-  <text x="154" y="261" font-family="Inter, -apple-system, sans-serif" font-size="40" font-weight="700" fill="#ffffff">availabl</text>
+  <text x="154" y="261" font-family="Inter, -apple-system, sans-serif" font-size="40" font-weight="700" fill="#ffffff">ShellShift</text>
   <!-- Tagline -->
   <text x="80" y="330" font-family="Inter, -apple-system, sans-serif" font-size="52" font-weight="800" fill="#ffffff" letter-spacing="-2">AWS migrations, automated.</text>
   <!-- Sub -->

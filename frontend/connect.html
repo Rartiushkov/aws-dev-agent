@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Availabl — Connect AWS</title>
+  <title>ShellShift — Connect AWS</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
@@ -14,9 +14,9 @@
   <aside class="sidebar">
     <a href="/index.html" class="sidebar-brand" style="text-decoration:none;">
       <div class="sidebar-brand-mark">
-        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 7h12M8 2l5 5-5 5" stroke="#050505" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <svg width="16" height="16" viewBox="0 0 32 32" fill="none"><ellipse cx="16" cy="17" rx="9" ry="7" fill="#050505"/><ellipse cx="16" cy="17" rx="6.5" ry="4.5" fill="#5cdc96"/><ellipse cx="16" cy="17" rx="2.5" ry="2" fill="#050505"/><line x1="16" y1="10" x2="16" y2="6" stroke="#050505" stroke-width="2" stroke-linecap="round"/><circle cx="16" cy="5" r="2" fill="#050505"/><line x1="7" y1="17" x2="4" y2="21" stroke="#050505" stroke-width="2" stroke-linecap="round"/><line x1="25" y1="17" x2="28" y2="21" stroke="#050505" stroke-width="2" stroke-linecap="round"/><line x1="10" y1="23" x2="8" y2="27" stroke="#050505" stroke-width="2" stroke-linecap="round"/><line x1="22" y1="23" x2="24" y2="27" stroke="#050505" stroke-width="2" stroke-linecap="round"/></svg>
       </div>
-      <span class="sidebar-brand-name">availabl</span>
+      <span class="sidebar-brand-name">ShellShift</span>
     </a>
 
     <div class="sidebar-org">
@@ -79,7 +79,7 @@
       <div class="page-header">
         <div>
           <div class="page-title">Connect your AWS organization</div>
-          <div class="page-subtitle">Grant read-only access so Availabl can scan your source environment and plan the migration.</div>
+          <div class="page-subtitle">Grant read-only access so ShellShift can scan your source environment and plan the migration.</div>
         </div>
       </div>
 
@@ -88,14 +88,14 @@
         <div class="connect-card">
           <div style="margin-bottom:24px;">
             <div style="font-size:13px;font-weight:600;color:var(--card-text);margin-bottom:6px;">3 steps · ~5 minutes</div>
-            <div style="font-size:12px;color:var(--card-muted);">Availabl only requires read-only IAM permissions. No write access is needed to scan your source environment.</div>
+            <div style="font-size:12px;color:var(--card-muted);">ShellShift only requires read-only IAM permissions. No write access is needed to scan your source environment.</div>
           </div>
 
           <div class="connect-step">
             <div class="step-num">1</div>
             <div class="step-body">
               <div class="step-title">Create an IAM role in your AWS account</div>
-              <div class="step-desc">Go to IAM → Roles → Create role. Select "Another AWS account" and enter the Availabl account ID below.</div>
+              <div class="step-desc">Go to IAM → Roles → Create role. Select "Another AWS account" and enter the ShellShift account ID below.</div>
               <div class="code-block">Account ID: 027087672282</div>
             </div>
           </div>
@@ -113,8 +113,8 @@
             <div class="step-num">3</div>
             <div class="step-body">
               <div class="step-title">Paste your Role ARN</div>
-              <div class="step-desc">Copy the Role ARN from the IAM console and paste it here. Availabl will verify access and begin the inventory scan.</div>
-              <input class="input-field" type="text" placeholder="arn:aws:iam::123456789012:role/availabl-readonly" id="role-arn-input" />
+              <div class="step-desc">Copy the Role ARN from the IAM console and paste it here. ShellShift will verify access and begin the inventory scan.</div>
+              <input class="input-field" type="text" placeholder="arn:aws:iam::123456789012:role/ShellShift-readonly" id="role-arn-input" />
               <div style="display:flex;gap:8px;margin-top:12px;">
                 <button class="btn btn-primary" onclick="connectAWS()">Verify &amp; connect</button>
                 <button class="btn btn-outline" onclick="window.location='dashboard.html'">Cancel</button>
@@ -169,7 +169,7 @@
               <span class="section-card-title">Security</span>
             </div>
             <div class="section-card-body" style="padding:14px 20px;font-size:12px;color:var(--card-muted);line-height:1.7;">
-              Availabl never stores your AWS credentials. The IAM role uses cross-account trust — revocable at any time from your AWS console. All scan data is encrypted in transit.
+              ShellShift never stores your AWS credentials. The IAM role uses cross-account trust — revocable at any time from your AWS console. All scan data is encrypted in transit.
             </div>
           </div>
         </div>
