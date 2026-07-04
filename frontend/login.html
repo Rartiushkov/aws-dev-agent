@@ -192,8 +192,25 @@
   </div>
 
   <script type="module">
-    import { signInWithGoogle, watchAuth } from './auth.js';
+    import { consumeRedirectSignInResult, signInWithGoogle, watchAuth } from './auth.js';
     import { upsertUser } from './db.js';
+
+    const showError = (message) => {
+      const box = document.getElementById('login-error');
+      box.textContent = message || 'Sign-in failed. Please try again.';
+      box.classList.add('visible');
+    };
+
+    consumeRedirectSignInResult()
+      .then(async (user) => {
+        if (user) {
+          await upsertUser(user).catch(e => console.error('[db] upsertUser error:', e.code, e.message));
+        }
+      })
+      .catch((e) => {
+        console.error('[auth] redirect sign-in error:', e);
+        showError(e.message || 'Google sign-in failed after redirect.');
+      });
 
     // If already signed in — upsert profile then go to dashboard
     watchAuth(async (user) => {
@@ -221,13 +238,14 @@
       error.classList.remove('visible');
       try {
         const user = await signInWithGoogle();
-        await upsertUser(user).catch(() => {});
+        if (user) {
+          await upsertUser(user).catch(() => {});
+        }
         // watchAuth will redirect
       } catch (e) {
         btn.classList.remove('loading');
         btn.disabled = false;
-        error.textContent = e.message || 'Sign-in failed. Please try again.';
-        error.classList.add('visible');
+        showError(e.message);
       }
     });
   </script>

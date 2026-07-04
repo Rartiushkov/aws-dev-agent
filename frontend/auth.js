@@ -3,7 +3,9 @@ import { initializeApp, getApps } from 'https://www.gstatic.com/firebasejs/10.12
 import {
   getAuth,
   GoogleAuthProvider,
+  getRedirectResult,
   signInWithPopup,
+  signInWithRedirect,
   signOut,
   onAuthStateChanged,
 } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js';
@@ -24,10 +26,27 @@ const auth     = getAuth(app);
 const provider = new GoogleAuthProvider();
 provider.setCustomParameters({ prompt: 'select_account' });
 
+function shouldUseRedirectFlow() {
+  const ua = navigator.userAgent || '';
+  const mobile = /Android|iPhone|iPad|iPod|IEMobile|Opera Mini/i.test(ua);
+  const embeddedBrowser = /FBAN|FBAV|Instagram|Line|wv|WebView/i.test(ua);
+  return mobile || embeddedBrowser;
+}
+
 // ─── Sign in ────────────────────────────────────────────────────────────────
 export async function signInWithGoogle() {
+  if (shouldUseRedirectFlow()) {
+    await signInWithRedirect(auth, provider);
+    return null;
+  }
+
   const result = await signInWithPopup(auth, provider);
   return result.user;
+}
+
+export async function consumeRedirectSignInResult() {
+  const result = await getRedirectResult(auth);
+  return result?.user || null;
 }
 
 // ─── Sign out ───────────────────────────────────────────────────────────────
