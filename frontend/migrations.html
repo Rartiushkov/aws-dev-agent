@@ -95,7 +95,7 @@
       <div class="page-header">
         <div>
           <div class="page-title">Migrations</div>
-          <div class="page-subtitle" id="mig-subtitle">Loading…</div>
+          <div class="page-subtitle" id="mig-subtitle">Loading live scan history…</div>
         </div>
       </div>
 
@@ -107,11 +107,11 @@
               <svg viewBox="0 0 16 16"><path d="M2 8h12M10 4l4 4-4 4"/></svg>
             </div>
             <div>
-              <div class="migration-title">sandbox1 → sandbox2</div>
-              <div class="migration-id" id="detail-id">mig-sandbox1</div>
+              <div class="migration-title">Latest scan</div>
+              <div class="migration-id" id="detail-id">scan-loading</div>
             </div>
           </div>
-          <span class="badge badge-success">Completed</span>
+          <span class="badge badge-pending" id="detail-status">Loading</span>
         </div>
         <div class="mig-detail-grid">
           <div class="mig-stat">
@@ -155,42 +155,14 @@
             <div class="migration-name">
               <div class="migration-icon"><svg viewBox="0 0 16 16"><path d="M2 8h12M10 4l4 4-4 4"/></svg></div>
               <div>
-                <div class="migration-title">sandbox1 → sandbox2</div>
-                <div class="migration-id" id="tbl-id-1">mig-sandbox1</div>
+                <div class="migration-title">Latest scan</div>
+                <div class="migration-id" id="tbl-id-1">scan-loading</div>
               </div>
             </div>
-            <div class="migration-meta" id="tbl-src-1">sandbox1</div>
-            <div class="migration-meta" id="tbl-tgt-1">sandbox2</div>
-            <div><span class="badge badge-success">Completed</span></div>
-            <div class="migration-meta" id="tbl-region-1">us-east-1</div>
-          </div>
-
-          <div class="migration-row">
-            <div class="migration-name">
-              <div class="migration-icon"><svg viewBox="0 0 16 16"><rect x="2" y="2" width="5" height="5" rx="1"/><rect x="9" y="2" width="5" height="5" rx="1"/><rect x="2" y="9" width="5" height="5" rx="1"/><rect x="9" y="9" width="5" height="5" rx="1"/></svg></div>
-              <div>
-                <div class="migration-title">ECS cluster clone</div>
-                <div class="migration-id">mig-ecs-001</div>
-              </div>
-            </div>
-            <div class="migration-meta">prod-ecs</div>
-            <div class="migration-meta">staging-ecs</div>
-            <div><span class="badge badge-success">Completed</span></div>
-            <div class="migration-meta">us-east-1</div>
-          </div>
-
-          <div class="migration-row">
-            <div class="migration-name">
-              <div class="migration-icon"><svg viewBox="0 0 16 16"><ellipse cx="8" cy="4" rx="6" ry="2"/><path d="M2 4v4c0 1.1 2.686 2 6 2s6-.9 6-2V4"/><path d="M2 8v4c0 1.1 2.686 2 6 2s6-.9 6-2V8"/></svg></div>
-              <div>
-                <div class="migration-title">DynamoDB + Lambda</div>
-                <div class="migration-id">mig-dynamo-002</div>
-              </div>
-            </div>
-            <div class="migration-meta">us-east-1</div>
-            <div class="migration-meta">eu-west-1</div>
-            <div><span class="badge badge-pending">Pending</span></div>
-            <div class="migration-meta">–</div>
+            <div class="migration-meta" id="tbl-src-1">—</div>
+            <div class="migration-meta" id="tbl-tgt-1">—</div>
+            <div><span class="badge badge-pending" id="tbl-status-1">Loading</span></div>
+            <div class="migration-meta" id="tbl-region-1">—</div>
           </div>
         </div>
       </div>
@@ -233,35 +205,53 @@
     document.getElementById('btn-signout')?.addEventListener('click', signOutUser);
   </script>
   <script type="module">
+    import { getIdToken, requireAuth } from './auth.js';
+
     const API = 'https://availabl-backend.onrender.com';
     function set(id, val) {
       const el = document.getElementById(id);
       if (el && val !== undefined && val !== null) el.textContent = val;
     }
     async function loadMigrations() {
+      let demo = null;
       try {
-        const res = await fetch(`${API}/api/demo`);
+        await requireAuth();
+        const demoRes = await fetch(`${API}/api/demo`);
+        if (demoRes.ok) {
+          demo = await demoRes.json();
+        }
+
+        const token = await getIdToken();
+        const res = await fetch(`${API}/api/scans`, {
+          headers: { Authorization: `Bearer ${token}` },
+        });
         if (!res.ok) throw new Error(res.status);
-        const d = await res.json();
-        const inv  = d.inventory || {};
-        const summ = d.summary   || {};
-        const manif = d.deployment_manifest || {};
+        const payload = await res.json();
+        const jobs = payload.items || [];
+        const latest = jobs[0];
+        if (!latest) {
+          throw new Error('No scans yet');
+        }
 
-        const srcEnv = inv.source_env || 'sandbox1';
-        const tgtEnv = manif.target_env || 'sandbox2';
-        const region = inv.region || 'us-east-1';
+        const summary = latest.result?.summary || {};
+        set('detail-id', latest.id);
+        set('detail-resources', summary.signal_resource_count ?? '–');
+        set('detail-checks', demo?.summary?.ok_smoke_checks ?? '–');
+        set('detail-issues', latest.status === 'failed' ? 1 : 0);
+        set('detail-region', latest.src_region || '–');
+        set('detail-status', latest.status);
+        set('tbl-id-1', latest.id);
+        set('tbl-src-1', latest.src_account || '—');
+        set('tbl-tgt-1', latest.src_region || '—');
+        set('tbl-status-1', latest.status);
+        set('tbl-region-1', latest.created_at ? new Date(latest.created_at).toLocaleDateString('en-US', { month: 'short', day: 'numeric' }) : '—');
 
-        set('detail-id',       `mig-${srcEnv}`);
-        set('detail-resources', summ.created_resources ?? '–');
-        set('detail-checks',    summ.ok_smoke_checks   ?? '–');
-        set('detail-issues',    summ.validation_issue_checks ?? '–');
-        set('detail-region',    region);
-        set('tbl-id-1',   `mig-${srcEnv}`);
-        set('tbl-src-1',  srcEnv);
-        set('tbl-tgt-1',  tgtEnv);
-        set('tbl-region-1', region);
-
-        const timeline = d.timeline || [];
+        const timeline = [
+          latest.message || 'Scan created.',
+          latest.result?.identity?.arn ? `Assumed role: ${latest.result.identity.arn}` : null,
+          latest.result?.summary_path ? `Summary saved to ${latest.result.summary_path}` : null,
+          latest.error ? `Error: ${latest.error}` : null,
+        ].filter(Boolean);
         const tl = document.getElementById('mig-timeline');
         if (timeline.length) {
           tl.innerHTML = timeline.map((line, i) =>
@@ -274,9 +264,32 @@
           tl.innerHTML = '<div class="mig-timeline-loading">No timeline data.</div>';
         }
       } catch (e) {
-        console.warn('Backend unShellShifte:', e.message);
-        document.getElementById('mig-timeline').innerHTML =
-          '<div class="mig-timeline-loading">Could not load migration data.</div>';
+        console.warn('Could not load live migration data:', e.message);
+        if (demo) {
+          const inv = demo.inventory || {};
+          const summ = demo.summary || {};
+          const manif = demo.deployment_manifest || {};
+          set('detail-id', `demo-${inv.source_env || 'sandbox1'}`);
+          set('detail-resources', summ.created_resources ?? '–');
+          set('detail-checks', summ.ok_smoke_checks ?? '–');
+          set('detail-issues', summ.validation_issue_checks ?? '–');
+          set('detail-region', inv.region || '–');
+          set('detail-status', 'demo');
+          set('tbl-id-1', `demo-${inv.source_env || 'sandbox1'}`);
+          set('tbl-src-1', inv.source_env || 'sandbox1');
+          set('tbl-tgt-1', manif.target_env || 'sandbox2');
+          set('tbl-status-1', 'demo');
+          set('tbl-region-1', inv.region || '–');
+          const tl = document.getElementById('mig-timeline');
+          tl.innerHTML = (demo.timeline || []).map((line, i) =>
+            `<div class="tl-item">
+              <div class="tl-dot ${i === (demo.timeline || []).length - 1 ? 'tl-dot-last' : ''}"></div>
+              <div class="tl-text">${line}</div>
+            </div>`
+          ).join('');
+          return;
+        }
+        document.getElementById('mig-timeline').innerHTML = '<div class="mig-timeline-loading">Could not load migration data.</div>';
       }
     }
     loadMigrations();

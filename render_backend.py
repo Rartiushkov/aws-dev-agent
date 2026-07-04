@@ -2,11 +2,15 @@ import hashlib
 import hmac
 import json
 import os
+import subprocess
+import sys
+import threading
 import urllib.error
 import urllib.parse
 import urllib.request
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
+from uuid import uuid4
 
 from lambda_function import handler as lambda_handler
 
@@ -163,10 +167,13 @@ def _add_billing_event(uid, event_type, amount=0, currency="usd", invoice_id="",
 
 
 ROOT_DIR = Path(__file__).resolve().parent
+RUNTIME_STATE_DIR = ROOT_DIR / "state" / "runtime"
+SCAN_JOBS_PATH = RUNTIME_STATE_DIR / "scan_jobs.json"
 DEMO_SUMMARY_PATH = ROOT_DIR / "state" / "clients" / "sandbox-demo" / "aws_inventory" / "sandbox1" / "summary.json"
 DEMO_MANIFEST_PATH = ROOT_DIR / "state" / "clients" / "sandbox-demo" / "deployments" / "sandbox2" / "deployment_manifest.json"
 DEMO_VALIDATION_PATH = ROOT_DIR / "state" / "clients" / "sandbox-demo" / "deployments" / "sandbox2" / "validation_report.json"
 DEMO_ECS_CLONE_PATH = ROOT_DIR / "state" / "ecs_cluster_clones" / "cluster2b-demo" / "clone_result.json"
+SCAN_JOBS_LOCK = threading.Lock()
 
 
 def _json_bytes(payload):
@@ -176,6 +183,157 @@ def _json_bytes(payload):
 def _read_json_file(path):
     with path.open("r", encoding="utf-8") as handle:
         return json.load(handle)
+
+
+def _utc_now():
+    import datetime
+    return datetime.datetime.utcnow().isoformat() + "Z"
+
+
+def _ensure_runtime_state():
+    RUNTIME_STATE_DIR.mkdir(parents=True, exist_ok=True)
+
+
+def _load_scan_jobs():
+    _ensure_runtime_state()
+    if not SCAN_JOBS_PATH.exists():
+        return []
+    try:
+        return _read_json_file(SCAN_JOBS_PATH)
+    except Exception:
+        return []
+
+
+def _save_scan_jobs(jobs):
+    _ensure_runtime_state()
+    SCAN_JOBS_PATH.write_text(json.dumps(jobs, indent=2), encoding="utf-8")
+
+
+def _create_scan_job(uid, payload):
+    job = {
+        "id": f"scan_{uuid4().hex[:12]}",
+        "uid": uid,
+        "src_account": payload.get("src_account", ""),
+        "src_region": payload.get("src_region", "us-east-1"),
+        "src_role_arn": payload.get("src_role_arn", ""),
+        "status": "queued",
+        "message": "Scan queued.",
+        "created_at": _utc_now(),
+        "updated_at": _utc_now(),
+        "result": {},
+        "error": "",
+    }
+    with SCAN_JOBS_LOCK:
+        jobs = _load_scan_jobs()
+        jobs.append(job)
+        _save_scan_jobs(jobs)
+    return job
+
+
+def _update_scan_job(job_id, **patch):
+    with SCAN_JOBS_LOCK:
+        jobs = _load_scan_jobs()
+        updated = None
+        for job in jobs:
+            if job.get("id") != job_id:
+                continue
+            job.update(patch)
+            job["updated_at"] = _utc_now()
+            updated = dict(job)
+            break
+        _save_scan_jobs(jobs)
+    return updated
+
+
+def _list_scan_jobs_for_uid(uid):
+    with SCAN_JOBS_LOCK:
+        jobs = _load_scan_jobs()
+    user_jobs = [job for job in jobs if job.get("uid") == uid]
+    return sorted(user_jobs, key=lambda item: item.get("created_at", ""), reverse=True)
+
+
+def _verify_assume_role(region, role_arn):
+    from executor.scripts.transfer_common import session_for
+
+    session = session_for(region, role_arn)
+    identity = session.client("sts").get_caller_identity()
+    return {
+        "account": identity.get("Account", ""),
+        "arn": identity.get("Arn", ""),
+        "user_id": identity.get("UserId", ""),
+    }
+
+
+def _run_discovery_job(job):
+    client_slug = f"user-{job['uid'][:12]}"
+    inventory_key = f"{client_slug}-{job['src_account']}-{job['src_region']}"
+    command = [
+        sys.executable,
+        "executor/scripts/discover_aws_environment.py",
+        "--region",
+        job["src_region"],
+        "--inventory-key",
+        inventory_key,
+        "--client-slug",
+        client_slug,
+        "--source-role-arn",
+        job["src_role_arn"],
+    ]
+
+    completed = subprocess.run(
+        command,
+        cwd=str(ROOT_DIR),
+        capture_output=True,
+        text=True,
+        timeout=600,
+    )
+    if completed.returncode != 0:
+        raise RuntimeError(completed.stderr.strip() or completed.stdout.strip() or "Discovery failed")
+
+    try:
+        return json.loads((completed.stdout or "").strip() or "{}")
+    except json.JSONDecodeError:
+        raise RuntimeError("Discovery returned non-JSON output")
+
+
+def _background_scan_worker(job):
+    try:
+        _update_scan_job(job["id"], status="verifying", message="Verifying AWS role access...")
+        identity = _verify_assume_role(job["src_region"], job["src_role_arn"])
+
+        _update_scan_job(
+            job["id"],
+            status="running",
+            message="Role verified. Running source inventory scan...",
+            result={"identity": identity},
+        )
+
+        discovery = _run_discovery_job(job)
+        summary = discovery.get("summary", {})
+        _update_scan_job(
+            job["id"],
+            status="completed",
+            message="Scan completed successfully.",
+            result={
+                "identity": identity,
+                "summary": summary,
+                "snapshot_path": discovery.get("snapshot_path", ""),
+                "summary_path": discovery.get("summary_path", ""),
+            },
+            error="",
+        )
+    except Exception as exc:
+        _update_scan_job(
+            job["id"],
+            status="failed",
+            message="Scan failed.",
+            error=str(exc),
+        )
+
+
+def _start_scan_job(job):
+    worker = threading.Thread(target=_background_scan_worker, args=(job,), daemon=True)
+    worker.start()
 
 
 def _build_demo_payload():
@@ -275,11 +433,16 @@ class RenderBackendHandler(BaseHTTPRequestHandler):
                 {
                     "ok": True,
                     "service": "availabl-backend",
-                    "routes": ["/health", "/api/demo", "/api/me", "/api/cloudflare"],
+                    "routes": ["/health", "/api/demo", "/api/me", "/api/scans", "/api/verify-role", "/api/cloudflare"],
                 },
             )
         if self.path == "/api/demo":
             return self._send_json(200, _build_demo_payload())
+        if self.path == "/api/scans":
+            uid = _get_uid(self.headers)
+            if not uid:
+                return self._send_json(401, {"error": "Unauthorized"})
+            return self._send_json(200, {"items": _list_scan_jobs_for_uid(uid)})
         if self.path == "/api/me":
             uid = _get_uid(self.headers)
             if not uid:
@@ -307,6 +470,23 @@ class RenderBackendHandler(BaseHTTPRequestHandler):
         return self._send_json(404, {"error": "Not found"})
 
     def do_POST(self):
+        if self.path == "/api/verify-role":
+            uid = _get_uid(self.headers)
+            if not uid:
+                return self._send_json(401, {"error": "Unauthorized"})
+            try:
+                payload = self._read_json()
+            except json.JSONDecodeError:
+                return self._send_json(400, {"error": "Invalid JSON body"})
+            role_arn = payload.get("role_arn", "")
+            region = payload.get("region", "us-east-1")
+            if not role_arn:
+                return self._send_json(400, {"error": "role_arn is required"})
+            try:
+                identity = _verify_assume_role(region, role_arn)
+                return self._send_json(200, {"ok": True, "identity": identity})
+            except Exception as exc:
+                return self._send_json(400, {"ok": False, "error": str(exc)})
         if self.path == "/api/scan":
             uid = _get_uid(self.headers)
             if not uid:
@@ -320,13 +500,9 @@ class RenderBackendHandler(BaseHTTPRequestHandler):
             src_role_arn = payload.get("src_role_arn", "")
             if not src_account or not src_role_arn:
                 return self._send_json(400, {"error": "src_account and src_role_arn are required"})
-            return self._send_json(202, {
-                "status": "queued",
-                "uid": uid,
-                "src_account": src_account,
-                "src_region": src_region,
-                "message": "Scan queued. Results will be available in your dashboard.",
-            })
+            job = _create_scan_job(uid, payload)
+            _start_scan_job(job)
+            return self._send_json(202, {"job": job})
         if self.path == "/api/webhook":
             length = int(self.headers.get("Content-Length", "0") or "0")
             raw_body = self.rfile.read(length)

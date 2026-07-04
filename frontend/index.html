@@ -4,10 +4,10 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>ShellShift – AWS Migration as a Service</title>
-    <meta name="description" content="Migrate your AWS stack in hours, not months. ShellShift reads your source environment, remaps every dependency, and rebuilds on the target with full validation evidence." />
+    <meta name="description" content="ShellShift scans supported AWS environments, reconstructs key dependencies, and produces migration evidence for controlled target rebuilds." />
     <meta property="og:title" content="ShellShift – AWS Migration as a Service" />
-    <meta property="og:description" content="Migrate your AWS stack in hours, not months. Live sandbox demo ShellShifte." />
-    <meta property="og:image" content="https://ShellShift.pages.dev/assets/og-image.svg" />
+    <meta property="og:description" content="Dependency-aware AWS migration workflows with scan, remapping, and validation evidence." />
+    <meta property="og:image" content="https://availabl.pages.dev/assets/og-image.svg" />
     <meta property="og:type" content="website" />
     <meta name="twitter:card" content="summary_large_image" />
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%235cdc96'/><text x='50' y='72' font-size='62' text-anchor='middle'>&#x1F422;</text></svg>" />
@@ -56,12 +56,12 @@
         Live sandbox · us-east-1
       </div>
       <h1 class="hero-title">
-        Migrate AWS.<br><em>In hours, not months.</em>
+        Migrate supported AWS workloads.<br><em>With evidence, not guesswork.</em>
       </h1>
       <p class="hero-sub">
-        Connect your AWS account. ShellShift reads the source,
-        remaps every dependency, and rebuilds the stack on the target
-        with full validation evidence at every step.
+        Connect a supported AWS source account. ShellShift scans the environment,
+        reconstructs key service relationships, and prepares a controlled target
+        migration flow with validation evidence at every step.
       </p>
       <div class="hero-actions">
         <a href="login.html" class="btn btn-primary btn-primary-lg">Get started →</a>
@@ -85,16 +85,16 @@
       </div>
     </section>
 
-    <!-- ─── SOCIAL PROOF ─────────────────────────────── -->
+    <!-- ─── PROOF BAR ────────────────────────────────── -->
     <div class="social-proof">
-      <span class="sp-label">Trusted by engineers at</span>
-      <span class="sp-item">Acme Corp</span>
+      <span class="sp-label">Current proof points</span>
+      <span class="sp-item">Live sandbox demo</span>
       <span class="sp-dot"></span>
-      <span class="sp-item">TechStack Ltd</span>
+      <span class="sp-item">Scan to validation workflow</span>
       <span class="sp-dot"></span>
-      <span class="sp-item">CloudNative Inc</span>
+      <span class="sp-item">Cross-account role model</span>
       <span class="sp-dot"></span>
-      <span class="sp-item">DataFlow Systems</span>
+      <span class="sp-item">Migration artifacts</span>
     </div>
 
     <!-- ─── TICKER ────────────────────────────────────── -->
@@ -126,23 +126,23 @@
     <!-- ─── HOW IT WORKS ──────────────────────────────── -->
     <section class="section how-section" id="how">
       <div class="section-inner">
-        <h2 class="section-title">Three steps. Zero manual work.</h2>
-        <p class="section-desc">Connect your AWS org and let ShellShift handle the rest. From source discovery to validated target deployment.</p>
+        <h2 class="section-title">Three steps. Controlled migration flow.</h2>
+        <p class="section-desc">Connect your AWS org and move from source discovery to validated target deployment for supported scenarios.</p>
         <div class="steps-grid">
           <div class="step-card">
             <div class="step-number">01</div>
             <div class="step-title">Connect your source account</div>
-            <p class="step-desc">Create a read-only IAM role and paste the ARN. ShellShift assumes the role and scans your Lambda functions, SQS queues, DynamoDB tables, and ECS clusters. No write permissions needed.</p>
+              <p class="step-desc">Create a read-only IAM role and paste the ARN. ShellShift assumes the role and scans supported resources such as Lambda, SQS, DynamoDB, and ECS. No write permissions needed on the source.</p>
           </div>
           <div class="step-card">
             <div class="step-number">02</div>
-            <div class="step-title">We remap every dependency</div>
-            <p class="step-desc">ShellShift builds a full dependency graph, identifying all resource relationships, environment variables, IAM bindings, and VPC configurations before touching the target.</p>
+              <div class="step-title">We remap supported dependencies</div>
+              <p class="step-desc">ShellShift builds a dependency map, identifying supported resource relationships, environment variables, IAM bindings, and network context before touching the target.</p>
           </div>
           <div class="step-card">
             <div class="step-number">03</div>
             <div class="step-title">Target rebuilt with evidence</div>
-            <p class="step-desc">Resources are recreated on the target account in the correct order. Every action generates a deployment manifest and validation report: shareable, auditable, permanent.</p>
+              <p class="step-desc">Supported resources are recreated on the target in the correct order. Every action generates a deployment manifest and validation report for review and handoff.</p>
           </div>
         </div>
       </div>
@@ -154,7 +154,7 @@
         <div class="demo-grid">
           <div class="demo-copy">
             <h2 class="section-title dark">Real migration data.<br>From our sandbox.</h2>
-            <p class="section-desc dark">This is an actual migration run, sandbox1 to sandbox2. Every number below is live from the backend.</p>
+            <p class="section-desc dark">This is sandbox migration evidence from the current backend. It shows the shape of the workflow and the validation artifacts we generate.</p>
             <ul class="demo-list">
               <li><strong>Source inventory</strong> read in real-time via boto3</li>
               <li><strong>Dependency graph</strong> built from discovered resources</li>
@@ -229,7 +229,7 @@
     <section class="section features-section" id="features">
       <div class="section-inner">
         <div class="features-header">
-          <h2 class="section-title">Everything you need to migrate with confidence.</h2>
+          <h2 class="section-title">What the product already does well.</h2>
         </div>
         <div class="features-grid">
           <div class="feature-card">
@@ -244,14 +244,14 @@
               <svg viewBox="0 0 24 24"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg>
             </div>
             <div class="feature-title">Dependency graph</div>
-            <p class="feature-desc">Build a complete graph of all resource relationships before migration. No surprises on the target.</p>
+            <p class="feature-desc">Build a dependency graph for supported resources before migration so target planning is grounded in actual discovery data.</p>
           </div>
           <div class="feature-card">
             <div class="feature-icon">
               <svg viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
             </div>
             <div class="feature-title">Automated rebuild</div>
-            <p class="feature-desc">Resources recreated in the correct order on the target account. No manual CloudFormation, no copy-paste.</p>
+            <p class="feature-desc">Supported resources recreated in the correct order on the target account, reducing manual rebuild work.</p>
           </div>
           <div class="feature-card">
             <div class="feature-icon">
@@ -272,7 +272,7 @@
               <svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
             </div>
             <div class="feature-title">Read-only access</div>
-            <p class="feature-desc">ShellShift only needs read permissions on the source. Your data never leaves your account during scanning.</p>
+            <p class="feature-desc">ShellShift only needs read permissions on the source. The target side can be kept behind a separate controlled role.</p>
           </div>
         </div>
       </div>
@@ -282,15 +282,15 @@
     <section class="section cta-section">
       <div class="section-inner">
         <div class="cta-inner">
-          <h2 class="cta-title">Your AWS stack migrated.<br>We handle everything.</h2>
-          <p class="cta-desc">Share your source environment and we scope the migration, timeline, and pricing within 24 hours.</p>
+          <h2 class="cta-title">Start with a controlled AWS assessment.<br>Scale into migration after proof.</h2>
+          <p class="cta-desc">Share your source environment and we scope supported migration paths, timeline, and validation outputs before rollout.</p>
           <div class="cta-actions">
             <a href="login.html" class="btn btn-primary btn-primary-lg">Get started</a>
             <a href="mailto:rartiushkov@gmail.com" class="btn-outline-lg">Talk to us</a>
           </div>
           <div class="cta-trust">
             <span>✓ Read-only IAM access</span>
-            <span>✓ No data leaves your account</span>
+            <span>✓ Read-only source scan</span>
             <span>✓ Full validation evidence</span>
           </div>
         </div>

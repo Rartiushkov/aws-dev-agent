@@ -364,7 +364,7 @@
             </div>
             <div class="summary-row">
               <span class="summary-label">IAM access</span>
-              <span class="badge-ready">Ready to verify</span>
+              <span class="badge-ready">Verification on scan start</span>
             </div>
           </div>
         </div>
@@ -427,14 +427,21 @@
         // Kick off backend scan
         try {
           const token = await getIdToken();
-          await fetch('https://availabl-backend.onrender.com/api/scan', {
+          const scanRes = await fetch('https://availabl-backend.onrender.com/api/scan', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
             body: JSON.stringify({ src_account: conn.src_account, src_region: conn.src_region, src_role_arn: conn.src_role_arn }),
           });
-        } catch(_) { /* scan is best-effort */ }
+          const scanPayload = await scanRes.json().catch(() => ({}));
+          if (!scanRes.ok) {
+            throw new Error(scanPayload.error || `Scan start failed with ${scanRes.status}`);
+          }
+          showToast(`Scan started: ${scanPayload.job?.id || 'job created'}`, 'success');
+        } catch(scanError) {
+          showToast(`Saved connection, but scan did not start: ${scanError.message}`, 'error');
+        }
 
-        window.location.href = './dashboard.html';
+        window.location.href = './dashboard.html?scan_started=1';
       } catch(e) {
         showToast('Error: ' + e.message, 'error');
         if (btn) { btn.textContent = 'Start inventory scan →'; btn.disabled = false; }

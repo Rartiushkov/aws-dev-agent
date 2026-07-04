@@ -104,7 +104,7 @@
       <div class="page-header">
         <div>
           <div class="page-title">Overview</div>
-          <div class="page-subtitle">sandbox-org · us-east-1 · Last sync 2 min ago</div>
+          <div class="page-subtitle">Live scan activity and migration evidence</div>
         </div>
         <button class="btn btn-ghost">↻ Refresh</button>
       </div>
@@ -113,8 +113,8 @@
       <div class="stats-row">
         <div class="stat-card">
           <div class="stat-label">Migrations</div>
-          <div class="stat-value" id="stat-migrations">3</div>
-          <div class="stat-delta up">↑ 1 this week</div>
+          <div class="stat-value" id="stat-migrations">0</div>
+          <div class="stat-delta">Live scan jobs</div>
         </div>
         <div class="stat-card">
           <div class="stat-label">Resources migrated</div>
@@ -152,42 +152,14 @@
             <div class="migration-name">
               <div class="migration-icon"><svg viewBox="0 0 16 16"><path d="M2 8h12M10 4l4 4-4 4"/></svg></div>
               <div>
-                <div class="migration-title">sandbox1 → sandbox2</div>
-                <div class="migration-id" id="mig-id-1">mig-loading</div>
+            <div class="migration-title">Recent scan</div>
+            <div class="migration-id" id="mig-id-1">scan-loading</div>
               </div>
             </div>
-            <div class="migration-meta" id="mig-source-1">sandbox1</div>
-            <div class="migration-meta" id="mig-target-1">sandbox2</div>
-            <div><span class="badge badge-success" id="mig-status-1">Success</span></div>
-            <div class="migration-meta" id="mig-date-1">2025-06</div>
-          </div>
-
-          <div class="migration-row">
-            <div class="migration-name">
-              <div class="migration-icon"><svg viewBox="0 0 16 16"><rect x="2" y="2" width="5" height="5" rx="1"/><rect x="9" y="2" width="5" height="5" rx="1"/><rect x="2" y="9" width="5" height="5" rx="1"/><rect x="9" y="9" width="5" height="5" rx="1"/></svg></div>
-              <div>
-                <div class="migration-title">ECS cluster clone</div>
-                <div class="migration-id">mig-ecs-001</div>
-              </div>
-            </div>
-            <div class="migration-meta">prod-ecs</div>
-            <div class="migration-meta">staging-ecs</div>
-            <div><span class="badge badge-success">Success</span></div>
-            <div class="migration-meta">2025-05</div>
-          </div>
-
-          <div class="migration-row">
-            <div class="migration-name">
-              <div class="migration-icon"><svg viewBox="0 0 16 16"><ellipse cx="8" cy="4" rx="6" ry="2"/><path d="M2 4v4c0 1.1 2.686 2 6 2s6-.9 6-2V4"/><path d="M2 8v4c0 1.1 2.686 2 6 2s6-.9 6-2V8"/></svg></div>
-              <div>
-                <div class="migration-title">DynamoDB + Lambda</div>
-                <div class="migration-id">mig-dynamo-002</div>
-              </div>
-            </div>
-            <div class="migration-meta">us-east-1</div>
-            <div class="migration-meta">eu-west-1</div>
-            <div><span class="badge badge-pending">Pending</span></div>
-            <div class="migration-meta">—</div>
+            <div class="migration-meta" id="mig-source-1">—</div>
+            <div class="migration-meta" id="mig-target-1">—</div>
+            <div><span class="badge badge-pending" id="mig-status-1">Loading</span></div>
+            <div class="migration-meta" id="mig-date-1">—</div>
           </div>
         </div>
       </div>
@@ -204,29 +176,29 @@
             <div class="activity-item">
               <div class="activity-dot green"></div>
               <div class="activity-body">
-                <div class="activity-text">Migration <strong>sandbox1→sandbox2</strong> completed successfully</div>
+            <div class="activity-text">Latest scan activity and verification results appear here</div>
                 <div class="activity-time" id="act-time-1">—</div>
               </div>
             </div>
             <div class="activity-item">
               <div class="activity-dot blue"></div>
               <div class="activity-body">
-                <div class="activity-text">Validation report generated — <span id="act-smoke">--</span> smoke checks passed</div>
+            <div class="activity-text">Demo validation report loaded — <span id="act-smoke">--</span> smoke checks passed</div>
                 <div class="activity-time">Today</div>
               </div>
             </div>
             <div class="activity-item">
               <div class="activity-dot green"></div>
               <div class="activity-body">
-                <div class="activity-text">ECS cluster cloned to staging environment</div>
-                <div class="activity-time">Yesterday</div>
+            <div class="activity-text">Start a new scan to generate fresh migration evidence</div>
+            <div class="activity-time">—</div>
               </div>
             </div>
             <div class="activity-item">
               <div class="activity-dot yellow"></div>
               <div class="activity-body">
-                <div class="activity-text">DynamoDB migration queued — awaiting confirmation</div>
-                <div class="activity-time">2 days ago</div>
+            <div class="activity-text">Completed scans keep source inventory snapshots and summary paths</div>
+            <div class="activity-time">—</div>
               </div>
             </div>
           </div>
@@ -275,7 +247,7 @@
 
       // Load real data from Firestore
       try {
-        const [conns, migs] = await Promise.all([getAwsConnections(), getMigrations()]);
+          const [conns, migs] = await Promise.all([getAwsConnections(), getMigrations()]);
 
         // Stat card — migrations count
         const migEl = document.getElementById('stat-migrations');
@@ -286,8 +258,8 @@
         // If user has connections, update subtitle
         if (conns.length > 0) {
           const c = conns[0];
-          const sub = document.querySelector('.page-subtitle');
-          if (sub) sub.textContent = `${c.name} · ${c.src_region} → ${c.tgt_region}`;
+            const sub = document.querySelector('.page-subtitle');
+            if (sub) sub.textContent = `${c.name} · ${c.src_region} → ${c.tgt_region}`;
         }
 
         // Migrations table — show real data if exists
@@ -322,13 +294,13 @@
 
       // Show success toast if redirected from Stripe
       if (new URLSearchParams(window.location.search).get('upgraded') === '1') {
-        showToast('🎉 Upgraded to Pro! Welcome aboard.', 'success');
+        showToast('Upgraded to Pro. Billing is active.', 'success');
         history.replaceState(null, '', window.location.pathname);
       }
     });
 
     document.getElementById('btn-signout')?.addEventListener('click', signOutUser);
   </script>
-  <script src="./dashboard.js"></script>
+  <script type="module" src="./dashboard.js"></script>
 </body>
 </html>

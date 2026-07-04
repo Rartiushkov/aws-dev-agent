@@ -177,7 +177,7 @@
   </div>
 
   <script type="module">
-    import { requireAuth, signOutUser } from './auth.js';
+    import { getIdToken, requireAuth, signOutUser } from './auth.js';
     requireAuth().then((user) => {
       const nameEl = document.getElementById('user-name');
       const emailEl = document.getElementById('user-email');
@@ -187,9 +187,7 @@
       if (initEl) initEl.textContent = (user.displayName || user.email || '?')[0].toUpperCase();
     });
     document.getElementById('btn-signout')?.addEventListener('click', signOutUser);
-  </script>
-  <script>
-    function connectAWS() {
+    window.connectAWS = async function connectAWS() {
       const arn = document.getElementById('role-arn-input').value.trim();
       const status = document.getElementById('connect-status');
       if (!arn.startsWith('arn:aws:iam::')) {
@@ -198,15 +196,32 @@
         status.textContent = 'Invalid ARN format. Expected: arn:aws:iam::ACCOUNT_ID:role/ROLE_NAME';
         return;
       }
-      status.style.display = 'block';
-      status.style.color = '#2563eb';
-      status.textContent = 'Role ARN format looks valid. Technical verification happens during the scan flow.';
-      setTimeout(() => {
+      try {
+        status.style.display = 'block';
+        status.style.color = '#2563eb';
+        status.textContent = 'Verifying role access against AWS...';
+        const token = await getIdToken();
+        const res = await fetch('https://availabl-backend.onrender.com/api/verify-role', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`,
+          },
+          body: JSON.stringify({ role_arn: arn, region: 'us-east-1' }),
+        });
+        const data = await res.json();
+        if (!res.ok || !data.ok) {
+          throw new Error(data.error || `Verification failed with ${res.status}`);
+        }
         status.style.color = '#16a34a';
-        status.textContent = 'Ready. Redirecting to dashboard...';
+        status.textContent = `Verified. AWS principal: ${data.identity?.arn || 'role assumed successfully'}. Redirecting...`;
         setTimeout(() => window.location = 'dashboard.html', 1200);
-      }, 1800);
-    }
+      } catch (error) {
+        status.style.display = 'block';
+        status.style.color = '#dc2626';
+        status.textContent = error.message || 'Could not verify role access.';
+      }
+    };
   </script>
 </body>
 </html>
