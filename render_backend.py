@@ -15,6 +15,11 @@ STRIPE_SECRET_KEY   = os.environ.get("STRIPE_SECRET_KEY", "")
 STRIPE_WEBHOOK_SECRET = os.environ.get("STRIPE_WEBHOOK_SECRET", "")
 STRIPE_PRO_PRICE_ID = os.environ.get("STRIPE_PRO_PRICE_ID", "price_1ToiXpE5xonjsdoogiiEaYfW")
 FRONTEND_URL        = os.environ.get("FRONTEND_URL", "https://availabl.pages.dev")
+ALLOWED_ORIGINS     = {
+    "https://availabl.pages.dev",
+    "http://localhost:4173",
+    "http://127.0.0.1:4173",
+}
 
 
 def _verify_firebase_token(token):
@@ -219,12 +224,21 @@ def _build_demo_payload():
 class RenderBackendHandler(BaseHTTPRequestHandler):
     server_version = "AvailablRenderBackend/1.0"
 
+    def _cors_origin(self):
+        origin = self.headers.get("Origin", "")
+        if origin in ALLOWED_ORIGINS:
+            return origin
+        if origin.endswith(".availabl.pages.dev") and origin.startswith("https://"):
+            return origin
+        return FRONTEND_URL
+
     def _send_json(self, status, payload, extra_headers=None):
         body = _json_bytes(payload)
         self.send_response(status)
         self.send_header("Content-Type", "application/json; charset=utf-8")
         self.send_header("Content-Length", str(len(body)))
-        self.send_header("Access-Control-Allow-Origin", "*")
+        self.send_header("Access-Control-Allow-Origin", self._cors_origin())
+        self.send_header("Vary", "Origin")
         self.send_header("Access-Control-Allow-Headers", "Content-Type, Authorization")
         self.send_header("Access-Control-Allow-Methods", "GET, POST, OPTIONS")
         if extra_headers:

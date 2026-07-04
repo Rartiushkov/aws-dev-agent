@@ -111,10 +111,10 @@
             <div class="step-num">3</div>
             <div class="step-body">
               <div class="step-title">Paste your Role ARN</div>
-              <div class="step-desc">Copy the Role ARN from the IAM console and paste it here. ShellShift will verify access and begin the inventory scan.</div>
+              <div class="step-desc">Copy the Role ARN from the IAM console and paste it here. ShellShift will validate the format now and attempt technical verification during the inventory scan.</div>
               <input class="input-field" type="text" placeholder="arn:aws:iam::123456789012:role/ShellShift-readonly" id="role-arn-input" />
               <div style="display:flex;gap:8px;margin-top:12px;">
-                <button class="btn btn-primary" onclick="connectAWS()">Verify &amp; connect</button>
+                <button class="btn btn-primary" onclick="connectAWS()">Continue</button>
                 <button class="btn btn-outline" onclick="window.location='dashboard.html'">Cancel</button>
               </div>
               <div id="connect-status" style="margin-top:10px;font-size:12px;display:none;"></div>
@@ -200,10 +200,10 @@
       }
       status.style.display = 'block';
       status.style.color = '#2563eb';
-      status.textContent = 'Verifying access...';
+      status.textContent = 'Role ARN format looks valid. Technical verification happens during the scan flow.';
       setTimeout(() => {
         status.style.color = '#16a34a';
-        status.textContent = '✓ Connected. Redirecting to dashboard...';
+        status.textContent = 'Ready. Redirecting to dashboard...';
         setTimeout(() => window.location = 'dashboard.html', 1200);
       }, 1800);
     }

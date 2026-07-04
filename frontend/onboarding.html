@@ -364,7 +364,7 @@
             </div>
             <div class="summary-row">
               <span class="summary-label">IAM access</span>
-              <span class="badge-ready">Read-only verified</span>
+              <span class="badge-ready">Ready to verify</span>
             </div>
           </div>
         </div>
@@ -427,7 +427,7 @@
         // Kick off backend scan
         try {
           const token = await getIdToken();
-          await fetch('https://ShellShift-backend.onrender.com/api/scan', {
+          await fetch('https://availabl-backend.onrender.com/api/scan', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
             body: JSON.stringify({ src_account: conn.src_account, src_region: conn.src_region, src_role_arn: conn.src_role_arn }),

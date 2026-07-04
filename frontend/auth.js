@@ -4,6 +4,9 @@ import {
   getAuth,
   GoogleAuthProvider,
   getRedirectResult,
+  indexedDBLocalPersistence,
+  browserLocalPersistence,
+  setPersistence,
   signInWithPopup,
   signInWithRedirect,
   signOut,
@@ -13,7 +16,7 @@ import {
 // ─── Firebase config ─────────────────────────────────────────────────────────
 const FIREBASE_CONFIG = {
   apiKey:            "AIzaSyC2s8vy7THhcs9YO5Ro5lwenICXZpzmgD8",
-  authDomain:        "availabl-1f709.firebaseapp.com",
+  authDomain:        "availabl.pages.dev",
   projectId:         "availabl-1f709",
   storageBucket:     "availabl-1f709.firebasestorage.app",
   messagingSenderId: "25354908364",
@@ -26,11 +29,20 @@ const auth     = getAuth(app);
 const provider = new GoogleAuthProvider();
 provider.setCustomParameters({ prompt: 'select_account' });
 
+setPersistence(auth, indexedDBLocalPersistence).catch(() => {
+  setPersistence(auth, browserLocalPersistence).catch(() => {});
+});
+
 function shouldUseRedirectFlow() {
   const ua = navigator.userAgent || '';
   const mobile = /Android|iPhone|iPad|iPod|IEMobile|Opera Mini/i.test(ua);
   const embeddedBrowser = /FBAN|FBAV|Instagram|Line|wv|WebView/i.test(ua);
   return mobile || embeddedBrowser;
+}
+
+export function isEmbeddedBrowser() {
+  const ua = navigator.userAgent || '';
+  return /FBAN|FBAV|Instagram|Line|wv|WebView|Telegram/i.test(ua);
 }
 
 // ─── Sign in ────────────────────────────────────────────────────────────────

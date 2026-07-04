@@ -19,7 +19,7 @@
     />
     <link rel="stylesheet" href="./styles-landing.css" />
   </head>
-  <body data-api-base="https://ShellShift-backend.onrender.com">
+  <body data-api-base="https://availabl-backend.onrender.com">
 
   <!-- VIDEO BG -->
   <div class="site-video" aria-hidden="true">
@@ -338,7 +338,7 @@
     }, { passive: true });
 
     // Load demo metrics from backend
-    const API = 'https://ShellShift-backend.onrender.com';
+    const API = 'https://availabl-backend.onrender.com';
     fetch(`${API}/api/demo`).then(r => r.json()).then(d => {
       const src = d.source || d.inventory || {};
       const val = d.validation || {};

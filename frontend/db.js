@@ -46,7 +46,7 @@ import { getAuth } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-aut
 
 const FIREBASE_CONFIG = {
   apiKey:            "AIzaSyC2s8vy7THhcs9YO5Ro5lwenICXZpzmgD8",
-  authDomain:        "availabl-1f709.firebaseapp.com",
+  authDomain:        "availabl.pages.dev",
   projectId:         "availabl-1f709",
   storageBucket:     "availabl-1f709.firebasestorage.app",
   messagingSenderId: "25354908364",
